@@ -7,7 +7,7 @@ const viewports = [
 ] as const;
 
 for (const viewport of viewports) {
-  test(`matches the ${viewport.name} foundation shell`, async ({ page }) => {
+  test(`matches the ${viewport.name} approved Stitch homepage`, async ({ page }) => {
     await page.setViewportSize(viewport.size);
     await page.goto("/");
     await page.locator("#next-logo").evaluateAll((nodes) => {

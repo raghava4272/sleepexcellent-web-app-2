@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SleepExcellent | Luxury Orthopedic Mattresses, Handcrafted Beds &amp; Designer Interiors</title>
+<!-- Tailwind CSS CDN with forms and container-queries plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration for Custom Luxury Palette & Typography -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandRed: '#E50914',
+            charcoal: {
+              900: '#121212',
+              850: '#181818',
+              800: '#222222',
+              700: '#333333',
+              600: '#4B4B4B'
+            },
+            warmCream: '#F9F7F2',
+            warmBeige: '#EFECE6',
+            warmSand: '#E5DFD5',
+            warmWood: '#8C6239',
+            warmWoodHover: '#724e2c'
+          },
+          fontFamily: {
+            serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Architectural & Interaction Styles -->
+<style data-purpose="custom-typography">
+    .brand-logo-text {
+      font-family: 'Times New Roman', Times, Georgia, serif;
+      font-style: italic;
+      letter-spacing: -0.02em;
+    }
+    .brand-logo-text span.brand-red {
+      color: #D32F2F;
+      font-style: normal;
+    }
+    .brand-logo-x {
+      color: #E50914;
+      display: inline-block;
+      font-style: italic;
+      font-weight: 800;
+      transform: skewX(-6deg) scale(1.1);
+      margin-left: -2px;
+      margin-right: -2px;
+    }
+    .official-logo {
+      display: block;
+      width: 236px;
+      height: 42px;
+      object-fit: cover;
+      object-position: center;
+    }
+  </style>
+<style data-purpose="layer-visuals">
+    .layer-pill {
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .layer-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px -4px rgba(0,0,0,0.12);
+    }
+    .config-range-slider {
+      -webkit-appearance: none;
+      height: 6px;
+      border-radius: 9999px;
+      background: #E5DFD5;
+      outline: none;
+    }
+    .config-range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #181818;
+      border: 3px solid #F9F7F2;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+  </style>
+<!-- END: Custom Architectural & Interaction Styles -->
+</head>
+<body class="bg-warmCream text-charcoal-900 font-sans antialiased selection:bg-warmWood selection:text-white">
+<!-- BEGIN: AnnouncementBar -->
+<aside class="bg-charcoal-900 text-warmCream border-b border-charcoal-800 text-xs py-2.5 px-4 tracking-wide" data-purpose="announcement-bar">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 font-medium">
+<div class="flex items-center gap-2">
+<span class="inline-block w-2 h-2 rounded-full bg-brandRed animate-pulse"></span>
+<span><strong>Sleep Better Sale</strong> — Up to 45% Off + Extra 10% with code <span class="font-mono text-amber-300 font-semibold underline underline-offset-2">EXCELLENT10</span></span>
+</div>
+<div class="flex items-center space-x-6 text-xs text-warmSand">
+<span class="flex items-center gap-1.5">
+<svg class="w-3.5 h-3.5 text-brandRed" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          Free Pan-India Delivery
+        </span>
+<span class="hidden sm:inline-block">•</span>
+<span class="flex items-center gap-1.5">
+<svg class="w-3.5 h-3.5 text-brandRed" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          100-Night Risk Free Trial
+        </span>
+<span class="hidden sm:inline-block">•</span>
+<a class="text-amber-200 hover:text-white transition-colors underline decoration-amber-400/50" href="#custom-mattress">Custom Size Atelier</a>
+</div>
+</div>
+</aside>
+<!-- END: AnnouncementBar -->
+<!-- BEGIN: MainHeader -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-warmSand transition-all duration-200 shadow-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-6">
+<!-- Brand Logo Container -->
+<a aria-label="SleepExcellent Home" class="flex items-center shrink-0 group focus:outline-none" href="#">
+<div class="relative py-1">
+<img alt="SleepExcellent" class="official-logo" src="/logo.png"/>
+<p class="text-[9px] uppercase tracking-[0.26em] text-charcoal-600 font-sans mt-0.5 font-medium">Mattresses &amp; Handcrafted Living</p>
+</div>
+</a>
+<!-- Center Search Bar with Popular Suggestion Pills -->
+<div class="hidden lg:flex flex-col flex-1 max-w-xl mx-2">
+<div class="relative flex items-center">
+<input class="w-full bg-warmCream/90 hover:bg-warmCream focus:bg-white text-xs md:text-sm pl-10 pr-24 py-2.5 rounded-full border border-warmSand focus:border-charcoal-900 focus:ring-1 focus:ring-charcoal-900 placeholder:text-neutral-500 transition-all shadow-inner" placeholder="Search orthopedic mattresses, sofas, padding beds, luxury ceilings..." type="search"/>
+<div class="absolute left-3.5 text-neutral-400 pointer-events-none">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<button class="absolute right-1.5 bg-charcoal-900 hover:bg-black text-white text-xs font-medium px-3.5 py-1.5 rounded-full transition-colors">
+            Search
+          </button>
+</div>
+<!-- Popular Quick Filter Search Pills -->
+<div class="flex items-center gap-1.5 mt-1.5 text-[11px] text-charcoal-600 pl-3">
+<span class="text-neutral-400 font-medium">Trending:</span>
+<a class="hover:text-charcoal-900 bg-warmBeige/80 px-2 py-0.5 rounded-full transition-colors" href="#ortho-plus">Ortho Plus</a>
+<a class="hover:text-charcoal-900 bg-warmBeige/80 px-2 py-0.5 rounded-full transition-colors" href="#sofas">L-Shape Chester</a>
+<a class="hover:text-brandRed font-medium bg-red-50 text-charcoal-800 px-2 py-0.5 rounded-full border border-red-100 transition-colors" href="#custom-mattress">Make Your Own Mattress ✨</a>
+</div>
+</div>
+<!-- Right Utility Actions -->
+<div class="flex items-center space-x-3 sm:space-x-5 text-charcoal-800">
+<!-- Store Locator -->
+<a class="hidden xl:flex items-center gap-1.5 text-xs font-medium text-charcoal-700 hover:text-charcoal-900 p-1.5 rounded-lg hover:bg-warmBeige transition" href="#stores">
+<svg class="w-4 h-4 text-charcoal-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+<span>Stores</span>
+</a>
+<!-- Track Order -->
+<a class="hidden sm:flex items-center gap-1.5 text-xs font-medium text-charcoal-700 hover:text-charcoal-900 p-1.5 rounded-lg hover:bg-warmBeige transition" href="#track">
+<svg class="w-4 h-4 text-charcoal-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+<span class="hidden md:inline">Track Order</span>
+</a>
+<!-- Wishlist -->
+<a aria-label="Wishlist" class="relative p-2 text-charcoal-700 hover:text-charcoal-900 rounded-full hover:bg-warmBeige transition" href="#wishlist">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+<span class="absolute top-1 right-1 bg-charcoal-800 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">1</span>
+</a>
+<!-- Account -->
+<a aria-label="Account" class="p-2 text-charcoal-700 hover:text-charcoal-900 rounded-full hover:bg-warmBeige transition" href="#account">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+</a>
+<!-- Shopping Cart with Subtotal Badge -->
+<a class="flex items-center gap-2.5 bg-charcoal-900 hover:bg-charcoal-850 text-white pl-3 pr-4 py-2 rounded-full transition shadow-sm group" href="#cart">
+<div class="relative">
+<svg class="w-4 h-4 text-warmCream" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="absolute -top-1.5 -right-2 bg-brandRed text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold shadow">2</span>
+</div>
+<div class="text-left leading-tight hidden sm:block">
+<div class="text-[10px] uppercase font-semibold text-neutral-400">Cart</div>
+<div class="text-xs font-bold text-amber-200">₹32,990</div>
+</div>
+</a>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: CategoryNavigation -->
+<nav class="bg-white border-b border-warmSand overflow-x-auto scrollbar-none sticky top-[69px] z-40 shadow-xs">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-xs font-medium uppercase tracking-wider text-charcoal-700 whitespace-nowrap min-w-max h-12">
+<div class="flex items-center space-x-7">
+<a class="hover:text-charcoal-900 py-3.5 border-b-2 border-charcoal-900 font-semibold text-charcoal-900 transition flex items-center gap-1.5" href="#mattresses">
+<span>Mattresses</span>
+<span class="text-[10px] bg-red-100 text-brandRed font-bold px-1.5 py-0.2 rounded">Save 45%</span>
+</a>
+<a class="hover:text-charcoal-900 py-3.5 border-b-2 border-transparent hover:border-warmWood transition" href="#sofas">Sofas &amp; Recliners</a>
+<a class="hover:text-charcoal-900 py-3.5 border-b-2 border-transparent hover:border-warmWood transition" href="#beds">Padding Beds</a>
+<a class="hover:text-charcoal-900 py-3.5 border-b-2 border-transparent hover:border-warmWood transition" href="#interiors">TV Units &amp; Kitchens</a>
+<a class="hover:text-charcoal-900 py-3.5 border-b-2 border-transparent hover:border-warmWood transition" href="#ceilings">False Ceilings (₹60/sqft)</a>
+<a class="hover:text-charcoal-900 py-3.5 border-b-2 border-transparent hover:border-warmWood transition" href="#pillows">Accessories &amp; Toppers</a>
+</div>
+<!-- Feature Button: Custom Mattress Atelier -->
+<a class="ml-6 inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-semibold normal-case tracking-normal rounded-full bg-gradient-to-r from-warmCream to-amber-50 text-charcoal-900 border border-warmWood/60 hover:border-warmWood hover:shadow-md transition" href="#custom-mattress">
+<span class="text-amber-600">✨</span>
+<span class="font-bold">Make Your Own Mattress</span>
+<span class="text-warmWood font-bold">→</span>
+</a>
+</div>
+</nav>
+<!-- END: CategoryNavigation -->
+<!-- BEGIN: HeroSection -->
+<section class="relative bg-warmSand/30 border-b border-warmSand overflow-hidden">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+<!-- Left Editorial Copy -->
+<div class="lg:col-span-6 space-y-6">
+<div class="inline-flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-warmSand text-xs font-semibold text-charcoal-800 shadow-2xs">
+<span class="w-2 h-2 rounded-full bg-brandRed"></span>
+<span>Sleep Architecture for Restorative Indian Living</span>
+</div>
+<h2 class="text-4xl sm:text-5xl lg:text-6xl font-serif text-charcoal-900 font-medium tracking-tight leading-[1.1]">
+            Better sleep. <br/>
+<span class="italic font-light">Architected</span> around you.
+          </h2>
+<p class="text-base sm:text-lg text-charcoal-600 font-normal leading-relaxed max-w-xl">
+            Engineered with high-precision orthopedic 3-zone core layers, 100% organic Dunlop latex, and climate-adaptive knitted fabrics. Handcrafted direct from factory workshops to your bedroom.
+          </p>
+<!-- Dual CTAs -->
+<div class="flex flex-wrap items-center gap-4 pt-2">
+<a class="bg-charcoal-900 hover:bg-black text-white text-sm font-semibold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5" href="#mattresses">
+              SHOP MATTRESSES
+            </a>
+<a class="bg-white hover:bg-warmBeige text-charcoal-900 border border-charcoal-800 text-sm font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center gap-2" href="#custom-mattress">
+<span>START CUSTOMISING</span>
+<span class="text-warmWood">→</span>
+</a>
+</div>
+<!-- Micro-trust metrics badge strip -->
+<div class="pt-6 border-t border-warmSand/80 grid grid-cols-3 gap-4 text-left">
+<div>
+<div class="text-xl sm:text-2xl font-bold font-serif text-charcoal-900">250,000+</div>
+<div class="text-[11px] sm:text-xs text-charcoal-600 font-medium mt-0.5">Satisfied Sleepers</div>
+</div>
+<div>
+<div class="text-xl sm:text-2xl font-bold font-serif text-charcoal-900">10-Year</div>
+<div class="text-[11px] sm:text-xs text-charcoal-600 font-medium mt-0.5">Comprehensive Warranty</div>
+</div>
+<div>
+<div class="text-xl sm:text-2xl font-bold font-serif text-charcoal-900">0% Margin</div>
+<div class="text-[11px] sm:text-xs text-charcoal-600 font-medium mt-0.5">Factory Workshop Direct</div>
+</div>
+</div>
+</div>
+<!-- Right Hero Visual Showcase -->
+<div class="lg:col-span-6 relative">
+<!-- Main Architectural Bedroom Display Card -->
+<div class="relative bg-white rounded-2xl p-4 sm:p-5 border border-warmSand shadow-xl">
+<!-- Simulated High End Bedroom with SleepExcellent Mattress and Padded Bed -->
+<div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200">
+<img alt="SleepExcellent Orthopedic Mattress on Roman Padding Bed" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMoiWICAppfA2MFWvdhlyWKXnogH8sI2y6DAVtq3zQNctm17WHq2G_nvd9PFLDOeo341xatDUcEAiklekANCral9BxpZdZ6f8L1n8aZ690rIkLYpyq3sXe7WWVYc0RlELj4i2_kPB_t8tu6RCg9-TrxAeewhKz7i4-05NDtZqXMbReqwathdHmLkgmPlFywzf8Oge8cNEoE-Gadop4SMPtjI9ByoYDm_RclrEFhWwvEEs4mWSnoTf8bA"/>
+<!-- Floating Pill Detail -->
+<div class="absolute bottom-4 left-4 bg-charcoal-900/90 backdrop-blur-md text-white px-3.5 py-2 rounded-xl text-xs flex items-center gap-3 shadow-lg">
+<div class="w-8 h-8 rounded-lg bg-warmWood/40 flex items-center justify-center font-serif text-amber-300 font-bold">SE</div>
+<div>
+<div class="font-semibold text-white">Ortho Plus 3-Zone Core</div>
+<div class="text-[11px] text-warmSand">Starting ₹16,395 • 100-Night Trial</div>
+</div>
+</div>
+<div class="absolute top-4 right-4 bg-brandRed text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                Save 25% Today
+              </div>
+</div>
+<!-- Supporting mini cards under hero -->
+<div class="grid grid-cols-2 gap-3 mt-3.5">
+<div class="p-3 bg-warmCream rounded-xl border border-warmSand flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-charcoal-900 text-amber-400 flex items-center justify-center text-lg font-bold">☁️</div>
+<div>
+<div class="text-xs font-bold text-charcoal-900">Cooling Tencel™ Fabric</div>
+<div class="text-[10px] text-charcoal-600">Dispels heat in humid nights</div>
+</div>
+</div>
+<div class="p-3 bg-warmCream rounded-xl border border-warmSand flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-warmWood text-white flex items-center justify-center text-lg font-bold">📐</div>
+<div>
+<div class="text-xs font-bold text-charcoal-900">Custom Dimensions</div>
+<div class="text-[10px] text-charcoal-600">Built to exact inch tolerances</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: PromotionalMerchandisingStrip -->
+<!-- Inspired by high-converting merchandising layout in https://lh3.googleusercontent.com/aida-public/AB6AXuB44PBFcdME8O1Ged3ZYHSgjXm7UEN0-0bpZgaKNgBfJJr7L8urITqMJ7WQpSLwBP7aoFTQPyGDinT5MhTcA2iVXWcqRPacdc8bbsfL1fl1PVhhadhnbQQeEqvTuw0pPOpYb96uLLdMx4U5IAB9OXwxoElvk82ZSiie1XybjpG9Z1HIuLfBl_bUMjm0pu_veH9R-7sW5fdw04SPwaeK7juVE8sZvuC9sSrQkQxacwXJWR1hsp6UF5ojE3Qy9cJMR0ldXbw -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 relative z-30">
+<div class="relative bg-gradient-to-r from-charcoal-900 via-charcoal-850 to-charcoal-900 rounded-2xl p-5 sm:p-7 shadow-2xl border border-charcoal-700/60 overflow-hidden text-white">
+<!-- Glow ambient background decoration -->
+<div class="absolute -right-16 -top-16 w-64 h-64 bg-brandRed/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+<!-- Flash Sale Heading and Countdown (Left) -->
+<div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col justify-between items-start gap-4">
+<div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brandRed text-white text-[11px] font-bold uppercase tracking-wider mb-2">
+<span class="animate-ping w-1.5 h-1.5 rounded-full bg-white"></span>
+              Limited Run
+            </div>
+<h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight italic">
+              FLASH <span class="text-brandRed">SALE</span>
+</h3>
+<p class="text-sm text-neutral-300 mt-1 font-light">
+              These deals are too restorative to scroll past. Extra 10% auto-applied.
+            </p>
+</div>
+<!-- Countdown Display -->
+<div class="flex items-center gap-2 pt-1">
+<div class="bg-charcoal-800 border border-charcoal-700 px-2.5 py-1.5 rounded-lg text-center min-w-[42px]">
+<span class="block text-sm font-bold font-mono text-amber-300">08</span>
+<span class="text-[9px] uppercase tracking-wider text-neutral-400">Hrs</span>
+</div>
+<span class="text-neutral-500 font-bold">:</span>
+<div class="bg-charcoal-800 border border-charcoal-700 px-2.5 py-1.5 rounded-lg text-center min-w-[42px]">
+<span class="block text-sm font-bold font-mono text-amber-300">42</span>
+<span class="text-[9px] uppercase tracking-wider text-neutral-400">Min</span>
+</div>
+<span class="text-neutral-500 font-bold">:</span>
+<div class="bg-charcoal-800 border border-charcoal-700 px-2.5 py-1.5 rounded-lg text-center min-w-[42px]">
+<span class="block text-sm font-bold font-mono text-brandRed">15</span>
+<span class="text-[9px] uppercase tracking-wider text-neutral-400">Sec</span>
+</div>
+<a class="ml-3 inline-block bg-warmWood hover:bg-warmWoodHover text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow" href="#flash-deals">
+              Check It Out →
+            </a>
+</div>
+</div>
+<!-- Featured Flash Micro Category Cards (Right - replicating horizontal pill preview from banner) -->
+<div class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
+<!-- Card 1: Ortho Memory Foam -->
+<a class="group bg-charcoal-800/80 hover:bg-charcoal-700/80 border border-charcoal-700 rounded-xl p-2.5 transition flex flex-col items-center text-center" href="#ortho-plus">
+<div class="w-full aspect-[4/3] rounded-lg overflow-hidden bg-neutral-800 mb-2">
+<img alt="Ortho Mattress" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeafneRxLv1LWhvi4k2LdEKZBaBL_TBUpP3q5dqQ39dU14gX8k3qaHVZE54rRtW5F8BdDplz1sEt8I3dpnrFJApsqyOT-gWWIydoKGp_ZjkbfMfVkN1JffEYaL3aH7294RPXhh89FNOY5g2IsKQAwIhaiTi81FtBX7IGRJ1Cv4jnqJkKh_Se31YdwPSRrCzqYGY1O-j35dUgFX3wtf3sS5Pyp5YGx1KxNY7ygRb2rsE3d8aRLGQVJa4g"/>
+</div>
+<span class="text-xs font-semibold text-neutral-200">Ortho Mattress</span>
+<span class="text-[11px] text-amber-300 font-medium">From ₹6,999 <span class="line-through text-neutral-500 text-[9px]">₹10,498</span></span>
+</a>
+<!-- Card 2: Chester Sofa -->
+<a class="group bg-charcoal-800/80 hover:bg-charcoal-700/80 border border-charcoal-700 rounded-xl p-2.5 transition flex flex-col items-center text-center" href="#sofas">
+<div class="w-full aspect-[4/3] rounded-lg overflow-hidden bg-neutral-800 mb-2">
+<img alt="Chester Sofa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAPElK8_XYohGGIUQV_ps_DCQts2t2ILFBU8Y0dYE3koHmwoJ7tVeI6h4h0hXVuaVBzZw_AXSdXNV7XJPLPlMVkVYPlSdGJ037h4OU1yndKQbUx07rGX6AjVMKpi0IFZEwGgVmFJztcUGWJmC3hUt-gqnh0_jbEUlpVylsRP86LJqkubFuUGejPbDFDRs-fw4ExWOXy9pZbUUH3XG7XPBbIVRYVWXiB6SDiiSr6UGjIKsVMobDSdLsNQ"/>
+</div>
+<span class="text-xs font-semibold text-neutral-200">Chester Sofa</span>
+<span class="text-[11px] text-amber-300 font-medium">35% OFF Today</span>
+</a>
+<!-- Card 3: Padding Beds -->
+<a class="group bg-charcoal-800/80 hover:bg-charcoal-700/80 border border-charcoal-700 rounded-xl p-2.5 transition flex flex-col items-center text-center" href="#beds">
+<div class="w-full aspect-[4/3] rounded-lg overflow-hidden bg-neutral-800 mb-2">
+<img alt="Roman Model Bed" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBecZ0KodeRM7vNMxbAhrKK37ypPqb1Du3jsnMll2s4xq-z_NQ4FhipL7SEhoXNR7UE7eZkLfvGaIv-sznRNLGh1dwNYx2sjn782AlN9yleVOF8GvKwCaHEJu8UJG51hRPfwaFh3SzC3N6YvGT4Lo-hiffnkp73gFGasLx2H-6znhPsLY5bAJlUgVcvJNKwFbn9S4PaWq7KbpPHpSBYMg-nBMuzrL1Utj-iklNEoOtFJXYbl2iDNikfHQ"/>
+</div>
+<span class="text-xs font-semibold text-neutral-200">Roman Headboard</span>
+<span class="text-[11px] text-amber-300 font-medium">Starting ₹16,900</span>
+</a>
+<!-- Card 4: Acoustic Ceilings -->
+<a class="group bg-charcoal-800/80 hover:bg-charcoal-700/80 border border-charcoal-700 rounded-xl p-2.5 transition flex flex-col items-center text-center" href="#ceilings">
+<div class="w-full aspect-[4/3] rounded-lg overflow-hidden bg-neutral-800 mb-2">
+<img alt="Designer False Ceilings" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5xgjCZ85lJSkOLj9Y2kgNdoPBHb2jR0bYq6qRwzw4SU2qn3Vvg2wMwby3QLmpprh2hPIc-ewN6fnmMNZNo6UtiCGCwze-iAWl5k4NJD8ugpY39A-lQ5gA3M6nXXbsq9GIj5NjG0ZbuKMwHz6ntWckzBo6wciLO7N1recNe4or6t1ZrXf_UNn3wloNUlmVY39uXkJ6qqG2qZWGbRIwZt9aw02RTfEdrsEXpt78tmfL0tDScjhEcY5jmQ"/>
+</div>
+<span class="text-xs font-semibold text-neutral-200">Acoustic Ceilings</span>
+<span class="text-[11px] text-amber-300 font-medium">From ₹60 / sq.ft</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- END: PromotionalMerchandisingStrip -->
+<!-- BEGIN: ShopByCategorySection -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-4 border-b border-warmSand">
+<div>
+<span class="text-xs font-bold uppercase tracking-widest text-warmWood">Catalog Overview</span>
+<h3 class="text-3xl sm:text-4xl font-serif text-charcoal-900 mt-1">Explore By Sleep &amp; Living Collection</h3>
+</div>
+<p class="text-sm text-charcoal-600 max-w-md mt-2 md:mt-0 font-normal">
+        From scientifically layered spine alignment mattresses to custom modular living installations, built by master craftsmen.
+      </p>
+</div>
+<!-- 4-Card Category Layout -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Category 1: Mattresses -->
+<a class="group bg-white rounded-2xl p-5 border border-warmSand hover:border-charcoal-800 transition-all shadow-sm hover:shadow-md flex flex-col justify-between" href="#mattresses">
+<div>
+<div class="aspect-square w-full rounded-xl overflow-hidden bg-warmBeige mb-4 relative">
+<img alt="Orthopedic and Latex Mattresses" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqQ0CHJ4RgDM0WPoobPk7gQNRhHJrkoftHwhYbCiE2lr50rpApbBEv41AQSweqV64OTkZmYEnG-9KkBXNgk4TAZB1M-1d7PfIUvKsi9Dpf3gzGOmZV8_j4w3tCzhVS50l__NRc8XaBQ4yqyH4Nxo26Bvtb_ZxzQPhtuVlZgk3B-CWCr_QctAynu0ixIql871M9IV4LsxqegHxs2bfO7jxyWpEWDCD7KwhHkA76EyjfGBh0uaFk8H2KBg"/>
+<span class="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-[10px] font-bold text-charcoal-900 px-2 py-1 rounded">100-Night Trial</span>
+</div>
+<h4 class="text-lg font-serif font-bold text-charcoal-900 group-hover:text-warmWood transition">Mattresses</h4>
+<p class="text-xs text-charcoal-600 mt-1">Ortho 3-Zone, 100% Natural Latex, Pocket Spring &amp; Rebonded Foam.</p>
+</div>
+<div class="mt-5 pt-3 border-t border-neutral-100 flex items-center justify-between text-xs font-semibold">
+<span class="text-charcoal-900">₹2,119 — ₹28,315</span>
+<span class="text-warmWood group-hover:translate-x-1 transition-transform">Explore →</span>
+</div>
+</a>
+<!-- Category 2: Sofas -->
+<a class="group bg-white rounded-2xl p-5 border border-warmSand hover:border-charcoal-800 transition-all shadow-sm hover:shadow-md flex flex-col justify-between" href="#sofas">
+<div>
+<div class="aspect-square w-full rounded-xl overflow-hidden bg-warmBeige mb-4 relative">
+<img alt="Handcrafted Sectional and Chester Sofas" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0KhqcXZhb68RRwKcpZPOr-hjR9kexO-iGcZnNqzBSLpv9LAhZ8xAWwO1yaosmW66LeML8WkKwlhkIqAv5iXEFQkX88WTs9D-08PlRNBt5f6WJsEFFZXSdO6FObE7uzOfBqtGptO4YluZHi5n0eaxQgbXN0HVP37W_H8igqWTmBMLK4517GwYZnuJxQJ_bESvjouN8uqaYh94uaXLAb9qb-UeLL9RF29zKnvXSIsX64x3PUzWTiNyYxw"/>
+<span class="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-[10px] font-bold text-charcoal-900 px-2 py-1 rounded">High Density Foam</span>
+</div>
+<h4 class="text-lg font-serif font-bold text-charcoal-900 group-hover:text-warmWood transition">Sofas &amp; Recliners</h4>
+<p class="text-xs text-charcoal-600 mt-1">L-Shape, Royal Chester, Italian Minimalist &amp; Ergonomic loungers.</p>
+</div>
+<div class="mt-5 pt-3 border-t border-neutral-100 flex items-center justify-between text-xs font-semibold">
+<span class="text-charcoal-900">Starting ₹36,300</span>
+<span class="text-warmWood group-hover:translate-x-1 transition-transform">Explore →</span>
+</div>
+</a>
+<!-- Category 3: Padding Beds -->
+<a class="group bg-white rounded-2xl p-5 border border-warmSand hover:border-charcoal-800 transition-all shadow-sm hover:shadow-md flex flex-col justify-between" href="#beds">
+<div>
+<div class="aspect-square w-full rounded-xl overflow-hidden bg-warmBeige mb-4 relative">
+<img alt="Roman and Classic Headboard Padding Beds" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAog6IQ6y0APskNthZgeePngjSTtvzwoFf5QAsrQNeHRDVfVhlgJZvH5TLBM1lf-Hf3iisIIfnPfu1AILgtnnbXq2ZAW-R-lOtB7EXWvLpC_M_xx-A4QnEQ4gQUKwJXDjb0-CelJ6z7WjG4Lzyu6AiGCOsWcVnhZOBsPyMthN6nsAb6gMyEaMJlPsw0tDU83mUS2SMs3y0TC0D_x8P5wtr-pnPIqzbIdnmwuhxWuHICFBd90yMnh6CuFg"/>
+<span class="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-[10px] font-bold text-charcoal-900 px-2 py-1 rounded">Custom Upholstery</span>
+</div>
+<h4 class="text-lg font-serif font-bold text-charcoal-900 group-hover:text-warmWood transition">Padding Beds</h4>
+<p class="text-xs text-charcoal-600 mt-1">Roman Model, Inbuilt Plywood Box, Fluted Velvet &amp; Teak finishes.</p>
+</div>
+<div class="mt-5 pt-3 border-t border-neutral-100 flex items-center justify-between text-xs font-semibold">
+<span class="text-charcoal-900">Starting ₹16,900</span>
+<span class="text-warmWood group-hover:translate-x-1 transition-transform">Explore →</span>
+</div>
+</a>
+<!-- Category 4: Luxury Ceilings & Interiors -->
+<a class="group bg-white rounded-2xl p-5 border border-warmSand hover:border-charcoal-800 transition-all shadow-sm hover:shadow-md flex flex-col justify-between" href="#ceilings">
+<div>
+<div class="aspect-square w-full rounded-xl overflow-hidden bg-warmBeige mb-4 relative">
+<img alt="Architectural Ceilings and Modular TV Units" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1wPI8YdpmNLBEVWut3Fej4_HuP6gl45rHKv97B69cQrs1bXAzgdT5pnLQ9GkCQx7SqyNxIr_oV7OwlY6Jo1uG3Iqnjac3vJvG1_6Z5skrRZ7we08tehPZaqlexd1xLihrd3D25plDjBmf5M6-WfUy7UpbNv6-jhqnjUt1Yd-yfrrg0ZyCcn0oUrqeGpPHCPJda-0hURQS4cT2TWE9sk6Bss-7Dc-5A7PLcz7RlXjN9oOuekI5q2LBSg"/>
+<span class="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-[10px] font-bold text-charcoal-900 px-2 py-1 rounded">Turnkey Install</span>
+</div>
+<h4 class="text-lg font-serif font-bold text-charcoal-900 group-hover:text-warmWood transition">Ceilings &amp; Interiors</h4>
+<p class="text-xs text-charcoal-600 mt-1">Gypsum, Wooden Louvers, Acoustic false ceilings &amp; Modern TV consoles.</p>
+</div>
+<div class="mt-5 pt-3 border-t border-neutral-100 flex items-center justify-between text-xs font-semibold">
+<span class="text-charcoal-900">From ₹60 / sq.ft</span>
+<span class="text-warmWood group-hover:translate-x-1 transition-transform">Explore →</span>
+</div>
+</a>
+</div>
+</section>
+<!-- END: ShopByCategorySection -->
+<!-- BEGIN: CustomMattressConfigurator -->
+<section class="bg-charcoal-900 text-warmCream py-16 sm:py-24 border-y border-charcoal-800 relative overflow-hidden" id="custom-mattress">
+<!-- Atmospheric background pattern -->
+<div class="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<!-- Section Header -->
+<div class="text-center max-w-3xl mx-auto mb-14">
+<span class="inline-block text-xs font-mono uppercase tracking-widest text-amber-300 bg-charcoal-800 border border-charcoal-700 px-3.5 py-1 rounded-full mb-3">
+          Atelier Custom Service
+        </span>
+<h3 class="text-3xl sm:text-5xl font-serif font-normal tracking-tight text-white">
+          Make Your Own Mattress
+        </h3>
+<p class="text-neutral-400 text-sm sm:text-base mt-3 leading-relaxed">
+          No two spines are identical. Choose your precise centimeter dimensions, select tailored internal core densities, and calibrate firmness for individual spinal alignment.
+        </p>
+</div>
+<!-- Configurator Studio Box -->
+<div class="bg-charcoal-850 rounded-3xl border border-charcoal-700 shadow-2xl p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+<!-- Left Visual Layer Cutaway Display -->
+<div class="lg:col-span-7 bg-charcoal-900/90 rounded-2xl p-6 sm:p-8 border border-charcoal-700/80">
+<div class="flex items-center justify-between mb-6 pb-4 border-b border-charcoal-800">
+<span class="text-xs font-mono uppercase text-amber-300">Live Cutaway Architecture</span>
+<span class="text-xs font-mono bg-charcoal-800 px-2.5 py-1 rounded text-neutral-300">Dimensions: 78" × 72" × 8"</span>
+</div>
+<!-- Interactive Visual Stack of Layers -->
+<div class="space-y-2.5">
+<!-- Layer 1 -->
+<div class="layer-pill bg-neutral-800/90 hover:bg-neutral-800 p-3.5 rounded-xl border border-neutral-700/80 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-full bg-neutral-200 shadow"></span>
+<div>
+<div class="text-xs font-bold text-neutral-100">Layer 1: 450 GSM Organic Quilted Cover</div>
+<div class="text-[11px] text-neutral-400">Hypoallergenic Tencel™ blend with thermo-regulating breathability</div>
+</div>
+</div>
+<span class="text-[10px] font-mono text-amber-300 font-bold">TOP</span>
+</div>
+<!-- Layer 2 -->
+<div class="layer-pill bg-neutral-800/90 hover:bg-neutral-800 p-3.5 rounded-xl border border-amber-500/30 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-full bg-amber-400 shadow"></span>
+<div>
+<div class="text-xs font-bold text-amber-200">Layer 2: 2.0" 100% Natural Dunlop Latex</div>
+<div class="text-[11px] text-neutral-400">Instant pressure dissipation &amp; bouncy contouring resilience</div>
+</div>
+</div>
+<span class="text-[10px] font-mono text-amber-400 font-bold">2.0"</span>
+</div>
+<!-- Layer 3 -->
+<div class="layer-pill bg-neutral-800/90 hover:bg-neutral-800 p-3.5 rounded-xl border border-blue-500/30 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-full bg-blue-400 shadow"></span>
+<div>
+<div class="text-xs font-bold text-neutral-100">Layer 3: 3-Zone Ergonomic Ortho HR Foam</div>
+<div class="text-[11px] text-neutral-400">Reinforced lumbar zone with targeted lower back spinal support</div>
+</div>
+</div>
+<span class="text-[10px] font-mono text-blue-400 font-bold">3.0"</span>
+</div>
+<!-- Layer 4 -->
+<div class="layer-pill bg-neutral-800/90 hover:bg-neutral-800 p-3.5 rounded-xl border border-neutral-700/80 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-full bg-purple-400 shadow"></span>
+<div>
+<div class="text-xs font-bold text-neutral-100">Layer 4: Zero-Motion Calibrated Pocket Springs</div>
+<div class="text-[11px] text-neutral-400">800+ individually encased Swedish carbon steel coils</div>
+</div>
+</div>
+<span class="text-[10px] font-mono text-neutral-400 font-bold">OPTIONAL</span>
+</div>
+<!-- Layer 5 -->
+<div class="layer-pill bg-neutral-800/90 hover:bg-neutral-800 p-3.5 rounded-xl border border-neutral-700/80 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-full bg-neutral-500 shadow"></span>
+<div>
+<div class="text-xs font-bold text-neutral-100">Layer 5: Ultra High-Density Foundation Base</div>
+<div class="text-[11px] text-neutral-400">Non-sag anti-skid bottom keeping mattress perfectly grounded</div>
+</div>
+</div>
+<span class="text-[10px] font-mono text-neutral-400 font-bold">3.0"</span>
+</div>
+</div>
+<!-- Dynamic dimension indicators -->
+<div class="mt-6 pt-4 border-t border-charcoal-800 flex items-center justify-between text-xs text-neutral-400 font-mono">
+<span>Height: 8 Inches (20.3 cm)</span>
+<span>Weight Capacity: 280 kg</span>
+<span class="text-amber-300 font-sans">✓ Certified Ergonomic</span>
+</div>
+</div>
+<!-- Right Interactive Configuration Controls -->
+<div class="lg:col-span-5 space-y-6">
+<!-- Step 1: Standard or Custom Dimensions -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<label class="text-xs font-bold uppercase tracking-wider text-neutral-300">Step 1: Size Standard or Custom</label>
+<span class="text-[11px] text-amber-400">Inches / CM</span>
+</div>
+<div class="grid grid-cols-3 gap-2 mb-3">
+<button class="bg-warmWood text-white text-xs font-bold py-2 px-3 rounded-lg border border-warmWood shadow-sm text-center">
+                King (78×72)
+              </button>
+<button class="bg-charcoal-800 hover:bg-charcoal-700 text-neutral-300 text-xs font-medium py-2 px-3 rounded-lg border border-charcoal-700 text-center">
+                Queen (78×60)
+              </button>
+<button class="bg-charcoal-800 hover:bg-charcoal-700 text-neutral-300 text-xs font-medium py-2 px-3 rounded-lg border border-charcoal-700 text-center">
+                Single (78×36)
+              </button>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="text-[10px] uppercase text-neutral-400 block mb-1">Custom Length (in)</label>
+<input class="w-full bg-charcoal-800 border-charcoal-700 rounded-lg text-xs font-mono text-white py-2 focus:ring-amber-400 focus:border-amber-400" type="number" value="78"/>
+</div>
+<div>
+<label class="text-[10px] uppercase text-neutral-400 block mb-1">Custom Width (in)</label>
+<input class="w-full bg-charcoal-800 border-charcoal-700 rounded-lg text-xs font-mono text-white py-2 focus:ring-amber-400 focus:border-amber-400" type="number" value="72"/>
+</div>
+</div>
+</div>
+<!-- Step 2: Firmness Level Gauge -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<label class="text-xs font-bold uppercase tracking-wider text-neutral-300">Step 2: Firmness Gauge</label>
+<span class="text-xs font-bold text-amber-300">7.5 / 10 (Medium Firm)</span>
+</div>
+<input class="w-full config-range-slider" max="10" min="1" type="range" value="7"/>
+<div class="flex justify-between text-[10px] font-mono text-neutral-400 mt-1.5">
+<span>Cloud Soft (1-3)</span>
+<span>Balanced (4-6)</span>
+<span class="text-white font-semibold">Ortho Firm (7-9)</span>
+</div>
+</div>
+<!-- Step 3: Thickness -->
+<div>
+<label class="text-xs font-bold uppercase tracking-wider text-neutral-300 block mb-2">Step 3: Thickness Height</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="bg-charcoal-800 hover:bg-charcoal-700 text-neutral-300 text-xs py-2 rounded-lg border border-charcoal-700">6 Inch (Compact)</button>
+<button class="bg-warmWood text-white text-xs font-bold py-2 rounded-lg border border-warmWood shadow">8 Inch (Optimal)</button>
+<button class="bg-charcoal-800 hover:bg-charcoal-700 text-neutral-300 text-xs py-2 rounded-lg border border-charcoal-700">10 Inch (Grand)</button>
+</div>
+</div>
+<!-- Live Cost Estimator Card -->
+<div class="bg-charcoal-900 p-4 rounded-xl border border-charcoal-700 flex items-center justify-between">
+<div>
+<div class="text-[11px] text-neutral-400 uppercase tracking-wider">Estimated Custom Price</div>
+<div class="text-2xl font-serif font-bold text-white">₹18,450 <span class="text-xs font-sans line-through text-neutral-500 font-normal">₹24,999</span></div>
+<div class="text-[10px] text-emerald-400 font-medium">Free Pan-India doorstep delivery &amp; installation</div>
+</div>
+<a class="bg-warmCream hover:bg-white text-charcoal-900 text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-lg shadow-lg hover:shadow-xl transition" href="#custom-checkout">
+              Build &amp; Order →
+            </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: CustomMattressConfigurator -->
+<!-- BEGIN: BestSellersSection -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24" id="mattresses">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-warmSand">
+<div>
+<span class="text-xs font-bold uppercase tracking-widest text-brandRed">Doctor Recommended</span>
+<h3 class="text-3xl sm:text-4xl font-serif text-charcoal-900 mt-1">Top Selling Orthopedic Mattresses</h3>
+</div>
+<a class="text-xs font-bold text-charcoal-900 hover:text-warmWood uppercase tracking-wider mt-3 sm:mt-0 flex items-center gap-1 transition" href="#all-mattresses">
+<span>View Full Catalog (18 Models)</span>
+<span>→</span>
+</a>
+</div>
+<!-- Product Grid: 4 Across -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Product 1: Ortho Plus -->
+<article class="bg-white rounded-2xl border border-warmSand p-4 flex flex-col justify-between hover:shadow-xl hover:border-charcoal-700 transition duration-300 group" id="ortho-plus">
+<div>
+<!-- Thumbnail & Badges -->
+<div class="aspect-[4/3] rounded-xl bg-warmBeige relative overflow-hidden mb-4">
+<img alt="Ortho Plus Mattress" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3ktpJ0kLUBm4u9IRdf1hi4EE1n-eCox3xfoQ_if4fYqdgEd3wLPI_o4BEnYRGeqzAR0ixiq01hDt50Lhc2a57nydqvSExGDSqCnzj_O5F02kwKaz8vShuJY75__kpCPISpbSOGvB_ZmJmbRNwe2CbP3ngJiTbYfuSKBmuNmggE8MzCWd_HVfiauPuIDH3XnCqk8JMsqIAHuaxh05MizjEZedGf73TzzkjfjTkaUEM48NuYAks0tXwnw"/>
+<div class="absolute top-2.5 left-2.5 flex flex-col gap-1">
+<span class="bg-charcoal-900 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">Best Seller</span>
+<span class="bg-brandRed text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">25% OFF</span>
+</div>
+<button aria-label="Add to Wishlist" class="absolute top-2.5 right-2.5 p-1.5 bg-white/80 backdrop-blur-xs rounded-full text-charcoal-700 hover:text-brandRed transition shadow">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<!-- Product Details -->
+<div class="flex items-center gap-1.5 mb-1.5">
+<div class="flex text-amber-500 text-xs">★★★★★</div>
+<span class="text-[11px] font-bold text-charcoal-700">4.8</span>
+<span class="text-[11px] text-neutral-400">(4.6k reviews)</span>
+</div>
+<h4 class="font-serif font-bold text-base text-charcoal-900 group-hover:text-warmWood transition">Ortho Plus Memory Mattress</h4>
+<p class="text-xs text-charcoal-600 mt-1">ShapeSense 3-Zone Orthopedic Memory Foam for spinal posture.</p>
+<!-- Size Pill Selectors -->
+<div class="mt-3.5 pt-3 border-t border-neutral-100">
+<label class="text-[10px] uppercase font-bold text-neutral-400 block mb-1.5">Choose Size:</label>
+<div class="flex items-center gap-1.5">
+<button class="px-2.5 py-1 text-xs font-semibold rounded border border-neutral-300 hover:border-charcoal-800">S</button>
+<button class="px-2.5 py-1 text-xs font-semibold rounded border border-neutral-300 hover:border-charcoal-800">M</button>
+<button class="px-2.5 py-1 text-xs font-bold rounded bg-charcoal-900 text-white border border-charcoal-900">L</button>
+<span class="text-[10px] text-neutral-500 ml-auto">78×72 in</span>
+</div>
+</div>
+</div>
+<!-- Pricing & Action -->
+<div class="mt-4 pt-3 border-t border-neutral-100">
+<div class="flex items-baseline gap-2">
+<span class="text-lg font-bold font-serif text-charcoal-900">₹16,395</span>
+<span class="text-xs line-through text-neutral-400">₹21,999</span>
+</div>
+<div class="text-[10px] text-emerald-600 font-semibold mb-3">No Cost EMI from ₹1,366/mo</div>
+<button class="w-full bg-charcoal-900 hover:bg-black text-white text-xs font-semibold py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Add To Cart</span>
+</button>
+</div>
+</article>
+<!-- Product 2: Latex Pro -->
+<article class="bg-white rounded-2xl border border-warmSand p-4 flex flex-col justify-between hover:shadow-xl hover:border-charcoal-700 transition duration-300 group">
+<div>
+<div class="aspect-[4/3] rounded-xl bg-warmBeige relative overflow-hidden mb-4">
+<img alt="Latex Pro Mattress" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6CcMY3R29RhHopoq7Mc8fuIXkeI5JShM3Ggle0hTASrWRCnzDAvZTINHj0BZdgBmTPcyBB7YBL4fmNXlhOB12OGCBbojeyN7D2-CQ3DdnUD5z-RJM_N62ca1GBQnOD3GDRgwT-D9lIKHiTSMq0EHmEdcw5DZ2ZUpPgLZDeAsJw0AATAdCDlQJeVIQz25ZPDJicFVGU5CZqPLssSeSeMctkK805CrT6Fj9fCpiCNFm6HzqEoTqh5OxEw"/>
+<div class="absolute top-2.5 left-2.5 flex flex-col gap-1">
+<span class="bg-warmWood text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">100% Organic</span>
+<span class="bg-brandRed text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">23% OFF</span>
+</div>
+<button aria-label="Add to Wishlist" class="absolute top-2.5 right-2.5 p-1.5 bg-white/80 backdrop-blur-xs rounded-full text-charcoal-700 hover:text-brandRed transition shadow">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<div class="flex items-center gap-1.5 mb-1.5">
+<div class="flex text-amber-500 text-xs">★★★★★</div>
+<span class="text-[11px] font-bold text-charcoal-700">4.9</span>
+<span class="text-[11px] text-neutral-400">(2.1k reviews)</span>
+</div>
+<h4 class="font-serif font-bold text-base text-charcoal-900 group-hover:text-warmWood transition">Latex Pro Organic Dunlop</h4>
+<p class="text-xs text-charcoal-600 mt-1">Certified chemical-free natural pin-core breathable latex core.</p>
+<div class="mt-3.5 pt-3 border-t border-neutral-100">
+<label class="text-[10px] uppercase font-bold text-neutral-400 block mb-1.5">Choose Size:</label>
+<div class="flex items-center gap-1.5">
+<button class="px-2.5 py-1 text-xs font-semibold rounded border border-neutral-300 hover:border-charcoal-800">S</button>
+<button class="px-2.5 py-1 text-xs font-semibold rounded border border-neutral-300 hover:border-charcoal-800">M</button>
+<button class="px-2.5 py-1 text-xs font-bold rounded bg-charcoal-900 text-white border border-charcoal-900">L</button>
+<span class="text-[10px] text-neutral-500 ml-auto">78×72 in</span>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-neutral-100">
+<div class="flex items-baseline gap-2">
+<span class="text-lg font-bold font-serif text-charcoal-900">₹28,315</span>
+<span class="text-xs line-through text-neutral-400">₹36,999</span>
+</div>
+<div class="text-[10px] text-emerald-600 font-semibold mb-3">No Cost EMI from ₹2,359/mo</div>
+<button class="w-full bg-charcoal-900 hover:bg-black text-white text-xs font-semibold py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Add To Cart</span>
+</button>
+</div>
+</article>
+<!-- Product 3: Pocketed Spring -->
+<article class="bg-white rounded-2xl border border-warmSand p-4 flex flex-col justify-between hover:shadow-xl hover:border-charcoal-700 transition duration-300 group">
+<div>
+<div class="aspect-[4/3] rounded-xl bg-warmBeige relative overflow-hidden mb-4">
+<img alt="Pocketed Spring Mattress" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEbiDbXrPNeJlefND_VR7gLpjEpFZsnDrMbLfFs1tWVKWCfuJuNQkxzCB_igI_ev0dUTM2uyAEbX1jiLVmOnDDQjgosqJAhp-UYo45b-qFTvp_8oisi5RGB_9biI1h1rKqotSzLmLM6AfcVLwcwfZom2HVqmLzer8z3LVJ5FO3VD_wgkm4r1Ph4gu-m4Hzsd6zBqGlz6dRp5LF4mymDbqNVEnlCB8afiUlIaGGsgLUI9HOhiYI2VucOA"/>
+<div class="absolute top-2.5 left-2.5 flex flex-col gap-1">
+<span class="bg-charcoal-800 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">Zero Motion</span>
+<span class="bg-brandRed text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">22% OFF</span>
+</div>
+<button aria-label="Add to Wishlist" class="absolute top-2.5 right-2.5 p-1.5 bg-white/80 backdrop-blur-xs rounded-full text-charcoal-700 hover:text-brandRed transition shadow">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<div class="flex items-center gap-1.5 mb-1.5">
+<div class="flex text-amber-500 text-xs">★★★★★</div>
+<span class="text-[11px] font-bold text-charcoal-700">4.7</span>
+<span class="text-[11px] text-neutral-400">(3.3k reviews)</span>
+</div>
+<h4 class="font-serif font-bold text-base text-charcoal-900 group-hover:text-warmWood transition">Pocketed Spring Sovereign</h4>
+<p class="text-xs text-charcoal-600 mt-1">Individually encased pocket coils ensure zero partner disturbance.</p>
+<div class="mt-3.5 pt-3 border-t border-neutral-100">
+<label class="text-[10px] uppercase font-bold text-neutral-400 block mb-1.5">Choose Size:</label>
+<div class="flex items-center gap-1.5">
+<button class="px-2.5 py-1 text-xs font-semibold rounded border border-neutral-300 hover:border-charcoal-800">S</button>
+<button class="px-2.5 py-1 text-xs font-bold rounded bg-charcoal-900 text-white border border-charcoal-900">M</button>
+<button class="px-2.5 py-1 text-xs font-semibold rounded border border-neutral-300 hover:border-charcoal-800">L</button>
+<span class="text-[10px] text-neutral-500 ml-auto">78×60 in</span>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-neutral-100">
+<div class="flex items-baseline gap-2">
+<span class="text-lg font-bold font-serif text-charcoal-900">₹15,595</span>
+<span class="text-xs line-through text-neutral-400">₹19,999</span>
+</div>
+<div class="text-[10px] text-emerald-600 font-semibold mb-3">No Cost EMI from ₹1,299/mo</div>
+<button class="w-full bg-charcoal-900 hover:bg-black text-white text-xs font-semibold py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Add To Cart</span>
+</button>
+</div>
+</article>
+<!-- Product 4: Memory Cloud -->
+<article class="bg-white rounded-2xl border border-warmSand p-4 flex flex-col justify-between hover:shadow-xl hover:border-charcoal-700 transition duration-300 group">
+<div>
+<div class="aspect-[4/3] rounded-xl bg-warmBeige relative overflow-hidden mb-4">
+<img alt="Memory Foam Cloud Mattress" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4SxAt9hQfcjMed-6KhFnW6-D7hP4XNhQQkhIwzGjc01KCa3IQNjqgXGt_d4HGpR7aNG9T1iXxLvNvYO-GiIDVYr_3WsTvYYllinWGR7R7cdsalJt3D068HNUBN1ATlmHW8HpgzRJ4lze_4K6DmwvR7M8IehbyIOGKiWmXkBwHkTUg_I-jqQS02ugM0j11itEfmvG_vQtmBAcWXoZLiJXvXj_8ZkMgH-6mLKlkPA56n0Cffd5hrQE4Pw"/>
+<div class="absolute top-2.5 left-2.5 flex flex-col gap-1">
+<span class="bg-charcoal-900 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">Pressure Relief</span>
+<span class="bg-brandRed text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">24% OFF</span>
+</div>
+<button aria-label="Add to Wishlist" class="absolute top-2.5 right-2.5 p-1.5 bg-white/80 backdrop-blur-xs rounded-full text-charcoal-700 hover:text-brandRed transition shadow">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<div class="flex items-center gap-1.5 mb-1.5">
+<div class="flex text-amber-500 text-xs">★★★★★</div>
+<span class="text-[11px] font-bold text-charcoal-700">4.8</span>
+<span class="text-[11px] text-neutral-400">(1.9k reviews)</span>
+</div>
+<h4 class="font-serif font-bold text-base text-charcoal-900 group-hover:text-warmWood transition">Memory Foam Visco Elastic</h4>
+<p class="text-xs text-charcoal-600 mt-1">Deep contouring with cooling gel beads for restorative sleep.</p>
+<div class="mt-3.5 pt-3 border-t border-neutral-100">
+<label class="text-[10px] uppercase font-bold text-neutral-400 block mb-1.5">Choose Size:</label>
+<div class="flex items-center gap-1.5">
+<button class="px-2.5 py-1 text-xs font-semibold rounded border border-neutral-300 hover:border-charcoal-800">S</button>
+<button class="px-2.5 py-1 text-xs font-bold rounded bg-charcoal-900 text-white border border-charcoal-900">M</button>
+<button class="px-2.5 py-1 text-xs font-semibold rounded border border-neutral-300 hover:border-charcoal-800">L</button>
+<span class="text-[10px] text-neutral-500 ml-auto">78×60 in</span>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-neutral-100">
+<div class="flex items-baseline gap-2">
+<span class="text-lg font-bold font-serif text-charcoal-900">₹16,619</span>
+<span class="text-xs line-through text-neutral-400">₹22,000</span>
+</div>
+<div class="text-[10px] text-emerald-600 font-semibold mb-3">No Cost EMI from ₹1,385/mo</div>
+<button class="w-full bg-charcoal-900 hover:bg-black text-white text-xs font-semibold py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Add To Cart</span>
+</button>
+</div>
+</article>
+</div>
+</section>
+<!-- END: BestSellersSection -->
+<!-- BEGIN: FurnitureAndInteriorsShowcase -->
+<section class="bg-warmBeige/40 py-16 sm:py-24 border-t border-warmSand" id="sofas">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+<div>
+<span class="text-xs font-mono uppercase tracking-widest text-warmWood font-semibold">Bespoke Living Spaces</span>
+<h3 class="text-3xl sm:text-4xl font-serif text-charcoal-900 mt-1">Handcrafted Furniture &amp; Architecture</h3>
+</div>
+<p class="text-sm text-charcoal-600 max-w-md mt-2 md:mt-0">
+          Complete turnkey craftsmanship: from luxury deep-buttoned sofas to engineered wooden false ceiling panels.
+        </p>
+</div>
+<!-- 4 Showcase Highlights -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Showcase 1: Chester Model Sofa -->
+<div class="bg-white rounded-2xl overflow-hidden border border-warmSand shadow-sm hover:shadow-md transition">
+<div class="aspect-[4/3] bg-neutral-200 overflow-hidden">
+<img alt="Chester Luxury Sofa" class="w-full h-full object-cover hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7ikMa2jHG8pe_e1gakt-U3dvMu_FA4mQhwApf5Nul6Vro42dBdq62Zmvm2MHBCSq5ATZj5Xwd3wY1UUx7pc3lwbq81-oLQkRPWoLiG53UKs1mqI8TRbHqsO-NmqF7j6NLsjSVq2BtGFetYR_Sp0EAkRU-ykm9W7xERS_MjEqMZwTgXlctLQQBez87TZkWwi1YKI4Tyq2Ihyg474Ojx7aa5WFPMIP7I8LcoPS5WdlsUSMKEhT5rMrVaQ"/>
+</div>
+<div class="p-5">
+<div class="text-[11px] font-mono text-warmWood uppercase">Living Room Suite</div>
+<h4 class="font-serif font-bold text-lg text-charcoal-900 mt-1">Chester Model 5-Seater</h4>
+<p class="text-xs text-charcoal-600 mt-1 leading-relaxed">Deep tufted Chesterfield silhouette with 40-density pure foam cushioning.</p>
+<div class="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between">
+<span class="font-serif font-bold text-charcoal-900 text-base">₹86,900</span>
+<a class="text-xs font-semibold text-charcoal-800 hover:text-warmWood underline" href="#quote-sofa">Customize Fabric →</a>
+</div>
+</div>
+</div>
+<!-- Showcase 2: Roman Model Bed -->
+<div class="bg-white rounded-2xl overflow-hidden border border-warmSand shadow-sm hover:shadow-md transition" id="beds">
+<div class="aspect-[4/3] bg-neutral-200 overflow-hidden">
+<img alt="Roman Padding Bed" class="w-full h-full object-cover hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7l8BJmKB0NgP6z3KnR8zSCKK7sNw7WGfa77_TJJMxQUK3cWfJW9ppq1fFMaWYmiBMpvYhnxEUQ2cexKpXvbHP3ctoPNebkyUJo3jdyZgsuzuzRwGTnmjjQ07mFg9MxdrKX0oCgb29UKiSdJoVEv-kZK0Im8aDpnk5s4VE12-4MY2Wa_sPX2ZbZFl3QpqE_AiTethPEi9y2uePh5onW0FG6N-PDDuTckg_kV6kMLjt-dppAZ83DY46Ww"/>
+</div>
+<div class="p-5">
+<div class="text-[11px] font-mono text-warmWood uppercase">Bedroom Architecture</div>
+<h4 class="font-serif font-bold text-lg text-charcoal-900 mt-1">Roman Model Padding Bed</h4>
+<p class="text-xs text-charcoal-600 mt-1 leading-relaxed">Fluted architectural headboard padding with marine-grade hydraulic plywood box.</p>
+<div class="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between">
+<span class="font-serif font-bold text-charcoal-900 text-base">₹66,900</span>
+<a class="text-xs font-semibold text-charcoal-800 hover:text-warmWood underline" href="#quote-bed">View Headboards →</a>
+</div>
+</div>
+</div>
+<!-- Showcase 3: Floating Minimalist TV Unit -->
+<div class="bg-white rounded-2xl overflow-hidden border border-warmSand shadow-sm hover:shadow-md transition" id="interiors">
+<div class="aspect-[4/3] bg-neutral-200 overflow-hidden">
+<img alt="Floating Minimalist TV Unit" class="w-full h-full object-cover hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWN4klUdf-hS6oVoJkGbCdVdGumYL1cZGcLDeucUyCaLXONJ9C4pyR2hLcONQHsk58Hcx3E5_Jn4T41gY_jUurf-uiSpCmz3Fm7VJuVs91tUnHG_ouO_ilgZuEcETKIp9DdNYQmfIrsRkPi5XXk0ZdwrlnSJE7PyxjfHuSfmJ542d1StKtpzGHOT8_HG0sJd76-GB1RsF73ozbtzpQuFbuWddN0AheQZ_x3oqGrbOmqGibrYBelRO0Rg"/>
+</div>
+<div class="p-5">
+<div class="text-[11px] font-mono text-warmWood uppercase">Modular Cabinetry</div>
+<h4 class="font-serif font-bold text-lg text-charcoal-900 mt-1">Floating Minimalist TV Unit</h4>
+<p class="text-xs text-charcoal-600 mt-1 leading-relaxed">Concealed cable routing, charcoal matte laminate with warm fluted wood backdrop.</p>
+<div class="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between">
+<span class="font-serif font-bold text-charcoal-900 text-base">₹24,500</span>
+<a class="text-xs font-semibold text-charcoal-800 hover:text-warmWood underline" href="#quote-interior">Free Consultation →</a>
+</div>
+</div>
+</div>
+<!-- Showcase 4: Wooden Slat False Ceiling -->
+<div class="bg-white rounded-2xl overflow-hidden border border-warmSand shadow-sm hover:shadow-md transition" id="ceilings">
+<div class="aspect-[4/3] bg-neutral-200 overflow-hidden">
+<img alt="Wooden Slat False Ceiling" class="w-full h-full object-cover hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlOqCiDkFZekLt-JlkfEbrMsKx1imu3MKQlMX5zVxSAEChK9--rUVk4aZAtO71btVqD854VR9MXQ6WXJH6ETQlvgbe7LBO9tN_Ey-c7t-QBOv4acq2SVuRtQ3BOg1IjSxfcopG6rPnRbNbkT80lcE4VOe9D8JcamXSVFvfH1ER7ofUNBNZBAUEmWkIQM37buiHYrPqbOTO5xpwpg-mkDaZr6ZcrXJqKBZ_gZ-J8kRMr6AM6aFH2wMC8w"/>
+</div>
+<div class="p-5">
+<div class="text-[11px] font-mono text-warmWood uppercase">Interior Ceilings</div>
+<h4 class="font-serif font-bold text-lg text-charcoal-900 mt-1">Wooden Slat False Ceiling</h4>
+<p class="text-xs text-charcoal-600 mt-1 leading-relaxed">Acoustic dampening louvers with integrated warm ambient LED strip illumination.</p>
+<div class="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between">
+<span class="font-serif font-bold text-charcoal-900 text-base">From ₹150 <span class="text-xs font-sans font-normal">/ sq.ft</span></span>
+<a class="text-xs font-semibold text-charcoal-800 hover:text-warmWood underline" href="#quote-ceiling">Site Visit Book →</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: FurnitureAndInteriorsShowcase -->
+<!-- BEGIN: WhySleepExcellentTrustGrid -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 border-b border-warmSand">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<!-- Feature 1 -->
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-charcoal-900 text-amber-300 flex items-center justify-center text-xl shrink-0 font-bold">
+          100
+        </div>
+<div>
+<h4 class="font-serif font-bold text-base text-charcoal-900">100-Night Trial</h4>
+<p class="text-xs text-charcoal-600 mt-1 leading-relaxed">
+            Test the mattress inside your home bedroom. If your spine isn’t delighted, 100% money back with zero questions.
+          </p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-charcoal-900 text-amber-300 flex items-center justify-center text-xl shrink-0 font-bold">
+          10y
+        </div>
+<div>
+<h4 class="font-serif font-bold text-base text-charcoal-900">10-Year Warranty</h4>
+<p class="text-xs text-charcoal-600 mt-1 leading-relaxed">
+            Non-sag assurance with certified High Resilience cores engineered to retain shape for over a decade.
+          </p>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-charcoal-900 text-amber-300 flex items-center justify-center text-xl shrink-0 font-bold">
+          0%
+        </div>
+<div>
+<h4 class="font-serif font-bold text-base text-charcoal-900">Factory Direct</h4>
+<p class="text-xs text-charcoal-600 mt-1 leading-relaxed">
+            Bypass retail showroom markups and multi-tiered agent commissions. Direct workshop to doorstep savings.
+          </p>
+</div>
+</div>
+<!-- Feature 4 -->
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-charcoal-900 text-amber-300 flex items-center justify-center text-xl shrink-0 font-bold">
+          ★
+        </div>
+<div>
+<h4 class="font-serif font-bold text-base text-charcoal-900">Doctor Ortho Endorsed</h4>
+<p class="text-xs text-charcoal-600 mt-1 leading-relaxed">
+            Scientifically aligned 3-zone architecture recommended by leading physiotherapists across India.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: WhySleepExcellentTrustGrid -->
+<!-- BEGIN: CustomerReviewsSection -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+<div class="text-center max-w-2xl mx-auto mb-12">
+<span class="text-xs font-mono uppercase tracking-widest text-warmWood font-semibold">Verified Testimonials</span>
+<h3 class="text-3xl font-serif text-charcoal-900 mt-1">Real Sleep, Real Indian Homes</h3>
+<p class="text-xs text-charcoal-600 mt-2">Over 250,000+ bedrooms upgraded across Bangalore, Mumbai, Delhi-NCR &amp; Hyderabad.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Review 1 -->
+<div class="bg-white p-6 rounded-2xl border border-warmSand shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex text-amber-500 text-sm mb-3">★★★★★</div>
+<p class="text-xs text-charcoal-700 italic leading-relaxed">
+            "We customized our King size mattress to fit an odd-dimension ancestral teak cot (77 × 71 inches). SleepExcellent built it to the exact inch without extra customization charges. Back pain vanished within 2 weeks."
+          </p>
+</div>
+<div class="mt-6 pt-4 border-t border-neutral-100 flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-neutral-200 overflow-hidden">
+<img alt="Vikram K." class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChkyxOfpo_x6AtZ8a2D-aS5axbkYhYHYpKv8smcivgMLlUYZ7Pdemfd82h8EXUHkCHhPWBbpjShAU2SIyqu1wr8sMyEkpj8ZXYdXosV9A29ITUFEcBcPFhUSs5l6vrkK_OSQ-aEyO_vkpKp_xMVzxMkDMjgN470Fk9ghnYmr0eDRlP_i-3vkQKnozAFB2-BM_Msb1bOogniaCRnmLTkMNmtSsr5H3aE27TipNLn_1zb-eQwcFbouV-hw"/>
+</div>
+<div>
+<div class="text-xs font-bold text-charcoal-900">Vikram &amp; Ananya K.</div>
+<div class="text-[10px] text-neutral-500">Bangalore • Verified Buyer of Custom Ortho Plus</div>
+</div>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="bg-white p-6 rounded-2xl border border-warmSand shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex text-amber-500 text-sm mb-3">★★★★★</div>
+<p class="text-xs text-charcoal-700 italic leading-relaxed">
+            "The 100% natural Dunlop latex has zero heating issues during North Indian summers. It is remarkably breathable compared to our previous foam mattress. Outstanding craftsmanship."
+          </p>
+</div>
+<div class="mt-6 pt-4 border-t border-neutral-100 flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-neutral-200 overflow-hidden">
+<img alt="Dr. S. Mehta" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcWLAIwaGZnAx5ta4eSZdpOkEtiy-b3DuLi-leN7Igju-_O0rNvHQSGlOqPqxflvQZ-qBQRXycHv8s47FTJkntycDR99XPZUlqLL5ln-fnGv0csxn-p-v5scwh2FN9cJBcF5dLsQCrRXfsOHE64sloE0qWnX4zktIiCU2fUTsu6kiK_1FIRFz3GNIIN4cXoNlD60BccH-JA5G7iXwc3gxa2EJgAw5cMyqth-7DeXUCSHIYY-pQZxfkRQ"/>
+</div>
+<div>
+<div class="text-xs font-bold text-charcoal-900">Dr. S. Mehta</div>
+<div class="text-[10px] text-neutral-500">Gurugram • Verified Buyer of Latex Pro King</div>
+</div>
+</div>
+</div>
+<!-- Review 3 -->
+<div class="bg-white p-6 rounded-2xl border border-warmSand shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex text-amber-500 text-sm mb-3">★★★★★</div>
+<p class="text-xs text-charcoal-700 italic leading-relaxed">
+            "Along with 2 mattresses, we ordered the Roman Model Bed with fluted headboard. The build quality of the hydraulic lift and padding surpasses luxury brands charging triple the price."
+          </p>
+</div>
+<div class="mt-6 pt-4 border-t border-neutral-100 flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-neutral-200 overflow-hidden">
+<img alt="Priya P." class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKBvyBUQbnKoFHW38wEAe3Mp0twTdlqOfk6G5ECTPnSZpex7n4JSmiRoCpSl3i85R3tEyJfUG3CR7AJridfRpNEM0Gjl5YUaBjepibFV8KSLzGGdHS54SWXSVzE_PvJkDhkpbcQUH7eppJ2fUKxiJm1Z6Q6AadH0KRbQcrIhUjONdRP9knzcIbSUG-Fh-fE5ObTkJoKsVB9dltlF5sBB7brg3zq2bqPWbtdeBAwszxi6Kt52RHNroRjQ"/>
+</div>
+<div>
+<div class="text-xs font-bold text-charcoal-900">Priya P.</div>
+<div class="text-[10px] text-neutral-500">Hyderabad • Verified Buyer of Roman Bed &amp; Ortho Plus</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: CustomerReviewsSection -->
+<!-- BEGIN: DarkCharcoalFooter -->
+<footer class="bg-charcoal-900 text-neutral-400 text-xs border-t border-charcoal-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+<!-- Left Brand Story (Col 1-4) -->
+<div class="md:col-span-4 space-y-4">
+<a class="inline-block" href="#">
+<div class="text-2xl brand-logo-text font-serif text-white">
+              S<span class="brand-red font-serif not-italic">l</span>eep E<span class="brand-logo-x">X</span>cellent
+              <span class="text-[8px] font-sans font-semibold text-brandRed align-top">TM</span>
+</div>
+</a>
+<p class="text-neutral-400 text-xs leading-relaxed max-w-sm">
+            SleepExcellent engineers ergonomic orthopedic sleep solutions and bespoke interior furnishings. Crafted in certified precision manufacturing workshops with organic non-toxic materials.
+          </p>
+<div class="text-xs text-neutral-300 font-medium">
+            Customer Support: <span class="text-white font-mono font-bold">+91 98765 43210</span><br/>
+            Email: <span class="text-white font-mono">concierge@sleepexcellent.com</span>
+</div>
+</div>
+<!-- Shop Mattresses Links (Col 5-6) -->
+<div class="md:col-span-2 space-y-3">
+<div class="text-xs font-bold uppercase tracking-wider text-white">Mattresses</div>
+<ul class="space-y-2 text-neutral-400">
+<li><a class="hover:text-white transition" href="#ortho-plus">Ortho Plus 3-Zone</a></li>
+<li><a class="hover:text-white transition" href="#mattresses">Natural Dunlop Latex</a></li>
+<li><a class="hover:text-white transition" href="#mattresses">Pocketed Spring Zero Motion</a></li>
+<li><a class="hover:text-white transition" href="#mattresses">Dual Comfort Reversible</a></li>
+<li><a class="hover:text-amber-300 font-semibold transition" href="#custom-mattress">Make Your Own Mattress ✨</a></li>
+</ul>
+</div>
+<!-- Furniture & Interiors (Col 7-8) -->
+<div class="md:col-span-3 space-y-3">
+<div class="text-xs font-bold uppercase tracking-wider text-white">Furniture &amp; Ceilings</div>
+<ul class="space-y-2 text-neutral-400">
+<li><a class="hover:text-white transition" href="#sofas">Chesterfield &amp; Sectionals</a></li>
+<li><a class="hover:text-white transition" href="#beds">Roman Model Padding Beds</a></li>
+<li><a class="hover:text-white transition" href="#beds">Hydraulic Storage Beds</a></li>
+<li><a class="hover:text-white transition" href="#interiors">Floating Modular TV Consoles</a></li>
+<li><a class="hover:text-white transition" href="#ceilings">Gypsum &amp; Acoustic Ceilings</a></li>
+</ul>
+</div>
+<!-- Trust & Policies (Col 9-12) -->
+<div class="md:col-span-3 space-y-3">
+<div class="text-xs font-bold uppercase tracking-wider text-white">Sleep Guarantee</div>
+<ul class="space-y-2 text-neutral-400">
+<li><a class="hover:text-white transition" href="#trial">100-Night Free Home Trial</a></li>
+<li><a class="hover:text-white transition" href="#warranty">Register 10-Year Warranty</a></li>
+<li><a class="hover:text-white transition" href="#track">Track Your Order Status</a></li>
+<li><a class="hover:text-white transition" href="#stores">Experience Center Showrooms</a></li>
+<li><a class="hover:text-white transition" href="#faq">Mattress Thickness &amp; Firmness Guide</a></li>
+</ul>
+</div>
+</div>
+<!-- Bottom Bar with Payment Icons & Copyright -->
+<div class="mt-12 pt-8 border-t border-charcoal-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="text-[11px] text-neutral-500">
+          © 2026 SleepExcellent Mattresses &amp; Living Solutions Pvt Ltd. All rights reserved.
+        </div>
+<!-- Payment Badges simulation -->
+<div class="flex items-center gap-2 text-neutral-400 text-xs font-mono">
+<span class="bg-charcoal-800 px-2 py-1 rounded text-[10px] text-neutral-300">UPI</span>
+<span class="bg-charcoal-800 px-2 py-1 rounded text-[10px] text-neutral-300">VISA</span>
+<span class="bg-charcoal-800 px-2 py-1 rounded text-[10px] text-neutral-300">MasterCard</span>
+<span class="bg-charcoal-800 px-2 py-1 rounded text-[10px] text-neutral-300">No Cost EMI</span>
+<span class="bg-charcoal-800 px-2 py-1 rounded text-[10px] text-neutral-300">NetBanking</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: DarkCharcoalFooter -->
+</body></html>

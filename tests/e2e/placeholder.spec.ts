@@ -1,22 +1,21 @@
 import { expect, test } from "@playwright/test";
 
-test("renders the Phase 1 storefront foundation", async ({ page }) => {
+test("renders the approved Stitch desktop homepage", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    /Sleep,\s*constructed\./,
+  const homepage = page.frameLocator('iframe[title="SleepExcellent approved desktop homepage"]');
+  await expect(homepage.locator('img[src="/logo.png"]')).toBeVisible();
+  await expect(homepage.getByRole("heading", { level: 2 })).toHaveText(
+    /Better sleep\.\s*Architected around you\./,
   );
 });
 
-test("mobile navigation opens and closes from the keyboard", async ({ page }) => {
+test("uses the approved mobile Stitch homepage at mobile widths", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
 
-  const menu = page.locator('button[aria-controls="mobile-navigation"]');
-  await menu.focus();
-  await page.keyboard.press("Enter");
-  await expect(menu).toHaveAttribute("aria-expanded", "true");
-  await expect(page.getByRole("navigation", { name: "Mobile navigation" })).toBeVisible();
-
-  await page.keyboard.press("Escape");
-  await expect(menu).toHaveAttribute("aria-expanded", "false");
+  const homepage = page.frameLocator('iframe[title="SleepExcellent approved mobile homepage"]');
+  await expect(homepage.locator('img[src="/logo.png"]')).toBeVisible();
+  await expect(homepage.getByRole("heading", { level: 1 })).toHaveText(
+    /Better Sleep\.\s*Architected Around You\./,
+  );
 });

@@ -114,6 +114,31 @@ textarea:focus-visible,
   background-size: calc(100% / 12) 100%;
 }
 
+.stitch-frame {
+  display: block;
+  width: 100%;
+  border: 0;
+}
+
+.stitch-frame--desktop {
+  min-height: 100dvh;
+}
+
+.stitch-frame--mobile {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .stitch-frame--desktop {
+    display: none;
+  }
+
+  .stitch-frame--mobile {
+    display: block;
+    min-height: 100dvh;
+  }
+}
+
 @media (max-width: 767px) {
   .grid-rule {
     background-size: calc(100% / 4) 100%;

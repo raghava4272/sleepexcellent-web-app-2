@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>SleepExcellent | Architectural Sleep &amp; Furniture</title>
+<!-- Google Fonts: Syne & Geist -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Syne:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN with forms and container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-highest": "#e7e2da",
+            "on-primary-container": "#858383",
+            "inverse-surface": "#32302b",
+            "tertiary-fixed": "#ffdad4",
+            "surface-container-low": "#f8f3eb",
+            "on-tertiary": "#ffffff",
+            "background": "#fef9f0",
+            "on-secondary": "#ffffff",
+            "on-secondary-fixed-variant": "#5d4127",
+            "on-secondary-container": "#7a5a3f",
+            "primary": "#000000",
+            "tertiary-container": "#410000",
+            "error": "#ba1a1a",
+            "secondary": "#77583c",
+            "outline-variant": "#c4c7c7",
+            "primary-fixed": "#e5e2e1",
+            "secondary-container": "#ffd5b2",
+            "on-tertiary-fixed": "#410000",
+            "on-primary-fixed": "#1c1b1b",
+            "tertiary-fixed-dim": "#ffb4a8",
+            "on-primary": "#ffffff",
+            "tertiary": "#000000",
+            "on-tertiary-fixed-variant": "#900e07",
+            "surface": "#fef9f0",
+            "primary-fixed-dim": "#c8c6c5",
+            "on-secondary-fixed": "#2c1602",
+            "surface-tint": "#5f5e5e",
+            "surface-bright": "#fef9f0",
+            "inverse-on-surface": "#f5f0e8",
+            "secondary-fixed-dim": "#e8bf9d",
+            "primary-container": "#1c1b1b",
+            "on-error": "#ffffff",
+            "outline": "#747878",
+            "on-background": "#1d1c17",
+            "on-primary-fixed-variant": "#474746",
+            "surface-container-lowest": "#ffffff",
+            "on-error-container": "#93000a",
+            "secondary-fixed": "#ffdcc0",
+            "on-surface": "#1d1c17",
+            "surface-variant": "#e7e2da",
+            "surface-dim": "#ded9d2",
+            "surface-container-high": "#ede7df",
+            "on-tertiary-container": "#e6503d",
+            "surface-container": "#f2ede5",
+            "error-container": "#ffdad6",
+            "on-surface-variant": "#444748",
+            "inverse-primary": "#c8c6c5"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem",
+            "gutter-mobile": "0.75rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "space-3xl": "6rem",
+            "space-2xl": "4rem",
+            "margin": "3rem",
+            "gutter": "1rem",
+            "space-xl": "2.5rem",
+            "margin-mobile": "1rem"
+          },
+          "fontFamily": {
+            "mono-data": ["Geist"],
+            "price-xl": ["Geist"],
+            "body-lg": ["Geist"],
+            "headline-md": ["Syne"],
+            "body-md": ["Geist"],
+            "price-md": ["Geist"],
+            "display-xl": ["Syne"],
+            "headline-sm": ["Syne"],
+            "display-xl-mobile": ["Syne"],
+            "display-lg": ["Syne"],
+            "label-caps": ["Geist"],
+            "display-lg-mobile": ["Syne"],
+            "body-sm": ["Geist"]
+          },
+          "fontSize": {
+            "mono-data": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "price-xl": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-md": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "price-md": ["16px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-xl": ["72px", { "lineHeight": "76px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "display-xl-mobile": ["40px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "display-lg": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "display-lg-mobile": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Architectural planar constraints */
+    * {
+      -webkit-tap-highlight-color: transparent;
+      border-radius: 0 !important;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 350, 'GRAD' 0, 'opsz' 20;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-block;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .official-logo {
+      display: block;
+      width: 170px;
+      height: 30px;
+      object-fit: cover;
+      object-position: center;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased selection:bg-primary-container selection:text-surface">
+<!-- Viewport Container strictly optimized for 390px mobile layout with zero horizontal bleed -->
+<div class="max-w-[420px] mx-auto min-h-screen bg-surface border-x border-surface-dim shadow-2xl relative flex flex-col">
+<!-- Top Promo Announcement Ribbon -->
+<aside class="bg-primary text-surface px-margin-mobile py-1.5 flex items-center justify-between border-b border-surface-dim">
+<div class="flex items-center space-x-1.5 overflow-hidden">
+<span class="w-1.5 h-1.5 bg-[#C93B2B] inline-block shrink-0 animate-pulse"></span>
+<p class="font-label-caps text-label-caps tracking-widest text-surface truncate">
+          Sleep Better Sale — Extra 10% Off with EXCELLENT10
+        </p>
+</div>
+<span class="font-mono-data text-mono-data text-surface-variant text-[10px] uppercase shrink-0 pl-2">Limited</span>
+</aside>
+<!-- TopNavBar (Shared Component implementation) -->
+<header class="sticky top-0 z-40 bg-surface border-b border-surface-dim">
+<!-- Brand & Trailing Utility Actions -->
+<div class="px-margin-mobile py-3 flex items-center justify-between">
+<!-- Logo Anchor with reference aesthetic -->
+<a class="flex items-center space-x-0.5 tracking-tight group" href="#">
+<img alt="SleepExcellent" class="official-logo" src="/logo.png"/>
+<span class="font-mono-data text-[9px] text-on-surface-variant ml-1 uppercase border border-surface-dim px-1">Studio</span>
+</a>
+<!-- Trailing Icon Actions -->
+<div class="flex items-center space-x-3">
+<button aria-label="Search" class="text-primary hover:text-secondary p-1">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button aria-label="Favorites" class="text-primary hover:text-secondary p-1 relative">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="absolute top-0 right-0 w-1.5 h-1.5 bg-[#C93B2B]"></span>
+</button>
+<button aria-label="Cart" class="text-primary hover:text-secondary p-1 relative flex items-center">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-mono-data text-[10px] ml-0.5 font-bold">0</span>
+</button>
+</div>
+</div>
+<!-- Compact Search Bar Barcode Module -->
+<div class="px-margin-mobile pb-2.5">
+<div class="flex items-center bg-surface-container-lowest border border-surface-dim h-10 px-3 transition-colors focus-within:border-primary">
+<span class="material-symbols-outlined text-outline text-lg mr-2" data-icon="search">search</span>
+<input class="w-full bg-transparent border-none p-0 font-body-sm text-body-sm text-on-surface placeholder:text-outline-variant focus:ring-0" placeholder="Search orthopedic mattresses, solid beds..." type="text"/>
+<span class="font-mono-data text-[10px] text-outline border-l border-surface-dim pl-2 uppercase">CAD/3D</span>
+</div>
+</div>
+<!-- Horizontal Scrollable Category Filter Chips -->
+<nav class="flex items-center space-x-2 px-margin-mobile pb-2.5 overflow-x-auto hide-scrollbar border-t border-surface-dim/40 pt-2">
+<button class="shrink-0 px-3 py-1.5 bg-primary text-surface font-label-caps text-label-caps uppercase transition-colors">
+          All Mattresses
+        </button>
+<button class="shrink-0 px-3 py-1.5 bg-surface-container-lowest border border-surface-dim text-on-surface hover:border-primary font-label-caps text-label-caps uppercase transition-colors">
+          Padding Beds
+        </button>
+<button class="shrink-0 px-3 py-1.5 bg-surface-container-lowest border border-surface-dim text-on-surface hover:border-primary font-label-caps text-label-caps uppercase transition-colors">
+          Sofas
+        </button>
+<button class="shrink-0 px-3 py-1.5 bg-surface-container-lowest border border-surface-dim text-on-surface hover:border-primary font-label-caps text-label-caps uppercase transition-colors">
+          TV Units
+        </button>
+<button class="shrink-0 px-3 py-1.5 bg-surface-container-lowest border border-surface-dim text-on-surface hover:border-primary font-label-caps text-label-caps uppercase transition-colors">
+          False Ceilings
+        </button>
+<button class="shrink-0 px-3 py-1.5 bg-surface-container-high border border-secondary text-secondary font-label-caps text-label-caps uppercase flex items-center space-x-1">
+<span>Custom Mattress</span>
+<span class="text-[10px]">✨</span>
+</button>
+</nav>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow">
+<!-- Hero Section: Sculptural Architectural Bedroom -->
+<section class="relative border-b border-surface-dim bg-surface-container-low">
+<div class="relative h-[410px] w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover grayscale-[15%] contrast-105" data-alt="Modern monolithic architectural bedroom with a sculptural low-profile upholstered platform bed, raw bleached oak wall panels, and high-end natural linen bedding. Soft natural morning sunlight floods the room through floor-to-ceiling windows, highlighting warm limestone tones and obsidian charcoal accents in a gallery-grade light interior setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqW0rd4fGfocVUwO-wPaVhzOeN3cNfKVXPNgIDCe_m_ZI55fQXNXVIYnnBrOpl0nB8NaMGyw9S_vG3v27nq_YqHJS-WJgq5yJj79I5UKuHj31kpJ6yODA8ccuf6YsId5ZzG_jEtDg1xR2CahIl3PSL_3NoGBM0PrbMXeHyYdDvj1rfPoEIMkOF7yA0xZBGJQnbPcPJphlnxX003rT2Cwrj24KVsn5VdzuSE25AgN6yWn87aEkt9LzfMQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-90"></div>
+<!-- Monolithic Spec Pin -->
+<div class="absolute top-3 left-3 bg-surface-container-lowest/95 border border-surface-dim px-2.5 py-1 flex items-center space-x-2">
+<span class="w-2 h-2 bg-[#C93B2B]"></span>
+<span class="font-mono-data text-mono-data text-primary uppercase">SERIES 04 / MONOLITH</span>
+</div>
+<!-- Hero Narrative Lockup -->
+<div class="absolute bottom-4 left-margin-mobile right-margin-mobile">
+<div class="inline-block bg-primary text-surface px-2 py-0.5 font-label-caps text-[10px] tracking-widest uppercase mb-2">
+              Bespoke Orthopedic Engineering
+            </div>
+<h1 class="font-display-xl-mobile text-display-xl-mobile text-primary tracking-tight leading-[1.05] mb-3">
+              Better Sleep.<br/><span class="italic font-normal">Architected</span> Around You.
+            </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2 max-w-[340px]">
+              Triple-zoned memory matrix with high-density Swedish pocket coils engineered to realign spinal symmetry.
+            </p>
+<div class="grid grid-cols-2 gap-2">
+<a class="h-12 bg-primary text-surface flex items-center justify-center font-label-caps text-label-caps uppercase tracking-wider hover:bg-secondary transition-colors duration-150 border border-primary" href="#mattresses">
+                Shop Mattresses
+              </a>
+<a class="h-12 bg-surface border border-primary text-primary flex items-center justify-center font-label-caps text-label-caps uppercase tracking-wider hover:bg-surface-container transition-colors duration-150" href="#custom-configurator">
+                Custom Mattress ✨
+              </a>
+</div>
+</div>
+</div>
+</section>
+<!-- FLASH SALE STRIP (Reference-inspired constructivist execution) -->
+<section class="border-b border-surface-dim bg-[#171717] text-[#FFFFFF] py-4 px-margin-mobile">
+<div class="flex items-center justify-between pb-3 border-b border-[#333333]">
+<div class="flex items-center space-x-2">
+<span class="bg-[#C93B2B] text-white text-[10px] font-bold px-1.5 py-0.5 tracking-widest uppercase">Flash Sale</span>
+<h2 class="font-headline-sm text-[16px] text-white tracking-wide uppercase">Active Clearance</h2>
+</div>
+<!-- Real-Time Countdown Timer -->
+<div class="flex items-center space-x-1 font-mono-data text-mono-data bg-[#242424] border border-[#3A3A3A] px-2 py-0.5 text-surface">
+<span class="text-[#C93B2B] font-bold">●</span>
+<span id="flash-timer">08 : 42 : 15</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-[#A8A8A8] mt-2 mb-3">
+          These deals are too good to scroll past! Factory-direct units reserved for instant dispatch.
+        </p>
+<!-- Horizontal Flash Deal Cards -->
+<div class="flex space-x-3 overflow-x-auto hide-scrollbar pb-1">
+<!-- Deal 1 -->
+<div class="shrink-0 w-52 bg-[#222222] border border-[#383838] p-2 flex flex-col justify-between">
+<div class="relative h-28 w-full bg-[#1A1A1A] overflow-hidden mb-2">
+<img class="w-full h-full object-cover" data-alt="Orthopedic firm memory foam mattress core showing pristine white quilted surface and breathable mesh border in a minimalist studio setting with moody chiaroscuro lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBePDr_U2Q3s4VVlX0jHMVj8HAPiFWXzzSjfRW5dE120syCMmwQUSd25bj9ro2FU2rYtW5b0r_iBm4N15aJMBEykIMYBX7c-x9B-P6Kc3o8DPLcf0QXfyqA0EK197NFQ3Wp9Y4KGsiXmybTYHZn-EYy1aGrZHSnMQSdgJ3Iaiyw92BHz2BrA-oOshW9kBBJMQ-Q6upmBiCQJ3epsxWcSL_KWS-VcZYsrcjAwf-vMOgc1zVVbqbFaHUWlg"/>
+<span class="absolute top-1 left-1 bg-[#C93B2B] text-white font-mono-data text-[9px] px-1 py-0.5 uppercase">Save 40%</span>
+</div>
+<div>
+<p class="font-label-caps text-[10px] text-[#8A8A8A] uppercase">Orthopedic Pro 6"</p>
+<h3 class="font-headline-sm text-[14px] text-white truncate">ShapeSense Classic</h3>
+<div class="flex items-baseline space-x-2 mt-1">
+<span class="font-price-md text-price-md text-white">₹9,999</span>
+<span class="font-mono-data text-[11px] text-[#7A7A7A] line-through">₹16,699</span>
+</div>
+</div>
+<button class="mt-2 w-full py-1.5 bg-white text-[#171717] font-label-caps text-[10px] uppercase font-bold hover:bg-[#EAE5DD]">Claim Deal</button>
+</div>
+<!-- Deal 2 -->
+<div class="shrink-0 w-52 bg-[#222222] border border-[#383838] p-2 flex flex-col justify-between">
+<div class="relative h-28 w-full bg-[#1A1A1A] overflow-hidden mb-2">
+<img class="w-full h-full object-cover" data-alt="Architectural modular deep-seated Chester sofa in sand textured boucle fabric against raw concrete interior, refined Italian catalog lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5VMw1ApZizC21drdwSl2OpGIe4sztiVYxUfiWivJxACCEQaOXktndXDzjDV1AzrES3oUV3-8wFj4D-ZQ5vc-vDFbYbdQNmo4-lZ5jX-A8CXzv91L6_WLDk5lHUxxbqG6H6gioCk9J0wmDK49pjwy0H62w2NAuVkyv-d2rWtxClEHZlzbkajRfaq0AlYnxaF-L0TQip55E43cAR9xr-rnhkmw27gZqevrJvJYhuz-JhdVplbmt8nwxwg"/>
+<span class="absolute top-1 left-1 bg-surface-dim text-[#171717] font-mono-data text-[9px] px-1 py-0.5 uppercase">35% Off</span>
+</div>
+<div>
+<p class="font-label-caps text-[10px] text-[#8A8A8A] uppercase">Modular Living</p>
+<h3 class="font-headline-sm text-[14px] text-white truncate">Chester Sectional 3-Seat</h3>
+<div class="flex items-baseline space-x-2 mt-1">
+<span class="font-price-md text-price-md text-white">₹32,499</span>
+<span class="font-mono-data text-[11px] text-[#7A7A7A] line-through">₹49,999</span>
+</div>
+</div>
+<button class="mt-2 w-full py-1.5 bg-white text-[#171717] font-label-caps text-[10px] uppercase font-bold hover:bg-[#EAE5DD]">Claim Deal</button>
+</div>
+<!-- Deal 3 -->
+<div class="shrink-0 w-52 bg-[#222222] border border-[#383838] p-2 flex flex-col justify-between">
+<div class="relative h-28 w-full bg-[#1A1A1A] overflow-hidden mb-2">
+<img class="w-full h-full object-cover" data-alt="Sculptural Roman architectural platform bed frame in natural bleached ash timber with geometric headboard grid, light aesthetic studio shot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHTpKtTz6qC9G6h66TZljUrJrGLCWJK71NqAe1ktb22R8lbFuMi_xNLHKSmB5sHr4p1UIs2qQQqLbDUX2W1DVk6xzrwyyJvg2wNY72Xixv0gB58jNIIUVkkNYLd6oFgRi-4TshVz04EEUgwlJ7X0U7-vgIuV6FysrZPuSLnb7jBMqEsnSScY44vnkOifKgZ7byhmMHWtrI0UIh8M2HmOKAFEsuYvEsoZZi_C8J91iowtRzTvE11YhefQ"/>
+<span class="absolute top-1 left-1 bg-[#C93B2B] text-white font-mono-data text-[9px] px-1 py-0.5 uppercase">Direct Spec</span>
+</div>
+<div>
+<p class="font-label-caps text-[10px] text-[#8A8A8A] uppercase">Solid Timber</p>
+<h3 class="font-headline-sm text-[14px] text-white truncate">Roman Fluted Bed</h3>
+<div class="flex items-baseline space-x-2 mt-1">
+<span class="font-price-md text-price-md text-white">₹16,900</span>
+<span class="font-mono-data text-[11px] text-[#7A7A7A] line-through">₹24,000</span>
+</div>
+</div>
+<button class="mt-2 w-full py-1.5 bg-white text-[#171717] font-label-caps text-[10px] uppercase font-bold hover:bg-[#EAE5DD]">Claim Deal</button>
+</div>
+</div>
+</section>
+<!-- Section: Explore By Category (2-Column Architectural Bento) -->
+<section class="py-space-xl px-margin-mobile border-b border-surface-dim">
+<div class="flex items-end justify-between mb-4">
+<div>
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">Catalog Index</span>
+<h2 class="font-headline-md text-headline-sm text-primary">Explore Categories</h2>
+</div>
+<a class="font-label-caps text-[11px] text-primary underline underline-offset-4 tracking-wider uppercase" href="#">View Full Spec</a>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<!-- Category 1: Mattresses -->
+<a class="group bg-surface-container-lowest border border-surface-dim p-2 flex flex-col justify-between hover:border-primary transition-colors" href="#mattresses">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Minimalist orthopedic luxury mattress elevated on a geometric stone plinth in a bright architectural loft gallery, natural soft directional light, warm limestone tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3Jis18Y9OAqOsBtAIQcrE-zAExyEtWmHbChDEC376xxK5tIjbpAvjTBjMIPJmkzMrFErKvvw7uhGLFxHMcYTwXGrQ2S9DtF2D9LJxX5Z-5qZjt_Jodz8S7_iBAoo-B2UVZb-vdPlpvO1uuRv6GxKVxrzbwB0w_Oqo3pyzjtm0tgBammxA2M4gW8yXqaaq-Bx4gA9G_OhvJQkeMBRAMGzJvnJTJ51_KUUfPv_FLePYalSrZdKsisowBg"/>
+<span class="absolute top-1.5 left-1.5 bg-surface/90 border border-surface-dim text-primary font-mono-data text-[9px] px-1.5 py-0.5 uppercase">From ₹8,999</span>
+</div>
+<div class="pt-2">
+<h3 class="font-headline-sm text-[15px] text-primary">Mattresses</h3>
+<p class="font-mono-data text-[11px] text-on-surface-variant">14 Configurations</p>
+</div>
+</a>
+<!-- Category 2: Beds -->
+<a class="group bg-surface-container-lowest border border-surface-dim p-2 flex flex-col justify-between hover:border-primary transition-colors" href="#">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Monolithic padded platform bed frame with warm linen upholstery and clean horizontal geometric lines, curated Japanese minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0v4NRgdDlHF47lAtZ4Nb1tZTsokvhzhuHmo6uOWp3G-SmRItK7Msr9WnehLnVef-vromH0zhzprs_7__5SP0D54v0UnaqsjJNq13fCEktytq8Je7ulVxIhSVvcDgK91m0X0cD4VbL5OhOWjIv11sZPiCxeKJPAZT_0xCoram-hHZD7_kYVywE-RDPdu7xplWnzO3ei9SQc4fBNtE2yebqVMcA8pLP0Ul6SNykfFVuJBXVFhqjFo7l_w"/>
+<span class="absolute top-1.5 left-1.5 bg-surface/90 border border-surface-dim text-primary font-mono-data text-[9px] px-1.5 py-0.5 uppercase">From ₹14,500</span>
+</div>
+<div class="pt-2">
+<h3 class="font-headline-sm text-[15px] text-primary">Padding Beds</h3>
+<p class="font-mono-data text-[11px] text-on-surface-variant">Bespoke Frames</p>
+</div>
+</a>
+<!-- Category 3: Sofas -->
+<a class="group bg-surface-container-lowest border border-surface-dim p-2 flex flex-col justify-between hover:border-primary transition-colors" href="#">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="High architectural minimalist 3-seater sofa in sand beige wool fabric, strict planar lines, shot in a high-key warm brutalist interior setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWXXQkccICH4Z245NNWqZ4PTOdhcfznGspqhDZbInRrIx5Flfrx6V8IsdzZfd76plLGBnAjOrQdJSslVlx6gv-uM0dboEX3m9uYInqBx_RvqXCQkqieGmlDQmLN_grJ8k14P6Mwu7fQTkoaTYY5gPThd7vKrQQJGvHaAq6wzXHFCMAAugrkEMreermCCsu9xLS3hmvOuZgYQLxavlFmkpxBi88wVdGgEr9yNGhMrKZCi-v57n4mbdAfQ"/>
+<span class="absolute top-1.5 left-1.5 bg-surface/90 border border-surface-dim text-primary font-mono-data text-[9px] px-1.5 py-0.5 uppercase">From ₹21,000</span>
+</div>
+<div class="pt-2">
+<h3 class="font-headline-sm text-[15px] text-primary">Living Sofas</h3>
+<p class="font-mono-data text-[11px] text-on-surface-variant">High-Resilience Core</p>
+</div>
+</a>
+<!-- Category 4: Ceilings -->
+<a class="group bg-surface-container-lowest border border-surface-dim p-2 flex flex-col justify-between hover:border-primary transition-colors" href="#">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Architectural false ceiling with recessed perimeter cove lighting and monolithic acoustic plaster finish inside a serene modern master bedroom suite." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkokP804XAC9gKRgnIXGiJg3mCzlRUZtCDPF9_cNDeMi2jtFuvyVmcB9lDiQ5LI36G5GccZrTmfBu31Bc--im-DRcxfV5xAqmZSQc0TiY_vaitAYd3a7SusFsUUqAb_gmZmijU_TgqnALtoE4TdLOEXbHSDY1ejWgRA_mIhYNPIvL4c0LjSqrc3NBtIZKS-YC4dUjP9LH2ezzxFeaiVVQFreEHRtEeGRaFvD2E62z9dAnZLCeTF9mS3g"/>
+<span class="absolute top-1.5 left-1.5 bg-surface/90 border border-surface-dim text-primary font-mono-data text-[9px] px-1.5 py-0.5 uppercase">Per Sq.Ft</span>
+</div>
+<div class="pt-2">
+<h3 class="font-headline-sm text-[15px] text-primary">False Ceilings</h3>
+<p class="font-mono-data text-[11px] text-on-surface-variant">Acoustic &amp; Cove</p>
+</div>
+</a>
+</div>
+</section>
+<!-- INTERACTIVE FEATURE: 'Make Your Own Mattress' Studio Card -->
+<section class="py-space-xl px-margin-mobile border-b border-surface-dim bg-surface-container" id="custom-configurator">
+<div class="bg-surface-container-lowest border border-surface-dim p-4">
+<!-- Header Anchor -->
+<div class="flex items-center justify-between pb-3 border-b border-surface-dim">
+<div>
+<span class="font-label-caps text-label-caps text-[#C93B2B] uppercase tracking-widest flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-[#C93B2B]"></span> Studio Spec Tool
+              </span>
+<h2 class="font-headline-md text-headline-sm text-primary">Make Your Own Mattress</h2>
+</div>
+<span class="font-mono-data text-[10px] text-outline border border-surface-dim px-2 py-0.5 uppercase">Interactive</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 mb-4">
+            Select layers, specify precision dimensions, and calibrate your spinal density index with live CAD costing.
+          </p>
+<!-- Layer Cross-Section Graphical Preview -->
+<div class="border border-surface-dim bg-surface p-3 mb-4">
+<div class="flex items-center justify-between mb-2">
+<span class="font-mono-data text-[11px] text-primary uppercase font-bold">Layer Stack Blueprint</span>
+<span class="font-mono-data text-[11px] text-secondary font-semibold" id="gauge-label">Firmness: Medium Firm (7.5/10)</span>
+</div>
+<!-- Layer Visualizer Bars -->
+<div class="space-y-1">
+<div class="h-6 bg-surface-container-high border border-surface-dim flex items-center justify-between px-2 text-[10px] font-mono-data">
+<span>01. Organic Belgian Damask Quilt (300 GSM)</span>
+<span class="text-outline">15mm</span>
+</div>
+<div class="h-7 bg-surface-container-highest border border-surface-dim flex items-center justify-between px-2 text-[10px] font-mono-data">
+<span class="font-bold text-secondary">02. CoolGel Memory Foam / Natural Latex</span>
+<span class="text-outline">50mm</span>
+</div>
+<div class="h-9 bg-surface-dim border border-primary/20 flex items-center justify-between px-2 text-[10px] font-mono-data">
+<span>03. 7-Zone Ergonomic Pocket Springs (Swedish Steel)</span>
+<span class="text-outline">160mm</span>
+</div>
+<div class="h-5 bg-inverse-surface text-surface flex items-center justify-between px-2 text-[9px] font-mono-data">
+<span>04. High-Density Rebonded Foundation Base</span>
+<span class="text-surface-variant">25mm</span>
+</div>
+</div>
+</div>
+<!-- Interactive Dimension Stepper & Controls -->
+<div class="space-y-3 mb-4">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface uppercase mb-1">Standard Bed Dimensions</label>
+<div class="grid grid-cols-3 gap-1">
+<button class="dim-btn py-2 border border-primary bg-primary text-surface font-mono-data text-[11px] uppercase" onclick="selectDimension('King (78x72)', 18450)" type="button">
+                  King 78×72"
+                </button>
+<button class="dim-btn py-2 border border-surface-dim bg-surface text-primary font-mono-data text-[11px] uppercase" onclick="selectDimension('Queen (78x60)', 15800)" type="button">
+                  Queen 78×60"
+                </button>
+<button class="dim-btn py-2 border border-surface-dim bg-surface text-primary font-mono-data text-[11px] uppercase" onclick="selectDimension('Custom Size', 21500)" type="button">
+                  Custom CAD
+                </button>
+</div>
+</div>
+<!-- Firmness Slider -->
+<div>
+<div class="flex justify-between items-center mb-1">
+<label class="font-label-caps text-label-caps text-on-surface uppercase">Firmness Index Calibration</label>
+<span class="font-mono-data text-[11px] text-primary" id="slider-val">7.5</span>
+</div>
+<input class="w-full accent-primary h-1.5 bg-surface-dim cursor-pointer" id="firmness-range" max="10" min="1" oninput="updateFirmness(this.value)" step="0.5" type="range" value="7.5"/>
+<div class="flex justify-between font-mono-data text-[9px] text-outline mt-1 uppercase">
+<span>Plush (1)</span>
+<span>Balanced (5)</span>
+<span>Orthopedic (10)</span>
+</div>
+</div>
+</div>
+<!-- Live Price Calculator Bar -->
+<div class="bg-surface-container-high border border-surface-dim p-3 flex items-center justify-between">
+<div>
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase block">Calculated Spec Price</span>
+<div class="flex items-baseline space-x-1.5">
+<span class="font-price-xl text-price-xl text-primary font-bold" id="calc-price">₹18,450</span>
+<span class="font-mono-data text-[10px] text-outline uppercase">Incl. GST</span>
+</div>
+</div>
+<button class="h-11 px-4 bg-primary text-surface font-label-caps text-label-caps uppercase tracking-wider hover:bg-secondary transition-colors">
+              Configure Mattress
+            </button>
+</div>
+</div>
+</section>
+<!-- Section: Top Selling Orthopedic Mattresses (Direct Purchase Cards) -->
+<section class="py-space-xl px-margin-mobile border-b border-surface-dim" id="mattresses">
+<div class="flex items-end justify-between mb-4">
+<div>
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">Clinically Validated</span>
+<h2 class="font-headline-md text-headline-sm text-primary">Top Orthopedic Mattresses</h2>
+</div>
+<span class="font-mono-data text-[11px] text-outline">3 Models</span>
+</div>
+<div class="space-y-4">
+<!-- Product Card 1: Ortho Plus -->
+<article class="bg-surface-container-lowest border border-surface-dim p-3">
+<div class="relative aspect-[16/10] bg-surface-container overflow-hidden mb-3">
+<img class="w-full h-full object-cover" data-alt="Studio photograph of a premium multi-layered orthopedic mattress resting on minimalist raw oak frame with cool diffused directional shadows, architectural interior." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsbFOu9QvGZFnE6NstnFa50HlZU4H3S-s9xNyhwCcXGexdj2zRiZI52VRLm3-dBezztIQnWEr3txuCtT7uDGFtCytFtwkC8CZcPNdDAZgQcaeZ_1_m3zwUkO-f9C_nELG3mAdPN8n5dyBfXJUi35Jw1yI7Qwpmiu-z-k773wybv0JmhxV0N-COkFbXzE2kxXSG16LkIwYUK0TLwiP_kNuPKvrPIKUL3eaqCOptIIyNTktxbJxvhvs2cA"/>
+<span class="absolute top-2 left-2 bg-primary text-surface font-label-caps text-[9px] px-2 py-0.5 uppercase tracking-wider">Best Seller</span>
+<span class="absolute top-2 right-2 bg-surface/90 border border-surface-dim font-mono-data text-[10px] text-primary px-1.5 py-0.5 flex items-center">
+                ★ 4.9 <span class="text-outline text-[9px] ml-1">(1.2k)</span>
+</span>
+</div>
+<!-- Card Metadata -->
+<div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-[17px] text-primary">Ortho Plus Memory Matrix</h3>
+<p class="font-mono-data text-[11px] text-on-surface-variant">Zero Motion Transfer • 8 Inch</p>
+</div>
+<div class="text-right">
+<span class="font-price-md text-price-md text-primary font-bold">₹16,395</span>
+<span class="font-mono-data text-[11px] text-outline block line-through">₹22,999</span>
+</div>
+</div>
+<!-- Size Matrix Toggles -->
+<div class="my-3 pt-2 border-t border-surface-dim/60">
+<span class="font-label-caps text-[10px] text-outline uppercase block mb-1.5">Select Footprint:</span>
+<div class="grid grid-cols-3 gap-1.5">
+<button class="py-1 border border-surface-dim text-outline hover:border-primary font-mono-data text-[10px] uppercase">Single</button>
+<button class="py-1 border border-surface-dim text-outline hover:border-primary font-mono-data text-[10px] uppercase">Queen</button>
+<button class="py-1 border border-primary bg-primary text-surface font-mono-data text-[10px] uppercase font-bold">King 78×72</button>
+</div>
+</div>
+<div class="flex space-x-2">
+<button class="flex-1 h-11 bg-primary text-surface font-label-caps text-label-caps uppercase tracking-wider hover:bg-secondary transition-colors">
+                  Add To Cart
+                </button>
+<button class="w-11 h-11 border border-surface-dim flex items-center justify-center hover:border-primary">
+<span class="material-symbols-outlined text-primary" data-icon="favorite">favorite</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 2: Latex Pro Spine -->
+<article class="bg-surface-container-lowest border border-surface-dim p-3">
+<div class="relative aspect-[16/10] bg-surface-container overflow-hidden mb-3">
+<img class="w-full h-full object-cover" data-alt="Close-up architectural view of certified 100% natural organic pin-core latex mattress core in warm studio setting, clean high-contrast planar aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCct57uiIB3uwfX0qC7RCyjcw6mxLFWe1WwacXnbb9jl-XUZfz7HylxD0dMR-w4gxri5Yuk7MjDCIA2ZQdXax2KKVtd5F7aEueGbu0mgm4ywh_pcs6zv23tuC5-GZg52C1UC5F2HLu0VOFhLEwkOJ-eVs-t70QGhh90Vb8SIY6mDt2eSa4n0RfRvd0qrE-mPHmes_jtFZMgACCPUFrJXU0i-txfAtwd9HV7YRjj-dUqhGqc-i11nv3bhQ"/>
+<span class="absolute top-2 left-2 bg-[#8A694C] text-surface font-label-caps text-[9px] px-2 py-0.5 uppercase tracking-wider">100% Natural Latex</span>
+<span class="absolute top-2 right-2 bg-surface/90 border border-surface-dim font-mono-data text-[10px] text-primary px-1.5 py-0.5 flex items-center">
+                ★ 4.8 <span class="text-outline text-[9px] ml-1">(840)</span>
+</span>
+</div>
+<div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-[17px] text-primary">Latex Pro Spine Align</h3>
+<p class="font-mono-data text-[11px] text-on-surface-variant">Organic Pin-Core Latex • 10 Inch</p>
+</div>
+<div class="text-right">
+<span class="font-price-md text-price-md text-primary font-bold">₹28,315</span>
+<span class="font-mono-data text-[11px] text-outline block line-through">₹36,500</span>
+</div>
+</div>
+<!-- Size Matrix Toggles -->
+<div class="my-3 pt-2 border-t border-surface-dim/60">
+<span class="font-label-caps text-[10px] text-outline uppercase block mb-1.5">Select Footprint:</span>
+<div class="grid grid-cols-3 gap-1.5">
+<button class="py-1 border border-surface-dim text-outline hover:border-primary font-mono-data text-[10px] uppercase">Single</button>
+<button class="py-1 border border-primary bg-primary text-surface font-mono-data text-[10px] uppercase font-bold">Queen 78×60</button>
+<button class="py-1 border border-surface-dim text-outline hover:border-primary font-mono-data text-[10px] uppercase">King</button>
+</div>
+</div>
+<div class="flex space-x-2">
+<button class="flex-1 h-11 bg-primary text-surface font-label-caps text-label-caps uppercase tracking-wider hover:bg-secondary transition-colors">
+                  Add To Cart
+                </button>
+<button class="w-11 h-11 border border-surface-dim flex items-center justify-center hover:border-primary">
+<span class="material-symbols-outlined text-primary" data-icon="favorite">favorite</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 3: Pocketed Spring Royal -->
+<article class="bg-surface-container-lowest border border-surface-dim p-3">
+<div class="relative aspect-[16/10] bg-surface-container overflow-hidden mb-3">
+<img class="w-full h-full object-cover" data-alt="Pocket spring structural mattress layered inside architectural showroom with limestone background, refined minimalist light-tone furniture gallery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYFbwsBfcRv0N6sKVhvbAcMyK-5hePsgqLqxK1ZQutxe4Zc-NnIe10eqQNJ0HHbCpf9q5lhTAhcfiaDLplZqLGTcXWNoFsAGInZzGQS6it4qohXi4vjAHGseaZ3s8JpaAf8Fc-eCMeiZqsCMdW6chb1WwJrlgaIx7HQjAXdQSv6EDgrynB_TTu1qo3jp2cJAk2-ltCZA9BlCOa1KtxL4veObg9A2ACCzfvDHYY176b9Of6MSxJelod1A"/>
+<span class="absolute top-2 left-2 bg-[#C93B2B] text-surface font-label-caps text-[9px] px-2 py-0.5 uppercase tracking-wider">25% Factory Rebate</span>
+<span class="absolute top-2 right-2 bg-surface/90 border border-surface-dim font-mono-data text-[10px] text-primary px-1.5 py-0.5 flex items-center">
+                ★ 4.7 <span class="text-outline text-[9px] ml-1">(520)</span>
+</span>
+</div>
+<div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-[17px] text-primary">Pocketed Spring Royal</h3>
+<p class="font-mono-data text-[11px] text-on-surface-variant">Individual Coil Support • 8 Inch</p>
+</div>
+<div class="text-right">
+<span class="font-price-md text-price-md text-primary font-bold">₹15,595</span>
+<span class="font-mono-data text-[11px] text-outline block line-through">₹20,795</span>
+</div>
+</div>
+<!-- Size Matrix Toggles -->
+<div class="my-3 pt-2 border-t border-surface-dim/60">
+<span class="font-label-caps text-[10px] text-outline uppercase block mb-1.5">Select Footprint:</span>
+<div class="grid grid-cols-3 gap-1.5">
+<button class="py-1 border border-surface-dim text-outline hover:border-primary font-mono-data text-[10px] uppercase">Single</button>
+<button class="py-1 border border-primary bg-primary text-surface font-mono-data text-[10px] uppercase font-bold">Queen 78×60</button>
+<button class="py-1 border border-surface-dim text-outline hover:border-primary font-mono-data text-[10px] uppercase">King</button>
+</div>
+</div>
+<div class="flex space-x-2">
+<button class="flex-1 h-11 bg-primary text-surface font-label-caps text-label-caps uppercase tracking-wider hover:bg-secondary transition-colors">
+                  Add To Cart
+                </button>
+<button class="w-11 h-11 border border-surface-dim flex items-center justify-center hover:border-primary">
+<span class="material-symbols-outlined text-primary" data-icon="favorite">favorite</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Trust Guarantee Strip: Technical Monoline Badges -->
+<section class="border-b border-surface-dim bg-surface-container-high py-4 px-margin-mobile">
+<div class="grid grid-cols-3 gap-2 text-center">
+<div class="border border-surface-dim bg-surface p-2.5 flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary text-2xl mb-1" data-icon="bed">bed</span>
+<h4 class="font-headline-sm text-[12px] text-primary">100-Night</h4>
+<p class="font-mono-data text-[9px] text-on-surface-variant uppercase">Sleep Trial</p>
+</div>
+<div class="border border-surface-dim bg-surface p-2.5 flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary text-2xl mb-1" data-icon="verified_user">verified_user</span>
+<h4 class="font-headline-sm text-[12px] text-primary">10-Year</h4>
+<p class="font-mono-data text-[9px] text-on-surface-variant uppercase">Core Warranty</p>
+</div>
+<div class="border border-surface-dim bg-surface p-2.5 flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary text-2xl mb-1" data-icon="precision_manufacturing">precision_manufacturing</span>
+<h4 class="font-headline-sm text-[12px] text-primary">Factory Direct</h4>
+<p class="font-mono-data text-[9px] text-on-surface-variant uppercase">Zero Middlemen</p>
+</div>
+</div>
+</section>
+<!-- Customer Reviews Carousel -->
+<section class="py-space-xl px-margin-mobile border-b border-surface-dim bg-surface">
+<div class="flex items-end justify-between mb-4">
+<div>
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">Verified Owners</span>
+<h2 class="font-headline-md text-headline-sm text-primary">Architectural Feedback</h2>
+</div>
+<span class="font-mono-data text-[11px] text-[#C93B2B] font-bold">4.9 / 5.0</span>
+</div>
+<div class="flex space-x-3 overflow-x-auto hide-scrollbar pb-2">
+<!-- Review 1 -->
+<div class="shrink-0 w-72 bg-surface-container-lowest border border-surface-dim p-3.5 flex flex-col justify-between">
+<div class="space-y-2">
+<div class="flex text-[#C93B2B] space-x-0.5 text-xs">
+<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface italic">
+                "As an interior designer, I ordered the Ortho Plus for our studio loft. The perimeter reinforcement and finish quality rival European brands three times the cost."
+              </p>
+</div>
+<div class="pt-3 border-t border-surface-dim mt-3 flex items-center justify-between font-mono-data text-[10px]">
+<span class="font-bold text-primary">Ar. Devika Sharma</span>
+<span class="text-outline">Bengaluru • Ortho Plus King</span>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="shrink-0 w-72 bg-surface-container-lowest border border-surface-dim p-3.5 flex flex-col justify-between">
+<div class="space-y-2">
+<div class="flex text-[#C93B2B] space-x-0.5 text-xs">
+<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface italic">
+                "Chronic lumbar stiffness disappeared in 14 nights. The Latex Pro has that precise balanced resistance you only get from genuine pin-core latex."
+              </p>
+</div>
+<div class="pt-3 border-t border-surface-dim mt-3 flex items-center justify-between font-mono-data text-[10px]">
+<span class="font-bold text-primary">Rohan K. Mehta</span>
+<span class="text-outline">Mumbai • Latex Pro 10"</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Consultation Concierge Banner -->
+<section class="p-margin-mobile bg-surface-container-highest border-b border-surface-dim">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 bg-primary text-surface flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-[14px] text-primary">Sleep Concierge Support</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Speak with our certified orthopedic mattress engineers.</p>
+</div>
+</div>
+<button class="mt-3 w-full py-2.5 bg-surface border border-primary text-primary font-label-caps text-label-caps uppercase font-bold hover:bg-surface-container transition-colors">
+          Book Phone Consultation
+        </button>
+</section>
+</main>
+<!-- Footer (Shared Component implementation) -->
+<footer class="bg-surface-container text-primary border-t border-surface-dim pt-space-xl pb-10 px-margin-mobile">
+<div class="space-y-6">
+<!-- Brand Logo & Descriptor -->
+<div>
+<span class="font-headline-md text-headline-md uppercase tracking-tight text-primary">SleepExcellent</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 max-w-[320px]">
+            Monolithic planar engineering and bespoke sleeping systems manufactured direct from our architectural workshops.
+          </p>
+</div>
+<!-- Links Grid -->
+<div class="grid grid-cols-2 gap-y-2 gap-x-4 border-t border-b border-surface-dim py-4">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary hover:underline transition-colors" href="#">100-Night Trial Protocol</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary hover:underline transition-colors" href="#">10-Year Structural Warranty</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary hover:underline transition-colors" href="#">Factory Direct Logistics</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary hover:underline transition-colors" href="#">Architectural CAD Specs</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary hover:underline transition-colors" href="#">Material Sourcing</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary hover:underline transition-colors" href="#">Acoustic False Ceilings</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary hover:underline transition-colors" href="#">Client Care Concierge</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary hover:underline transition-colors" href="#">Privacy Policy</a>
+</div>
+<!-- Payment Badges & Verification -->
+<div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+<span class="font-mono-data text-[10px] text-outline uppercase">Certified Payment Rails</span>
+<div class="flex items-center space-x-2">
+<span class="font-mono-data text-[10px] bg-surface border border-surface-dim px-2 py-0.5 font-bold">UPI</span>
+<span class="font-mono-data text-[10px] bg-surface border border-surface-dim px-2 py-0.5 font-bold">VISA</span>
+<span class="font-mono-data text-[10px] bg-surface border border-surface-dim px-2 py-0.5 font-bold">MASTERCARD</span>
+<span class="font-mono-data text-[10px] bg-surface border border-surface-dim px-2 py-0.5 font-bold">EMI</span>
+</div>
+</div>
+<!-- Copyright Statement -->
+<div class="font-mono-data text-[11px] text-on-surface-variant pt-2 leading-relaxed">
+          © 2025 SleepExcellent Architectural Furnishings. All Rights Reserved. Monolithic Planar Engineering.
+        </div>
+</div>
+</footer>
+<!-- Mobile Quick-Dock Persistent Bar -->
+<div class="sticky bottom-0 z-30 bg-surface/95 border-t border-surface-dim px-margin-mobile py-2.5 flex items-center justify-between backdrop-blur-none shadow-[0_-4px_16px_rgba(0,0,0,0.04)]">
+<div class="flex flex-col">
+<span class="font-label-caps text-[9px] text-outline uppercase">Custom Ortho Build</span>
+<span class="font-price-md text-price-md text-primary font-bold">From ₹8,999</span>
+</div>
+<a class="h-10 px-5 bg-primary text-surface font-label-caps text-[11px] uppercase tracking-wider flex items-center justify-center hover:bg-secondary transition-colors" href="#custom-configurator">
+        Configure Now ✨
+      </a>
+</div>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+    // Live Countdown Timer for Flash Sale Strip
+    function startCountdown() {
+      let seconds = 8 * 3600 + 42 * 60 + 15;
+      const display = document.getElementById('flash-timer');
+      setInterval(() => {
+        if (seconds > 0) {
+          seconds--;
+          const hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
+          const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+          const secs = String(seconds % 60).padStart(2, '0');
+          display.textContent = `${hrs} : ${mins} : ${secs}`;
+        }
+      }, 1000);
+    }
+    // Custom Mattress Live Price and Firmness Gauge
+    let basePrice = 18450;
+    function selectDimension(dimName, price) {
+      basePrice = price;
+      document.querySelectorAll('.dim-btn').forEach(btn => {
+        btn.classList.remove('bg-primary', 'text-surface');
+        btn.classList.add('bg-surface', 'text-primary');
+      });
+      event.currentTarget.classList.add('bg-primary', 'text-surface');
+      event.currentTarget.classList.remove('bg-surface', 'text-primary');
+      updatePrice();
+    }
+
+    function updateFirmness(val) {
+      document.getElementById('slider-val').textContent = val;
+      const label = document.getElementById('gauge-label');
+      if (val < 4) {
+        label.textContent = `Firmness: Cloud Plush (${val}/10)`;
+      } else if (val <= 7.5) {
+        label.textContent = `Firmness: Medium Firm (${val}/10)`;
+      } else {
+        label.textContent = `Firmness: Orthopedic Rigid (${val}/10)`;
+      }
+    }
+
+    function updatePrice() {
+      const priceEl = document.getElementById('calc-price');
+      priceEl.textContent = '₹' + Number(basePrice).toLocaleString('en-IN');
+    }
+  </script>
+</body></html>

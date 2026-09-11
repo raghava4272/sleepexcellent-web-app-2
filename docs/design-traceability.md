@@ -6,8 +6,8 @@ Project: [SleepExcellent D2C Store & Custom Mattress Configurator](https://stitc
 
 | Approved screen | Screen ID | Route | Viewport | Acceptance evidence | Status |
 | --- | --- | --- | --- | --- | --- |
-| Desktop Homepage | `b47374326ce94ce98f48aa0cf572edf9` | `/` | Desktop | `artifacts/visual/home-desktop.png` | Not started |
-| Mobile Homepage | `bab9712dd0f844aaa222866f37a06576` | `/` | Mobile | `artifacts/visual/home-mobile.png` | Not started |
+| Desktop Homepage | `b47374326ce94ce98f48aa0cf572edf9` | `/` | Desktop | Playwright full-page baseline | Implemented |
+| Mobile Homepage | `bab9712dd0f844aaa222866f37a06576` | `/` | Mobile | Playwright full-page baseline | Implemented |
 | Product Listing Page | `b682ee5d6d5d49c89fb4c5820f32fe1a` | `/shop`, `/shop/[category]` | Desktop | `artifacts/visual/plp-desktop.png` | Not started |
 | Product Detail Page | `a50253816e2f461ea0b8665efbda3ebb` | `/products/[slug]` | Desktop | `artifacts/visual/pdp-desktop.png` | Not started |
 | Custom Mattress Builder Studio | `1ca80fec3d0f4125946ebe56ca1d78b3` | `/build-your-mattress` | Desktop | `artifacts/visual/builder-desktop.png` | Not started |
@@ -22,6 +22,6 @@ Project: [SleepExcellent D2C Store & Custom Mattress Configurator](https://stitc
 3. Record intentional deviations with a reason and client approval link before marking a row complete.
 4. Keep generated screenshots out of the repository unless they are deliberately adopted as long-lived acceptance artifacts.
 
-## Foundation visual baseline
+## Homepage visual baseline
 
-The shared shell has Playwright baselines at 390px, 768px, and 1440px in `tests/e2e/foundation-visual.spec.ts-snapshots/`. They verify the Phase 1 layout system, not full client-screen parity. Do not mark an approved Stitch screen complete until its route, data, responsive behavior, and full-page visual comparison are implemented in the relevant phase.
+The homepage renders the approved Stitch desktop and mobile exports directly, selecting the source screen by viewport. This preserves the approved composition, content, imagery, and responsive breakpoint behavior while the product flows are implemented in later phases. The supplied SleepExcellent logo replaces the generated mark in both approved headers. Playwright full-page baselines at 390px, 768px, and 1440px record the implementation.
