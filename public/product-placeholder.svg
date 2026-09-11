@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Product image placeholder</title>
+  <desc id="desc">Placeholder for a SleepExcellent product image to be supplied through Supabase Storage</desc>
+  <rect width="800" height="600" fill="#f2ede5"/>
+  <rect x="32" y="32" width="736" height="536" fill="none" stroke="#c4c7c7" stroke-width="2"/>
+  <path d="M154 383h492l-42-82H196z" fill="#e7e2da" stroke="#171717" stroke-width="4"/>
+  <path d="M196 301h408l-28-62H224z" fill="#fef9f0" stroke="#171717" stroke-width="4"/>
+  <path d="M154 383v48m492-48v48" stroke="#171717" stroke-width="4"/>
+  <text x="400" y="107" text-anchor="middle" fill="#5f5e5e" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="4">SLEEPEXCELLENT</text>
+  <text x="400" y="510" text-anchor="middle" fill="#171717" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">PRODUCT IMAGE PENDING</text>
+  <text x="400" y="539" text-anchor="middle" fill="#77583c" font-family="Arial, sans-serif" font-size="13" letter-spacing="2">SUPABASE STORAGE</text>
+</svg>

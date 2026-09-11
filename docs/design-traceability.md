@@ -8,7 +8,7 @@ Project: [SleepExcellent D2C Store & Custom Mattress Configurator](https://stitc
 | --- | --- | --- | --- | --- | --- |
 | Desktop Homepage | `b47374326ce94ce98f48aa0cf572edf9` | `/` | Desktop | Playwright full-page baseline | Implemented |
 | Mobile Homepage | `bab9712dd0f844aaa222866f37a06576` | `/` | Mobile | Playwright full-page baseline | Implemented |
-| Product Listing Page | `b682ee5d6d5d49c89fb4c5820f32fe1a` | `/shop`, `/shop/[category]` | Desktop | `artifacts/visual/plp-desktop.png` | Not started |
+| Product Listing Page | `b682ee5d6d5d49c89fb4c5820f32fe1a` | `/shop`, `/shop/[category]` | Desktop | Playwright full-page baseline | Implemented |
 | Product Detail Page | `a50253816e2f461ea0b8665efbda3ebb` | `/products/[slug]` | Desktop | `artifacts/visual/pdp-desktop.png` | Not started |
 | Custom Mattress Builder Studio | `1ca80fec3d0f4125946ebe56ca1d78b3` | `/build-your-mattress` | Desktop | `artifacts/visual/builder-desktop.png` | Not started |
 | Shopping Cart and Review | `694b31bebef54283b3816132821e643b` | `/cart` | Desktop | `artifacts/visual/cart-desktop.png` | Not started |

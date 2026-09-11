@@ -124,6 +124,10 @@ textarea:focus-visible,
   min-height: 100dvh;
 }
 
+.stitch-frame--listing {
+  min-height: 100dvh;
+}
+
 .stitch-frame--mobile {
   display: none;
 }
