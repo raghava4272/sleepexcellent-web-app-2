@@ -21,3 +21,7 @@ Project: [SleepExcellent D2C Store & Custom Mattress Configurator](https://stitc
 2. Compare grid, spacing, typography, color, borders, imagery, and responsive behavior with the Stitch screen.
 3. Record intentional deviations with a reason and client approval link before marking a row complete.
 4. Keep generated screenshots out of the repository unless they are deliberately adopted as long-lived acceptance artifacts.
+
+## Foundation visual baseline
+
+The shared shell has Playwright baselines at 390px, 768px, and 1440px in `tests/e2e/foundation-visual.spec.ts-snapshots/`. They verify the Phase 1 layout system, not full client-screen parity. Do not mark an approved Stitch screen complete until its route, data, responsive behavior, and full-page visual comparison are implemented in the relevant phase.

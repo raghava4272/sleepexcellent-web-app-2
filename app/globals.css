@@ -1,13 +1,37 @@
 @import "tailwindcss";
+@import "@fontsource-variable/syne/wght.css";
 
 :root {
   --canvas: #fef9f0;
+  --canvas-raised: #ffffff;
+  --canvas-soft: #f7f5f1;
+  --canvas-pressed: #f3f0ea;
   --ink: #181818;
   --muted-ink: #5f5f5f;
   --stone: #eae5dd;
   --line: #ded9d2;
+  --line-strong: #747878;
   --timber: #8a694c;
   --signal: #c93b2b;
+  --success: #3e5f45;
+  --focus: #181818;
+  --radius-none: 0px;
+  --gutter: clamp(1rem, 3vw, 3rem);
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-canvas-raised: var(--canvas-raised);
+  --color-canvas-soft: var(--canvas-soft);
+  --color-canvas-pressed: var(--canvas-pressed);
+  --color-ink: var(--ink);
+  --color-muted-ink: var(--muted-ink);
+  --color-stone: var(--stone);
+  --color-line: var(--line);
+  --color-timber: var(--timber);
+  --color-signal: var(--signal);
+  --font-display: var(--font-syne);
+  --font-body: var(--font-geist);
 }
 
 * {
@@ -16,6 +40,7 @@
 
 html {
   background: var(--canvas);
+  scroll-behavior: smooth;
 }
 
 body {
@@ -23,9 +48,74 @@ body {
   min-width: 320px;
   background: var(--canvas);
   color: var(--ink);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist), Arial, Helvetica, sans-serif;
+  line-height: 1.5;
 }
 
 a {
   color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--stone);
+  color: var(--ink);
+}
+
+.font-display {
+  font-family: var(--font-syne), Arial, sans-serif;
+}
+
+.text-canvas {
+  color: var(--canvas);
+}
+
+.site-container {
+  width: min(100% - (var(--gutter) * 2), 1600px);
+  margin-inline: auto;
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.grid-rule {
+  background-image: linear-gradient(to right, var(--line) 1px, transparent 1px);
+  background-size: calc(100% / 12) 100%;
+}
+
+@media (max-width: 767px) {
+  .grid-rule {
+    background-size: calc(100% / 4) 100%;
+  }
 }
