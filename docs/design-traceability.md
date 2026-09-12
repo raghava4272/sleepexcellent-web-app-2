@@ -13,7 +13,7 @@ Project: [SleepExcellent D2C Store & Custom Mattress Configurator](https://stitc
 | Custom Mattress Builder Studio | `1ca80fec3d0f4125946ebe56ca1d78b3` | `/build-your-mattress` | Desktop | Playwright desktop-viewport baseline | Implemented |
 | Shopping Cart and Review | `694b31bebef54283b3816132821e643b` | `/cart` | Desktop | Playwright desktop-viewport baseline | Implemented |
 | Secure Checkout and Payment | `873723e99d754d5881a1f8c036bb23dd` | `/checkout` | Desktop | Playwright desktop-viewport baseline | Implemented; Razorpay configuration pending secure credentials |
-| Order Tracking and Details | `43c427c5e5ec4343a198c8ab00e674ff` | `/account/orders/[orderNumber]` | Desktop | `artifacts/visual/order-tracking-desktop.png` | Not started |
+| Order Tracking and Details | `43c427c5e5ec4343a198c8ab00e674ff` | `/account/orders/[orderNumber]` | Desktop | Playwright desktop-viewport baseline | Implemented; persistent order data pending Supabase |
 
 ## Acceptance method
 

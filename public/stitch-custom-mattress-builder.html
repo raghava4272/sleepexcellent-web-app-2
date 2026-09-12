@@ -182,7 +182,7 @@
 <button class="p-1 hover:text-secondary text-primary transition-colors" title="Client Account">
 <span class="material-symbols-outlined text-xl">person</span>
 </button>
-<button class="flex items-center gap-1.5 bg-primary text-on-primary px-3 py-1.5 text-label-caps font-label-caps hover:bg-secondary transition-colors duration-150" onclick="window.location.href='/cart'">
+<button class="flex items-center gap-1.5 bg-primary text-on-primary px-3 py-1.5 text-label-caps font-label-caps hover:bg-secondary transition-colors duration-150" onclick="window.top.location.href='/cart'">
 <span class="material-symbols-outlined text-sm">shopping_bag</span>
               Cart (0)
             </button>
@@ -1013,7 +1013,7 @@ Spine Rating: ${document.getElementById('gauge-score').innerText}/10`;
         price: document.getElementById('display-final-price').innerText
       };
       sessionStorage.setItem('sleepExcellentBespokeMattress', JSON.stringify(configuration));
-      window.location.href = '/cart';
+      window.top.location.href = '/cart';
     }
 
     // Initial Run

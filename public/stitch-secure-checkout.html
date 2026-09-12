@@ -634,6 +634,13 @@
 </div>
 </footer>
 <script>
+  document.querySelectorAll('a[href^="/"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      window.top.location.href = link.href;
+    });
+  });
+
   document.querySelectorAll('img[data-alt]').forEach((image) => {
     image.src = '/product-placeholder.svg';
     image.alt = image.dataset.alt || 'Product image pending';
