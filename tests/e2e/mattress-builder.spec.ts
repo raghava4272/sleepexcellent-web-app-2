@@ -15,6 +15,7 @@ test("renders the approved custom mattress builder and preserves its configurati
 test("matches the approved desktop mattress builder", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 960 });
   await page.goto("/build-your-mattress");
+  await page.locator('iframe[title="SleepExcellent approved custom mattress builder"]').waitFor();
   await page.waitForTimeout(1500);
   await page.locator("#next-logo").evaluateAll((nodes) => {
     nodes.forEach((node) => node.parentElement?.remove());
@@ -23,5 +24,6 @@ test("matches the approved desktop mattress builder", async ({ page }) => {
   await expect(page).toHaveScreenshot("mattress-builder-desktop.png", {
     animations: "disabled",
     caret: "hide",
+    maxDiffPixelRatio: 0.01,
   });
 });

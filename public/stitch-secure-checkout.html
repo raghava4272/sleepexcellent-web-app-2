@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | SleepExcellent Architectural Furnishings</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Syne:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error-container": "#93000a",
+            "tertiary-fixed-dim": "#ffb4a8",
+            "tertiary": "#000000",
+            "on-primary-fixed": "#1c1b1b",
+            "on-error": "#ffffff",
+            "surface-variant": "#e7e2da",
+            "surface-bright": "#fef9f0",
+            "on-primary-fixed-variant": "#474746",
+            "primary": "#000000",
+            "secondary-fixed-dim": "#e8bf9d",
+            "secondary-container": "#ffd5b2",
+            "surface-container-highest": "#e7e2da",
+            "background": "#fef9f0",
+            "on-primary": "#ffffff",
+            "on-secondary-fixed": "#2c1602",
+            "secondary": "#77583c",
+            "on-tertiary-fixed": "#410000",
+            "on-tertiary-container": "#e6503d",
+            "primary-container": "#1c1b1b",
+            "outline-variant": "#c4c7c7",
+            "on-primary-container": "#858383",
+            "on-tertiary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "error": "#ba1a1a",
+            "surface-container-low": "#f8f3eb",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-container": "#7a5a3f",
+            "error-container": "#ffdad6",
+            "primary-fixed": "#e5e2e1",
+            "surface-tint": "#5f5e5e",
+            "surface-container-high": "#ede7df",
+            "primary-fixed-dim": "#c8c6c5",
+            "outline": "#747878",
+            "inverse-surface": "#32302b",
+            "surface": "#fef9f0",
+            "secondary-fixed": "#ffdcc0",
+            "surface-dim": "#ded9d2",
+            "on-tertiary-fixed-variant": "#900e07",
+            "on-surface-variant": "#444748",
+            "tertiary-container": "#410000",
+            "on-background": "#1d1c17",
+            "on-surface": "#1d1c17",
+            "inverse-primary": "#c8c6c5",
+            "on-secondary-fixed-variant": "#5d4127",
+            "inverse-on-surface": "#f5f0e8",
+            "tertiary-fixed": "#ffdad4",
+            "surface-container": "#f2ede5"
+          },
+          "borderRadius": {
+            "DEFAULT": "0px",
+            "lg": "0px",
+            "xl": "0px",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2.5rem",
+            "gutter": "1rem",
+            "gutter-mobile": "0.75rem",
+            "margin-mobile": "1rem",
+            "margin": "3rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-3xl": "6rem",
+            "space-2xl": "4rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Syne", "sans-serif"],
+            "price-md": ["Geist", "sans-serif"],
+            "body-sm": ["Geist", "sans-serif"],
+            "price-xl": ["Geist", "sans-serif"],
+            "body-lg": ["Geist", "sans-serif"],
+            "display-lg-mobile": ["Syne", "sans-serif"],
+            "headline-md": ["Syne", "sans-serif"],
+            "body-md": ["Geist", "sans-serif"],
+            "display-xl-mobile": ["Syne", "sans-serif"],
+            "mono-data": ["Geist", "monospace"],
+            "label-caps": ["Geist", "sans-serif"],
+            "display-xl": ["Syne", "sans-serif"],
+            "display-lg": ["Syne", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-sm": ["20px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "price-md": ["16px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "price-xl": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "display-lg-mobile": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-md": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "display-xl-mobile": ["40px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "mono-data": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "display-xl": ["72px", { "lineHeight": "76px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "display-lg": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    /* Architectural Zero Radius Overrides */
+    *, ::before, ::after {
+      border-radius: 0px !important;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
+      font-size: 18px;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .material-symbols-outlined.fill-icon {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col selection:bg-secondary selection:text-surface-bright">
+<!-- TOP APP BAR (Distraction-Free Dedicated Architectural Checkout Header) -->
+<header class="w-full bg-surface border-b border-surface-dim sticky top-0 z-50">
+<div class="max-w-[1440px] mx-auto px-margin py-4 flex items-center justify-between">
+<!-- Brand Anchor -->
+<div class="flex items-center space-x-6">
+<a class="font-headline-sm text-headline-sm uppercase tracking-widest text-primary hover:opacity-80 transition-opacity" href="/">
+<img alt="SleepExcellent" class="h-8 w-36 object-cover object-center" src="/logo.png"/>
+        </a>
+<span class="h-4 w-px bg-surface-dim hidden md:inline-block"></span>
+<div class="hidden md:flex items-center text-on-surface-variant font-mono-data text-mono-data uppercase tracking-wider space-x-1.5">
+<span class="material-symbols-outlined text-[15px] text-primary">lock</span>
+<span>Architectural Checkout / 256-Bit SSL Encrypted</span>
+</div>
+</div>
+<!-- Concierge Assistance Line -->
+<div class="flex items-center space-x-6">
+<div class="hidden lg:flex items-center space-x-2 text-right">
+<span class="material-symbols-outlined text-secondary">support_agent</span>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase">Studio Concierge</div>
+<a class="font-mono-data text-mono-data text-primary hover:text-secondary font-bold" href="tel:+918004429900">+91 800 442-9900</a>
+</div>
+</div>
+<a class="text-on-surface-variant hover:text-primary transition-colors flex items-center space-x-1 font-label-caps text-label-caps uppercase border border-surface-dim px-3 py-2 bg-surface-container-lowest" href="/cart">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span>Back to Cart</span>
+</a>
+</div>
+</div>
+<!-- Stepper Indicator -->
+<div class="w-full border-t border-surface-dim bg-surface-container-low">
+<div class="max-w-[1440px] mx-auto px-margin grid grid-cols-3 divide-x divide-surface-dim text-center">
+<!-- Step 1: Cart Review (Completed) -->
+<div class="py-3 px-4 flex items-center justify-center space-x-2 text-on-surface-variant opacity-80">
+<span class="w-5 h-5 flex items-center justify-center bg-primary text-surface-bright text-[11px] font-mono-data">
+<span class="material-symbols-outlined text-[13px] font-bold">check</span>
+</span>
+<span class="font-label-caps text-label-caps uppercase text-primary">01. Cart Review</span>
+</div>
+<!-- Step 2: Delivery & Address (Active) -->
+<div class="py-3 px-4 flex items-center justify-center space-x-2 bg-surface-bright border-b-2 border-primary">
+<span class="w-5 h-5 flex items-center justify-center bg-primary text-surface-bright text-[11px] font-mono-data font-bold">
+            02
+          </span>
+<span class="font-label-caps text-label-caps uppercase text-primary font-bold tracking-wider">02. Delivery &amp; Address</span>
+</div>
+<!-- Step 3: Secure Payment (Active in Flow) -->
+<div class="py-3 px-4 flex items-center justify-center space-x-2 text-primary font-bold bg-surface-container-high/40">
+<span class="w-5 h-5 flex items-center justify-center border border-primary text-primary text-[11px] font-mono-data">
+            03
+          </span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider">03. Secure Payment &amp; Verification</span>
+</div>
+</div>
+</div>
+</header>
+<!-- MAIN VIEWPORT CONTAINER (1440px Canvas) -->
+<main class="flex-grow max-w-[1440px] w-full mx-auto px-margin py-8">
+<div class="grid grid-cols-12 gap-8 items-start">
+<!-- ==========================================
+           LEFT COLUMN: 65% WIDTH (Columns 1 to 8)
+           ========================================== -->
+<section class="col-span-12 lg:col-span-8 space-y-8">
+<!-- MODULE 01: SHIPPING & INSTALLATION ADDRESS -->
+<div class="border border-surface-dim bg-surface-container-lowest p-6 sm:p-8">
+<!-- Section Heading -->
+<div class="flex items-center justify-between pb-5 border-b border-surface-dim">
+<div class="flex items-center space-x-3">
+<span class="w-6 h-6 bg-primary text-surface-bright flex items-center justify-center text-[12px] font-mono-data font-bold">1</span>
+<h2 class="font-headline-sm text-headline-sm uppercase tracking-tight text-primary">
+                01. Shipping &amp; Installation Address
+              </h2>
+</div>
+<button class="font-label-caps text-label-caps uppercase text-secondary hover:text-primary transition-colors border border-surface-dim px-3 py-1.5 bg-surface-container-low flex items-center space-x-1">
+<span class="material-symbols-outlined text-[14px]">add</span>
+<span>Add New Address</span>
+</button>
+</div>
+<!-- Active Selected Address Card -->
+<div class="mt-6 border-2 border-primary bg-surface-container-low p-6 relative">
+<!-- Selected Badge Pill -->
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center space-x-2">
+<span class="inline-block w-2.5 h-2.5 bg-primary"></span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-primary font-bold">Home (Default Delivery Anchor)</span>
+</div>
+<div class="flex items-center space-x-3">
+<span class="bg-primary text-surface-bright font-label-caps text-label-caps uppercase px-2.5 py-1 tracking-wider">
+                  Deliver Here
+                </span>
+<button class="font-label-caps text-label-caps uppercase text-on-surface-variant hover:text-primary underline underline-offset-4">
+                  Edit
+                </button>
+</div>
+</div>
+<!-- Recipient Spec -->
+<div class="space-y-1 text-on-surface">
+<div class="font-body-lg text-body-lg font-bold tracking-tight text-primary">Vikramaditya Sharma</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                #402 Villa Solarium, 12th Main Road, Indiranagar<br/>
+                Bengaluru, Karnataka — <span class="font-mono-data text-mono-data font-bold text-primary">560038</span>
+</p>
+<div class="pt-2 flex items-center space-x-2 font-mono-data text-mono-data text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px] text-primary">call</span>
+<span>+91 98450 12890</span>
+<span class="text-surface-dim">|</span>
+<span class="text-[11px] uppercase tracking-wider text-secondary">Verified Recipient</span>
+</div>
+</div>
+</div>
+<!-- Delivery Slot Specification Container -->
+<div class="mt-6 border border-surface-dim bg-surface p-5">
+<div class="flex items-start justify-between">
+<div class="flex items-start space-x-4">
+<div class="mt-0.5 p-2 bg-surface-container-high border border-surface-dim">
+<span class="material-symbols-outlined text-primary text-[20px]">local_shipping</span>
+</div>
+<div>
+<div class="flex items-center space-x-2">
+<span class="font-label-caps text-label-caps uppercase text-primary font-bold">Express Pan-India White-Glove Installation</span>
+<span class="text-[10px] uppercase font-mono-data tracking-wider bg-surface-variant text-primary px-1.5 py-0.5 font-semibold">Complimentary Spec</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                    Scheduled Dispatch Slot: <strong class="text-primary font-mono-data">Friday, 10:00 AM – 2:00 PM</strong>
+</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                    Includes precision unboxing, bedroom placement, architectural alignment, and eco-friendly packaging disposal.
+                  </p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-mono-data text-mono-data font-bold text-primary uppercase line-through text-on-surface-variant">₹2,500</span>
+<span class="block font-mono-data text-mono-data font-bold text-primary">₹0 FREE</span>
+</div>
+</div>
+</div>
+</div>
+<!-- MODULE 02: PAYMENT RAILS & SETTLEMENT METHOD -->
+<div class="border border-surface-dim bg-surface-container-lowest p-6 sm:p-8">
+<!-- Section Heading -->
+<div class="flex items-center justify-between pb-5 border-b border-surface-dim">
+<div class="flex items-center space-x-3">
+<span class="w-6 h-6 bg-primary text-surface-bright flex items-center justify-center text-[12px] font-mono-data font-bold">2</span>
+<h2 class="font-headline-sm text-headline-sm uppercase tracking-tight text-primary">
+                02. Payment Rails &amp; Settlement Method
+              </h2>
+</div>
+<div class="flex items-center space-x-1.5 font-mono-data text-mono-data text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px] text-secondary">verified_user</span>
+<span class="uppercase text-[11px] tracking-wider">Reserve Bank of India Compliant</span>
+</div>
+</div>
+<!-- Accordion / Tabbed Rails Container -->
+<div class="mt-6 border border-surface-dim divide-y divide-surface-dim">
+<!-- OPTION A: UPI Instant Autopay / QR (SELECTED) -->
+<div class="bg-surface-bright">
+<div class="p-5 flex items-center justify-between cursor-pointer border-l-4 border-l-primary">
+<div class="flex items-center space-x-4">
+<!-- Custom Monolithic Radio -->
+<div class="w-4 h-4 border border-primary flex items-center justify-center bg-primary">
+<span class="w-1.5 h-1.5 bg-surface-bright block"></span>
+</div>
+<div>
+<span class="font-body-md text-body-md font-bold text-primary tracking-tight">UPI Instant Autopay / Dynamic QR</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Instant zero-fee clearing via Google Pay, PhonePe, Paytm, or BHIM</p>
+</div>
+</div>
+<!-- Partner Badges -->
+<div class="flex items-center space-x-2">
+<span class="font-mono-data text-label-caps text-[10px] px-2 py-1 bg-surface-container-high border border-surface-dim text-primary">GPay</span>
+<span class="font-mono-data text-label-caps text-[10px] px-2 py-1 bg-surface-container-high border border-surface-dim text-primary">PhonePe</span>
+<span class="font-mono-data text-label-caps text-[10px] px-2 py-1 bg-surface-container-high border border-surface-dim text-primary">BHIM</span>
+</div>
+</div>
+<!-- Option A Expanded Content -->
+<div class="px-5 pb-6 pt-2 border-t border-surface-dim/60 grid grid-cols-1 md:grid-cols-2 gap-6 bg-surface-container-low/40">
+<!-- Direct UPI ID Input -->
+<div class="space-y-3">
+<label class="block font-label-caps text-label-caps uppercase text-on-surface-variant">Enter Virtual Payment Address (UPI ID)</label>
+<div class="flex">
+<input class="w-full h-12 px-4 border border-surface-dim bg-surface-container-lowest font-mono-data text-body-md text-primary focus:border-primary focus:ring-0 outline-none" placeholder="username@okhdfcbank" type="text" value="vikram.sharma@oksbi"/>
+<button class="bg-primary text-surface-bright px-5 font-label-caps text-label-caps uppercase hover:bg-secondary transition-colors duration-150 whitespace-nowrap">
+                      Verify VPA
+                    </button>
+</div>
+<p class="font-body-sm text-body-sm text-secondary flex items-center space-x-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span>VPA Registered to VIKRAMADITYA SHARMA</span>
+</p>
+</div>
+<!-- Instant QR Payment Slab -->
+<div class="border border-surface-dim bg-surface-container-lowest p-4 flex items-center space-x-4">
+<!-- Stylized Procedural QR Container -->
+<div class="w-24 h-24 border-2 border-primary p-1 bg-surface-container-lowest flex flex-col justify-between flex-shrink-0">
+<div class="flex justify-between">
+<div class="w-5 h-5 bg-primary"></div>
+<div class="w-2 h-2 bg-primary"></div>
+<div class="w-5 h-5 bg-primary"></div>
+</div>
+<div class="flex justify-center space-x-1">
+<div class="w-3 h-3 bg-primary"></div>
+<div class="w-2 h-4 bg-primary"></div>
+<div class="w-3 h-2 bg-primary"></div>
+</div>
+<div class="flex justify-between items-end">
+<div class="w-5 h-5 bg-primary"></div>
+<div class="w-3 h-2 bg-primary"></div>
+<div class="w-2 h-2 bg-primary"></div>
+</div>
+</div>
+<div>
+<div class="font-label-caps text-label-caps uppercase text-primary font-bold">Scan with Any UPI App</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Open camera or banking app to scan live terminal QR.</div>
+<div class="font-mono-data text-[11px] text-error mt-2 font-semibold flex items-center space-x-1">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span>QR Session Expires in 09:42</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- OPTION B: Credit / Debit Cards -->
+<div class="bg-surface-container-lowest">
+<div class="p-5 flex items-center justify-between cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-4 h-4 border border-outline flex items-center justify-center bg-surface-container-lowest"></div>
+<div>
+<span class="font-body-md text-body-md font-medium text-primary">Credit / Debit Cards</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Mastercard, Visa, American Express, RuPay Global</p>
+</div>
+</div>
+<div class="flex items-center space-x-2 font-mono-data text-mono-data text-on-surface-variant">
+<span class="text-[11px] tracking-wider uppercase border border-surface-dim px-2 py-0.5">VISA</span>
+<span class="text-[11px] tracking-wider uppercase border border-surface-dim px-2 py-0.5">MC</span>
+<span class="text-[11px] tracking-wider uppercase border border-surface-dim px-2 py-0.5">AMEX</span>
+<span class="text-[11px] tracking-wider uppercase border border-surface-dim px-2 py-0.5">RUPAY</span>
+</div>
+</div>
+</div>
+<!-- OPTION C: No-Cost EMI -->
+<div class="bg-surface-container-lowest">
+<div class="p-5 flex items-center justify-between cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-4 h-4 border border-outline flex items-center justify-center bg-surface-container-lowest"></div>
+<div>
+<div class="flex items-center space-x-2">
+<span class="font-body-md text-body-md font-medium text-primary">Architectural No-Cost EMI</span>
+<span class="font-mono-data text-[10px] bg-secondary text-surface-bright px-1.5 py-0.5 uppercase tracking-wider font-bold">0% Interest</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">From ₹3,175/month for 12 months with zero down payment</p>
+</div>
+</div>
+<span class="font-mono-data text-label-caps text-on-surface-variant uppercase">HDFC / ICICI / Kotak / Axis</span>
+</div>
+</div>
+<!-- OPTION D: Net Banking -->
+<div class="bg-surface-container-lowest">
+<div class="p-5 flex items-center justify-between cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-4 h-4 border border-outline flex items-center justify-center bg-surface-container-lowest"></div>
+<div>
+<span class="font-body-md text-body-md font-medium text-primary">Indian Net Banking</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Direct planar gateway with all 54 scheduled commercial banks</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">account_balance</span>
+</div>
+</div>
+</div>
+<!-- GST / Corporate Invoice Specification Module -->
+<div class="mt-6 pt-6 border-t border-surface-dim">
+<div class="p-4 bg-surface-container-low border border-surface-dim">
+<div class="flex items-start space-x-3">
+<div class="mt-0.5">
+<div class="w-4 h-4 border border-primary bg-primary flex items-center justify-center">
+<span class="w-1.5 h-1.5 bg-surface-bright block"></span>
+</div>
+</div>
+<div class="w-full">
+<label class="font-label-caps text-label-caps uppercase font-bold text-primary cursor-pointer">
+                    Need Business / Architecture Studio Tax Invoice?
+                  </label>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                    Claim up to 18% Input Tax Credit (ITC) on commercial studio specifications.
+                  </p>
+<div class="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3">
+<input class="h-10 px-3 bg-surface-container-lowest border border-surface-dim font-mono-data text-body-sm text-primary uppercase focus:border-primary focus:ring-0 outline-none" placeholder="ENTER 15-DIGIT GSTIN" type="text" value="29AABCU9603R1ZM"/>
+<input class="h-10 px-3 bg-surface-container-lowest border border-surface-dim font-body-sm text-body-sm text-primary uppercase focus:border-primary focus:ring-0 outline-none" placeholder="REGISTERED COMPANY NAME" type="text" value="STUDIO SOLARIUM ARCHITECTS LLP"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================
+           RIGHT COLUMN: 35% WIDTH (Columns 9 to 12)
+           ========================================== -->
+<aside class="col-span-12 lg:col-span-4 sticky top-24 space-y-6">
+<!-- MONOLITHIC ORDER SUMMARY CONTAINER -->
+<div class="border border-surface-dim bg-surface-container-lowest">
+<!-- Summary Header -->
+<div class="p-6 border-b border-surface-dim bg-surface-container-low flex justify-between items-center">
+<div>
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant">Order Manifest</span>
+<h3 class="font-headline-sm text-headline-sm uppercase text-primary tracking-tight">Summary (2 Items)</h3>
+</div>
+<span class="font-mono-data text-mono-data text-secondary uppercase font-bold tracking-wider">CAD Spec Inspec</span>
+</div>
+<!-- Items Overview (High Merchandising Density) -->
+<div class="p-6 space-y-5 border-b border-surface-dim divide-y divide-surface-dim">
+<!-- Item 1 -->
+<div class="pt-0 first:pt-0">
+<div class="flex space-x-4">
+<div class="w-20 h-20 bg-surface-container-high border border-surface-dim flex-shrink-0 relative overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A masterfully crafted orthopaedic mattress photographed in a high-key architectural studio against raw limestone walls. Clean planar edges, cool-tone textured jacquard fabric, illuminated by neutral overhead museum lighting creating subtle, crisp shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClEfI9e02rzj1frPELBu77wm8TO3j2FLmEI8enxbE_NmSs-klKuQ5b2ByGiIUh6SKvUJ6PIcupR73Qlgbfei_cx_gbiCziG2sTAN8iBT-HcVRusKbNbTJIuqOU28R0CujgS43NLu4UWn8u0_acRvhkMXJ3jzce2bvzKlzqS6rbNN1BhvMcMaH7Rj_KecvXvv75BZ9q8z3kr8VNnAg-4GC639ZaBjDnf-UtkY8M-4mIspaDyhCe4ZFb7w"/>
+<span class="absolute top-0 right-0 bg-primary text-surface-bright font-mono-data text-[10px] px-1">1x</span>
+</div>
+<div class="flex-grow">
+<div class="font-body-md text-body-md font-bold text-primary tracking-tight">Ortho Plus 3-Zone Memory Mattress</div>
+<div class="font-mono-data text-[11px] text-on-surface-variant uppercase mt-0.5">King 78×72 in | 8 Inch | Hydro-Cool Gel</div>
+<div class="flex items-center justify-between mt-2">
+<span class="font-mono-data text-[11px] text-on-surface-variant line-through">MRP ₹22,500</span>
+<span class="font-price-md text-price-md font-bold text-primary">₹18,450</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="pt-5">
+<div class="flex space-x-4">
+<div class="w-20 h-20 bg-surface-container-high border border-surface-dim flex-shrink-0 relative overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A bespoke custom engineered luxury mattress with layered natural latex and organic dunlop quilting placed in a minimalist concrete interior. Warm afternoon gallery lighting casting soft architectural rays across the precision-stitched border fabric." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDY7j04q6qvlRsBMJaw_xrkOwJUXoRblOERXAZ0ytiB8FiX95_Lb4GIANWOLzy3LYQOkGLJ0BUNPoD9Av467kzTn_p7NbSbxA7rV5LMv8ZwygiDKY2axCFIscgDl0jxuL881XZS_ASMKk88kEzy2_kUjPoummamqn5S5R6vEGZj1LNk9JA53nne4eyuBw_c5g1acq2vzGJgGHQrZ-dYpbRx6Gc2_-8xZdMtrWaUk3qV6Vlr_7IcUX1xA"/>
+<span class="absolute top-0 right-0 bg-primary text-surface-bright font-mono-data text-[10px] px-1">1x</span>
+</div>
+<div class="flex-grow">
+<div class="font-body-md text-body-md font-bold text-primary tracking-tight">Bespoke Custom Mattress Spec</div>
+<div class="font-mono-data text-[11px] text-on-surface-variant uppercase mt-0.5">Plan #SE-8821 (80×75 in Dunlop+Pocket)</div>
+<div class="flex items-center justify-between mt-2">
+<span class="font-mono-data text-[11px] text-on-surface-variant line-through">MRP ₹25,500</span>
+<span class="font-price-md text-price-md font-bold text-primary" id="bespoke-checkout-price">₹21,650</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Price Calculation Grid -->
+<div class="p-6 bg-surface-container-low/30 space-y-3 font-body-sm text-body-sm border-b border-surface-dim">
+<div class="flex justify-between text-on-surface-variant">
+<span>Item Total (Gross MRP)</span>
+<span class="font-mono-data font-medium text-primary">₹48,000</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Direct Factory Discount</span>
+<span class="font-mono-data font-medium text-secondary">-₹7,900</span>
+</div>
+<div class="flex justify-between text-on-surface-variant items-center">
+<div class="flex items-center space-x-1.5">
+<span>Voucher</span>
+<span class="font-mono-data text-[10px] bg-primary text-surface-bright px-1.5 py-0.5 uppercase tracking-wider font-bold">EXCELLENT10</span>
+</div>
+<span class="font-mono-data font-medium text-secondary">-₹2,000</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>White-Glove Pan-India Logistics</span>
+<span class="font-mono-data font-bold text-primary uppercase">FREE</span>
+</div>
+<!-- Tax Breakdown Row -->
+<div class="flex justify-between text-on-surface-variant text-[11px] pt-1">
+<span>Integrated GST (18% inclusive)</span>
+<span class="font-mono-data">₹5,811.86</span>
+</div>
+<!-- Monolithic Total Row -->
+<div class="pt-4 border-t border-surface-dim flex justify-between items-baseline">
+<div>
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-primary font-bold block">Total Payable</span>
+<span class="font-mono-data text-[10px] text-on-surface-variant">Inclusive of all duties &amp; insurance</span>
+</div>
+<div class="text-right">
+<span class="font-price-xl text-price-xl font-bold text-primary tracking-tight">₹38,100</span>
+</div>
+</div>
+</div>
+<!-- Primary CTA Button (Zero radius, high impact constructivist) -->
+<div class="p-6 bg-surface-container-lowest">
+<button class="w-full bg-primary text-surface-bright py-4 px-6 font-label-caps text-label-caps uppercase tracking-widest hover:bg-secondary transition-colors duration-150 flex items-center justify-center space-x-2 font-bold group" id="razorpay-checkout-button" onclick="startRazorpayCheckout()">
+<span id="razorpay-checkout-label">PAY ₹38,100 &amp; CONFIRM ORDER</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">lock</span>
+</button>
+<p class="font-mono-data text-[11px] text-center text-on-surface-variant mt-3 uppercase tracking-wider">
+              Protected by 256-Bit TLS Banking Gateway
+            </p>
+</div>
+</div>
+<!-- REASSURANCE ARCHITECTURAL BADGES -->
+<div class="border border-surface-dim bg-surface-container-lowest p-6 space-y-4">
+<div class="font-label-caps text-label-caps uppercase tracking-widest text-primary font-bold border-b border-surface-dim pb-2">
+            Institutional Assurances
+          </div>
+<!-- Assurance 1 -->
+<div class="flex items-start space-x-3">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">night_shelter</span>
+<div>
+<div class="font-body-md text-body-md font-bold text-primary">100-Night Sleep Trial Protocol</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Zero-friction home ergonomics validation with 100% full refund guarantee.</div>
+</div>
+</div>
+<!-- Assurance 2 -->
+<div class="flex items-start space-x-3">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">verified</span>
+<div>
+<div class="font-body-md text-body-md font-bold text-primary">10-Year Comprehensive Warranty</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Non-prorated structural core replacement coverage against sag or deflection.</div>
+</div>
+</div>
+<!-- Assurance 3 -->
+<div class="flex items-start space-x-3">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">clean_hands</span>
+<div>
+<div class="font-body-md text-body-md font-bold text-primary">Cleanroom Certified Logistics</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">ISO 9001 factory-sealed packaging delivered untouched by uncertified hands.</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- MULTICOLUMN ARCHITECTURAL FOOTER (FromJson Shared Blueprint Integration) -->
+<footer class="w-full bg-surface-container border-t border-surface-dim mt-16">
+<div class="max-w-[1440px] mx-auto px-margin py-space-2xl">
+<!-- Top Grid: Brand Statement & Links Matrix -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-surface-dim">
+<div class="md:col-span-4 space-y-4">
+<div class="font-headline-md text-headline-md uppercase tracking-tight text-primary">
+            SleepExcellent
+          </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">
+            Curated architectural sleep systems, bespoke structural mattress configurations, and monolithic furniture assemblies designed for lifetime anatomical alignment.
+          </p>
+<div class="font-mono-data text-mono-data text-on-surface-variant pt-2">
+            Direct Concierge Desk: support@sleepexcellent.studio
+          </div>
+</div>
+<!-- Footer Links Columns matching JSON Blueprint -->
+<div class="md:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-6">
+<div>
+<div class="font-label-caps text-label-caps uppercase tracking-widest text-primary font-bold mb-4">
+              Structural Protocols
+            </div>
+<ul class="space-y-2.5 font-body-sm text-body-sm">
+<li><a class="text-on-surface-variant hover:text-secondary hover:underline transition-colors duration-150" href="#">100-Night Trial Protocol</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary hover:underline transition-colors duration-150" href="#">10-Year Structural Warranty</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary hover:underline transition-colors duration-150" href="#">Factory Direct Logistics</a></li>
+</ul>
+</div>
+<div>
+<div class="font-label-caps text-label-caps uppercase tracking-widest text-primary font-bold mb-4">
+              Architecture Specs
+            </div>
+<ul class="space-y-2.5 font-body-sm text-body-sm">
+<li><a class="text-on-surface-variant hover:text-secondary hover:underline transition-colors duration-150" href="#">Architectural CAD Specs</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary hover:underline transition-colors duration-150" href="#">Material Sourcing</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary hover:underline transition-colors duration-150" href="#">Acoustic False Ceilings</a></li>
+</ul>
+</div>
+<div>
+<div class="font-label-caps text-label-caps uppercase tracking-widest text-primary font-bold mb-4">
+              Institutional Care
+            </div>
+<ul class="space-y-2.5 font-body-sm text-body-sm">
+<li><a class="text-on-surface-variant hover:text-secondary hover:underline transition-colors duration-150" href="#">Client Care Concierge</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary hover:underline transition-colors duration-150" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary hover:underline transition-colors duration-150" href="#">Terms of Exhibition</a></li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Bottom Bar with Exact Mandatory Copyright String -->
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between font-mono-data text-mono-data text-on-surface-variant text-[11px]">
+<div>
+          © 2025 SleepExcellent Architectural Furnishings. All Rights Reserved. Monolithic Planar Engineering.
+        </div>
+<div class="mt-4 md:mt-0 flex space-x-6">
+<span class="hover:text-primary cursor-pointer">BENGALURU</span>
+<span>•</span>
+<span class="hover:text-primary cursor-pointer">MUMBAI</span>
+<span>•</span>
+<span class="hover:text-primary cursor-pointer">NEW DELHI</span>
+<span>•</span>
+<span class="hover:text-primary cursor-pointer">MILAN SPEC</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+  document.querySelectorAll('img[data-alt]').forEach((image) => {
+    image.src = '/product-placeholder.svg';
+    image.alt = image.dataset.alt || 'Product image pending';
+  });
+
+  const bespoke = sessionStorage.getItem('sleepExcellentBespokeMattress');
+  if (bespoke) {
+    const configuration = JSON.parse(bespoke);
+    document.getElementById('bespoke-checkout-price').innerText = configuration.price;
+  }
+
+  function startRazorpayCheckout() {
+    const order = {
+      number: `SE-${new Date().getFullYear()}-8821`,
+      total: document.getElementById('razorpay-checkout-label').innerText.match(/₹[\d,]+/)?.[0] || '₹38,100',
+      status: 'Payment setup required'
+    };
+    sessionStorage.setItem('sleepExcellentPendingOrder', JSON.stringify(order));
+    alert('Razorpay checkout is ready for configuration. Add the Razorpay key and secure server-side order endpoint before accepting live payments.');
+  }
+</script>
+</body></html>
