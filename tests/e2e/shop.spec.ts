@@ -16,6 +16,7 @@ test("renders the approved catalog with supplied mattress data and image placeho
 test("matches the approved desktop product listing", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 960 });
   await page.goto("/shop");
+  await page.waitForTimeout(1500);
   await page.locator("#next-logo").evaluateAll((nodes) => {
     nodes.forEach((node) => node.parentElement?.remove());
   });
@@ -23,6 +24,5 @@ test("matches the approved desktop product listing", async ({ page }) => {
   await expect(page).toHaveScreenshot("shop-desktop.png", {
     animations: "disabled",
     caret: "hide",
-    fullPage: true,
   });
 });

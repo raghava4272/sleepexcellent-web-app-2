@@ -1191,6 +1191,9 @@
   };
 
   productCards.forEach((card, index) => applyCatalogData(card, catalogProducts[index]));
+  productCards[0].querySelector('button.bg-primary').onclick = () => {
+    window.location.href = '/products/ortho-plus-mattress';
+  };
 
   const foamCard = productCards[productCards.length - 1].cloneNode(true);
   applyCatalogData(foamCard, catalogProducts[catalogProducts.length - 1]);

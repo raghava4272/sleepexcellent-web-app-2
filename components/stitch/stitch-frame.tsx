@@ -12,20 +12,35 @@ export function StitchFrame({ className, src, title }: StitchFrameProps) {
   const frame = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
+    let resizeObserver: ResizeObserver | undefined;
+
     const resize = () => {
       const documentElement = frame.current?.contentDocument?.documentElement;
       if (!documentElement || !frame.current) return;
       frame.current.style.height = `${Math.ceil(documentElement.scrollHeight)}px`;
     };
 
-    const settle = [0, 250, 1000].map((delay) => window.setTimeout(resize, delay));
+    const observeFrameDocument = () => {
+      resizeObserver?.disconnect();
+      const documentElement = frame.current?.contentDocument?.documentElement;
+      const body = frame.current?.contentDocument?.body;
+      if (!documentElement || !body) return;
+
+      resizeObserver = new ResizeObserver(resize);
+      resizeObserver.observe(documentElement);
+      resizeObserver.observe(body);
+      resize();
+    };
+
+    const settle = [0, 250, 1000].map((delay) => window.setTimeout(observeFrameDocument, delay));
     const currentFrame = frame.current;
-    currentFrame?.addEventListener("load", resize);
+    currentFrame?.addEventListener("load", observeFrameDocument);
     window.addEventListener("resize", resize);
 
     return () => {
       settle.forEach(window.clearTimeout);
-      currentFrame?.removeEventListener("load", resize);
+      resizeObserver?.disconnect();
+      currentFrame?.removeEventListener("load", observeFrameDocument);
       window.removeEventListener("resize", resize);
     };
   }, []);
