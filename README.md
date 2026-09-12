@@ -647,6 +647,8 @@ Terra should complete and verify each phase before starting the next. Use focuse
 
 **Exit criteria:** a fresh database can be migrated and seeded; customer isolation and admin access are proven by tests.
 
+**Implementation status:** schema, RLS policies, the `product-images` Storage bucket policy, supplied mattress-price seed, Supabase SSR clients, and an OAuth callback route are committed. The supplied project URL is recorded, but applying the migration and enabling Google OAuth require an authenticated Supabase administrator and the private anon/publishable, service-role, and Google OAuth credentials. See `docs/supabase-setup.md`.
+
 ### Phase 3: public storefront
 
 - Implement the responsive homepage from both Stitch references.
