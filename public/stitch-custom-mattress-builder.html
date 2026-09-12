@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Make Your Own Mattress | Studio Spec — SleepExcellent Architectural Furnishings</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Syne:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary": "#ffffff",
+            "surface-container-highest": "#e7e2da",
+            "on-primary-container": "#858383",
+            "secondary-fixed": "#ffdcc0",
+            "inverse-surface": "#32302b",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-container": "#410000",
+            "surface-container-high": "#ede7df",
+            "surface-dim": "#ded9d2",
+            "secondary-container": "#ffd5b2",
+            "outline": "#747878",
+            "on-tertiary": "#ffffff",
+            "surface-tint": "#5f5e5e",
+            "secondary": "#77583c",
+            "on-error": "#ffffff",
+            "tertiary-fixed": "#ffdad4",
+            "secondary-fixed-dim": "#e8bf9d",
+            "surface-bright": "#fef9f0",
+            "inverse-on-surface": "#f5f0e8",
+            "on-tertiary-fixed-variant": "#900e07",
+            "on-surface": "#1d1c17",
+            "on-surface-variant": "#444748",
+            "on-secondary-container": "#7a5a3f",
+            "tertiary-fixed-dim": "#ffb4a8",
+            "error": "#ba1a1a",
+            "surface-variant": "#e7e2da",
+            "primary-fixed-dim": "#c8c6c5",
+            "surface-container": "#f2ede5",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed": "#410000",
+            "inverse-primary": "#c8c6c5",
+            "primary": "#000000",
+            "on-primary": "#ffffff",
+            "on-primary-fixed": "#1c1b1b",
+            "on-error-container": "#93000a",
+            "outline-variant": "#c4c7c7",
+            "primary-fixed": "#e5e2e1",
+            "tertiary": "#000000",
+            "on-secondary-fixed": "#2c1602",
+            "primary-container": "#1c1b1b",
+            "surface": "#fef9f0",
+            "on-secondary-fixed-variant": "#5d4127",
+            "on-tertiary-container": "#e6503d",
+            "surface-container-low": "#f8f3eb",
+            "on-background": "#1d1c17",
+            "background": "#fef9f0"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-2xl": "4rem",
+            "space-3xl": "6rem",
+            "space-md": "1rem",
+            "margin-mobile": "1rem",
+            "gutter": "1rem",
+            "space-sm": "0.5rem",
+            "margin": "3rem",
+            "space-xl": "2.5rem",
+            "space-xs": "0.25rem",
+            "gutter-mobile": "0.75rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "display-lg-mobile": ["Syne"],
+            "price-md": ["Geist"],
+            "display-lg": ["Syne"],
+            "display-xl": ["Syne"],
+            "headline-sm": ["Syne"],
+            "label-caps": ["Geist"],
+            "headline-md": ["Syne"],
+            "mono-data": ["Geist"],
+            "body-lg": ["Geist"],
+            "display-xl-mobile": ["Syne"],
+            "price-xl": ["Geist"],
+            "body-md": ["Geist"],
+            "body-sm": ["Geist"]
+          },
+          "fontSize": {
+            "display-lg-mobile": ["32px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "price-md": ["16px", {"lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "display-lg": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+            "display-xl": ["72px", {"lineHeight": "76px", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+            "headline-sm": ["20px", {"lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "600"}],
+            "label-caps": ["11px", {"lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600"}],
+            "headline-md": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "mono-data": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+            "body-lg": ["16px", {"lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+            "display-xl-mobile": ["40px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "price-xl": ["24px", {"lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+            "body-md": ["14px", {"lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "body-sm": ["12px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .monoline-grid {
+      border-collapse: collapse;
+    }
+    .custom-range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      background: #000000;
+      cursor: pointer;
+      border: 1px solid #000000;
+      border-radius: 0px;
+    }
+    .custom-range-slider::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      background: #000000;
+      cursor: pointer;
+      border: 1px solid #000000;
+      border-radius: 0px;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased selection:bg-secondary-fixed-dim selection:text-primary">
+<!-- TOP APP BAR -->
+<header class="w-full bg-surface dark:bg-inverse-surface border-b border-surface-dim dark:border-outline sticky top-0 z-50">
+<div class="w-full px-margin-mobile md:px-margin mx-auto flex flex-col justify-between">
+<div class="h-16 flex items-center justify-between gap-4 border-b border-surface-dim/40 md:border-none">
+<!-- Search and Primary Logo Identity -->
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-base">search</span>
+<input class="h-9 w-64 bg-surface-container-lowest border border-surface-dim pl-9 pr-3 text-body-sm font-body-sm text-primary placeholder:text-outline focus:border-primary focus:ring-0 rounded-none" placeholder="Search specifications, cores, fabrics..." type="text"/>
+</div>
+<a class="text-headline-sm font-headline-sm uppercase tracking-widest text-primary dark:text-inverse-primary flex items-center gap-2" href="/">
+<img alt="SleepExcellent" class="h-8 w-36 object-cover object-center" src="/logo.png"/>
+          </a>
+</div>
+<!-- Desktop Navigation Cluster -->
+<nav class="hidden md:flex items-center gap-8 text-label-caps font-label-caps">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary pb-1 transition-colors duration-150" href="/shop">Mattresses</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary pb-1 transition-colors duration-150" href="#">Bespoke Beds</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary pb-1 transition-colors duration-150" href="#">Architectural Furniture</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary pb-1 transition-colors duration-150" href="#">False Ceilings</a>
+<a class="text-primary dark:text-inverse-primary border-b-2 border-primary dark:border-inverse-primary pb-1" href="#">Studio Spec</a>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4 text-label-caps font-label-caps">
+<button class="hidden sm:flex items-center gap-1.5 border border-primary px-3.5 py-1.5 hover:bg-surface-container transition-colors duration-150 text-primary">
+<span class="material-symbols-outlined text-sm">support_agent</span>
+            Consultation
+          </button>
+<div class="flex items-center gap-2 border-l border-surface-dim pl-4">
+<button class="p-1 hover:text-secondary text-primary transition-colors" title="Favorites">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+<button class="p-1 hover:text-secondary text-primary transition-colors" title="Client Account">
+<span class="material-symbols-outlined text-xl">person</span>
+</button>
+<button class="flex items-center gap-1.5 bg-primary text-on-primary px-3 py-1.5 text-label-caps font-label-caps hover:bg-secondary transition-colors duration-150" onclick="window.location.href='/cart'">
+<span class="material-symbols-outlined text-sm">shopping_bag</span>
+              Cart (0)
+            </button>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- SUBHEADER / HERO BANNER -->
+<section class="border-b border-surface-dim bg-surface-container-low px-margin-mobile md:px-margin py-8 md:py-12">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<div class="flex items-center gap-2 text-label-caps font-label-caps text-secondary mb-2 tracking-widest uppercase">
+<span class="inline-block w-1.5 h-1.5 bg-secondary"></span>
+            STUDIO SPEC / BESPOKE SLEEP ENGINEERING
+          </div>
+<h1 class="font-headline-md md:font-display-lg text-headline-md md:text-display-lg text-primary tracking-tight">
+            Make Your Own Mattress: Calibrated To Your Frame & Spine
+          </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-3xl">
+            Enter your exact bed frame dimensions to the millimeter or select standard sizes, customize internal layer stratas, and balance firmness. Monolithic engineering, zero-compromise spinal alignment.
+          </p>
+</div>
+<div class="flex items-center gap-4 bg-surface border border-surface-dim px-4 py-2 self-start md:self-auto shrink-0">
+<div class="text-right">
+<div class="font-label-caps text-label-caps text-outline">CAD TOLERANCE</div>
+<div class="font-mono-data text-mono-data text-primary font-bold">±1.0 MM REINFORCED</div>
+</div>
+<div class="w-px h-8 bg-surface-dim"></div>
+<div class="text-right">
+<div class="font-label-caps text-label-caps text-outline">FACTORY PROTOCOL</div>
+<div class="font-mono-data text-mono-data text-primary font-bold">ISO-14001 CLEANROOM</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- MAIN CONFIGURATOR WORKSPACE: 55% VISUALIZER / 45% CONTROLS -->
+<main class="max-w-7xl mx-auto px-margin-mobile md:px-margin py-8 md:py-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-0 border border-surface-dim bg-surface-container-lowest">
+<!-- LEFT VISUALIZER COLUMN (55% -> 7 Cols) -->
+<div class="lg:col-span-7 border-b lg:border-b-0 lg:border-r border-surface-dim p-6 md:p-8 flex flex-col justify-between bg-surface-container-lowest relative">
+<!-- View Mode Switcher & Blueprint Coordinates -->
+<div class="flex flex-wrap items-center justify-between gap-4 border-b border-surface-dim pb-4">
+<div class="flex items-center gap-1 bg-surface-container p-1 border border-surface-dim">
+<button class="px-3 py-1 text-label-caps font-label-caps bg-primary text-on-primary" id="btn-view-exploded" onclick="setViewMode('exploded')">
+              Exploded Layer View
+            </button>
+<button class="px-3 py-1 text-label-caps font-label-caps text-on-surface-variant hover:text-primary" id="btn-view-cutaway" onclick="setViewMode('cutaway')">
+              Cutaway Cross-Section
+            </button>
+<button class="px-3 py-1 text-label-caps font-label-caps text-on-surface-variant hover:text-primary" id="btn-view-assembled" onclick="setViewMode('assembled')">
+              Assembled View
+            </button>
+</div>
+<div class="font-mono-data text-mono-data text-outline flex items-center gap-2">
+<span>AXONOMETRIC 30°</span>
+<span class="w-1 h-1 bg-outline rounded-full"></span>
+<span id="canvas-spec-label">DIM-SPEC #SE-8072-B</span>
+</div>
+</div>
+<!-- 3D Planar Isometric Visualization Stage -->
+<div class="my-8 relative min-h-[460px] flex items-center justify-center p-4 bg-surface-container-low border border-surface-dim overflow-hidden">
+<!-- Background Cad Drafting Monoline Grid -->
+<div class="absolute inset-0 opacity-20 pointer-events-none" style="background-size: 24px 24px; background-image: linear-gradient(to right, #747878 1px, transparent 1px), linear-gradient(to bottom, #747878 1px, transparent 1px);"></div>
+<!-- Dynamic Architectural Dimension Overlay Markers -->
+<div class="absolute top-4 left-4 z-20 bg-surface/90 backdrop-blur-none border border-surface-dim p-2 font-mono-data text-mono-data shadow-none">
+<div class="text-outline text-[10px]">CURRENT BLUEPRINT</div>
+<div class="text-primary font-bold flex gap-3 text-xs mt-0.5">
+<span id="marker-length">L: 78 in (198.1 cm)</span>
+<span id="marker-width">W: 72 in (182.9 cm)</span>
+<span id="marker-thick">H: 8 in (20.3 cm)</span>
+</div>
+</div>
+<!-- Orthopedic Spine Alignment Indicator (Real-Time HUD) -->
+<div class="absolute top-4 right-4 z-20 bg-surface border border-surface-dim p-2.5 flex flex-col items-end">
+<div class="font-label-caps text-[10px] tracking-wider text-outline">SPINAL ERGONOMIC RATING</div>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-headline-sm text-headline-sm text-primary" id="gauge-score">7.5</span>
+<span class="font-mono-data text-mono-data text-outline">/ 10</span>
+</div>
+<div class="font-label-caps text-[9px] uppercase tracking-wider text-secondary font-bold" id="gauge-status">Medium-Firm Orthopedic</div>
+<div class="w-28 h-1.5 bg-surface-container mt-1.5 border border-surface-dim relative">
+<div class="h-full bg-primary" id="gauge-bar" style="width: 75%;"></div>
+</div>
+</div>
+<!-- Exploded Layers Display Structure -->
+<div class="relative w-full max-w-md py-6 flex flex-col items-center gap-3 transition-all duration-300" id="mattress-layers-stage">
+<!-- Layer 1: Top Quilt -->
+<div class="w-full h-14 bg-surface-bright border border-primary relative flex items-center justify-between px-4 transition-all duration-200" id="layer-quilt">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 bg-surface-dim border border-primary"></span>
+<div>
+<div class="font-label-caps text-label-caps text-primary" id="vis-layer-1-name">Organic Botanical Tencel™ Quilt</div>
+<div class="font-mono-data text-[11px] text-outline">Stratum 1 • 15mm Thermal Dissipation</div>
+</div>
+</div>
+<span class="font-mono-data text-[11px] text-primary bg-surface-container px-2 py-0.5 border border-surface-dim">TOP SHELL</span>
+</div>
+<!-- Layer 2: Comfort Stratum -->
+<div class="w-full h-20 bg-[#ede7df] border border-primary relative flex items-center justify-between px-4 transition-all duration-200" id="layer-comfort">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 bg-secondary"></span>
+<div>
+<div class="font-label-caps text-label-caps text-primary" id="vis-layer-2-name">100% Natural Dunlop Organic Latex</div>
+<div class="font-mono-data text-[11px] text-outline">Stratum 2 • 50mm Pin-Core Adaptive Cushioning</div>
+</div>
+</div>
+<span class="font-mono-data text-[11px] text-primary bg-surface px-2 py-0.5 border border-surface-dim" id="vis-layer-2-tag">NATURAL RESILIENCE</span>
+</div>
+<!-- Layer 3: Core Spine Stratum -->
+<div class="w-full h-28 bg-[#ded9d2] border border-primary relative flex items-center justify-between px-4 transition-all duration-200" id="layer-core">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 bg-primary"></span>
+<div>
+<div class="font-label-caps text-label-caps text-primary" id="vis-layer-3-name">3-Zone Swedish Steel Pocket Springs</div>
+<div class="font-mono-data text-[11px] text-outline" id="vis-layer-3-sub">Stratum 3 • 100mm Independent Motion Isolation</div>
+</div>
+</div>
+<span class="font-mono-data text-[11px] text-primary bg-surface px-2 py-0.5 border border-surface-dim" id="vis-layer-3-tag">ZONE ACTIVE</span>
+</div>
+<!-- Layer 4: Foundation -->
+<div class="w-full h-12 bg-inverse-surface text-surface-bright border border-primary relative flex items-center justify-between px-4 transition-all duration-200" id="layer-base">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 bg-surface-bright"></span>
+<div>
+<div class="font-label-caps text-label-caps text-surface-bright">High-Density Rebonded Structural Base</div>
+<div class="font-mono-data text-[11px] text-outline-variant">Stratum 4 • 25mm 85-Density Foundation Anchor</div>
+</div>
+</div>
+<span class="font-mono-data text-[11px] text-surface-bright bg-primary-container px-2 py-0.5 border border-outline">BASE MONOLITH</span>
+</div>
+</div>
+<!-- Bottom Visual Layer Legend Indicator -->
+<div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-mono-data text-[11px] text-outline border-t border-surface-dim pt-2">
+<div>CROSS SECTION CALIBRATION ACTIVE</div>
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1.5"><span class="w-2 h-2 bg-primary"></span> Primary Load</span>
+<span class="flex items-center gap-1.5"><span class="w-2 h-2 bg-secondary"></span> Contour Zone</span>
+</div>
+</div>
+</div>
+<!-- Layer Breakdown Technical Table (Monoline Grid) -->
+<div class="border border-surface-dim">
+<div class="bg-surface-container px-4 py-2 font-label-caps text-label-caps text-primary flex items-center justify-between border-b border-surface-dim">
+<span>STRATUM CALIBRATION BREAKDOWN</span>
+<span class="font-mono-data text-outline">TOTAL DEPTH: <strong class="text-primary font-bold" id="spec-total-depth">8.0 IN / 203 MM</strong></span>
+</div>
+<div class="grid grid-cols-4 text-center font-mono-data text-body-sm divide-x divide-surface-dim">
+<div class="p-3">
+<div class="text-outline text-[10px] uppercase font-label-caps">Cover Shell</div>
+<div class="font-bold text-primary mt-0.5" id="spec-quilt-val">15 mm</div>
+</div>
+<div class="p-3">
+<div class="text-outline text-[10px] uppercase font-label-caps">Comfort Deck</div>
+<div class="font-bold text-primary mt-0.5" id="spec-comfort-val">50 mm</div>
+</div>
+<div class="p-3">
+<div class="text-outline text-[10px] uppercase font-label-caps">Support Core</div>
+<div class="font-bold text-primary mt-0.5" id="spec-core-val">100 mm</div>
+</div>
+<div class="p-3">
+<div class="text-outline text-[10px] uppercase font-label-caps">Sub-Base</div>
+<div class="font-bold text-primary mt-0.5">25 mm</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT CONFIGURATION CONTROLS COLUMN (45% -> 5 Cols) -->
+<div class="lg:col-span-5 p-6 md:p-8 flex flex-col justify-between bg-surface-container-low space-y-6">
+<div class="space-y-6 overflow-y-auto pr-1">
+<!-- STEP 1: DIMENSIONS -->
+<div class="border border-surface-dim bg-surface p-5">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 bg-primary text-on-primary font-mono-data text-xs flex items-center justify-center font-bold">1</span>
+<h2 class="font-label-caps text-label-caps text-primary uppercase tracking-wider font-bold">Bed Frame Dimensions</h2>
+</div>
+<!-- Standard vs Custom Toggle -->
+<div class="flex border border-surface-dim p-0.5 bg-surface-container">
+<button class="px-2.5 py-1 text-label-caps font-label-caps bg-primary text-on-primary" id="btn-size-standard" onclick="setSizeType('standard')">Standard</button>
+<button class="px-2.5 py-1 text-label-caps font-label-caps text-on-surface-variant hover:text-primary" id="btn-size-custom" onclick="setSizeType('custom')">Millimeter Custom</button>
+</div>
+</div>
+<!-- Standard Size Buttons -->
+<div class="grid grid-cols-3 gap-2" id="standard-sizes-panel">
+<button class="p-3 border border-primary bg-primary text-on-primary text-left transition-colors" id="size-btn-king" onclick="setStandardSize('king')">
+<div class="font-label-caps text-xs font-bold">King Size</div>
+<div class="font-mono-data text-[11px] opacity-80 mt-1">78" × 72"</div>
+<div class="font-mono-data text-[10px] opacity-60">198 × 183 cm</div>
+</button>
+<button class="p-3 border border-surface-dim bg-surface text-primary text-left hover:border-primary transition-colors" id="size-btn-queen" onclick="setStandardSize('queen')">
+<div class="font-label-caps text-xs font-bold">Queen Size</div>
+<div class="font-mono-data text-[11px] text-outline mt-1">78" × 60"</div>
+<div class="font-mono-data text-[10px] text-outline">198 × 152 cm</div>
+</button>
+<button class="p-3 border border-surface-dim bg-surface text-primary text-left hover:border-primary transition-colors" id="size-btn-single" onclick="setStandardSize('single')">
+<div class="font-label-caps text-xs font-bold">Single Bed</div>
+<div class="font-mono-data text-[11px] text-outline mt-1">72" × 36"</div>
+<div class="font-mono-data text-[10px] text-outline">183 × 91 cm</div>
+</button>
+</div>
+<!-- Custom Millimeter Calibration Sliders -->
+<div class="hidden space-y-4 pt-2 border-t border-surface-dim mt-3" id="custom-sizes-panel">
+<div>
+<div class="flex justify-between font-mono-data text-body-sm text-primary mb-1">
+<span>FRAME LENGTH</span>
+<span id="label-custom-len">1980 mm (78.0 in)</span>
+</div>
+<input class="custom-range-slider w-full h-1 bg-surface-dim appearance-none cursor-pointer" id="range-len" max="2150" min="1800" oninput="updateCustomDimensions()" type="range" value="1980"/>
+<div class="flex justify-between text-[10px] font-mono-data text-outline mt-1">
+<span>Min: 1800mm (70.8")</span>
+<span>Max: 2150mm (84.6")</span>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-mono-data text-body-sm text-primary mb-1">
+<span>FRAME WIDTH</span>
+<span id="label-custom-wid">1830 mm (72.0 in)</span>
+</div>
+<input class="custom-range-slider w-full h-1 bg-surface-dim appearance-none cursor-pointer" id="range-wid" max="2000" min="900" oninput="updateCustomDimensions()" type="range" value="1830"/>
+<div class="flex justify-between text-[10px] font-mono-data text-outline mt-1">
+<span>Min: 900mm (35.4")</span>
+<span>Max: 2000mm (78.7")</span>
+</div>
+</div>
+</div>
+</div>
+<!-- STEP 2: THICKNESS SELECTION -->
+<div class="border border-surface-dim bg-surface p-5">
+<div class="flex items-center gap-2 mb-3">
+<span class="w-5 h-5 bg-primary text-on-primary font-mono-data text-xs flex items-center justify-center font-bold">2</span>
+<h2 class="font-label-caps text-label-caps text-primary uppercase tracking-wider font-bold">Calibrated Core Thickness</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+<!-- 6 Inch -->
+<button class="border border-surface-dim p-3 text-left hover:border-primary bg-surface transition-all" id="thick-card-6" onclick="setThickness(6, 16395)">
+<div class="flex justify-between items-baseline">
+<span class="font-headline-sm text-headline-sm text-primary">6"</span>
+<span class="font-mono-data text-xs text-outline">15.2 cm</span>
+</div>
+<div class="font-label-caps text-[11px] font-bold text-primary mt-1">Balanced Ortho</div>
+<div class="font-mono-data text-body-sm text-primary font-semibold mt-2">₹16,395</div>
+</button>
+<!-- 8 Inch (Default) -->
+<button class="border-2 border-primary p-3 text-left bg-surface-container-low transition-all" id="thick-card-8" onclick="setThickness(8, 18450)">
+<div class="flex justify-between items-baseline">
+<span class="font-headline-sm text-headline-sm text-primary">8"</span>
+<span class="font-mono-data text-xs text-secondary font-bold">RECOMMENDED</span>
+</div>
+<div class="font-label-caps text-[11px] font-bold text-primary mt-1">Deep Contour Comfort</div>
+<div class="font-mono-data text-body-sm text-primary font-semibold mt-2">₹18,450</div>
+</button>
+<!-- 10 Inch -->
+<button class="border border-surface-dim p-3 text-left hover:border-primary bg-surface transition-all" id="thick-card-10" onclick="setThickness(10, 22800)">
+<div class="flex justify-between items-baseline">
+<span class="font-headline-sm text-headline-sm text-primary">10"</span>
+<span class="font-mono-data text-xs text-outline">25.4 cm</span>
+</div>
+<div class="font-label-caps text-[11px] font-bold text-primary mt-1">Luxury Multi-Strata</div>
+<div class="font-mono-data text-body-sm text-primary font-semibold mt-2">₹22,800</div>
+</button>
+</div>
+</div>
+<!-- STEP 3: COMFORT LAYER SELECTION -->
+<div class="border border-surface-dim bg-surface p-5">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 bg-primary text-on-primary font-mono-data text-xs flex items-center justify-center font-bold">3</span>
+<h2 class="font-label-caps text-label-caps text-primary uppercase tracking-wider font-bold">Comfort Layer Stratum</h2>
+</div>
+<span class="font-mono-data text-[11px] text-secondary">AERATED INTERNAL CORES</span>
+</div>
+<div class="space-y-2">
+<label class="flex items-start gap-3 p-3 border border-primary bg-surface-container-low cursor-pointer" id="label-comfort-latex" onclick="setComfortLayer('latex')">
+<input checked="" class="mt-1 text-primary focus:ring-0 rounded-none" name="comfort_layer" type="radio"/>
+<div class="flex-1">
+<div class="flex justify-between">
+<span class="font-label-caps text-xs font-bold text-primary">100% Natural Dunlop Organic Latex (50mm)</span>
+<span class="font-mono-data text-xs text-primary">+₹0 (Included)</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">Hypoallergenic pin-core perforation with instant spring-back bounce and zero chemical off-gassing.</p>
+</div>
+</label>
+<label class="flex items-start gap-3 p-3 border border-surface-dim bg-surface hover:border-primary cursor-pointer" id="label-comfort-memory" onclick="setComfortLayer('memory')">
+<input class="mt-1 text-primary focus:ring-0 rounded-none" name="comfort_layer" type="radio"/>
+<div class="flex-1">
+<div class="flex justify-between">
+<span class="font-label-caps text-xs font-bold text-primary">Hydro-Cool Gel Infused Memory Foam (50mm)</span>
+<span class="font-mono-data text-xs text-primary">+₹1,200</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">Phase-change thermal crystals engineered to dissipate body heat with deep contouring spinal cradle.</p>
+</div>
+</label>
+<label class="flex items-start gap-3 p-3 border border-surface-dim bg-surface hover:border-primary cursor-pointer" id="label-comfort-dual" onclick="setComfortLayer('dual')">
+<input class="mt-1 text-primary focus:ring-0 rounded-none" name="comfort_layer" type="radio"/>
+<div class="flex-1">
+<div class="flex justify-between">
+<span class="font-label-caps text-xs font-bold text-primary">Dual-Firm Reversible Adaptive Stratum</span>
+<span class="font-mono-data text-xs text-primary">+₹2,450</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">Flip-ready construction: Soft ergonomic latex on Face A, Firm orthopedic transition on Face B.</p>
+</div>
+</label>
+</div>
+</div>
+<!-- STEP 4: CORE TOPOLOGY -->
+<div class="border border-surface-dim bg-surface p-5">
+<div class="flex items-center gap-2 mb-3">
+<span class="w-5 h-5 bg-primary text-on-primary font-mono-data text-xs flex items-center justify-center font-bold">4</span>
+<h2 class="font-label-caps text-label-caps text-primary uppercase tracking-wider font-bold">Core Structural Topology</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<div class="p-3 border-2 border-primary bg-surface-container-low cursor-pointer" id="card-core-spring" onclick="setCoreTopology('spring')">
+<div class="font-label-caps text-xs font-bold text-primary">3-Zone Swedish Pocket Spring</div>
+<div class="font-mono-data text-xs text-secondary mt-1">Zero Motion Transfer</div>
+<p class="font-body-sm text-body-sm text-outline mt-1.5 leading-relaxed">Individually barrel-pocketed Swedish steel wire coils. Independent lumbar reinforcement.</p>
+</div>
+<div class="p-3 border border-surface-dim bg-surface hover:border-primary cursor-pointer" id="card-core-poly" onclick="setCoreTopology('poly')">
+<div class="font-label-caps text-xs font-bold text-primary">High-Resilience Ortho Poly-Core</div>
+<div class="font-mono-data text-xs text-outline mt-1">Monolithic Solid Block</div>
+<p class="font-body-sm text-body-sm text-outline mt-1.5 leading-relaxed">High-density 40D poly-foam substrate for absolute clinical firm back support without bounce.</p>
+</div>
+</div>
+</div>
+<!-- STEP 5: FABRIC & ANTI-MICROBIAL QUILT -->
+<div class="border border-surface-dim bg-surface p-5">
+<div class="flex items-center gap-2 mb-3">
+<span class="w-5 h-5 bg-primary text-on-primary font-mono-data text-xs flex items-center justify-center font-bold">5</span>
+<h2 class="font-label-caps text-label-caps text-primary uppercase tracking-wider font-bold">Fabric & Outer Quilted Casing</h2>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="border-2 border-primary p-3 text-left bg-surface-container-low" id="fabric-btn-tencel" onclick="setFabric('tencel')">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-surface-container-highest border border-primary"></span>
+<span class="font-label-caps text-xs font-bold text-primary">Organic Bamboo Tencel™</span>
+</div>
+<div class="font-mono-data text-[11px] text-outline mt-1">Silky micro-pores • Anti-dustmite</div>
+</button>
+<button class="border border-surface-dim p-3 text-left hover:border-primary bg-surface" id="fabric-btn-linen" onclick="setFabric('linen')">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-surface-dim border border-primary"></span>
+<span class="font-label-caps text-xs font-bold text-primary">Heavyweight Belgian Linen</span>
+</div>
+<div class="font-mono-data text-[11px] text-outline mt-1">Textured tactile weave • Ultra-durable</div>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- PERSISTENT SUMMARY & REAL-TIME CHECKOUT BAR -->
+<div class="border border-surface-dim border-t-0 bg-surface-bright p-6 md:p-8">
+<div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+<!-- Live Price & Savings Matrix -->
+<div class="flex flex-wrap items-center gap-6">
+<div>
+<div class="font-label-caps text-label-caps text-outline uppercase tracking-wider">CALCULATED STUDIO SPEC PRICE</div>
+<div class="flex items-baseline gap-3 mt-1">
+<span class="font-price-xl text-price-xl md:text-3xl text-primary font-bold" id="display-final-price">₹18,450</span>
+<span class="font-mono-data text-body-md text-outline line-through" id="display-mrp">₹24,000</span>
+<span class="bg-primary text-on-primary font-label-caps text-[10px] px-2 py-0.5 tracking-wider">23% DIRECT FACTORY REBATE</span>
+</div>
+<div class="font-mono-data text-body-sm text-outline mt-1 flex items-center gap-2">
+<span>Zero-Cost EMI from <strong class="text-primary" id="display-emi">₹1,538/month</strong></span>
+<span>•</span>
+<span class="text-primary font-medium">Free Pan-India White-Glove Installation</span>
+</div>
+</div>
+<!-- Trust & Engineering Badges -->
+<div class="hidden sm:flex items-center gap-4 border-l border-surface-dim pl-6">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-secondary">hotel</span>
+<div class="font-label-caps text-[10px] leading-tight">
+<strong>100-NIGHT</strong><br/>TRIAL PROTOCOL
+              </div>
+</div>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+<div class="font-label-caps text-[10px] leading-tight">
+<strong>10-YEAR</strong><br/>STRUCTURAL WARRANTY
+              </div>
+</div>
+</div>
+</div>
+<!-- Call to Actions -->
+<div class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
+<button class="w-full sm:w-auto px-5 py-3.5 border border-primary text-primary font-label-caps text-label-caps uppercase tracking-wider hover:bg-surface-container transition-colors flex items-center justify-center gap-2" onclick="downloadCadSpec()">
+<span class="material-symbols-outlined text-base">download</span>
+            DOWNLOAD CAD SPEC SHEET
+          </button>
+<button class="w-full sm:w-auto px-8 py-3.5 bg-primary text-on-primary font-label-caps text-label-caps uppercase tracking-wider hover:bg-secondary transition-colors duration-150 flex items-center justify-center gap-2" onclick="addToCartModal()">
+<span class="material-symbols-outlined text-base">architecture</span>
+            ADD BESPOKE MATTRESS TO CART
+          </button>
+</div>
+</div>
+</div>
+</main>
+<!-- COMPARATIVE SPECIFICATIONS & ENGINEERING VALIDATION -->
+<section class="max-w-7xl mx-auto px-margin-mobile md:px-margin py-12">
+<div class="border border-surface-dim bg-surface">
+<div class="p-6 md:p-8 border-b border-surface-dim">
+<div class="font-label-caps text-label-caps text-secondary uppercase tracking-widest mb-1">PRECISION INDUSTRIAL STANDARDS</div>
+<h2 class="font-headline-md text-headline-md text-primary">Custom Stratum Material Specifications</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Physical laboratory ratings for bespoke assemblies tested under 150,000 cycles of dynamic impact simulation.</p>
+</div>
+<!-- Specs Matrix Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-mono-data text-body-sm monoline-grid">
+<thead>
+<tr class="bg-surface-container border-b border-surface-dim font-label-caps text-label-caps text-primary">
+<th class="p-4 border-r border-surface-dim">COMPONENT LAYER</th>
+<th class="p-4 border-r border-surface-dim">MATERIAL INDEX</th>
+<th class="p-4 border-r border-surface-dim">DENSITY / GAUGE</th>
+<th class="p-4 border-r border-surface-dim">HEAT DISSIPATION</th>
+<th class="p-4">VERIFICATION STANDARD</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-dim">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4 font-bold text-primary border-r border-surface-dim">Outer Cover Shell</td>
+<td class="p-4 border-r border-surface-dim">Micro-Quilted Eucalyptus Tencel™</td>
+<td class="p-4 border-r border-surface-dim">450 GSM Monofilament</td>
+<td class="p-4 border-r border-surface-dim">98.4% Air Permeability</td>
+<td class="p-4 text-primary">OEKO-TEX® Standard 100 Class 1</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4 font-bold text-primary border-r border-surface-dim">Primary Comfort Deck</td>
+<td class="p-4 border-r border-surface-dim">Grade-A Sri Lankan Natural Latex</td>
+<td class="p-4 border-r border-surface-dim">80 kg/m³ Pin-Core Density</td>
+<td class="p-4 border-r border-surface-dim">Open-Cell Natural Circulation</td>
+<td class="p-4 text-primary">eco-INSTITUT & GOLS Certified</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4 font-bold text-primary border-r border-surface-dim">Zoned Lumbar Support</td>
+<td class="p-4 border-r border-surface-dim">Swedish Calibrated Carbon Steel</td>
+<td class="p-4 border-r border-surface-dim">1.8mm – 2.0mm Differential Coil</td>
+<td class="p-4 border-r border-surface-dim">Unrestricted Cavity Draft</td>
+<td class="p-4 text-primary">DIN EN 10270-1 High Tensile Spec</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4 font-bold text-primary border-r border-surface-dim">Perimeter Edge Enclosure</td>
+<td class="p-4 border-r border-surface-dim">Reinforced High-Resilience Foam Wall</td>
+<td class="p-4 border-r border-surface-dim">45D High-Density Boundary</td>
+<td class="p-4 border-r border-surface-dim">Integrated Lateral Vents</td>
+<td class="p-4 text-primary">CertiPUR-US® Certified Non-Toxic</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Master Craftsman & Ergonomic Verification Badge -->
+<div class="p-6 md:p-8 bg-surface-container-low border-t border-surface-dim flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary text-on-primary flex items-center justify-center font-headline-sm text-lg font-bold">SE</div>
+<div>
+<div class="font-label-caps text-label-caps text-primary font-bold">VERIFIED BY SLEEPEXCELLENT CHIEF ERGONOMIC ENGINEER</div>
+<div class="font-mono-data text-body-sm text-outline">Calibration Cert: #CAD-OR-9942 • Tested for Lumbar Lordosis Correction</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="inline-block w-2 h-2 bg-[#C93B2B]"></span>
+<span class="font-mono-data text-body-sm text-primary font-semibold">Cleanroom Assembly Line Slot Confirmed for Immediate Dispatch</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ARCHITECTURAL FOOTER -->
+<footer class="w-full bg-surface-container dark:bg-inverse-surface border-t border-surface-dim dark:border-outline mt-16">
+<div class="w-full px-margin-mobile md:px-margin py-space-2xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+<!-- Brand & Philosophy Column -->
+<div class="md:col-span-1 space-y-4">
+<div class="text-headline-md font-headline-md uppercase tracking-tight text-primary dark:text-inverse-primary">
+            SleepExcellent
+          </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant leading-relaxed">
+            Monolithic planar engineering and architectural furniture. Curated for spaces where sleep hygiene meets rigorous constructivist design.
+          </p>
+<div class="font-mono-data text-mono-data text-outline">
+            STUDIO BANGALORE / MILANO / BASEL
+          </div>
+</div>
+<!-- Column 2: Guarantees -->
+<div>
+<div class="font-label-caps text-label-caps text-primary dark:text-inverse-primary mb-4 font-bold">
+            CLIENT ASSURANCE
+          </div>
+<ul class="space-y-2.5 font-body-sm text-body-sm">
+<li><a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">100-Night Trial Protocol</a></li>
+<li><a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">10-Year Structural Warranty</a></li>
+<li><a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">Factory Direct Logistics</a></li>
+<li><a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">Client Care Concierge</a></li>
+</ul>
+</div>
+<!-- Column 3: Architecture Specs -->
+<div>
+<div class="font-label-caps text-label-caps text-primary dark:text-inverse-primary mb-4 font-bold">
+            ARCHITECTURAL SPEC
+          </div>
+<ul class="space-y-2.5 font-body-sm text-body-sm">
+<li><a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">Architectural CAD Specs</a></li>
+<li><a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">Material Sourcing</a></li>
+<li><a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">Acoustic False Ceilings</a></li>
+<li><a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">Terms of Exhibition</a></li>
+</ul>
+</div>
+<!-- Column 4: Newsletter & Direct Consult -->
+<div>
+<div class="font-label-caps text-label-caps text-primary dark:text-inverse-primary mb-4 font-bold">
+            CONCIERGE INTAKE
+          </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant mb-3">
+            Subscribe for seasonal material releases, CAD revit files, and showroom previews.
+          </p>
+<form class="space-y-2" onsubmit="event.preventDefault(); alert('Subscribed to Studio Spec updates.');">
+<input class="w-full h-10 bg-surface-container-lowest border border-surface-dim px-3 text-body-sm font-body-sm text-primary placeholder:text-outline focus:border-primary focus:ring-0 rounded-none" placeholder="architect@firm.com" required="" type="email"/>
+<button class="w-full bg-primary text-on-primary py-2 font-label-caps text-label-caps uppercase tracking-wider hover:bg-secondary transition-colors" type="submit">
+              Request Studio Spec Sheet
+            </button>
+</form>
+</div>
+</div>
+<!-- Bottom Hairline & Legal Bar -->
+<div class="pt-8 border-t border-surface-dim dark:border-outline flex flex-col sm:flex-row items-center justify-between gap-4">
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">
+          © 2025 SleepExcellent Architectural Furnishings. All Rights Reserved. Monolithic Planar Engineering.
+        </p>
+<div class="flex items-center gap-6 font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Exhibition</a>
+<a class="hover:text-primary transition-colors" href="#">CAD License</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- INTERACTION SCRIPT FOR CONFIGURATOR STATE MANAGEMENT -->
+<script>
+    // Configurator State Model
+    const state = {
+      sizeMode: 'standard', // 'standard' | 'custom'
+      standardSize: 'king', // 'king' | 'queen' | 'single'
+      lengthMm: 1980,
+      widthMm: 1830,
+      lengthIn: 78,
+      widthIn: 72,
+      thicknessIn: 8,
+      thicknessBasePrice: 18450,
+      comfortLayer: 'latex', // 'latex' | 'memory' | 'dual'
+      comfortCost: 0,
+      coreTopology: 'spring', // 'spring' | 'poly'
+      fabric: 'tencel', // 'tencel' | 'linen'
+      viewMode: 'exploded' // 'exploded' | 'cutaway' | 'assembled'
+    };
+
+    function recalculate() {
+      // Base Price computation based on thickness & size modifier
+      let sizeFactor = 1.0;
+      if (state.sizeMode === 'standard') {
+        if (state.standardSize === 'queen') sizeFactor = 0.88;
+        if (state.standardSize === 'single') sizeFactor = 0.62;
+      } else {
+        const areaRatio = (state.lengthMm * state.widthMm) / (1980 * 1830);
+        sizeFactor = Math.max(0.6, areaRatio);
+      }
+
+      const totalBase = (state.thicknessBasePrice * sizeFactor) + state.comfortCost;
+      const finalPrice = Math.round(totalBase);
+      const mrp = Math.round(finalPrice * 1.30);
+      const emi = Math.round(finalPrice / 12);
+
+      // DOM Updates
+      document.getElementById('display-final-price').innerText = '₹' + finalPrice.toLocaleString('en-IN');
+      document.getElementById('display-mrp').innerText = '₹' + mrp.toLocaleString('en-IN');
+      document.getElementById('display-emi').innerText = '₹' + emi.toLocaleString('en-IN') + '/month';
+
+      // Update Dimensions Label Markers
+      document.getElementById('marker-length').innerText = `L: ${state.lengthIn}" (${(state.lengthMm / 10).toFixed(1)} cm)`;
+      document.getElementById('marker-width').innerText = `W: ${state.widthIn}" (${(state.widthMm / 10).toFixed(1)} cm)`;
+      document.getElementById('marker-thick').innerText = `H: ${state.thicknessIn}" (${(state.thicknessIn * 2.54).toFixed(1)} cm)`;
+      document.getElementById('spec-total-depth').innerText = `${state.thicknessIn}.0 IN / ${Math.round(state.thicknessIn * 25.4)} MM`;
+
+      // Update Spinal Gauge based on selection
+      updateErgoGauge();
+    }
+
+    function updateErgoGauge() {
+      let score = 7.5;
+      let label = "Medium-Firm Orthopedic";
+      let widthPct = 75;
+
+      if (state.coreTopology === 'poly') {
+        score += 1.0;
+      }
+      if (state.comfortLayer === 'memory') {
+        score -= 0.6;
+        label = "Adaptive Pressure Relief";
+      } else if (state.comfortLayer === 'dual') {
+        score = 8.0;
+        label = "Dual Reversible Multi-Firm";
+      }
+
+      if (state.thicknessIn === 10) {
+        score = Math.min(9.2, score + 0.5);
+      } else if (state.thicknessIn === 6) {
+        score = Math.min(8.5, score + 0.3);
+        label = "Rigid Clinical Ortho";
+      }
+
+      widthPct = Math.min(100, Math.round(score * 10));
+      document.getElementById('gauge-score').innerText = score.toFixed(1);
+      document.getElementById('gauge-status').innerText = label;
+      document.getElementById('gauge-bar').style.width = widthPct + '%';
+    }
+
+    function setSizeType(type) {
+      state.sizeMode = type;
+      const stdBtn = document.getElementById('btn-size-standard');
+      const cstBtn = document.getElementById('btn-size-custom');
+      const stdPanel = document.getElementById('standard-sizes-panel');
+      const cstPanel = document.getElementById('custom-sizes-panel');
+
+      if (type === 'standard') {
+        stdBtn.className = "px-2.5 py-1 text-label-caps font-label-caps bg-primary text-on-primary";
+        cstBtn.className = "px-2.5 py-1 text-label-caps font-label-caps text-on-surface-variant hover:text-primary";
+        stdPanel.classList.remove('hidden');
+        cstPanel.classList.add('hidden');
+        setStandardSize(state.standardSize);
+      } else {
+        cstBtn.className = "px-2.5 py-1 text-label-caps font-label-caps bg-primary text-on-primary";
+        stdBtn.className = "px-2.5 py-1 text-label-caps font-label-caps text-on-surface-variant hover:text-primary";
+        cstPanel.classList.remove('hidden');
+        stdPanel.classList.add('hidden');
+        updateCustomDimensions();
+      }
+    }
+
+    function setStandardSize(size) {
+      state.standardSize = size;
+      const buttons = {
+        king: document.getElementById('size-btn-king'),
+        queen: document.getElementById('size-btn-queen'),
+        single: document.getElementById('size-btn-single')
+      };
+
+      Object.keys(buttons).forEach(k => {
+        if (k === size) {
+          buttons[k].className = "p-3 border border-primary bg-primary text-on-primary text-left transition-colors";
+        } else {
+          buttons[k].className = "p-3 border border-surface-dim bg-surface text-primary text-left hover:border-primary transition-colors";
+        }
+      });
+
+      if (size === 'king') {
+        state.lengthIn = 78; state.widthIn = 72;
+        state.lengthMm = 1980; state.widthMm = 1830;
+      } else if (size === 'queen') {
+        state.lengthIn = 78; state.widthIn = 60;
+        state.lengthMm = 1980; state.widthMm = 1524;
+      } else if (size === 'single') {
+        state.lengthIn = 72; state.widthIn = 36;
+        state.lengthMm = 1830; state.widthMm = 914;
+      }
+      recalculate();
+    }
+
+    function updateCustomDimensions() {
+      const lenVal = parseInt(document.getElementById('range-len').value);
+      const widVal = parseInt(document.getElementById('range-wid').value);
+
+      state.lengthMm = lenVal;
+      state.widthMm = widVal;
+      state.lengthIn = (lenVal / 25.4).toFixed(1);
+      state.widthIn = (widVal / 25.4).toFixed(1);
+
+      document.getElementById('label-custom-len').innerText = `${lenVal} mm (${state.lengthIn} in)`;
+      document.getElementById('label-custom-wid').innerText = `${widVal} mm (${state.widthIn} in)`;
+
+      recalculate();
+    }
+
+    function setThickness(inches, price) {
+      state.thicknessIn = inches;
+      state.thicknessBasePrice = price;
+
+      const cards = {
+        6: document.getElementById('thick-card-6'),
+        8: document.getElementById('thick-card-8'),
+        10: document.getElementById('thick-card-10')
+      };
+
+      Object.keys(cards).forEach(k => {
+        if (parseInt(k) === inches) {
+          cards[k].className = "border-2 border-primary p-3 text-left bg-surface-container-low transition-all";
+        } else {
+          cards[k].className = "border border-surface-dim p-3 text-left hover:border-primary bg-surface transition-all";
+        }
+      });
+
+      // Update Spec table stratum proportions
+      if (inches === 6) {
+        document.getElementById('spec-comfort-val').innerText = '30 mm';
+        document.getElementById('spec-core-val').innerText = '80 mm';
+      } else if (inches === 8) {
+        document.getElementById('spec-comfort-val').innerText = '50 mm';
+        document.getElementById('spec-core-val').innerText = '100 mm';
+      } else if (inches === 10) {
+        document.getElementById('spec-comfort-val').innerText = '75 mm';
+        document.getElementById('spec-core-val').innerText = '130 mm';
+      }
+
+      recalculate();
+    }
+
+    function setComfortLayer(layer) {
+      state.comfortLayer = layer;
+      const lLatex = document.getElementById('label-comfort-latex');
+      const lMem = document.getElementById('label-comfort-memory');
+      const lDual = document.getElementById('label-comfort-dual');
+
+      [lLatex, lMem, lDual].forEach(el => {
+        el.className = "flex items-start gap-3 p-3 border border-surface-dim bg-surface hover:border-primary cursor-pointer";
+      });
+
+      if (layer === 'latex') {
+        state.comfortCost = 0;
+        lLatex.className = "flex items-start gap-3 p-3 border border-primary bg-surface-container-low cursor-pointer";
+        document.getElementById('vis-layer-2-name').innerText = "100% Natural Dunlop Organic Latex";
+        document.getElementById('vis-layer-2-tag').innerText = "NATURAL RESILIENCE";
+      } else if (layer === 'memory') {
+        state.comfortCost = 1200;
+        lMem.className = "flex items-start gap-3 p-3 border border-primary bg-surface-container-low cursor-pointer";
+        document.getElementById('vis-layer-2-name').innerText = "Hydro-Cool Gel Infused Memory Foam";
+        document.getElementById('vis-layer-2-tag').innerText = "PHASE-CHANGE GEL";
+      } else if (layer === 'dual') {
+        state.comfortCost = 2450;
+        lDual.className = "flex items-start gap-3 p-3 border border-primary bg-surface-container-low cursor-pointer";
+        document.getElementById('vis-layer-2-name').innerText = "Dual-Firm Reversible Adaptive Stratum";
+        document.getElementById('vis-layer-2-tag').innerText = "DUAL FLIP COMFORT";
+      }
+
+      recalculate();
+    }
+
+    function setCoreTopology(core) {
+      state.coreTopology = core;
+      const cSpring = document.getElementById('card-core-spring');
+      const cPoly = document.getElementById('card-core-poly');
+
+      if (core === 'spring') {
+        cSpring.className = "p-3 border-2 border-primary bg-surface-container-low cursor-pointer";
+        cPoly.className = "p-3 border border-surface-dim bg-surface hover:border-primary cursor-pointer";
+        document.getElementById('vis-layer-3-name').innerText = "3-Zone Swedish Steel Pocket Springs";
+        document.getElementById('vis-layer-3-sub').innerText = "Stratum 3 • 100mm Independent Motion Isolation";
+        document.getElementById('vis-layer-3-tag').innerText = "ZONE ACTIVE";
+      } else {
+        cPoly.className = "p-3 border-2 border-primary bg-surface-container-low cursor-pointer";
+        cSpring.className = "p-3 border border-surface-dim bg-surface hover:border-primary cursor-pointer";
+        document.getElementById('vis-layer-3-name').innerText = "Ortho High Resilience Poly-Core";
+        document.getElementById('vis-layer-3-sub').innerText = "Stratum 3 • 100mm 40D High-Density Stabilizer";
+        document.getElementById('vis-layer-3-tag').innerText = "MONOLITH CORE";
+      }
+
+      recalculate();
+    }
+
+    function setFabric(fabric) {
+      state.fabric = fabric;
+      const fTencel = document.getElementById('fabric-btn-tencel');
+      const fLinen = document.getElementById('fabric-btn-linen');
+
+      if (fabric === 'tencel') {
+        fTencel.className = "border-2 border-primary p-3 text-left bg-surface-container-low";
+        fLinen.className = "border border-surface-dim p-3 text-left hover:border-primary bg-surface";
+        document.getElementById('vis-layer-1-name').innerText = "Organic Botanical Tencel™ Quilt";
+      } else {
+        fLinen.className = "border-2 border-primary p-3 text-left bg-surface-container-low";
+        fTencel.className = "border border-surface-dim p-3 text-left hover:border-primary bg-surface";
+        document.getElementById('vis-layer-1-name').innerText = "Heavyweight Belgian Pure Linen Casing";
+      }
+    }
+
+    function setViewMode(mode) {
+      state.viewMode = mode;
+      const bExp = document.getElementById('btn-view-exploded');
+      const bCut = document.getElementById('btn-view-cutaway');
+      const bAsm = document.getElementById('btn-view-assembled');
+      const stage = document.getElementById('mattress-layers-stage');
+
+      [bExp, bCut, bAsm].forEach(b => b.className = "px-3 py-1 text-label-caps font-label-caps text-on-surface-variant hover:text-primary");
+
+      if (mode === 'exploded') {
+        bExp.className = "px-3 py-1 text-label-caps font-label-caps bg-primary text-on-primary";
+        stage.className = "relative w-full max-w-md py-6 flex flex-col items-center gap-4 transition-all duration-300";
+      } else if (mode === 'cutaway') {
+        bCut.className = "px-3 py-1 text-label-caps font-label-caps bg-primary text-on-primary";
+        stage.className = "relative w-full max-w-md py-6 flex flex-col items-center gap-1 transition-all duration-300 scale-95";
+      } else if (mode === 'assembled') {
+        bAsm.className = "px-3 py-1 text-label-caps font-label-caps bg-primary text-on-primary";
+        stage.className = "relative w-full max-w-md py-6 flex flex-col items-center gap-0 transition-all duration-300 border-2 border-primary";
+      }
+    }
+
+    function downloadCadSpec() {
+      const summary = `SleepExcellent Studio Spec CAD
+Specification Code: SE-${state.lengthIn}${state.widthIn}-${state.thicknessIn}
+Dimensions: ${state.lengthIn} x ${state.widthIn} in (${state.lengthMm} x ${state.widthMm} mm)
+Core Depth: ${state.thicknessIn} in
+Top Layer: ${state.fabric.toUpperCase()}
+Comfort Stratum: ${state.comfortLayer.toUpperCase()}
+Core Geometry: ${state.coreTopology.toUpperCase()}
+Spine Rating: ${document.getElementById('gauge-score').innerText}/10`;
+      
+      const blob = new Blob([summary], {type: 'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `SleepExcellent_CAD_SPEC_${state.lengthIn}x${state.widthIn}.txt`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function addToCartModal() {
+      const configuration = {
+        dimensions: `${state.lengthIn}" × ${state.widthIn}" × ${state.thicknessIn}"`,
+        stratum: `${state.comfortLayer.toUpperCase()} + ${state.coreTopology.toUpperCase()}`,
+        price: document.getElementById('display-final-price').innerText
+      };
+      sessionStorage.setItem('sleepExcellentBespokeMattress', JSON.stringify(configuration));
+      window.location.href = '/cart';
+    }
+
+    // Initial Run
+    recalculate();
+  </script>
+</body></html>
