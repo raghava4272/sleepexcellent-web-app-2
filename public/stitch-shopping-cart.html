@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SleepExcellent — Cart &amp; Order Review</title>
+<!-- Google Fonts: Syne & Geist -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Syne:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary": "#ffffff",
+            "surface-container-highest": "#e7e2da",
+            "on-primary-container": "#858383",
+            "secondary-fixed": "#ffdcc0",
+            "inverse-surface": "#32302b",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-container": "#410000",
+            "surface-container-high": "#ede7df",
+            "surface-dim": "#ded9d2",
+            "secondary-container": "#ffd5b2",
+            "outline": "#747878",
+            "on-tertiary": "#ffffff",
+            "surface-tint": "#5f5e5e",
+            "secondary": "#77583c",
+            "on-error": "#ffffff",
+            "tertiary-fixed": "#ffdad4",
+            "secondary-fixed-dim": "#e8bf9d",
+            "surface-bright": "#fef9f0",
+            "inverse-on-surface": "#f5f0e8",
+            "on-tertiary-fixed-variant": "#900e07",
+            "on-surface": "#1d1c17",
+            "on-surface-variant": "#444748",
+            "on-secondary-container": "#7a5a3f",
+            "tertiary-fixed-dim": "#ffb4a8",
+            "error": "#ba1a1a",
+            "surface-variant": "#e7e2da",
+            "primary-fixed-dim": "#c8c6c5",
+            "surface-container": "#f2ede5",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed": "#410000",
+            "inverse-primary": "#c8c6c5",
+            "primary": "#000000",
+            "on-primary": "#ffffff",
+            "on-primary-fixed": "#1c1b1b",
+            "on-error-container": "#93000a",
+            "outline-variant": "#c4c7c7",
+            "primary-fixed": "#e5e2e1",
+            "tertiary": "#000000",
+            "on-secondary-fixed": "#2c1602",
+            "primary-container": "#1c1b1b",
+            "surface": "#fef9f0",
+            "on-secondary-fixed-variant": "#5d4127",
+            "on-tertiary-container": "#e6503d",
+            "surface-container-low": "#f8f3eb",
+            "on-background": "#1d1c17",
+            "background": "#fef9f0"
+          },
+          "borderRadius": {
+            "DEFAULT": "0px",
+            "lg": "0px",
+            "xl": "0px",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-2xl": "4rem",
+            "space-3xl": "6rem",
+            "space-md": "1rem",
+            "margin-mobile": "1rem",
+            "gutter": "1rem",
+            "space-sm": "0.5rem",
+            "margin": "3rem",
+            "space-xl": "2.5rem",
+            "space-xs": "0.25rem",
+            "gutter-mobile": "0.75rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "display-lg-mobile": ["Syne"],
+            "price-md": ["Geist"],
+            "display-lg": ["Syne"],
+            "display-xl": ["Syne"],
+            "headline-sm": ["Syne"],
+            "label-caps": ["Geist"],
+            "headline-md": ["Syne"],
+            "mono-data": ["Geist"],
+            "body-lg": ["Geist"],
+            "display-xl-mobile": ["Syne"],
+            "price-xl": ["Geist"],
+            "body-md": ["Geist"],
+            "body-sm": ["Geist"]
+          },
+          "fontSize": {
+            "display-lg-mobile": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "price-md": ["16px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-lg": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "display-xl": ["72px", { "lineHeight": "76px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "headline-md": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "mono-data": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "display-xl-mobile": ["40px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "price-xl": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    * {
+      border-radius: 0 !important;
+    }
+    .hairline-border {
+      border: 1px solid #ded9d2;
+    }
+    .hairline-border-dark {
+      border: 1px solid #171717;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased font-body-md text-body-md selection:bg-secondary selection:text-white">
+<!-- TOP BAR: TRANSACTIONAL CHECKOUT MODE (FOCUSED SHELL) -->
+<header class="w-full bg-surface hairline-border border-t-0 border-x-0 border-b z-30 sticky top-0">
+<div class="max-w-[1440px] mx-auto px-4 md:px-margin h-16 flex items-center justify-between">
+<!-- Brand Logo Anchor -->
+<a class="flex items-center gap-3" href="/">
+<img alt="SleepExcellent" class="h-8 w-36 object-cover object-center" src="/logo.png"/>
+<span class="hidden lg:inline-block font-mono-data text-mono-data text-on-surface-variant border-l border-surface-dim pl-3 uppercase">Architectural Studio</span>
+</a>
+<!-- Security & Direct Concierge Action Badges -->
+<div class="flex items-center gap-4 sm:gap-6">
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container-low border border-surface-dim">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="lock">lock</span>
+<span class="font-label-caps text-label-caps uppercase text-on-surface tracking-wider hidden sm:inline">256-Bit SSL Encrypted Checkout</span>
+<span class="font-label-caps text-label-caps uppercase text-on-surface tracking-wider sm:hidden">256-Bit SSL</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-base" data-icon="support_agent">support_agent</span>
+<div class="text-left hidden md:block">
+<span class="block font-label-caps text-label-caps uppercase text-on-surface-variant">Concierge Support</span>
+<span class="font-mono-data text-mono-data text-primary font-semibold">+91 (800) 442-9900</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- STEP PROGRESS INDICATOR -->
+<nav aria-label="Checkout Progress" class="w-full bg-surface-container-low border-b border-surface-dim">
+<div class="max-w-[1440px] mx-auto px-4 md:px-margin py-3.5">
+<div class="flex items-center justify-between max-w-2xl mx-auto">
+<!-- Step 1: Cart Review (Active) -->
+<div class="flex items-center gap-2.5">
+<div class="w-6 h-6 bg-primary text-white flex items-center justify-center font-mono-data text-mono-data font-bold">1</div>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-primary font-bold border-b-2 border-primary pb-0.5">Cart Review</span>
+</div>
+<div class="flex-1 mx-4 h-[1px] bg-primary"></div>
+<!-- Step 2: Delivery & Address -->
+<div class="flex items-center gap-2.5 opacity-60">
+<div class="w-6 h-6 bg-surface-dim text-on-surface-variant flex items-center justify-center font-mono-data text-mono-data">2</div>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant hidden sm:inline">Delivery &amp; Address</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant sm:hidden">Address</span>
+</div>
+<div class="flex-1 mx-4 h-[1px] bg-surface-dim"></div>
+<!-- Step 3: Secure Payment -->
+<div class="flex items-center gap-2.5 opacity-40">
+<div class="w-6 h-6 bg-surface-dim text-on-surface-variant flex items-center justify-center font-mono-data text-mono-data">3</div>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant hidden sm:inline">Secure Payment</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant sm:hidden">Payment</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- MAIN CART CONTENT: ASYMMETRIC 65% / 35% CONSTRUCTIVIST LAYOUT -->
+<main class="max-w-[1440px] mx-auto px-4 md:px-margin py-8 md:py-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- LEFT CART COLUMN (65% width equivalent: 8 of 12 columns) -->
+<section class="lg:col-span-8 flex flex-col gap-6">
+<!-- DELIVERY PINCODE VERIFICATION BAR -->
+<div class="bg-surface-container-low border border-surface-dim p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="local_shipping">local_shipping</span>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant">Deliver to:</span>
+<span class="font-mono-data text-mono-data font-bold text-primary">560001 (Bangalore)</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary font-medium">Free Pan-India Delivery guaranteed by Friday</p>
+</div>
+</div>
+<button class="font-label-caps text-label-caps uppercase tracking-widest text-primary border-b border-primary hover:text-secondary hover:border-secondary transition-colors duration-150">
+            Change Pincode
+          </button>
+</div>
+<!-- CART ITEMS CONTAINER -->
+<div class="border border-surface-dim bg-surface-container-lowest">
+<div class="px-6 py-4 border-b border-surface-dim bg-surface-container-low flex justify-between items-center">
+<h1 class="font-headline-sm text-headline-sm uppercase tracking-tight text-primary">Shopping Cart (<span id="cart-item-count">2</span> Items)</h1>
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant">Architectural Spec v4.2</span>
+</div>
+<!-- CART ITEM 1: Ortho Plus 3-Zone Memory Mattress -->
+<div class="p-6 border-b border-surface-dim flex flex-col md:flex-row gap-6 items-start">
+<!-- Product Inset Asset -->
+<div class="w-full md:w-44 h-48 bg-surface-container flex-shrink-0 border border-surface-dim relative overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Architectural studio shot of an Ortho Plus 3-Zone Memory Mattress on a monolithic concrete platform. Warm limestone light filters through high-contrast minimalist blinds, casting precise linear shadows across pristine unbleached cotton upholstery. The styling is radical, sculptural, and clinical with sharp planar geometry." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD8qnnFSeoVoJ27SN1U9Pv0roicI316HI0925WnhgOb8lMSf_JuIF1YpasyhZ3_MGA3vAUwyqyiut6HWgyrctg9N9rJZfU3P4Q-GOyPPcdMPttgFQButZGhgem53cJDwJ8cHLM77Oq-CenWwdqjiumZDHBnJ572LVycZC3wguJyYNTYqKwu67Cl5d4_NVmFvRAZ9O4nHnvB3gFSBuQG9OEJsCOj7K0j0XoqLmEHITmTH0Mg_JNM2-IMA"/>
+<span class="absolute top-2 left-2 bg-primary text-white font-mono-data text-[10px] px-1.5 py-0.5 uppercase tracking-widest">Zone Spec</span>
+</div>
+<!-- Item Specifications & Pricing -->
+<div class="flex-1 w-full flex flex-col justify-between h-full">
+<div>
+<div class="flex flex-col sm:flex-row justify-between items-start gap-2 mb-2">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Ortho Plus 3-Zone Memory Mattress</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="inline-block w-2 h-2 bg-[#C93B2B]"></span>
+<span class="font-label-caps text-label-caps uppercase text-[#C93B2B] tracking-wider font-semibold">100-Night Risk-Free Sleep Trial</span>
+</div>
+</div>
+<!-- Pricing Block -->
+<div class="text-left sm:text-right">
+<div class="flex items-baseline gap-2">
+<span class="font-price-xl text-price-xl font-bold text-primary">₹18,450</span>
+<span class="font-mono-data text-mono-data text-on-surface-variant line-through">₹24,000</span>
+</div>
+<span class="font-label-caps text-label-caps uppercase text-secondary font-bold tracking-wider">23% Structural Reduction</span>
+</div>
+</div>
+<!-- Dimension Specs Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-2 py-3 my-2 border-y border-surface-dim bg-surface-container-low px-3">
+<div>
+<span class="block font-label-caps text-[10px] uppercase text-on-surface-variant">Dimension</span>
+<span class="font-mono-data text-mono-data text-primary">King Size 78×72 in</span>
+</div>
+<div>
+<span class="block font-label-caps text-[10px] uppercase text-on-surface-variant">Thickness</span>
+<span class="font-mono-data text-mono-data text-primary">8 Inch (20.3 cm)</span>
+</div>
+<div>
+<span class="block font-label-caps text-[10px] uppercase text-on-surface-variant">Core Material</span>
+<span class="font-mono-data text-mono-data text-primary">Hydro-Cool Gel Infused</span>
+</div>
+</div>
+</div>
+<!-- Item Actions Strip -->
+<div class="flex flex-wrap items-center justify-between gap-4 pt-4 mt-2">
+<!-- Quantity Switchboard -->
+<div class="flex items-center border border-primary">
+<button aria-label="Decrease quantity" class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high transition-colors font-mono-data text-primary">-</button>
+<span class="w-10 text-center font-mono-data text-mono-data font-bold text-primary">1</span>
+<button aria-label="Increase quantity" class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high transition-colors font-mono-data text-primary">+</button>
+</div>
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-1.5 font-label-caps text-label-caps uppercase text-on-surface-variant hover:text-secondary transition-colors duration-150">
+<span class="material-symbols-outlined text-sm" data-icon="architecture">architecture</span>
+<span>Save to Architecture Project</span>
+</button>
+<button class="flex items-center gap-1.5 font-label-caps text-label-caps uppercase text-on-surface-variant hover:text-[#C93B2B] transition-colors duration-150">
+<span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+<span>Remove</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- CART ITEM 2: Bespoke Custom Mattress (Make Your Own Mattress) -->
+<div class="p-6 flex flex-col md:flex-row gap-6 items-start bg-surface-container-lowest">
+<!-- Product Inset Asset -->
+<div class="w-full md:w-44 h-48 bg-surface-container flex-shrink-0 border border-surface-dim relative overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Detailed close-up rendering of custom layered mattress core showing perforated Natural Dunlop Latex and individually encased Pocket Spring assemblies in architectural cutaway cross section. Raw studio lighting, neutral limestone beige canvas with high precision technical monoline drafting background aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEaN6HprmdsCctgZB1Tg9yCbZGTSCaTmo94OR_gpkcn9SUpqnWgHvQ8gXB7teyCGsmbizgMZJsuzqWs4kK3aY_ptixuvP8KxjcH4lrP3qd9_FdPfqQxkn4P4AI2lZG8_9Vc958p_fkTKMiNEqgk3aY01pyqwnWx48FXteFaa2r76K7lPKOEuNhONT5HpJ_V3BIhZ0YL-_JXcHpFQLDyWK4T-bgDotwJeHxgrlXjS84twjTLHU-6Ei0CQ"/>
+<span class="absolute top-2 left-2 bg-secondary text-white font-mono-data text-[10px] px-1.5 py-0.5 uppercase tracking-widest">Bespoke CAD</span>
+</div>
+<!-- Item Specifications & Pricing -->
+<div class="flex-1 w-full flex flex-col justify-between h-full">
+<div>
+<div class="flex flex-col sm:flex-row justify-between items-start gap-2 mb-2">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Bespoke Custom Mattress</h2>
+<span class="font-mono-data text-mono-data text-secondary uppercase font-semibold">Make Your Own Mattress Spec #SE-8821</span>
+</div>
+<!-- Pricing Block -->
+<div class="text-left sm:text-right">
+<span class="font-price-xl text-price-xl font-bold text-primary" id="bespoke-price">₹21,650</span>
+<span class="block font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider">Custom Built To Spec</span>
+</div>
+</div>
+<!-- Dimension Specs Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-2 py-3 my-2 border-y border-surface-dim bg-surface-container-low px-3">
+<div>
+<span class="block font-label-caps text-[10px] uppercase text-on-surface-variant">Custom Dimensions</span>
+<span class="font-mono-data text-mono-data text-primary" id="bespoke-dimensions">80×75 in (Specific Plan)</span>
+</div>
+<div>
+<span class="block font-label-caps text-[10px] uppercase text-on-surface-variant">Build Depth</span>
+<span class="font-mono-data text-mono-data text-primary" id="bespoke-depth">8 Inch Structure</span>
+</div>
+<div>
+<span class="block font-label-caps text-[10px] uppercase text-on-surface-variant">Core Assembly</span>
+<span class="font-mono-data text-mono-data text-primary" id="bespoke-stratum">Natural Dunlop + Pocket Spring</span>
+</div>
+</div>
+</div>
+<!-- Item Actions Strip -->
+<div class="flex flex-wrap items-center justify-between gap-4 pt-4 mt-2">
+<!-- Quantity Switchboard -->
+<div class="flex items-center border border-primary">
+<button aria-label="Decrease quantity" class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high transition-colors font-mono-data text-primary">-</button>
+<span class="w-10 text-center font-mono-data text-mono-data font-bold text-primary">1</span>
+<button aria-label="Increase quantity" class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high transition-colors font-mono-data text-primary">+</button>
+</div>
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-1.5 font-label-caps text-label-caps uppercase text-primary border-b border-primary hover:text-secondary hover:border-secondary transition-colors duration-150" onclick="window.location.href='/build-your-mattress'">
+<span class="material-symbols-outlined text-sm" data-icon="tune">tune</span>
+<span>Edit Configuration</span>
+</button>
+<button class="flex items-center gap-1.5 font-label-caps text-label-caps uppercase text-on-surface-variant hover:text-[#C93B2B] transition-colors duration-150">
+<span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+<span>Remove</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- VALUE ADDED ADD-ONS: WAKEFIT HIGH-CONVERSION CROSS-SELL STRIP -->
+<div class="border border-surface-dim bg-surface-container-lowest p-6">
+<div class="flex items-center justify-between mb-4 border-b border-surface-dim pb-3">
+<div>
+<span class="font-label-caps text-label-caps uppercase text-secondary font-bold tracking-widest block">Recommended Add-Ons</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Enhance Your Architectural Sleep Setup</h3>
+</div>
+<span class="font-mono-data text-mono-data text-on-surface-variant hidden sm:inline">Curated Essentials</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Cross-sell Item 1 -->
+<div class="border border-surface-dim p-4 flex gap-4 items-center bg-surface-container-low hover:border-primary transition-colors">
+<div class="w-20 h-20 bg-surface flex-shrink-0 border border-surface-dim flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="High-end organic bamboo mattress protector folded precisely in a contemporary minimalist studio environment. Natural linen textures, subdued warm earthen lighting, architectural composition, clean zero-radius border aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBAS8RGpSs3baK-0hZqXXXcNEHDddvuLGa7RM12Igbejb0_YpbcCaoUwIRlOUlhi3MYSmewz8O6_HDp4YHluKGEuBAd97V66lDwDkLeyfdo_EkY3Zjo99Azbm1VjXB0-mN5rzFiyepKa9XbUsr1k22-9HoT12j6d4JwCszAzn9a_KN6TVlDkelj_B3oyT0mijkgpNWedhDEa_jXNNJMVEHs5a0OGWAbk-nUMpqKOQbaD7pEpFV6QHEsg"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="font-body-md text-body-md font-semibold text-primary">Bamboo Mattress Protector</h4>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">100% Waterproof, Breathable weave</p>
+<div class="flex items-center justify-between mt-2">
+<span class="font-price-md text-price-md font-bold text-primary">₹1,890</span>
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input class="w-4 h-4 border-primary text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+<span class="font-label-caps text-label-caps uppercase text-primary font-bold">Add</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Cross-sell Item 2 -->
+<div class="border border-surface-dim p-4 flex gap-4 items-center bg-surface-container-low hover:border-primary transition-colors">
+<div class="w-20 h-20 bg-surface flex-shrink-0 border border-surface-dim flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Pair of sculptural dual-comfort contour memory pillows arranged symmetrically on an architectural raw oak table. Monolithic minimalist furniture catalog aesthetic, soft warm shadows, muted neutral palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIU-LsJqwWlDUniFXJG27Ka3wZdpuHPb1dQDgYoGUvGGNbTfm2TthmJSpZsJntBp1DDxdhKkLQVqHhmQrwf0JWreJxOs1xSMwBTs9wMQm6uAegxyzZjhybfVycIk8tu3AvTEHKlqVqZssoU35oQ_yN7LuHoP1csE3nQmVSf09SJrKjw6OaZPmzvB6pinlvRHVqYCACIN86f9RLxM1AWrDXcP3rVBeXEJ5WVYtoYhlicRioXcfWS-BsPQ"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="font-body-md text-body-md font-semibold text-primary">Dual Comfort Contour Pillows</h4>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Set of 2 • Ergonomic cervical alignment</p>
+<div class="flex items-center justify-between mt-2">
+<span class="font-price-md text-price-md font-bold text-primary">₹2,400</span>
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input class="w-4 h-4 border-primary text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+<span class="font-label-caps text-label-caps uppercase text-primary font-bold">Add</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- BRAND ASSURANCE PILLARS STRIP -->
+<div class="grid grid-cols-1 sm:grid-cols-3 border border-surface-dim bg-surface-container-lowest text-center">
+<div class="p-4 border-b sm:border-b-0 sm:border-r border-surface-dim flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary text-2xl mb-1" data-icon="bed">bed</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-primary font-bold">100-Night Risk-Free</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">In-Home Sleep Trial Protocol</span>
+</div>
+<div class="p-4 border-b sm:border-b-0 sm:border-r border-surface-dim flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary text-2xl mb-1" data-icon="verified_user">verified_user</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-primary font-bold">10-Year Warranty</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Direct Structural Core Coverage</span>
+</div>
+<div class="p-4 flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary text-2xl mb-1" data-icon="handyman">handyman</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-primary font-bold">White-Glove Setup</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Complimentary Pan-India Assembly</span>
+</div>
+</div>
+</section>
+<!-- RIGHT STICKY ORDER SUMMARY BOX (35% width equivalent: 4 of 12 columns) -->
+<aside class="lg:col-span-4 sticky top-24">
+<div class="border border-primary bg-surface-container-lowest">
+<!-- Summary Header -->
+<div class="p-5 border-b border-surface-dim bg-surface-container-low flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm uppercase text-primary font-bold">Order Summary</h2>
+<span class="font-mono-data text-mono-data text-on-surface-variant font-semibold">2 Items</span>
+</div>
+<!-- Savings Banner Highlight -->
+<div class="bg-primary px-5 py-3 flex items-center justify-between text-white">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container text-sm" data-icon="stars">stars</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider font-semibold">Total Architectural Savings</span>
+</div>
+<span class="font-mono-data text-mono-data font-bold text-secondary-fixed">₹9,900</span>
+</div>
+<!-- Financial Breakdown Table -->
+<div class="p-5 space-y-3.5 border-b border-surface-dim">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Item Total (MRP)</span>
+<span class="font-mono-data text-mono-data text-on-surface line-through">₹48,000</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Direct Factory Discount</span>
+<span class="font-mono-data text-mono-data text-[#C93B2B] font-semibold">- ₹7,900</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Coupons &amp; Studio Credits</span>
+<span class="font-mono-data text-mono-data text-[#C93B2B] font-semibold">- ₹2,000</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">White-Glove Delivery &amp; Installation</span>
+<span class="font-mono-data text-mono-data text-secondary font-bold uppercase">FREE</span>
+</div>
+<!-- Coupon Redemption Input Box -->
+<div class="pt-3 border-t border-surface-dim">
+<label class="block font-label-caps text-label-caps uppercase text-on-surface-variant mb-1.5">Apply Architectural Coupon</label>
+<div class="flex">
+<input class="flex-1 px-3 py-2 border border-surface-dim text-primary font-mono-data text-mono-data uppercase focus:border-primary focus:outline-none bg-surface-container-low" placeholder="Enter coupon code" type="text" value="EXCELLENT10"/>
+<button class="px-4 bg-primary text-white font-label-caps text-label-caps uppercase tracking-wider hover:bg-secondary transition-colors duration-150">Applied</button>
+</div>
+<div class="flex items-center gap-1.5 mt-2 text-[#C93B2B]">
+<span class="material-symbols-outlined text-xs" data-icon="check_circle">check_circle</span>
+<span class="font-label-caps text-[10px] uppercase tracking-wider font-semibold">Code 'EXCELLENT10' applied (₹2,000 saved)</span>
+</div>
+</div>
+</div>
+<!-- Total Payable Calculation -->
+<div class="p-5 bg-surface-container-low">
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-headline-sm text-headline-sm uppercase text-primary font-bold">Total Payable</span>
+<span class="font-price-xl text-price-xl font-bold text-primary">₹38,100</span>
+</div>
+<p class="font-body-sm text-[11px] text-on-surface-variant mb-5">Inclusive of all structural GST taxes and logistical levies</p>
+<!-- Primary High-Impact CTA -->
+<a class="block w-full text-center bg-primary hover:bg-secondary text-white font-label-caps text-label-caps uppercase tracking-widest py-4 transition-colors duration-150 font-bold border border-primary" href="/checkout">
+              PROCEED TO CHECKOUT
+            </a>
+<!-- Payment Security Rails -->
+<div class="mt-5 pt-4 border-t border-surface-dim">
+<span class="block font-label-caps text-[10px] uppercase text-on-surface-variant text-center mb-2.5 tracking-wider">Available Payment Rails</span>
+<!-- Payment Rails Chips -->
+<div class="grid grid-cols-2 gap-2 text-center">
+<div class="py-1.5 px-2 bg-surface-container border border-surface-dim font-mono-data text-[11px] text-on-surface">
+                  UPI (GPay, PhonePe)
+                </div>
+<div class="py-1.5 px-2 bg-surface-container border border-surface-dim font-mono-data text-[11px] text-on-surface">
+                  Cards (Visa, MC, Amex)
+                </div>
+<div class="py-1.5 px-2 bg-surface-container border border-surface-dim font-mono-data text-[11px] text-on-surface">
+                  Net Banking (All Banks)
+                </div>
+<div class="py-1.5 px-2 bg-surface-container border border-surface-dim font-mono-data text-[11px] text-secondary font-bold">
+                  No-Cost EMI: ₹3,175/mo
+                </div>
+</div>
+<!-- Trust & Security Micro-Badge -->
+<div class="flex items-center justify-center gap-2 mt-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="verified">verified</span>
+<span class="font-body-sm text-[11px]">Direct Factory Logistics • Non-Damaged Transit Guarantee</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- SHARED COMPONENT: ARCHITECTURAL MULTI-COLUMN FOOTER -->
+<footer class="w-full bg-surface-container border-t border-surface-dim mt-16">
+<div class="max-w-[1440px] mx-auto px-4 md:px-margin py-space-2xl">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-surface-dim">
+<div class="space-y-3">
+<span class="font-headline-md text-headline-md uppercase tracking-tight text-primary block">SleepExcellent</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">
+            Planar architectural furniture, structural sleep engineering, and bespoke acoustic environments for uncompromising residences.
+          </p>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps uppercase text-primary font-bold mb-4 tracking-wider">Specifications &amp; Policy</h4>
+<ul class="space-y-2.5 font-body-sm text-body-sm">
+<li><a class="text-on-surface-variant hover:underline hover:text-secondary transition-colors duration-150" href="#">100-Night Trial Protocol</a></li>
+<li><a class="text-on-surface-variant hover:underline hover:text-secondary transition-colors duration-150" href="#">10-Year Structural Warranty</a></li>
+<li><a class="text-on-surface-variant hover:underline hover:text-secondary transition-colors duration-150" href="#">Factory Direct Logistics</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps uppercase text-primary font-bold mb-4 tracking-wider">Engineering Specs</h4>
+<ul class="space-y-2.5 font-body-sm text-body-sm">
+<li><a class="text-on-surface-variant hover:underline hover:text-secondary transition-colors duration-150" href="#">Architectural CAD Specs</a></li>
+<li><a class="text-on-surface-variant hover:underline hover:text-secondary transition-colors duration-150" href="#">Material Sourcing</a></li>
+<li><a class="text-on-surface-variant hover:underline hover:text-secondary transition-colors duration-150" href="#">Acoustic False Ceilings</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps uppercase text-primary font-bold mb-4 tracking-wider">Client Concierge</h4>
+<ul class="space-y-2.5 font-body-sm text-body-sm">
+<li><a class="text-on-surface-variant hover:underline hover:text-secondary transition-colors duration-150" href="#">Client Care Concierge</a></li>
+<li><a class="text-on-surface-variant hover:underline hover:text-secondary transition-colors duration-150" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:underline hover:text-secondary transition-colors duration-150" href="#">Terms of Exhibition</a></li>
+</ul>
+</div>
+</div>
+<!-- Footer Copyright Bar -->
+<div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+<p class="font-mono-data text-mono-data text-on-surface-variant">
+          © 2025 SleepExcellent Architectural Furnishings. All Rights Reserved. Monolithic Planar Engineering.
+        </p>
+<div class="flex items-center gap-6 font-mono-data text-mono-data text-on-surface-variant">
+<span>Bangalore</span>
+<span>•</span>
+<span>Mumbai</span>
+<span>•</span>
+<span>New Delhi</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+  document.querySelectorAll('img[data-alt]').forEach((image) => {
+    image.src = '/product-placeholder.svg';
+    image.alt = image.dataset.alt || 'Product image pending';
+  });
+
+  const bespoke = sessionStorage.getItem('sleepExcellentBespokeMattress');
+  if (bespoke) {
+    const configuration = JSON.parse(bespoke);
+    document.getElementById('bespoke-price').innerText = configuration.price;
+    document.getElementById('bespoke-dimensions').innerText = configuration.dimensions;
+    document.getElementById('bespoke-depth').innerText = `${configuration.dimensions.split('×')[2]?.trim() || 'Custom'} Structure`;
+    document.getElementById('bespoke-stratum').innerText = configuration.stratum;
+  }
+</script>
+</body></html>
