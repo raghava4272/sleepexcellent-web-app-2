@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { customerAuthHeaders } from "@/lib/supabase/client-auth";
 
 export function AddToCart({ productSlug }: { productSlug: string }) {
   const [state, setState] = useState<"idle" | "loading" | "added" | "error">("idle");
@@ -11,7 +12,7 @@ export function AddToCart({ productSlug }: { productSlug: string }) {
     setState("loading");
     const response = await fetch("/api/cart", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin", headers: { "Content-Type": "application/json", ...await customerAuthHeaders() },
       body: JSON.stringify({ productSlug, quantity: 1 }),
     });
     if (response.status === 401) {

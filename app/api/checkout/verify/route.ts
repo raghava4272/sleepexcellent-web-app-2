@@ -5,7 +5,7 @@ import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 export async function POST(request: Request) {
   try {
-    const user = await requireAuthenticatedUser();
+    const user = await requireAuthenticatedUser(request);
     const { razorpay_order_id: providerOrderId, razorpay_payment_id: providerPaymentId, razorpay_signature: signature, orderNumber } = await request.json();
     if (![providerOrderId, providerPaymentId, signature, orderNumber].every((value) => typeof value === "string" && value.length > 0)) {
       return NextResponse.json({ error: "Payment confirmation is incomplete." }, { status: 400 });

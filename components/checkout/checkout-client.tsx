@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
+import { customerAuthHeaders } from "@/lib/supabase/client-auth";
 
 declare global {
   interface Window { Razorpay?: new (options: Record<string, unknown>) => { open: () => void } }
@@ -21,7 +22,7 @@ export function CheckoutClient() {
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.async = true;
     document.body.appendChild(script);
-    void fetch("/api/cart", { cache: "no-store" }).then(async (response) => {
+    void customerAuthHeaders().then((headers) => fetch("/api/cart", { cache: "no-store", credentials: "same-origin", headers })).then(async (response) => {
       if (response.status === 401) { window.location.href = "/auth/login?next=/checkout"; return; }
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.error ?? "Unable to load the cart.");
@@ -42,14 +43,14 @@ export function CheckoutClient() {
       recipientName: String(form.get("recipientName") ?? ""), phone: String(form.get("phone") ?? ""), line1: String(form.get("line1") ?? ""), city: String(form.get("city") ?? ""), state: String(form.get("state") ?? ""), postalCode: String(form.get("postalCode") ?? ""),
     };
     try {
-      const response = await fetch("/api/checkout/create-order", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ address }) });
+      const response = await fetch("/api/checkout/create-order", { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json", ...await customerAuthHeaders() }, body: JSON.stringify({ address }) });
       const payment = await response.json();
       if (!response.ok) throw new Error(payment.error ?? "Unable to start payment.");
       const razorpay = new window.Razorpay({
         key: payment.keyId, amount: payment.amount, currency: payment.currency, name: "SleepExcellent", description: `Order ${payment.orderNumber}`, order_id: payment.razorpayOrderId,
         prefill: { name: payment.customer.name, email: payment.customer.email, contact: address.phone }, theme: { color: "#9d6b36" },
         handler: async (result: Record<string, string>) => {
-          const verify = await fetch("/api/checkout/verify", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...result, orderNumber: payment.orderNumber }) });
+          const verify = await fetch("/api/checkout/verify", { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json", ...await customerAuthHeaders() }, body: JSON.stringify({ ...result, orderNumber: payment.orderNumber }) });
           const verified = await verify.json();
           if (!verify.ok) { setBusy(false); setMessage(verified.error ?? "Payment succeeded but its verification failed. Please contact us with your Razorpay payment ID."); return; }
           window.location.href = `/account/orders/${verified.orderNumber}?payment=verified`;

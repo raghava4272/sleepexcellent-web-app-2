@@ -11,9 +11,9 @@ function responseForError(error: unknown) {
   return NextResponse.json({ error: "Unable to update the cart." }, { status: 500 });
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const user = await requireAuthenticatedUser();
+    const user = await requireAuthenticatedUser(request);
     const { lines } = await getCartLines(user.id);
     return NextResponse.json({ lines });
   } catch (error) {
@@ -23,7 +23,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const user = await requireAuthenticatedUser();
+    const user = await requireAuthenticatedUser(request);
     const { productSlug, quantity = 1 } = await request.json();
     if (typeof productSlug !== "string" || !productSlug || !Number.isInteger(quantity) || quantity < 1 || quantity > 10) {
       return NextResponse.json({ error: "Choose a valid product and quantity." }, { status: 400 });
@@ -70,7 +70,7 @@ export async function POST(request: Request) {
 
 export async function PATCH(request: Request) {
   try {
-    const user = await requireAuthenticatedUser();
+    const user = await requireAuthenticatedUser(request);
     const { itemId, quantity } = await request.json();
     if (typeof itemId !== "string" || !Number.isInteger(quantity) || quantity < 0 || quantity > 10) {
       return NextResponse.json({ error: "Choose a valid quantity." }, { status: 400 });

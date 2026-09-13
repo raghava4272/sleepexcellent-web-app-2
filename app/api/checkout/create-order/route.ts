@@ -21,7 +21,7 @@ function paymentConfiguration() {
 
 export async function POST(request: Request) {
   try {
-    const user = await requireAuthenticatedUser();
+    const user = await requireAuthenticatedUser(request);
     const { address } = await request.json();
     if (!validAddress(address)) return NextResponse.json({ error: "Enter a complete Indian delivery address." }, { status: 400 });
     const { lines } = await getCartLines(user.id);

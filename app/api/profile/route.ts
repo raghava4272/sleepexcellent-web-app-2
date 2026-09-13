@@ -4,7 +4,7 @@ import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 export async function POST(request: Request) {
   try {
-    const user = await requireAuthenticatedUser();
+    const user = await requireAuthenticatedUser(request);
     const { fullName, phone } = await request.json();
     if ((fullName !== undefined && typeof fullName !== "string") || (phone !== undefined && typeof phone !== "string")) return NextResponse.json({ error: "Invalid profile details." }, { status: 400 });
     const { error } = await createSupabaseAdminClient().from("profiles").update({ full_name: fullName?.trim() || null, phone: phone?.trim() || null }).eq("id", user.id);

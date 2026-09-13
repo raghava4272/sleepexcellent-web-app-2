@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { customerAuthHeaders } from "@/lib/supabase/client-auth";
 
 type Line = { id: string; productSlug: string; productName: string; variantTitle: string; pricePaise: number; quantity: number };
 const money = new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 });
@@ -13,7 +14,7 @@ export function CartClient() {
   const subtotal = useMemo(() => lines.reduce((total, line) => total + line.pricePaise * line.quantity, 0), [lines]);
 
   async function loadCart() {
-    const response = await fetch("/api/cart", { cache: "no-store" });
+    const response = await fetch("/api/cart", { cache: "no-store", credentials: "same-origin", headers: await customerAuthHeaders() });
     if (response.status === 401) {
       window.location.href = "/auth/login?next=/cart";
       return;
@@ -35,7 +36,7 @@ export function CartClient() {
 
   async function updateItem(itemId: string, quantity: number) {
     setStatus("loading");
-    const response = await fetch("/api/cart", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ itemId, quantity }) });
+    const response = await fetch("/api/cart", { method: "PATCH", credentials: "same-origin", headers: { "Content-Type": "application/json", ...await customerAuthHeaders() }, body: JSON.stringify({ itemId, quantity }) });
     const payload = await response.json();
     if (!response.ok) {
       setStatus("error");
