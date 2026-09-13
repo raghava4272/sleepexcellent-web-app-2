@@ -61,7 +61,7 @@ export async function POST(request: Request) {
 
     const { error: itemsError } = await admin.from("order_items").insert(lines.map((line) => ({
       order_id: order.id, product_name: line.productName, unit_price_paise: line.pricePaise, quantity: line.quantity, line_total_paise: line.pricePaise * line.quantity,
-      variant_snapshot: { title: line.variantTitle }, sku: line.productSlug,
+      variant_snapshot: { title: line.variantTitle }, configuration_snapshot: line.configuration, sku: line.productSlug,
     })));
     if (itemsError) throw itemsError;
     const { error: paymentError } = await admin.from("payments").insert({

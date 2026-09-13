@@ -8,7 +8,7 @@ declare global {
   interface Window { Razorpay?: new (options: Record<string, unknown>) => { open: () => void } }
 }
 
-type CartLine = { id: string; productName: string; pricePaise: number; quantity: number };
+type CartLine = { id: string; productName: string; pricePaise: number; quantity: number; configuration: Record<string, string> | null };
 const money = new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 });
 
 export function CheckoutClient() {

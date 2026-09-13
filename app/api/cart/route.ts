@@ -24,10 +24,13 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const user = await requireAuthenticatedUser(request);
-    const { productSlug, quantity = 1 } = await request.json();
+    const { productSlug, quantity = 1, configuration } = await request.json();
     if (typeof productSlug !== "string" || !productSlug || !Number.isInteger(quantity) || quantity < 1 || quantity > 10) {
       return NextResponse.json({ error: "Choose a valid product and quantity." }, { status: 400 });
     }
+    const safeConfiguration = configuration && typeof configuration === "object" && !Array.isArray(configuration)
+      ? Object.fromEntries(Object.entries(configuration).filter(([key, value]) => /^[a-z_]{1,40}$/.test(key) && typeof value === "string" && value.length <= 100))
+      : null;
 
     const admin = createSupabaseAdminClient();
     const { data: product, error: productError } = await admin
@@ -49,7 +52,7 @@ export async function POST(request: Request) {
     if (variantError || !variant) return NextResponse.json({ error: "This product has no purchasable configuration yet." }, { status: 409 });
 
     const cart = await getActiveCart(user.id);
-    const { data: existing } = await admin
+    const { data: existing } = safeConfiguration ? { data: null } : await admin
       .from("cart_items")
       .select("id, quantity")
       .eq("cart_id", cart.id)
@@ -57,7 +60,7 @@ export async function POST(request: Request) {
       .maybeSingle();
     const write = existing
       ? admin.from("cart_items").update({ quantity: Math.min(existing.quantity + quantity, 10) }).eq("id", existing.id)
-      : admin.from("cart_items").insert({ cart_id: cart.id, product_id: product.id, variant_id: variant.id, quantity });
+      : admin.from("cart_items").insert({ cart_id: cart.id, product_id: product.id, variant_id: variant.id, quantity, configuration: safeConfiguration });
     const { error: writeError } = await write;
     if (writeError) throw writeError;
 
