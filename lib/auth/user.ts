@@ -7,8 +7,13 @@ export async function requireAuthenticatedUser(request?: Request) {
   const authorization = request?.headers.get("authorization");
   const accessToken = authorization?.startsWith("Bearer ") ? authorization.slice(7) : null;
   if (accessToken) {
-    const { data: { user } } = await createSupabaseAdminClient().auth.getUser(accessToken);
-    if (user) return user;
+    try {
+      const { data: { user } } = await createSupabaseAdminClient().auth.getUser(accessToken);
+      if (user) return user;
+    } catch {
+      // A stale browser token must not prevent the valid HTTP-only session
+      // cookie from authenticating the same request below.
+    }
   }
   const supabase = await createSupabaseServerClient();
   const { data: { user } } = await supabase.auth.getUser();
