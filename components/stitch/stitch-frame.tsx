@@ -16,8 +16,10 @@ export function StitchFrame({ className, src, title }: StitchFrameProps) {
 
     const resize = () => {
       const documentElement = frame.current?.contentDocument?.documentElement;
-      if (!documentElement || !frame.current) return;
-      frame.current.style.height = `${Math.ceil(documentElement.scrollHeight)}px`;
+      const body = frame.current?.contentDocument?.body;
+      if (!documentElement || !body || !frame.current) return;
+      const height = Math.max(body.scrollHeight, documentElement.scrollHeight, body.getBoundingClientRect().height);
+      frame.current.style.height = `${Math.max(1, Math.ceil(height))}px`;
     };
 
     const observeFrameDocument = () => {

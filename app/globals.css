@@ -124,8 +124,10 @@ textarea:focus-visible,
   min-height: 100dvh;
 }
 
+/* Listing and builder frames resize to their document content. A viewport
+   minimum here left a blank full-screen panel after short embedded pages. */
 .stitch-frame--listing {
-  min-height: 100dvh;
+  min-height: 1px;
 }
 
 .stitch-frame--mobile {
@@ -139,7 +141,7 @@ textarea:focus-visible,
 
   .stitch-frame--mobile {
     display: block;
-    min-height: 100dvh;
+    min-height: 1px;
   }
 }
 
