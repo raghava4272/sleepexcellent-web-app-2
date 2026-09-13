@@ -146,6 +146,17 @@
       height: 30px;
       object-fit: cover;
       object-position: center;
+      background: #FFFFFF;
+      padding: 3px 5px;
+    }
+    @keyframes se-rise {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .se-rise { animation: se-rise 550ms ease-out both; }
+    .se-action-dock { animation: se-rise 650ms 200ms ease-out both; }
+    @media (prefers-reduced-motion: reduce) {
+      .se-rise, .se-action-dock { animation: none; }
     }
   </style>
 <style>
@@ -666,6 +677,24 @@
 </div>
 </div>
 </section>
+<!-- About SleepExcellent -->
+<section class="py-space-xl px-margin-mobile border-b border-surface-dim bg-surface-container-low se-rise">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">About us</span>
+<h2 class="font-headline-md text-headline-md text-primary mt-1">Built around better rest.</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-3">SleepExcellent brings together sleep engineering, considered materials and made-to-order craftsmanship for Indian homes.</p>
+<div class="grid grid-cols-2 gap-3 mt-5">
+<article class="border border-surface-dim bg-surface p-2">
+<img alt="Pratap Reddy Snapareddy CEO" class="w-full aspect-[4/3] object-cover" src="/ceo-pratap_reddy_snapareddy.jpg"/>
+<p class="font-mono-data text-[9px] text-secondary uppercase mt-2">CEO</p>
+<h3 class="font-headline-sm text-[13px] text-primary">Pratap Reddy Snapareddy</h3>
+</article>
+<article class="border border-surface-dim bg-surface p-2">
+<img alt="Merva Obaiah Managing Director" class="w-full aspect-[4/3] object-cover" src="/managing_director_merva_obaiah.jpg"/>
+<p class="font-mono-data text-[9px] text-secondary uppercase mt-2">Managing Director</p>
+<h3 class="font-headline-sm text-[13px] text-primary">Merva Obaiah</h3>
+</article>
+</div>
+</section>
 <!-- Consultation Concierge Banner -->
 <section class="p-margin-mobile bg-surface-container-highest border-b border-surface-dim">
 <div class="flex items-center space-x-3">
@@ -729,6 +758,12 @@
         Configure Now ✨
       </a>
 </div>
+</div>
+<!-- Floating contact actions; chatbot is a visual placeholder until its service is connected. -->
+<div class="fixed right-3 bottom-20 z-40 flex flex-col items-end gap-1.5 se-action-dock">
+<button aria-label="Chatbot coming soon" class="bg-surface border border-surface-dim px-3 py-2 font-label-caps text-[9px] text-primary shadow-md" type="button">Chat soon</button>
+<a class="bg-[#25D366] px-3 py-2 font-label-caps text-[9px] text-white shadow-md" href="https://wa.me/919876543210" target="_blank" rel="noreferrer">WhatsApp</a>
+<a class="bg-primary px-3 py-2 font-label-caps text-[9px] text-surface shadow-md" href="tel:+919876543210">Call</a>
 </div>
 <!-- Micro-interactions Script -->
 <script>

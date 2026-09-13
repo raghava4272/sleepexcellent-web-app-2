@@ -60,6 +60,23 @@
       height: 42px;
       object-fit: cover;
       object-position: center;
+      background: #FFFFFF;
+      padding: 3px 6px;
+      border-radius: 5px;
+    }
+    @keyframes se-rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes se-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    .se-rise { animation: se-rise 650ms ease-out both; }
+    .se-rise-delay { animation: se-rise 650ms 140ms ease-out both; }
+    .se-action-dock { animation: se-float 3.5s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) {
+      .se-rise, .se-rise-delay, .se-action-dock { animation: none; }
     }
   </style>
 <style data-purpose="layer-visuals">
@@ -209,7 +226,7 @@
 <div class="relative h-[440px] sm:h-[500px] lg:h-[580px]">
 <img alt="SleepExcellent featured collection" class="w-full h-full object-cover transition-opacity duration-500" id="hero-carousel-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMoiWICAppfA2MFWvdhlyWKXnogH8sI2y6DAVtq3zQNctm17WHq2G_nvd9PFLDOeo341xatDUcEAiklekANCral9BxpZdZ6f8L1n8aZ690rIkLYpyq3sXe7WWVYc0RlELj4i2_kPB_t8tu6RCg9-TrxAeewhKz7i4-05NDtZqXMbReqwathdHmLkgmPlFywzf8Oge8cNEoE-Gadop4SMPtjI9ByoYDm_RclrEFhWwvEEs4mWSnoTf8bA"/>
 <div class="absolute inset-0 bg-gradient-to-r from-charcoal-900/75 via-charcoal-900/20 to-transparent"></div>
-<div class="absolute inset-x-0 bottom-0 p-6 sm:p-10 lg:p-14 text-white">
+<div class="absolute inset-x-0 bottom-0 p-6 sm:p-10 lg:p-14 text-white se-rise">
 <div class="max-w-7xl mx-auto">
 <p class="text-xs font-mono uppercase tracking-[0.24em] text-amber-200">SleepExcellent · Featured collection</p>
 <h1 class="mt-3 text-4xl sm:text-5xl lg:text-6xl font-serif font-medium tracking-tight" id="hero-carousel-title">Better sleep, architected around you.</h1>
@@ -1014,6 +1031,29 @@
 </div>
 </section>
 <!-- END: CustomerReviewsSection -->
+<!-- BEGIN: AboutUsSection -->
+<section class="bg-warmBeige/60 border-y border-warmSand py-16 sm:py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-2xl mb-10 se-rise">
+<span class="text-xs font-mono uppercase tracking-widest text-warmWood font-semibold">About SleepExcellent</span>
+<h3 class="mt-2 text-3xl sm:text-4xl font-serif text-charcoal-900">Built around better rest.</h3>
+<p class="mt-4 text-sm sm:text-base leading-relaxed text-charcoal-600">SleepExcellent brings together sleep engineering, thoughtful materials and made-to-order craftsmanship for Indian homes. Our leadership team keeps every product grounded in comfort, quality and practical care.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl">
+<article class="bg-white border border-warmSand p-4 sm:p-5 shadow-sm se-rise">
+<img alt="Pratap Reddy Snapareddy CEO" class="w-full aspect-[4/3] object-cover rounded-lg bg-warmSand" src="/ceo-pratap_reddy_snapareddy.jpg"/>
+<p class="mt-4 text-[10px] font-mono uppercase tracking-widest text-warmWood">CEO</p>
+<h4 class="mt-1 text-xl font-serif font-semibold text-charcoal-900">Pratap Reddy Snapareddy</h4>
+</article>
+<article class="bg-white border border-warmSand p-4 sm:p-5 shadow-sm se-rise-delay">
+<img alt="Merva Obaiah Managing Director" class="w-full aspect-[4/3] object-cover rounded-lg bg-warmSand" src="/managing_director_merva_obaiah.jpg"/>
+<p class="mt-4 text-[10px] font-mono uppercase tracking-widest text-warmWood">Managing Director</p>
+<h4 class="mt-1 text-xl font-serif font-semibold text-charcoal-900">Merva Obaiah</h4>
+</article>
+</div>
+</div>
+</section>
+<!-- END: AboutUsSection -->
 <!-- BEGIN: DarkCharcoalFooter -->
 <footer class="bg-charcoal-900 text-neutral-400 text-xs border-t border-charcoal-800">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -1085,6 +1125,12 @@
 </div>
 </footer>
 <!-- END: DarkCharcoalFooter -->
+<!-- Floating contact actions; chatbot UI is intentionally a non-functional placeholder for now. -->
+<div class="fixed bottom-5 right-5 z-[90] flex flex-col items-end gap-2 se-action-dock">
+<button aria-label="Chatbot coming soon" class="rounded-full bg-white border border-warmSand px-4 py-3 text-xs font-bold text-charcoal-900 shadow-lg" type="button">◌ Chat soon</button>
+<a class="rounded-full bg-[#25D366] px-4 py-3 text-xs font-bold text-white shadow-lg" href="https://wa.me/919876543210" target="_blank" rel="noreferrer">WhatsApp</a>
+<a class="rounded-full bg-charcoal-900 px-4 py-3 text-xs font-bold text-white shadow-lg" href="tel:+919876543210">Call us</a>
+</div>
 <script>
   const catalogueNavigation = [
     ["Mattresses", ["Ortho Mattress", "Ortho Plus Mattress", "Latex Mattress", "Latex Pro", "Pocketed Spring Mattress", "Bonnell Spring Mattress", "Foam Mattress", "Memory Foam Mattress", "Feel Good Mattress", "Shim Mattress"]],

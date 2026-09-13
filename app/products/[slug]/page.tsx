@@ -15,7 +15,7 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
         <section className="self-center">
           <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#9d6b36]">SleepExcellent catalogue</p>
           <h1 className="mt-3 font-serif text-4xl md:text-5xl">{title}</h1>
-          <p className="mt-5 max-w-xl leading-7 text-neutral-600">Product details, images, specifications and final pricing will be added from your Supabase catalogue. Request a quote or explore the rest of the collection in the meantime.</p>
+          <p className="mt-5 max-w-xl leading-7 text-neutral-600">{title} is part of the SleepExcellent made-to-order catalogue. Material, dimensions, finish, specifications and final pricing are confirmed with you before production and delivery.</p>
           <div className="mt-8 flex flex-wrap gap-3"><Link className="bg-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white" href="/shop">Browse collection</Link><Link className="border border-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider" href="/build-your-mattress">Customize a mattress</Link></div>
         </section>
       </div>
