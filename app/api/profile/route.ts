@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { requireAuthenticatedUser } from "@/lib/auth/user";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
-export async function PATCH(request: Request) {
+export async function POST(request: Request) {
   try {
     const user = await requireAuthenticatedUser();
     const { fullName, phone } = await request.json();

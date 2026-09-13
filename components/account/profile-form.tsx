@@ -7,7 +7,7 @@ export function ProfileForm({ initialName, initialPhone }: { initialName: string
   async function save(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); setStatus("Saving…");
     const data = new FormData(event.currentTarget);
-    const response = await fetch("/api/profile", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ fullName: data.get("fullName"), phone: data.get("phone") }) });
+    const response = await fetch("/api/profile", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ fullName: data.get("fullName"), phone: data.get("phone") }) });
     const payload = await response.json();
     setStatus(response.ok ? "Saved." : payload.error ?? "Could not save your details.");
   }
