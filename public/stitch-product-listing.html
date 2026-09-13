@@ -160,11 +160,14 @@
       padding: 3px 6px;
       border-radius: 5px;
     }
+    input, select, button, article, aside, .border {
+      border-radius: 10px !important;
+    }
   </style>
 </head>
 <body class="bg-background text-on-surface antialiased selection:bg-secondary-fixed selection:text-primary">
 <!-- TOP APP BAR / BRAND HEADER -->
-<header class="w-full bg-surface dark:bg-inverse-surface border-b border-surface-dim dark:border-outline sticky top-0 z-50">
+<header class="w-full bg-white dark:bg-inverse-surface border-b border-surface-dim dark:border-outline sticky top-0 z-50">
 <div class="w-full px-margin mx-auto flex flex-col justify-between">
 <!-- Top Primary Row -->
 <div class="h-20 flex items-center justify-between border-b border-surface-dim">
@@ -177,7 +180,7 @@
 </div>
 <!-- Center: Brand Logo Anchor -->
 <div class="flex items-center justify-center">
-<a class="flex items-center space-x-1" href="#">
+<a aria-label="SleepExcellent home" class="flex items-center space-x-1" href="/" target="_top">
 <img alt="SleepExcellent" class="official-logo" src="/logo.png"/>
 </a>
 </div>
@@ -281,7 +284,7 @@
 <span class="material-symbols-outlined text-primary text-[18px]">tune</span>
 <h2 class="font-headline-sm text-headline-sm uppercase text-primary text-base tracking-wider">Specifications</h2>
 </div>
-<button class="text-label-caps font-label-caps uppercase text-on-surface-variant hover:text-[#C93B2B] underline underline-offset-2 transition-colors">
+<button class="text-label-caps font-label-caps uppercase text-on-surface-variant hover:text-[#C93B2B] underline underline-offset-2 transition-colors" id="clear-catalog-filters" type="button">
             Clear All Filters
           </button>
 </div>
@@ -448,7 +451,7 @@
 <!-- TOP MERCHANDISING CONTROL BAR -->
 <div class="p-4 border border-surface-dim bg-surface-container-lowest flex flex-wrap items-center justify-between gap-4">
 <!-- Active Filter Pill Tags -->
-<div class="flex flex-wrap items-center gap-2">
+<div class="flex flex-wrap items-center gap-2" id="active-filter-list">
 <span class="text-mono-data font-mono-data uppercase text-on-surface-variant mr-1">Active Filters:</span>
 <span class="inline-flex items-center space-x-1.5 px-2.5 py-1 bg-surface-container border border-surface-dim text-body-sm font-body-sm text-primary">
 <span>King Size (72×75)</span>
@@ -462,7 +465,7 @@
 <span>₹10,000 - ₹30,000</span>
 <button class="hover:text-[#C93B2B] flex items-center"><span class="material-symbols-outlined text-[14px]">close</span></button>
 </span>
-<button class="text-label-caps font-label-caps uppercase text-[#C93B2B] hover:underline ml-2">Reset</button>
+<button class="text-label-caps font-label-caps uppercase text-[#C93B2B] hover:underline ml-2" id="reset-catalog-filters" type="button">Reset</button>
 </div>
 <!-- Sort & View Controls -->
 <div class="flex items-center space-x-4">
@@ -1181,6 +1184,30 @@
   ];
 
   const grid = document.getElementById("product-grid");
+  const filterInputs = Array.from(document.querySelectorAll('aside input[type="checkbox"]'));
+  const activeFilterList = document.getElementById("active-filter-list");
+  const filterSidebar = document.querySelector("aside");
+  filterInputs.forEach((input) => { input.checked = false; });
+  const applyButton = document.createElement("button");
+  applyButton.type = "button";
+  applyButton.className = "w-full bg-primary text-on-primary px-4 py-3 text-label-caps font-label-caps uppercase font-bold hover:bg-secondary transition-colors";
+  applyButton.textContent = "Apply filters";
+  filterSidebar.appendChild(applyButton);
+  const renderActiveFilters = () => {
+    const selected = filterInputs.filter((input) => input.checked).map((input) => input.closest("label")?.innerText.trim().replace(/\s+/g, " "));
+    activeFilterList.innerHTML = '<span class="text-mono-data font-mono-data uppercase text-on-surface-variant mr-1">Active Filters:</span>' +
+      (selected.length
+        ? selected.map((label) => `<span class="inline-flex items-center px-2.5 py-1 bg-surface-container border border-surface-dim text-body-sm font-body-sm text-primary">${label}</span>`).join("")
+        : '<span class="text-body-sm text-on-surface-variant">None selected — choose filters, then apply.</span>');
+  };
+  const clearFilters = () => {
+    filterInputs.forEach((input) => { input.checked = false; });
+    renderActiveFilters();
+  };
+  applyButton.addEventListener("click", renderActiveFilters);
+  document.getElementById("clear-catalog-filters").addEventListener("click", clearFilters);
+  document.getElementById("reset-catalog-filters").addEventListener("click", clearFilters);
+  renderActiveFilters();
   const productCards = Array.from(grid.querySelectorAll(":scope > article"));
   const applyCatalogData = (card, product) => {
     const [name, price, listPrice, specification] = product;
