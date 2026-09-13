@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { getCurrentStaffProfile } from "@/lib/auth/profile";
+import { getCurrentStaffProfile, isAuthRequired } from "@/lib/auth/profile";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -19,8 +20,9 @@ function formatRupees(paise: number) {
 }
 
 export default async function AdminPage() {
-  const staff = await getCurrentStaffProfile();
-  if (!staff) {
+  const authRequired = isAuthRequired();
+  const staff = authRequired ? await getCurrentStaffProfile() : { email: "Test operations mode" };
+  if (authRequired && !staff) {
     return (
       <main className="mx-auto min-h-screen max-w-3xl px-6 py-16 text-[#171717]">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9d6b36]">SleepExcellent Operations</p>
@@ -31,7 +33,7 @@ export default async function AdminPage() {
     );
   }
 
-  const supabase = await createSupabaseServerClient();
+  const supabase = authRequired ? await createSupabaseServerClient() : createSupabaseAdminClient();
   const { data } = await supabase
     .from("orders")
     .select("id, order_number, order_status, delivery_status, payment_status, total_paise, estimated_delivery_date")
@@ -45,7 +47,7 @@ export default async function AdminPage() {
     <main className="min-h-screen bg-[#f8f4ec] px-5 py-8 text-[#171717] md:px-10">
       <header className="mx-auto flex max-w-7xl items-end justify-between border-b border-[#d6c8b5] pb-6">
         <div><p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9d6b36]">SleepExcellent</p><h1 className="mt-2 font-serif text-4xl">Delivery operations</h1></div>
-        <p className="text-sm text-neutral-600">Signed in as {staff.email}</p>
+        <p className="text-sm text-neutral-600">{authRequired ? `Signed in as ${staff?.email ?? "unknown user"}` : "Temporary no-auth test mode"}</p>
       </header>
       <section className="mx-auto grid max-w-7xl gap-4 py-8 md:grid-cols-3">
         {[["Active orders", active.length], ["Out for delivery", dispatch.length], ["Orders in queue", orders.length]].map(([label, value]) => <div className="border border-[#d6c8b5] bg-white p-5" key={String(label)}><p className="text-xs font-semibold uppercase tracking-wider text-neutral-500">{label}</p><p className="mt-2 font-serif text-4xl">{value}</p></div>)}
