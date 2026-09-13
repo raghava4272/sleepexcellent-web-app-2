@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
   const response = NextResponse.redirect(new URL(next, request.url), 303);
   const config = getSupabasePublicConfig();
   const supabase = createServerClient(config.NEXT_PUBLIC_SUPABASE_URL, config.NEXT_PUBLIC_SUPABASE_ANON_KEY, {
-    cookies: { getAll: () => request.cookies.getAll(), setAll: (items) => items.forEach(({ name, value, options }) => response.cookies.set(name, value, options)) },
+    cookies: { getAll: () => request.cookies.getAll(), setAll: (items) => items.forEach(({ name, value, options }) => response.cookies.set(name, value, { ...options, path: options.path ?? "/" })) },
   });
   const { error } = await supabase.auth.signInWithPassword({ email, password });
   if (error) {
