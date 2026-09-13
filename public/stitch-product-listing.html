@@ -163,6 +163,17 @@
     input, select, button, article, aside, .border {
       border-radius: 10px !important;
     }
+    #product-grid.is-list {
+      grid-template-columns: 1fr;
+    }
+    #product-grid.is-list > article {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
+    }
+    #product-grid.is-list > article > .relative {
+      height: 100%;
+      min-height: 220px;
+    }
   </style>
 </head>
 <body class="bg-background text-on-surface antialiased selection:bg-secondary-fixed selection:text-primary">
@@ -471,20 +482,23 @@
 <div class="flex items-center space-x-4">
 <div class="flex items-center space-x-2">
 <label class="text-label-caps font-label-caps uppercase text-on-surface-variant" for="catalog-sort">Sort By:</label>
-<select class="h-9 px-3 bg-surface border border-surface-dim text-body-sm font-body-sm text-primary focus:border-primary focus:ring-0" id="catalog-sort">
+<div class="relative">
+<select class="h-9 appearance-none rounded-lg bg-surface border border-surface-dim py-0 pl-3 pr-10 text-body-sm font-body-sm text-primary focus:border-primary focus:ring-0" id="catalog-sort">
 <option selected="">Popularity (Default)</option>
 <option>Price: Low to High</option>
 <option>Price: High to Low</option>
 <option>Customer Ratings</option>
 <option>Newest First</option>
 </select>
+<span class="material-symbols-outlined pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant">expand_more</span>
+</div>
 </div>
 <!-- Grid / List Toggles -->
 <div class="flex items-center border border-surface-dim">
-<button class="p-1.5 bg-primary text-on-primary flex items-center" title="Grid View">
+<button aria-pressed="true" class="p-1.5 bg-primary text-on-primary flex items-center" id="grid-view" title="Grid View" type="button">
 <span class="material-symbols-outlined text-[18px]">grid_view</span>
 </button>
-<button class="p-1.5 bg-surface text-on-surface-variant hover:text-primary flex items-center border-l border-surface-dim" title="List View">
+<button aria-pressed="false" class="p-1.5 bg-surface text-on-surface-variant hover:text-primary flex items-center border-l border-surface-dim" id="list-view" title="List View" type="button">
 <span class="material-symbols-outlined text-[18px]">view_list</span>
 </button>
 </div>
@@ -1209,6 +1223,28 @@
   document.getElementById("reset-catalog-filters").addEventListener("click", clearFilters);
   renderActiveFilters();
   const productCards = Array.from(grid.querySelectorAll(":scope > article"));
+  const gridView = document.getElementById("grid-view");
+  const listView = document.getElementById("list-view");
+  const setCatalogView = (view) => {
+    const isList = view === "list";
+    grid.classList.toggle("is-list", isList);
+    grid.classList.toggle("grid-cols-3", !isList);
+    gridView.className = `p-1.5 flex items-center ${isList ? "bg-surface text-on-surface-variant hover:text-primary" : "bg-primary text-on-primary"}`;
+    listView.className = `p-1.5 flex items-center border-l border-surface-dim ${isList ? "bg-primary text-on-primary" : "bg-surface text-on-surface-variant hover:text-primary"}`;
+    gridView.setAttribute("aria-pressed", String(!isList));
+    listView.setAttribute("aria-pressed", String(isList));
+  };
+  gridView.addEventListener("click", () => setCatalogView("grid"));
+  listView.addEventListener("click", () => setCatalogView("list"));
+  document.getElementById("catalog-sort").addEventListener("change", (event) => {
+    const mode = event.target.value;
+    const cards = Array.from(grid.querySelectorAll(":scope > article"));
+    if (mode === "Popularity (Default)") return;
+    cards.sort((a, b) => {
+      const price = (card) => Number((card.querySelector(".font-price-xl")?.textContent || "0").replace(/[^0-9]/g, ""));
+      return mode === "Price: Low to High" ? price(a) - price(b) : mode === "Price: High to Low" ? price(b) - price(a) : 0;
+    }).forEach((card) => grid.appendChild(card));
+  });
   const applyCatalogData = (card, product) => {
     const [name, price, listPrice, specification] = product;
     const image = card.querySelector("img[data-alt]");
