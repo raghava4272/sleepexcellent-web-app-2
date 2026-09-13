@@ -121,7 +121,7 @@ textarea:focus-visible,
 }
 
 .stitch-frame--desktop {
-  min-height: 100dvh;
+  min-height: 1px;
 }
 
 /* Listing and builder frames resize to their document content. A viewport
