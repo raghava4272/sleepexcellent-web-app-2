@@ -8,11 +8,6 @@ export type Profile = {
   role: "customer" | "staff" | "admin";
 };
 
-// Temporary test-mode switch. Set AUTH_REQUIRED=true before enabling real payments or customer data.
-export function isAuthRequired() {
-  return process.env.AUTH_REQUIRED === "true";
-}
-
 export async function getCurrentProfile(): Promise<Profile | null> {
   const supabase = await createSupabaseServerClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -29,5 +24,9 @@ export async function getCurrentProfile(): Promise<Profile | null> {
 
 export async function getCurrentStaffProfile() {
   const profile = await getCurrentProfile();
-  return profile?.role === "admin" || profile?.role === "staff" ? profile : null;
+  if (!profile) return null;
+
+  const initialAdminEmail = process.env.INITIAL_ADMIN_EMAIL?.trim().toLowerCase();
+  const isInitialAdmin = Boolean(initialAdminEmail && profile.email.toLowerCase() === initialAdminEmail);
+  return profile.role === "admin" || profile.role === "staff" || isInitialAdmin ? profile : null;
 }

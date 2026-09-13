@@ -19,7 +19,6 @@ This repository will contain one production application with a responsive custom
 
 Never commit Supabase keys, Razorpay secrets, Google OAuth secrets, or production customer data.
 
-`AUTH_REQUIRED=false` is a temporary testing mode that permits access to `/admin` without Google OAuth. Set `AUTH_REQUIRED=true` before adding real customer orders or enabling payments.
 
 ## Product goal
 

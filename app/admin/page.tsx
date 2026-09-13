@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { getCurrentStaffProfile, isAuthRequired } from "@/lib/auth/profile";
+import { redirect } from "next/navigation";
+import { getCurrentStaffProfile } from "@/lib/auth/profile";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
@@ -20,20 +20,12 @@ function formatRupees(paise: number) {
 }
 
 export default async function AdminPage() {
-  const authRequired = isAuthRequired();
-  const staff = authRequired ? await getCurrentStaffProfile() : { email: "Test operations mode" };
-  if (authRequired && !staff) {
-    return (
-      <main className="mx-auto min-h-screen max-w-3xl px-6 py-16 text-[#171717]">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9d6b36]">SleepExcellent Operations</p>
-        <h1 className="mt-3 font-serif text-4xl">Admin access is protected</h1>
-        <p className="mt-4 max-w-xl text-neutral-600">Sign in with Google after it is enabled in Supabase. Once <code>admin@gmail.com</code> has signed in, promote that profile to the admin role in Supabase SQL Editor.</p>
-        <Link className="mt-8 inline-block bg-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white" href="/auth/sign-in?next=/admin">Sign in with Google</Link>
-      </main>
-    );
-  }
+  const staff = await getCurrentStaffProfile();
+  if (!staff) redirect("/auth/login?next=/admin");
 
-  const supabase = authRequired ? await createSupabaseServerClient() : createSupabaseAdminClient();
+  // This server-only client is used only after the signed-in user's staff role
+  // (or the configured initial-admin email) has been verified above.
+  const supabase = createSupabaseAdminClient();
   const { data } = await supabase
     .from("orders")
     .select("id, order_number, order_status, delivery_status, payment_status, total_paise, estimated_delivery_date")
@@ -47,7 +39,7 @@ export default async function AdminPage() {
     <main className="min-h-screen bg-[#f8f4ec] px-5 py-8 text-[#171717] md:px-10">
       <header className="mx-auto flex max-w-7xl items-end justify-between border-b border-[#d6c8b5] pb-6">
         <div><p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9d6b36]">SleepExcellent</p><h1 className="mt-2 font-serif text-4xl">Delivery operations</h1></div>
-        <p className="text-sm text-neutral-600">{authRequired ? `Signed in as ${staff?.email ?? "unknown user"}` : "Temporary no-auth test mode"}</p>
+        <div className="text-right"><p className="text-sm text-neutral-600">Signed in as {staff.email}</p><Link className="mt-2 inline-block text-xs font-semibold uppercase tracking-wider underline" href="/auth/sign-out?next=/auth/login">Sign out</Link></div>
       </header>
       <section className="mx-auto grid max-w-7xl gap-4 py-8 md:grid-cols-3">
         {[["Active orders", active.length], ["Out for delivery", dispatch.length], ["Orders in queue", orders.length]].map(([label, value]) => <div className="border border-[#d6c8b5] bg-white p-5" key={String(label)}><p className="text-xs font-semibold uppercase tracking-wider text-neutral-500">{label}</p><p className="mt-2 font-serif text-4xl">{value}</p></div>)}
