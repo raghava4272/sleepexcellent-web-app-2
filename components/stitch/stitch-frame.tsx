@@ -18,7 +18,16 @@ export function StitchFrame({ className, src, title }: StitchFrameProps) {
       const documentElement = frame.current?.contentDocument?.documentElement;
       const body = frame.current?.contentDocument?.body;
       if (!documentElement || !body || !frame.current) return;
-      const height = Math.max(body.scrollHeight, documentElement.scrollHeight, body.getBoundingClientRect().height);
+      // scrollHeight and the body's rendered height include the iframe viewport.
+      // Once a tall frame was assigned, using either value prevented it from ever
+      // shrinking below that old viewport height. Measure the bottom of the
+      // actual document children instead, so a short catalog/detail page ends
+      // directly after its footer.
+      const contentBottom = Array.from(body.children).reduce((bottom, child) => {
+        const childBottom = child.getBoundingClientRect().bottom - body.getBoundingClientRect().top;
+        return Math.max(bottom, childBottom);
+      }, 0);
+      const height = Math.max(contentBottom, 1);
       frame.current.style.height = `${Math.max(1, Math.ceil(height))}px`;
     };
 
