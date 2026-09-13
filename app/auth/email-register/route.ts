@@ -4,7 +4,7 @@ import { getSupabasePublicConfig } from "@/lib/supabase/config";
 
 function safeNextPath(value: FormDataEntryValue | null) {
   const path = typeof value === "string" ? value : null;
-  return path?.startsWith("/") && !path.startsWith("//") ? path : "/account";
+  return path?.startsWith("/") && !path.startsWith("//") ? path : "/";
 }
 
 export async function POST(request: NextRequest) {

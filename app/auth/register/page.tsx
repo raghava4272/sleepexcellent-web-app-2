@@ -4,7 +4,7 @@ type RegisterPageProps = { searchParams: Promise<{ error?: string; message?: str
 
 export default async function RegisterPage({ searchParams }: RegisterPageProps) {
   const params = await searchParams;
-  const next = params.next?.startsWith("/") && !params.next.startsWith("//") ? params.next : "/account";
+  const next = params.next?.startsWith("/") && !params.next.startsWith("//") ? params.next : "/";
   const notice = params.error ? "Please use a valid email address and a password of at least eight characters." : params.message;
 
   return (

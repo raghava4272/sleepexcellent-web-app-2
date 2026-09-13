@@ -3,7 +3,7 @@ import { createServerClient } from "@supabase/ssr";
 import { getSupabasePublicConfig } from "@/lib/supabase/config";
 
 function safeNextPath(value: string | null) {
-  return value?.startsWith("/") && !value.startsWith("//") ? value : "/account";
+  return value?.startsWith("/") && !value.startsWith("//") ? value : "/";
 }
 
 export async function GET(request: NextRequest) {

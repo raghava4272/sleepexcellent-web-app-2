@@ -10,7 +10,7 @@ const messages: Record<string, string> = {
 
 export default async function LoginPage({ searchParams }: LoginPageProps) {
   const params = await searchParams;
-  const next = params.next?.startsWith("/") && !params.next.startsWith("//") ? params.next : "/account";
+  const next = params.next?.startsWith("/") && !params.next.startsWith("//") ? params.next : "/";
   const notice = params.error ? messages[params.error] ?? "Unable to sign in. Please try again." : params.message;
 
   return (
