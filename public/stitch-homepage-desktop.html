@@ -182,9 +182,9 @@
 </header>
 <!-- END: MainHeader -->
 <!-- BEGIN: CategoryNavigation -->
-<nav class="bg-white border-b border-warmSand overflow-x-auto scrollbar-none sticky top-[69px] z-40 shadow-xs">
+<nav class="bg-white border-b border-warmSand overflow-visible sticky top-[69px] z-40 shadow-xs">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-xs font-medium uppercase tracking-wider text-charcoal-700 whitespace-nowrap min-w-max h-12">
-<div class="flex items-center space-x-7">
+<div class="flex items-center space-x-7" id="catalogue-nav">
 <a class="hover:text-charcoal-900 py-3.5 border-b-2 border-charcoal-900 font-semibold text-charcoal-900 transition flex items-center gap-1.5" href="#mattresses">
 <span>Mattresses</span>
 <span class="text-[10px] bg-red-100 text-brandRed font-bold px-1.5 py-0.2 rounded">Save 45%</span>
@@ -1086,6 +1086,24 @@
 </footer>
 <!-- END: DarkCharcoalFooter -->
 <script>
+  const catalogueNavigation = [
+    ["Mattresses", ["Ortho Mattress", "Ortho Plus Mattress", "Latex Mattress", "Latex Pro", "Pocketed Spring Mattress", "Bonnell Spring Mattress", "Foam Mattress", "Memory Foam Mattress", "Feel Good Mattress", "Shim Mattress"]],
+    ["Sofas", ["L-Shape Sofa", "Excellent Sofa", "Indian Traditional Sofa", "Headrest Model Sofa", "Chester Model Sofa", "Fiber Back Sofa", "Luxury Sofa", "Camel Back Sofa", "Italian Model Sofa", "Rock Style Sofa", "Modern Sofa", "Premium Model Sofa", "Cabin Sofa", "Sectional Sofa", "U-Shape Sofa", "Corner Sofa"]],
+    ["Padding Beds", ["Classic Model Headboard Bed", "Roman Model Bed", "Luxury Headboard Bed", "Colony Model Bed", "Dream Night Bed", "Teak Wood Bed", "Lifestyle Bed", "Wood Rock Bed", "Kerala Teak Bed", "Inbuilt Plywood Bed"]],
+    ["TV Units", ["Floating Minimalist TV Unit", "Fluted Panel TV Unit", "Marble Backdrop TV Unit", "Wooden Slat TV Unit", "Luxury Full-Wall TV Unit", "Japandi TV Unit", "Modular Storage TV Unit", "Curved Edge TV Unit", "LED Backlit TV Unit", "Smart Media Wall TV Unit"]],
+    ["Modern Kitchen", ["L-Shaped Modular Kitchen", "U-Shaped Modular Kitchen", "Parallel Galley Kitchen", "Straight-Line Modular Kitchen", "Island Modular Kitchen", "Peninsula Modular Kitchen", "G-Shaped Modular Kitchen", "Open-Plan Modern Kitchen", "One-Wall Kitchen with Tall Pantry", "Luxury Handleless Kitchen with Island"]],
+    ["Bedroom Ceilings", ["Modern Tray False Ceiling", "Floating False Ceiling", "Wooden Panel False Ceiling", "Cove Lighting False Ceiling", "Geometric Gypsum False Ceiling", "Layered POP False Ceiling", "Coffered False Ceiling", "Circular Feature False Ceiling", "Wooden Slat False Ceiling", "Wall-to-Ceiling Panel Design"]]
+  ];
+  const productSlug = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  document.getElementById("catalogue-nav").innerHTML = catalogueNavigation.map(([category, products]) => `
+    <div class="relative group py-3.5">
+      <a class="block border-b-2 border-transparent hover:border-warmWood hover:text-charcoal-900 transition" href="/shop" target="_top">${category}</a>
+      <div class="absolute left-0 top-full z-[70] invisible w-80 max-h-80 overflow-y-auto border border-warmSand bg-white p-2 normal-case tracking-normal opacity-0 shadow-xl transition-all duration-150 group-hover:visible group-hover:opacity-100">
+        <p class="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-warmWood">${category}</p>
+        ${products.map((product) => `<a class="block rounded px-3 py-2 text-xs font-medium text-charcoal-800 hover:bg-warmBeige hover:text-charcoal-900" href="/products/${productSlug(product)}" target="_top">${product}</a>`).join("")}
+      </div>
+    </div>`).join("");
+
   const heroSlides = [
     {
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBMoiWICAppfA2MFWvdhlyWKXnogH8sI2y6DAVtq3zQNctm17WHq2G_nvd9PFLDOeo341xatDUcEAiklekANCral9BxpZdZ6f8L1n8aZ690rIkLYpyq3sXe7WWVYc0RlELj4i2_kPB_t8tu6RCg9-TrxAeewhKz7i4-05NDtZqXMbReqwathdHmLkgmPlFywzf8Oge8cNEoE-Gadop4SMPtjI9ByoYDm_RclrEFhWwvEEs4mWSnoTf8bA",
