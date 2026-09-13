@@ -48,7 +48,7 @@ export function CheckoutClient() {
       if (!response.ok) throw new Error(payment.error ?? "Unable to start payment.");
       const razorpay = new window.Razorpay({
         key: payment.keyId, amount: payment.amount, currency: payment.currency, name: "SleepExcellent", description: `Order ${payment.orderNumber}`, order_id: payment.razorpayOrderId,
-        prefill: { name: payment.customer.name, email: payment.customer.email, contact: address.phone }, theme: { color: "#9d6b36" },
+        prefill: { name: payment.customer.name, email: payment.customer.email, contact: `+91${address.phone.replace(/\D/g, "").replace(/^91/, "")}` }, theme: { color: "#9d6b36" },
         handler: async (result: Record<string, string>) => {
           const verify = await fetch("/api/checkout/verify", { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json", ...await customerAuthHeaders() }, body: JSON.stringify({ ...result, orderNumber: payment.orderNumber }) });
           const verified = await verify.json();
