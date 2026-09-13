@@ -1,13 +1,5 @@
-import { StitchFrame } from "@/components/stitch/stitch-frame";
+import { CartClient } from "@/components/cart/cart-client";
 
 export default function CartPage() {
-  return (
-    <main aria-label="Shopping cart">
-      <StitchFrame
-        className="stitch-frame--listing"
-        src="/stitch-shopping-cart.html"
-        title="SleepExcellent approved shopping cart"
-      />
-    </main>
-  );
+  return <CartClient />;
 }
