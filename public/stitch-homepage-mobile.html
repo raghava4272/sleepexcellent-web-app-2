@@ -227,12 +227,19 @@
 <!-- Hero Section: Sculptural Architectural Bedroom -->
 <section class="relative border-b border-surface-dim bg-surface-container-low">
 <div class="relative h-[410px] w-full overflow-hidden bg-surface-container">
-<img class="w-full h-full object-cover grayscale-[15%] contrast-105" data-alt="Modern monolithic architectural bedroom with a sculptural low-profile upholstered platform bed, raw bleached oak wall panels, and high-end natural linen bedding. Soft natural morning sunlight floods the room through floor-to-ceiling windows, highlighting warm limestone tones and obsidian charcoal accents in a gallery-grade light interior setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqW0rd4fGfocVUwO-wPaVhzOeN3cNfKVXPNgIDCe_m_ZI55fQXNXVIYnnBrOpl0nB8NaMGyw9S_vG3v27nq_YqHJS-WJgq5yJj79I5UKuHj31kpJ6yODA8ccuf6YsId5ZzG_jEtDg1xR2CahIl3PSL_3NoGBM0PrbMXeHyYdDvj1rfPoEIMkOF7yA0xZBGJQnbPcPJphlnxX003rT2Cwrj24KVsn5VdzuSE25AgN6yWn87aEkt9LzfMQ"/>
+<img class="w-full h-full object-cover grayscale-[15%] contrast-105 transition-opacity duration-500" data-alt="Modern monolithic architectural bedroom with a sculptural low-profile upholstered platform bed, raw bleached oak wall panels, and high-end natural linen bedding. Soft natural morning sunlight floods the room through floor-to-ceiling windows, highlighting warm limestone tones and obsidian charcoal accents in a gallery-grade light interior setting." id="mobile-hero-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqW0rd4fGfocVUwO-wPaVhzOeN3cNfKVXPNgIDCe_m_ZI55fQXNXVIYnnBrOpl0nB8NaMGyw9S_vG3v27nq_YqHJS-WJgq5yJj79I5UKuHj31kpJ6yODA8ccuf6YsId5ZzG_jEtDg1xR2CahIl3PSL_3NoGBM0PrbMXeHyYdDvj1rfPoEIMkOF7yA0xZBGJQnbPcPJphlnxX003rT2Cwrj24KVsn5VdzuSE25AgN6yWn87aEkt9LzfMQ"/>
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-90"></div>
 <!-- Monolithic Spec Pin -->
 <div class="absolute top-3 left-3 bg-surface-container-lowest/95 border border-surface-dim px-2.5 py-1 flex items-center space-x-2">
 <span class="w-2 h-2 bg-[#C93B2B]"></span>
 <span class="font-mono-data text-mono-data text-primary uppercase">SERIES 04 / MONOLITH</span>
+</div>
+<div class="absolute top-3 right-3 flex items-center gap-1.5 bg-surface-container-lowest/95 border border-surface-dim px-2 py-1.5">
+<button aria-label="Previous slide" class="text-primary px-1" onclick="moveMobileHero(-1)">←</button>
+<button aria-label="Slide 1" class="mobile-hero-dot w-1.5 h-1.5 bg-primary" onclick="setMobileHero(0)"></button>
+<button aria-label="Slide 2" class="mobile-hero-dot w-1.5 h-1.5 bg-surface-dim" onclick="setMobileHero(1)"></button>
+<button aria-label="Slide 3" class="mobile-hero-dot w-1.5 h-1.5 bg-surface-dim" onclick="setMobileHero(2)"></button>
+<button aria-label="Next slide" class="text-primary px-1" onclick="moveMobileHero(1)">→</button>
 </div>
 <!-- Hero Narrative Lockup -->
 <div class="absolute bottom-4 left-margin-mobile right-margin-mobile">
@@ -770,6 +777,29 @@
     }
   </script>
   <script>
+    const mobileHeroImage = document.getElementById('mobile-hero-image');
+    const mobileHeroCandidates = Array.from(document.querySelectorAll('img'))
+      .map((image) => image.src)
+      .filter((source) => source.includes('lh3.googleusercontent.com'));
+    const mobileHeroSlides = [mobileHeroImage.src, mobileHeroCandidates[2], mobileHeroCandidates[5]].filter(Boolean);
+    let currentMobileHero = 0;
+    function setMobileHero(index) {
+      currentMobileHero = (index + mobileHeroSlides.length) % mobileHeroSlides.length;
+      mobileHeroImage.style.opacity = '0.25';
+      window.setTimeout(() => {
+        mobileHeroImage.src = mobileHeroSlides[currentMobileHero];
+        mobileHeroImage.style.opacity = '1';
+      }, 160);
+      document.querySelectorAll('.mobile-hero-dot').forEach((dot, dotIndex) => {
+        dot.classList.toggle('bg-primary', dotIndex === currentMobileHero);
+        dot.classList.toggle('bg-surface-dim', dotIndex !== currentMobileHero);
+      });
+    }
+    function moveMobileHero(direction) {
+      setMobileHero(currentMobileHero + direction);
+    }
+    window.setInterval(() => moveMobileHero(1), 5500);
+
     document.querySelectorAll('a[href="#mattresses"]').forEach((link) => {
       link.href = "/shop";
     });

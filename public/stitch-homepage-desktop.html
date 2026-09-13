@@ -253,18 +253,27 @@
 <div class="relative bg-white rounded-2xl p-4 sm:p-5 border border-warmSand shadow-xl">
 <!-- Simulated High End Bedroom with SleepExcellent Mattress and Padded Bed -->
 <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200">
-<img alt="SleepExcellent Orthopedic Mattress on Roman Padding Bed" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMoiWICAppfA2MFWvdhlyWKXnogH8sI2y6DAVtq3zQNctm17WHq2G_nvd9PFLDOeo341xatDUcEAiklekANCral9BxpZdZ6f8L1n8aZ690rIkLYpyq3sXe7WWVYc0RlELj4i2_kPB_t8tu6RCg9-TrxAeewhKz7i4-05NDtZqXMbReqwathdHmLkgmPlFywzf8Oge8cNEoE-Gadop4SMPtjI9ByoYDm_RclrEFhWwvEEs4mWSnoTf8bA"/>
+<img alt="SleepExcellent Orthopedic Mattress on Roman Padding Bed" class="w-full h-full object-cover transition-opacity duration-500 hover:scale-105" id="hero-carousel-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMoiWICAppfA2MFWvdhlyWKXnogH8sI2y6DAVtq3zQNctm17WHq2G_nvd9PFLDOeo341xatDUcEAiklekANCral9BxpZdZ6f8L1n8aZ690rIkLYpyq3sXe7WWVYc0RlELj4i2_kPB_t8tu6RCg9-TrxAeewhKz7i4-05NDtZqXMbReqwathdHmLkgmPlFywzf8Oge8cNEoE-Gadop4SMPtjI9ByoYDm_RclrEFhWwvEEs4mWSnoTf8bA"/>
 <!-- Floating Pill Detail -->
 <div class="absolute bottom-4 left-4 bg-charcoal-900/90 backdrop-blur-md text-white px-3.5 py-2 rounded-xl text-xs flex items-center gap-3 shadow-lg">
 <div class="w-8 h-8 rounded-lg bg-warmWood/40 flex items-center justify-center font-serif text-amber-300 font-bold">SE</div>
 <div>
-<div class="font-semibold text-white">Ortho Plus 3-Zone Core</div>
-<div class="text-[11px] text-warmSand">Starting ₹16,395 • 100-Night Trial</div>
+<div class="font-semibold text-white" id="hero-carousel-title">Ortho Plus 3-Zone Core</div>
+<div class="text-[11px] text-warmSand" id="hero-carousel-meta">Starting ₹16,395 • 100-Night Trial</div>
 </div>
 </div>
 <div class="absolute top-4 right-4 bg-brandRed text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
                 Save 25% Today
               </div>
+</div>
+<div class="absolute bottom-4 right-4 flex items-center gap-2 bg-white/90 backdrop-blur-md rounded-full px-2 py-1.5 shadow-lg">
+<button aria-label="Previous slide" class="w-7 h-7 rounded-full hover:bg-warmBeige text-charcoal-900" onclick="moveHeroSlide(-1)">←</button>
+<div class="flex gap-1.5">
+<button aria-label="Show slide 1" class="hero-slide-dot w-2 h-2 rounded-full bg-charcoal-900" onclick="setHeroSlide(0)"></button>
+<button aria-label="Show slide 2" class="hero-slide-dot w-2 h-2 rounded-full bg-warmSand" onclick="setHeroSlide(1)"></button>
+<button aria-label="Show slide 3" class="hero-slide-dot w-2 h-2 rounded-full bg-warmSand" onclick="setHeroSlide(2)"></button>
+</div>
+<button aria-label="Next slide" class="w-7 h-7 rounded-full hover:bg-warmBeige text-charcoal-900" onclick="moveHeroSlide(1)">→</button>
 </div>
 <!-- Supporting mini cards under hero -->
 <div class="grid grid-cols-2 gap-3 mt-3.5">
@@ -1062,6 +1071,45 @@
 </footer>
 <!-- END: DarkCharcoalFooter -->
 <script>
+  const heroSlides = [
+    {
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBMoiWICAppfA2MFWvdhlyWKXnogH8sI2y6DAVtq3zQNctm17WHq2G_nvd9PFLDOeo341xatDUcEAiklekANCral9BxpZdZ6f8L1n8aZ690rIkLYpyq3sXe7WWVYc0RlELj4i2_kPB_t8tu6RCg9-TrxAeewhKz7i4-05NDtZqXMbReqwathdHmLkgmPlFywzf8Oge8cNEoE-Gadop4SMPtjI9ByoYDm_RclrEFhWwvEEs4mWSnoTf8bA",
+      title: "Ortho Plus 3-Zone Core",
+      meta: "Starting ₹16,395 • 100-Night Trial"
+    },
+    {
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCct57uiIB3uwfX0qC7RCyjcw6mxLFWe1WwacXnbb9jl-XUZfz7HylxD0dMR-w4gxri5Yuk7MjDCIA2ZQdXax2KKVtd5F7aEueGbu0mgm4ywh_pcs6zv23tuC5-GZg52C1UC5F2HLu0VOFhLEwkOJ-eVs-t70QGhh90Vb8SIY6mDt2eSa4n0RfRvd0qrE-mPHmes_jtFZMgACCPUFrJXU0i-txfAtwd9HV7YRjj-dUqhGqc-i11nv3bhQ",
+      title: "Natural Latex Sleep System",
+      meta: "Naturally cool • Pressure-relieving comfort"
+    },
+    {
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAOWicFYk8xOpyZndckMcJh0b5qL5N052K0SvYbn9BT0fyyR_SyYXInNZXJda0q-P3BAHKgWN5uVR-Jl7Z73-K-cWX0dAsIITJunPK--zq3z74AAwRKdJWY0NrzItrxyzIKinE3U8iXE6SbJZd-gG0TQUymxX_-ZP42F3ulW7GSRK5hXFafR4GJXZdTVjT3OrxP68dYzsGFYKAkWSwzEKA_c7eYgziXEG8rY2csIF4q86KyUgZL3JrBuWA",
+      title: "Build Your Perfect Comfort",
+      meta: "Choose layers, firmness and custom dimensions"
+    }
+  ];
+  let currentHeroSlide = 0;
+  function setHeroSlide(index) {
+    currentHeroSlide = (index + heroSlides.length) % heroSlides.length;
+    const slide = heroSlides[currentHeroSlide];
+    const image = document.getElementById('hero-carousel-image');
+    image.style.opacity = '0.25';
+    window.setTimeout(() => {
+      image.src = slide.image;
+      image.style.opacity = '1';
+    }, 160);
+    document.getElementById('hero-carousel-title').textContent = slide.title;
+    document.getElementById('hero-carousel-meta').textContent = slide.meta;
+    document.querySelectorAll('.hero-slide-dot').forEach((dot, index) => {
+      dot.classList.toggle('bg-charcoal-900', index === currentHeroSlide);
+      dot.classList.toggle('bg-warmSand', index !== currentHeroSlide);
+    });
+  }
+  function moveHeroSlide(direction) {
+    setHeroSlide(currentHeroSlide + direction);
+  }
+  window.setInterval(() => moveHeroSlide(1), 5500);
+
   document.querySelectorAll('a[href="#mattresses"]').forEach((link) => {
     link.href = "/shop";
   });
