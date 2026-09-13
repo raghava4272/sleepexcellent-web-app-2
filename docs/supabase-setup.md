@@ -2,7 +2,7 @@
 
 The schema and development catalogue are ready in `supabase/migrations/202609120001_initial_schema.sql` and `supabase/seed.sql`. Apply the migration before connecting application writes.
 
-1. In Supabase SQL Editor, run the migration, then the seed.
+1. In Supabase SQL Editor, run the initial migration, then `202609130002_api_privileges.sql`, then the seed.
 2. Copy the project URL and anon/publishable key to `.env.local` from `.env.example`.
 3. Store the service-role key only in local server environment and Vercel environment settings; never expose it to the browser.
 4. In Supabase Auth, enable Google and set the callback URL to `https://YOUR_DOMAIN/auth/callback` (plus `http://localhost:3000/auth/callback` for local work).
