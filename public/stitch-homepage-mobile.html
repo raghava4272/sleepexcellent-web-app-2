@@ -183,7 +183,7 @@
 <!-- Brand & Trailing Utility Actions -->
 <div class="px-margin-mobile py-3 flex items-center justify-between">
 <!-- Logo Anchor with reference aesthetic -->
-<a class="flex items-center space-x-0.5 tracking-tight group" href="#">
+<a class="flex items-center space-x-0.5 tracking-tight group" href="/" target="_top">
 <img alt="SleepExcellent" class="official-logo" src="/logo.png"/>
 <span class="font-mono-data text-[9px] text-on-surface-variant ml-1 uppercase border border-surface-dim px-1">Studio</span>
 </a>
@@ -192,14 +192,14 @@
 <button aria-label="Search" class="text-primary hover:text-secondary p-1">
 <span class="material-symbols-outlined" data-icon="search">search</span>
 </button>
-<button aria-label="Favorites" class="text-primary hover:text-secondary p-1 relative">
+<a aria-label="Favorites" class="text-primary hover:text-secondary p-1 relative" href="/favorites" target="_top">
 <span class="material-symbols-outlined" data-icon="favorite">favorite</span>
 <span class="absolute top-0 right-0 w-1.5 h-1.5 bg-[#C93B2B]"></span>
-</button>
-<button aria-label="Cart" class="text-primary hover:text-secondary p-1 relative flex items-center">
+</a>
+<a aria-label="Cart" class="text-primary hover:text-secondary p-1 relative flex items-center" href="/cart" target="_top">
 <span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
 <span class="font-mono-data text-[10px] ml-0.5 font-bold">0</span>
-</button>
+</a>
 </div>
 </div>
 <!-- Compact Search Bar Barcode Module -->

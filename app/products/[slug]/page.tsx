@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FavoriteButton } from "@/components/catalog/favorite-button";
 import { MattressConfigurator } from "@/components/catalog/mattress-configurator";
 
 function titleFromSlug(slug: string) {
@@ -18,7 +19,7 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
           <h1 className="mt-3 font-serif text-4xl md:text-5xl">{title}</h1>
           <p className="mt-5 max-w-xl leading-7 text-neutral-600">{title} is part of the SleepExcellent made-to-order catalogue. Material, dimensions, finish, specifications and final pricing are confirmed with you before production and delivery.</p>
           <MattressConfigurator productSlug={slug} />
-          <div className="mt-5 flex flex-wrap gap-3"><Link className="border border-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider" href="/shop">Browse collection</Link><Link className="border border-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider" href="/build-your-mattress">Customize a mattress</Link></div>
+          <div className="mt-5 flex flex-wrap gap-3"><FavoriteButton productSlug={slug} /><Link className="border border-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider" href="/shop">Browse collection</Link><Link className="border border-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider" href="/build-your-mattress">Customize a mattress</Link></div>
         </section>
       </div>
     </main>
