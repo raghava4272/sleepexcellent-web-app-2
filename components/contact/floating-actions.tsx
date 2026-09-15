@@ -1,10 +1,3 @@
-"use client";
-
-import { usePathname } from "next/navigation";
-
 export function FloatingActions() {
-  const pathname = usePathname();
-  // The approved homepage design already contains this dock within its iframe.
-  if (pathname === "/") return null;
   return <aside aria-label="Contact options" className="fixed right-4 top-1/2 z-[100] flex -translate-y-1/2 flex-col items-end gap-2"><button className="rounded-full border border-[#d6c8b5] bg-white px-4 py-3 text-xs font-bold text-[#171717] shadow-lg" type="button">◌ Chat soon</button><a className="rounded-full bg-[#25D366] px-4 py-3 text-xs font-bold text-white shadow-lg" href="https://wa.me/919876543210" rel="noreferrer" target="_blank">WhatsApp</a><a className="rounded-full bg-[#171717] px-4 py-3 text-xs font-bold text-white shadow-lg" href="tel:+919876543210">Call us</a></aside>;
 }
