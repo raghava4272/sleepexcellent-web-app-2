@@ -14,7 +14,7 @@ export function StitchFrame({ className, src, title }: StitchFrameProps) {
   useEffect(() => {
     let resizeObserver: ResizeObserver | undefined;
 
-    const resize = () => {
+    const resize = (reportedHeight?: number) => {
       const documentElement = frame.current?.contentDocument?.documentElement;
       const body = frame.current?.contentDocument?.body;
       if (!documentElement || !body || !frame.current) return;
@@ -27,7 +27,7 @@ export function StitchFrame({ className, src, title }: StitchFrameProps) {
         const childBottom = child.getBoundingClientRect().bottom - body.getBoundingClientRect().top;
         return Math.max(bottom, childBottom);
       }, 0);
-      const height = Math.max(contentBottom, 1);
+      const height = Math.max(reportedHeight ?? contentBottom, 1);
       frame.current.style.height = `${Math.max(1, Math.ceil(height))}px`;
     };
 
@@ -37,7 +37,7 @@ export function StitchFrame({ className, src, title }: StitchFrameProps) {
       const body = frame.current?.contentDocument?.body;
       if (!documentElement || !body) return;
 
-      resizeObserver = new ResizeObserver(resize);
+      resizeObserver = new ResizeObserver(() => resize());
       resizeObserver.observe(documentElement);
       resizeObserver.observe(body);
       resize();
@@ -45,14 +45,21 @@ export function StitchFrame({ className, src, title }: StitchFrameProps) {
 
     const settle = [0, 250, 1000].map((delay) => window.setTimeout(observeFrameDocument, delay));
     const currentFrame = frame.current;
+    const resizeOnWindow = () => resize();
+    const receiveFrameHeight = (event: MessageEvent<{ type?: string; height?: number }>) => {
+      if (event.source !== currentFrame?.contentWindow || event.data?.type !== "sleepexcellent-frame-height" || typeof event.data.height !== "number") return;
+      resize(event.data.height);
+    };
     currentFrame?.addEventListener("load", observeFrameDocument);
-    window.addEventListener("resize", resize);
+    window.addEventListener("resize", resizeOnWindow);
+    window.addEventListener("message", receiveFrameHeight);
 
     return () => {
       settle.forEach(window.clearTimeout);
       resizeObserver?.disconnect();
       currentFrame?.removeEventListener("load", observeFrameDocument);
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", resizeOnWindow);
+      window.removeEventListener("message", receiveFrameHeight);
     };
   }, []);
 

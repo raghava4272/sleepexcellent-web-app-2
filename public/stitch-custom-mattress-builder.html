@@ -1018,5 +1018,13 @@ Spine Rating: ${document.getElementById('gauge-score').innerText}/10`;
 
     // Initial Run
     recalculate();
+    const reportFrameHeight = () => {
+      const lastNode = document.body.lastElementChild;
+      const height = lastNode ? lastNode.offsetTop + lastNode.offsetHeight : document.body.scrollHeight;
+      window.parent.postMessage({ type: 'sleepexcellent-frame-height', height }, window.location.origin);
+    };
+    new ResizeObserver(reportFrameHeight).observe(document.body);
+    window.addEventListener('load', reportFrameHeight);
+    window.setTimeout(reportFrameHeight, 250);
   </script>
 </body></html>

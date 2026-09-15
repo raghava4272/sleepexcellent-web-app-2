@@ -1266,5 +1266,13 @@
   const badge = foamCard.querySelector(".absolute.top-2.left-2 span");
   if (badge) badge.textContent = "Catalog model";
   grid.insertBefore(foamCard, document.getElementById("custom-configurator"));
+  const reportFrameHeight = () => {
+    const lastNode = document.body.lastElementChild;
+    const height = lastNode ? lastNode.offsetTop + lastNode.offsetHeight : document.body.scrollHeight;
+    window.parent.postMessage({ type: "sleepexcellent-frame-height", height }, window.location.origin);
+  };
+  new ResizeObserver(reportFrameHeight).observe(document.body);
+  window.addEventListener("load", reportFrameHeight);
+  window.setTimeout(reportFrameHeight, 250);
 </script>
 </body></html>
