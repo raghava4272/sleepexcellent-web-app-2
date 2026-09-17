@@ -416,7 +416,7 @@ Suggested first implementation prompt:
 - [x] Phase 2A: product opening glitch repaired with database-backed product resolution and verified Interior/mattress entry points (17 Sep 2026)
 - [x] Phase 2B: 66 source descriptions inventoried; 41 verified descriptions imported and displayed; 25 nonmatching Interior identities recorded for review (17 Sep 2026)
 - [x] Phase 2C: 28 verified indicative fixed prices and 5 verified Interior ranges imported safely; protected admin product controls and dashboard navigation added (17 Sep 2026)
-- [x] Phase 2D: shared reference-style product layout and confirmed-variant flow implemented in our theme; 21st.dev account dependency documented because no signed-in component session/URLs are available (17 Sep 2026)
+- [x] Phase 2D: shared reference-style product layout and confirmed-variant flow implemented in our theme; 21st.dev saved components are now accessible and their appropriate adoption boundaries are documented in `docs/21st-dev-components.md` (17 Sep 2026)
 - [ ] Phase 3: Flash Sale replaced by Make Your Own Mattress
 - [ ] Phase 4: old mattress feature replaced by Meet Our Interior Experts
 - [ ] Phase 5: consistent category typography
