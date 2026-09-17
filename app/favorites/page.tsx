@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const STORAGE_KEY = "sleepexcellent-favorites";
 
@@ -10,10 +10,10 @@ function titleFromSlug(slug: string) {
 }
 
 export default function FavoritesPage() {
-  const [favorites, setFavorites] = useState<string[]>([]);
-  useEffect(() => {
-    try { setFavorites(JSON.parse(window.localStorage.getItem(STORAGE_KEY) ?? "[]") as string[]); } catch { setFavorites([]); }
-  }, []);
+  const [favorites, setFavorites] = useState<string[]>(() => {
+    if (typeof window === "undefined") return [];
+    try { return JSON.parse(window.localStorage.getItem(STORAGE_KEY) ?? "[]") as string[]; } catch { return []; }
+  });
   function remove(slug: string) {
     const next = favorites.filter((item) => item !== slug);
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));

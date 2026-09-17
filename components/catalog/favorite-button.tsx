@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const STORAGE_KEY = "sleepexcellent-favorites";
 
@@ -13,9 +13,7 @@ function readFavorites(): string[] {
 }
 
 export function FavoriteButton({ productSlug }: { productSlug: string }) {
-  const [saved, setSaved] = useState(false);
-
-  useEffect(() => setSaved(readFavorites().includes(productSlug)), [productSlug]);
+  const [saved, setSaved] = useState(() => typeof window !== "undefined" && readFavorites().includes(productSlug));
 
   function toggleFavorite() {
     const favorites = readFavorites();
