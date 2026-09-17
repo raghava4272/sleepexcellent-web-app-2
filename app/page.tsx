@@ -27,7 +27,12 @@ export default function HomePage() {
         }
       }
       const bodyTop = body.getBoundingClientRect().top;
-      const height = Array.from(body.children).reduce((bottom, child) => Math.max(bottom, child.getBoundingClientRect().bottom - bodyTop), 0);
+      const height = Array.from(body.children).reduce((bottom, child) => {
+        if (!(child instanceof HTMLElement)) return bottom;
+        const style = frame.contentWindow?.getComputedStyle(child);
+        if (!style || style.display === "none" || style.visibility === "hidden" || style.position === "fixed" || ["SCRIPT", "STYLE"].includes(child.tagName)) return bottom;
+        return Math.max(bottom, child.getBoundingClientRect().bottom - bodyTop);
+      }, 0);
       frame.style.height = `${Math.max(1, Math.ceil(height))}px`;
     };
 
@@ -39,6 +44,7 @@ export default function HomePage() {
       if (!body) return undefined;
       const observer = new ResizeObserver(() => prepareFrame(frame));
       observer.observe(body);
+      observer.observe(frame.contentDocument.documentElement);
       return observer;
     });
     frames.forEach((frame) => frame.addEventListener("load", resizeAll));

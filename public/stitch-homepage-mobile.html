@@ -237,7 +237,7 @@
 <main class="flex-grow">
 <!-- Hero Section: Sculptural Architectural Bedroom -->
 <section class="relative border-b border-surface-dim bg-surface-container-low">
-<div class="relative h-[410px] w-full overflow-hidden bg-surface-container">
+<div class="relative h-[240px] w-full overflow-hidden bg-surface-container">
 <img class="w-full h-full object-cover grayscale-[15%] contrast-105 transition-opacity duration-500" data-alt="Modern monolithic architectural bedroom with a sculptural low-profile upholstered platform bed, raw bleached oak wall panels, and high-end natural linen bedding. Soft natural morning sunlight floods the room through floor-to-ceiling windows, highlighting warm limestone tones and obsidian charcoal accents in a gallery-grade light interior setting." id="mobile-hero-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqW0rd4fGfocVUwO-wPaVhzOeN3cNfKVXPNgIDCe_m_ZI55fQXNXVIYnnBrOpl0nB8NaMGyw9S_vG3v27nq_YqHJS-WJgq5yJj79I5UKuHj31kpJ6yODA8ccuf6YsId5ZzG_jEtDg1xR2CahIl3PSL_3NoGBM0PrbMXeHyYdDvj1rfPoEIMkOF7yA0xZBGJQnbPcPJphlnxX003rT2Cwrj24KVsn5VdzuSE25AgN6yWn87aEkt9LzfMQ"/>
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-90"></div>
 <!-- Monolithic Spec Pin -->
@@ -253,14 +253,14 @@
 <button aria-label="Next slide" class="text-primary px-1" onclick="moveMobileHero(1)">→</button>
 </div>
 <!-- Hero Narrative Lockup -->
-<div class="absolute bottom-4 left-margin-mobile right-margin-mobile">
+<div class="absolute bottom-3 left-margin-mobile right-margin-mobile">
 <div class="inline-block bg-primary text-surface px-2 py-0.5 font-label-caps text-[10px] tracking-widest uppercase mb-2">
               Bespoke Orthopedic Engineering
             </div>
-<h1 class="font-display-xl-mobile text-display-xl-mobile text-primary tracking-tight leading-[1.05] mb-3">
+<h1 class="font-display-xl-mobile text-[32px] text-primary tracking-tight leading-[0.98] mb-2">
               Better Sleep.<br/><span class="italic font-normal">Architected</span> Around You.
             </h1>
-<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2 max-w-[340px]">
+<p class="font-body-md text-[12px] leading-4 text-on-surface-variant mb-2 line-clamp-2 max-w-[340px]">
               Triple-zoned memory matrix with high-density Swedish pocket coils engineered to realign spinal symmetry.
             </p>
 <div class="grid grid-cols-2 gap-2">
@@ -859,7 +859,9 @@
     function moveMobileHero(direction) {
       setMobileHero(currentMobileHero + direction);
     }
-    window.setInterval(() => moveMobileHero(1), 5500);
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.setInterval(() => moveMobileHero(1), 5500);
+    }
 
     document.querySelectorAll('a[href="#mattresses"]').forEach((link) => {
       link.href = "/shop";

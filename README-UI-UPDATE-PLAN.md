@@ -420,7 +420,7 @@ Suggested first implementation prompt:
 - [x] Phase 3: Flash Sale replaced by a responsive Make Your Own Mattress entry point that opens the existing builder in the outer browser route (17 Sep 2026)
 - [x] Phase 4: old homepage mattress configurator replaced by responsive Meet Our Interior Experts content that links to each real Interior collection; legacy mattress anchors now open the existing builder route (17 Sep 2026)
 - [x] Phase 5: consistent Syne category/product headings and Geist body, navigation, form, and price text applied across embedded and native storefront/category pages (17 Sep 2026)
-- [ ] Phase 6: shorter full-width slideshow and no trailing blank frame area
+- [x] Phase 6: full-width slideshow reduced to 360px desktop / 330px tablet / 240px mobile with controls and reduced-motion support preserved; homepage iframe measurement ignores hidden, fixed, and non-content nodes to prevent trailing blank space (17 Sep 2026)
 - [ ] Phase 7: Minds Behind Sleep Excellent heading
 - [ ] Phase 7A: bottom-right fixed contact icons with mobile purchase-control clearance
 - [ ] Phase 7B: login/signup popups over a blurred originating webpage, with accessible controls and verified authentication flow

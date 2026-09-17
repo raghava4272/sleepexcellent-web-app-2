@@ -226,17 +226,17 @@
 <!-- END: CategoryNavigation -->
 <!-- BEGIN: Full-Width Feature Carousel -->
 <section class="relative w-full overflow-hidden bg-charcoal-900 border-b border-warmSand" aria-label="Featured SleepExcellent collection">
-<div class="relative h-[440px] sm:h-[500px] lg:h-[580px]">
+<div class="relative h-[300px] sm:h-[330px] lg:h-[360px]">
 <img alt="SleepExcellent featured collection" class="w-full h-full object-cover transition-opacity duration-500" id="hero-carousel-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMoiWICAppfA2MFWvdhlyWKXnogH8sI2y6DAVtq3zQNctm17WHq2G_nvd9PFLDOeo341xatDUcEAiklekANCral9BxpZdZ6f8L1n8aZ690rIkLYpyq3sXe7WWVYc0RlELj4i2_kPB_t8tu6RCg9-TrxAeewhKz7i4-05NDtZqXMbReqwathdHmLkgmPlFywzf8Oge8cNEoE-Gadop4SMPtjI9ByoYDm_RclrEFhWwvEEs4mWSnoTf8bA"/>
 <div class="absolute inset-0 bg-gradient-to-r from-charcoal-900/75 via-charcoal-900/20 to-transparent"></div>
-<div class="absolute inset-x-0 bottom-0 p-6 sm:p-10 lg:p-14 text-white se-rise">
+<div class="absolute inset-x-0 bottom-0 p-5 sm:p-7 lg:p-9 text-white se-rise">
 <div class="max-w-7xl mx-auto">
 <p class="text-xs font-mono uppercase tracking-[0.24em] text-amber-200">SleepExcellent · Featured collection</p>
-<h1 class="mt-3 text-4xl sm:text-5xl lg:text-6xl font-serif font-medium tracking-tight" id="hero-carousel-title">Better sleep, architected around you.</h1>
-<p class="mt-3 max-w-xl text-sm sm:text-base text-warmCream/90" id="hero-carousel-meta">Discover considered comfort for every kind of sleeper.</p>
+<h1 class="mt-2 text-3xl sm:text-4xl lg:text-5xl font-serif font-medium tracking-tight" id="hero-carousel-title">Better sleep, architected around you.</h1>
+<p class="mt-2 max-w-xl text-xs sm:text-sm text-warmCream/90" id="hero-carousel-meta">Discover considered comfort for every kind of sleeper.</p>
 </div>
 </div>
-<div class="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 flex items-center gap-2 bg-white/90 backdrop-blur-md rounded-full px-2 py-1.5 shadow-lg">
+<div class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 flex items-center gap-2 bg-white/90 backdrop-blur-md rounded-full px-2 py-1.5 shadow-lg">
 <button aria-label="Previous slide" class="w-7 h-7 rounded-full hover:bg-warmBeige text-charcoal-900" onclick="moveHeroSlide(-1)">←</button>
 <div class="flex gap-1.5">
 <button aria-label="Show slide 1" class="hero-slide-dot w-2 h-2 rounded-full bg-charcoal-900" onclick="setHeroSlide(0)"></button>
@@ -1246,7 +1246,9 @@
   function moveHeroSlide(direction) {
     setHeroSlide(currentHeroSlide + direction);
   }
-  window.setInterval(() => moveHeroSlide(1), 5500);
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    window.setInterval(() => moveHeroSlide(1), 5500);
+  }
 
   document.querySelectorAll('a[href="#mattresses"]').forEach((link) => {
     link.href = "/shop";
