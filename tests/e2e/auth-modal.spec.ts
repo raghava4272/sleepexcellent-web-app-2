@@ -39,6 +39,7 @@ test("shows every top-level catalogue group on hover and links products to their
   await page.goto("/", { waitUntil: "domcontentloaded" });
 
   const navigation = page.getByRole("navigation", { name: "Primary navigation" });
+  await expect(navigation.getByRole("link", { name: "Home", exact: true })).toHaveAttribute("href", "/");
   for (const group of [
     { label: "Mattresses", product: "Ortho Plus Mattress", href: "/products/ortho-plus-mattress" },
     { label: "Sofas", product: "Chester Model Sofa", href: "/products/chester-model-sofa" },
