@@ -1262,5 +1262,24 @@
     link.href = "/build-your-mattress";
     link.target = "_top";
   });
+
+  // The homepage is rendered inside the Next.js shell. Report its content height
+  // after images, fonts and responsive layout settle so the outer iframe never
+  // collapses to an empty one-pixel panel.
+  function reportStorefrontHeight() {
+    const bodyTop = document.body.getBoundingClientRect().top;
+    const height = Array.from(document.body.children).reduce((bottom, child) => {
+      if (!(child instanceof HTMLElement)) return bottom;
+      const style = window.getComputedStyle(child);
+      if (style.display === 'none' || style.visibility === 'hidden' || style.position === 'fixed' || ['SCRIPT', 'STYLE'].includes(child.tagName)) return bottom;
+      return Math.max(bottom, child.getBoundingClientRect().bottom - bodyTop);
+    }, 0);
+    window.parent.postMessage({ type: 'sleepexcellent-frame-height', height: Math.ceil(Math.max(height, 1)) }, window.location.origin);
+  }
+  const queueStorefrontHeight = () => window.requestAnimationFrame(reportStorefrontHeight);
+  window.addEventListener('load', queueStorefrontHeight);
+  document.fonts?.ready?.then(queueStorefrontHeight);
+  new ResizeObserver(queueStorefrontHeight).observe(document.body);
+  [0, 250, 1000, 2000].forEach((delay) => window.setTimeout(queueStorefrontHeight, delay));
 </script>
 </body></html>

@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("renders the approved catalog with supplied mattress data and image placeholders", async ({ page }) => {
-  await page.goto("/shop");
+  await page.goto("/shop", { waitUntil: "domcontentloaded" });
 
   const catalog = page.frameLocator('iframe[title="SleepExcellent approved product listing"]');
   await expect(catalog.getByRole("heading", { level: 1 })).toHaveText(
@@ -15,7 +15,7 @@ test("renders the approved catalog with supplied mattress data and image placeho
 
 test("matches the approved desktop product listing", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 960 });
-  await page.goto("/shop");
+  await page.goto("/shop", { waitUntil: "domcontentloaded" });
   await page.waitForTimeout(1500);
   await page.locator("#next-logo").evaluateAll((nodes) => {
     nodes.forEach((node) => node.parentElement?.remove());

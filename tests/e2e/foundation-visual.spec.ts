@@ -9,7 +9,7 @@ const viewports = [
 for (const viewport of viewports) {
   test(`matches the ${viewport.name} approved Stitch homepage`, async ({ page }) => {
     await page.setViewportSize(viewport.size);
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "domcontentloaded" });
     await page.waitForTimeout(1500);
     await page.locator("#next-logo").evaluateAll((nodes) => {
       nodes.forEach((node) => node.parentElement?.remove());

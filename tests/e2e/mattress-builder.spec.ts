@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("renders the approved custom mattress builder and preserves its configuration controls", async ({ page }) => {
-  await page.goto("/build-your-mattress");
+  await page.goto("/build-your-mattress", { waitUntil: "domcontentloaded" });
 
   const builder = page.frameLocator('iframe[title="SleepExcellent approved custom mattress builder"]');
   await expect(builder.getByRole("heading", { level: 1 })).toHaveText(
@@ -14,7 +14,7 @@ test("renders the approved custom mattress builder and preserves its configurati
 
 test("matches the approved desktop mattress builder", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 960 });
-  await page.goto("/build-your-mattress");
+  await page.goto("/build-your-mattress", { waitUntil: "domcontentloaded" });
   await page.locator('iframe[title="SleepExcellent approved custom mattress builder"]').waitFor();
   await page.waitForTimeout(1500);
   await page.locator("#next-logo").evaluateAll((nodes) => {
