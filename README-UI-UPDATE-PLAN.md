@@ -341,6 +341,17 @@ Likely files: embedded hero markup/styles/scripts, `app/page.tsx`, `components/s
 
 Acceptance: banner is visibly shorter yet full-width; footer is the final page content; no trailing blank panel at any tested width; slideshow and floating actions work during scrolling.
 
+## Phase 6A — match Wakefit homepage slideshow dimensions
+
+Client addition: match the homepage slideshow dimensions on [Wakefit's homepage](https://www.wakefit.co/). This replaces the earlier approximate Phase 6 height targets for the next implementation; Phase 6's completed work remains recorded below.
+
+1. Inspect the live Wakefit homepage at the same 390px, 768px, and 1440px viewport widths used for SleepExcellent verification. Record the visible slideshow width, height, aspect ratio, and any breakpoint-specific layout in the verification notes before changing styles. Measure the banner itself, excluding the header and sections below it; do not infer dimensions from extracted page text.
+2. Apply matching slideshow dimensions and responsive proportions to SleepExcellent's homepage at each corresponding viewport. Keep the desktop banner full-width horizontally and preserve our existing colour theme, slide content, and controls. The client will provide replacement slide content later.
+3. Ensure all slides occupy the same measured area, use intentional image positioning, and do not cause layout jumps or horizontal overflow. Preserve arrows, dots, autoplay, and reduced-motion behavior.
+4. Recheck iframe content height and the footer after the sizing change so the banner does not reintroduce trailing blank space. Compare both homepages side by side at the three viewport widths and record the final dimensions.
+
+Acceptance: the SleepExcellent slideshow matches Wakefit's measured banner dimensions at equivalent viewport widths while retaining SleepExcellent styling and working controls. Do not implement this addition during the plan-only update.
+
 ## Phase 7 — leadership heading
 
 Request covered: 8.
@@ -396,7 +407,7 @@ Include the added pricing/dashboard/product-layout/contact requirements in relea
 ## Terra execution instructions
 
 - Read this plan and current Git state before starting. Do not restart the original ten-phase ecommerce build from the main README.
-- Follow phase order 0, 1, 2, 2A, 2B, 2C, 2D, 3–7, 7A, 7B, then 8. At each handoff, report which phase completed and the remaining checklist items. Resume from the first incomplete phase when the client says “next”.
+- Follow phase order 0, 1, 2, 2A, 2B, 2C, 2D, 3–6, 6A, 7, 7A, 7B, then 8. Completed phases do not need repeating. At each handoff, report which phase completed and the remaining checklist items. Resume from the first incomplete phase when the client says “next”.
 - Implement actual working destinations, menus, search, and dashboard persistence; a renamed label with a dead link does not satisfy this plan.
 - Keep changes focused on the eight UI requests, the product-page opening repair, supplied product descriptions, and the frame/header behavior needed to make them work. Preserve login, checkout, Razorpay verification, favourites, order tracking, and order controls.
 - Use existing assets and theme. Do not invent product prices or expert profiles for this UI update. Read the catalogue mapping before importing interior data.
@@ -421,6 +432,7 @@ Suggested first implementation prompt:
 - [x] Phase 4: old homepage mattress configurator replaced by responsive Meet Our Interior Experts content that links to each real Interior collection; legacy mattress anchors now open the existing builder route (17 Sep 2026)
 - [x] Phase 5: consistent Syne category/product headings and Geist body, navigation, form, and price text applied across embedded and native storefront/category pages (17 Sep 2026)
 - [x] Phase 6: full-width slideshow reduced to 360px desktop / 330px tablet / 240px mobile with controls and reduced-motion support preserved; homepage iframe measurement ignores hidden, fixed, and non-content nodes to prevent trailing blank space (17 Sep 2026)
+- [ ] Phase 6A: measure and match Wakefit homepage slideshow dimensions at equivalent mobile, tablet, and desktop viewport widths; supersedes the previous approximate banner height targets
 - [x] Phase 7: leadership section now uses the exact Minds Behind Sleep Excellent heading with a stable founders anchor on desktop and mobile (17 Sep 2026)
 - [x] Phase 7A: compact fixed bottom-right Chat placeholder, WhatsApp, and Call controls now include accessible icon labels and mobile purchase-control clearance (17 Sep 2026)
 - [x] Phase 7B: login/signup popups over a blurred originating webpage, with accessible controls and verified authentication flow
