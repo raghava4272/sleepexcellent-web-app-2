@@ -7,13 +7,20 @@ function safeNextPath(value: FormDataEntryValue | null) {
   return path?.startsWith("/") && !path.startsWith("//") ? path : "/";
 }
 
+function registerRedirect(request: NextRequest, next: string, modal: boolean) {
+  const url = modal ? new URL(next, request.url) : new URL("/auth/register", request.url);
+  if (modal) url.searchParams.set("auth", "signup");
+  else url.searchParams.set("next", next);
+  return url;
+}
+
 export async function POST(request: NextRequest) {
   const formData = await request.formData();
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
   const next = safeNextPath(formData.get("next"));
-  const redirectUrl = new URL("/auth/register", request.url);
-  redirectUrl.searchParams.set("next", next);
+  const modal = formData.get("modal") === "1";
+  const redirectUrl = registerRedirect(request, next, modal);
   if (!email || password.length < 8) {
     redirectUrl.searchParams.set("error", "invalid_registration");
     return NextResponse.redirect(redirectUrl, 303);

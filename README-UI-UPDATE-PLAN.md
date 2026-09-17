@@ -423,7 +423,7 @@ Suggested first implementation prompt:
 - [x] Phase 6: full-width slideshow reduced to 360px desktop / 330px tablet / 240px mobile with controls and reduced-motion support preserved; homepage iframe measurement ignores hidden, fixed, and non-content nodes to prevent trailing blank space (17 Sep 2026)
 - [x] Phase 7: leadership section now uses the exact Minds Behind Sleep Excellent heading with a stable founders anchor on desktop and mobile (17 Sep 2026)
 - [x] Phase 7A: compact fixed bottom-right Chat placeholder, WhatsApp, and Call controls now include accessible icon labels and mobile purchase-control clearance (17 Sep 2026)
-- [ ] Phase 7B: login/signup popups over a blurred originating webpage, with accessible controls and verified authentication flow
+- [x] Phase 7B: login/signup popups over a blurred originating webpage, with accessible controls and verified authentication flow
 - [ ] Phase 8: responsive/function/security checks and verified deployment
 
 Implementation notes: Phase 0 completed without application, database, or deployment changes. Source-document and live-site baseline evidence is recorded in `docs/phase-0-baseline.md`. Phase 1 moved the homepage/listing header into the outer Next.js viewport, added a database-backed `/search?q=` page, and hides embedded duplicate headers before iframe measurement. It has not been deployed yet.

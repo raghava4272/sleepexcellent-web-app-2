@@ -7,13 +7,20 @@ function safeNextPath(value: FormDataEntryValue | null) {
   return path?.startsWith("/") && !path.startsWith("//") ? path : "/";
 }
 
+function loginRedirect(request: NextRequest, next: string, modal: boolean) {
+  const url = modal ? new URL(next, request.url) : new URL("/auth/login", request.url);
+  if (modal) url.searchParams.set("auth", "login");
+  else url.searchParams.set("next", next);
+  return url;
+}
+
 export async function POST(request: NextRequest) {
   const formData = await request.formData();
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
   const next = safeNextPath(formData.get("next"));
-  const redirectUrl = new URL("/auth/login", request.url);
-  redirectUrl.searchParams.set("next", next);
+  const modal = formData.get("modal") === "1";
+  const redirectUrl = loginRedirect(request, next, modal);
   if (!email || !password) {
     redirectUrl.searchParams.set("error", "missing_credentials");
     return NextResponse.redirect(redirectUrl, 303);
