@@ -2,6 +2,8 @@
 @import "@fontsource-variable/syne/wght.css";
 
 :root {
+  --font-syne: "Syne";
+  --font-geist: var(--font-geist-sans);
   --canvas: #fef9f0;
   --canvas-raised: #ffffff;
   --canvas-soft: #f7f5f1;
@@ -32,6 +34,7 @@
   --color-signal: var(--signal);
   --font-display: var(--font-syne);
   --font-body: var(--font-geist);
+  --font-serif: var(--font-geist);
 }
 
 * {
@@ -89,6 +92,10 @@ textarea:focus-visible,
 }
 
 .font-display {
+  font-family: var(--font-syne), Arial, sans-serif;
+}
+
+main :is(h1, h2, h3, h4) {
   font-family: var(--font-syne), Arial, sans-serif;
 }
 
