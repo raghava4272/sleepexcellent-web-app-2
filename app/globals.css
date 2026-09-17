@@ -141,6 +141,10 @@ main :is(h1, h2, h3, h4) {
   display: none;
 }
 
+.contact-dock {
+  bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
 
 @media (max-width: 767px) {
   .stitch-frame--desktop {
@@ -150,6 +154,10 @@ main :is(h1, h2, h3, h4) {
   .stitch-frame--mobile {
     display: block;
     min-height: 1px;
+  }
+
+  .contact-dock {
+    bottom: max(5.5rem, calc(env(safe-area-inset-bottom) + 4.75rem));
   }
 }
 
