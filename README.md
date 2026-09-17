@@ -1,5 +1,9 @@
 # SleepExcellent Ecommerce Web App
 
+## Functionality and UI acceptance testing
+
+Use [README-WEBSITE-QA-FLOWS.md](./README-WEBSITE-QA-FLOWS.md) for customer shopping, verification/login, variants, cart, Razorpay test payments, admin delivery updates, customer isolation, and responsive UI acceptance flows. The checklist is designed for execution; it does not claim those flows have already passed.
+
 ## Current UI update plan — September 17, 2026
 
 The latest eight UI changes, product-page opening glitch, and import of the supplied product descriptions are documented in [README-UI-UPDATE-PLAN.md](./README-UI-UPDATE-PLAN.md). Use that document as the next implementation handoff for Terra, completing one phase at a time. It overrides older design instructions below where they conflict with these newer requests. This update is planning only; no website changes have been implemented as part of it.

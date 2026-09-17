@@ -883,7 +883,8 @@
         if (style.display === 'none' || style.visibility === 'hidden' || style.position === 'fixed' || ['SCRIPT', 'STYLE'].includes(child.tagName)) return bottom;
         return Math.max(bottom, child.getBoundingClientRect().bottom - bodyTop);
       }, 0);
-      window.parent.postMessage({ type: 'sleepexcellent-frame-height', height: Math.ceil(Math.max(height, 1)) }, window.location.origin);
+      const documentHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight);
+      window.parent.postMessage({ type: 'sleepexcellent-frame-height', height: Math.ceil(Math.max(height, documentHeight, 1)) }, window.location.origin);
     }
     const queueStorefrontHeight = () => window.requestAnimationFrame(reportStorefrontHeight);
     window.addEventListener('load', queueStorefrontHeight);

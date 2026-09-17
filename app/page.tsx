@@ -29,7 +29,17 @@ export default function HomePage() {
       if (!style || style.display === "none" || style.visibility === "hidden" || style.position === "fixed" || ["SCRIPT", "STYLE"].includes(child.tagName)) return bottom;
       return Math.max(bottom, child.getBoundingClientRect().bottom - bodyTop);
     }, 0);
-    const height = Math.max(measuredHeight, reportedHeight ?? 0, 1);
+    // A page root can be `min-h-screen` while its flow content overflows the
+    // iframe's current viewport. Its rectangle is then only the old iframe
+    // height (sometimes 1px), while scrollHeight remains the actual document
+    // height we need to display.
+    const documentHeight = Math.max(
+      body.scrollHeight,
+      documentElement.scrollHeight,
+      body.offsetHeight,
+      documentElement.offsetHeight,
+    );
+    const height = Math.max(measuredHeight, documentHeight, reportedHeight ?? 0, 1);
     frame.style.height = `${Math.ceil(height)}px`;
   }, []);
 

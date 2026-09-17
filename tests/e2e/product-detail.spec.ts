@@ -1,24 +1,24 @@
 import { expect, test } from "@playwright/test";
 
-test("renders the approved Ortho Plus product detail with catalog price and image placeholders", async ({ page }) => {
+test("renders the live Ortho Plus product detail with its catalogue description and variant picker", async ({ page }) => {
   await page.goto("/products/ortho-plus-mattress", { waitUntil: "domcontentloaded" });
 
-  const detail = page.frameLocator('iframe[title="SleepExcellent approved Ortho Plus Mattress details"]');
-  await expect(detail.getByRole("heading", { level: 1 })).toHaveText("Ortho Plus Mattress");
-  await expect(detail.locator("#display-price")).toHaveText("₹16,395");
-  await expect(detail.locator('#main-product-stage[src="/product-placeholder.svg"]')).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Ortho Plus Mattress" })).toBeVisible();
+  await expect(page.getByText("Indicative ₹16,395")).toBeVisible();
+  await expect(page.getByText(/An upgraded version of our ortho mattress/).first()).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "Choose your mattress" })).toBeVisible();
 });
 
-test("matches the approved desktop product detail", async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 960 });
+test("requires variant confirmation before allowing the mattress to be added to cart", async ({ page }) => {
   await page.goto("/products/ortho-plus-mattress", { waitUntil: "domcontentloaded" });
-  await page.waitForTimeout(1500);
-  await page.locator("#next-logo").evaluateAll((nodes) => {
-    nodes.forEach((node) => node.parentElement?.remove());
-  });
 
-  await expect(page).toHaveScreenshot("product-detail-desktop.png", {
-    animations: "disabled",
-    caret: "hide",
-  });
+  await expect(page.getByRole("button", { name: "Add to cart" })).toHaveCount(0);
+  await page.getByRole("button", { name: /Ultra.*Premium/ }).click();
+  await page.getByRole("button", { name: "Queen" }).click();
+  await page.getByRole("button", { name: "78 × 36 in" }).click();
+  await page.getByRole("button", { name: "8 in" }).click();
+  await expect(page.getByText("Ultra · Queen · 78 × 36 in · 8 in")).toBeVisible();
+  await page.getByRole("button", { name: "Confirm variant" }).click();
+  await expect(page.getByRole("button", { name: "Variant confirmed ✓" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Add to cart" })).toBeVisible();
 });

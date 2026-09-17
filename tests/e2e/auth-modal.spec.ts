@@ -20,6 +20,9 @@ test("keeps direct auth routes as a fallback and protects customer checkout", as
 
   await page.goto("/checkout", { waitUntil: "domcontentloaded" });
   await expect(page).toHaveURL(/\/auth\/login\?next=\/checkout$/);
+
+  await page.goto("/cart", { waitUntil: "domcontentloaded" });
+  await expect(page).toHaveURL(/\/auth\/login\?next=\/cart$/);
 });
 
 test("keeps the approved mobile homepage visible after the embedded storefront loads", async ({ page }) => {
@@ -29,6 +32,22 @@ test("keeps the approved mobile homepage visible after the embedded storefront l
   const frame = page.locator('iframe[title="SleepExcellent approved mobile homepage"]');
   await expect(frame).toHaveCSS("display", "block");
   await expect.poll(async () => (await frame.boundingBox())?.height ?? 0).toBeGreaterThan(500);
+});
+
+test("shows every top-level catalogue group on hover and links products to their own pages", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 960 });
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+
+  const navigation = page.getByRole("navigation", { name: "Primary navigation" });
+  for (const group of [
+    { label: "Mattresses", product: "Ortho Plus Mattress", href: "/products/ortho-plus-mattress" },
+    { label: "Sofas", product: "Chester Model Sofa", href: "/products/chester-model-sofa" },
+    { label: "Padding beds", product: "Roman Model Bed", href: "/products/roman-model-bed" },
+    { label: "Interior", product: "Modern Tray False Ceiling", href: "/products/modern-tray-false-ceiling" },
+  ]) {
+    await navigation.getByRole("button", { name: group.label, exact: true }).hover();
+    await expect(navigation.getByRole("link", { name: group.product, exact: true })).toHaveAttribute("href", group.href);
+  }
 });
 
 for (const viewport of [
