@@ -155,6 +155,8 @@
     }
     .se-rise { animation: se-rise 550ms ease-out both; }
     .se-action-dock { display: none !important; }
+    /* Wakefit's mobile campaign banner is approximately 1.54:1. */
+    .mobile-hero-carousel { height: clamp(208px, 65vw, 273px); }
     @media (prefers-reduced-motion: reduce) {
       .se-rise, .se-action-dock { animation: none; }
     }
@@ -237,7 +239,7 @@
 <main class="flex-grow">
 <!-- Hero Section: Sculptural Architectural Bedroom -->
 <section class="relative border-b border-surface-dim bg-surface-container-low">
-<div class="relative h-[240px] w-full overflow-hidden bg-surface-container">
+<div class="relative mobile-hero-carousel w-full overflow-hidden bg-surface-container">
 <img class="w-full h-full object-cover grayscale-[15%] contrast-105 transition-opacity duration-500" data-alt="Modern monolithic architectural bedroom with a sculptural low-profile upholstered platform bed, raw bleached oak wall panels, and high-end natural linen bedding. Soft natural morning sunlight floods the room through floor-to-ceiling windows, highlighting warm limestone tones and obsidian charcoal accents in a gallery-grade light interior setting." id="mobile-hero-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqW0rd4fGfocVUwO-wPaVhzOeN3cNfKVXPNgIDCe_m_ZI55fQXNXVIYnnBrOpl0nB8NaMGyw9S_vG3v27nq_YqHJS-WJgq5yJj79I5UKuHj31kpJ6yODA8ccuf6YsId5ZzG_jEtDg1xR2CahIl3PSL_3NoGBM0PrbMXeHyYdDvj1rfPoEIMkOF7yA0xZBGJQnbPcPJphlnxX003rT2Cwrj24KVsn5VdzuSE25AgN6yWn87aEkt9LzfMQ"/>
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-90"></div>
 <!-- Monolithic Spec Pin -->

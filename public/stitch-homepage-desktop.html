@@ -78,6 +78,11 @@
     .se-rise { animation: se-rise 650ms ease-out both; }
     .se-rise-delay { animation: se-rise 650ms 140ms ease-out both; }
     .se-action-dock { display: none !important; }
+    /* Wakefit's current desktop campaign banner is approximately 5:1. */
+    .hero-carousel-shell { height: 20vw; min-height: 240px; max-height: 360px; }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .hero-carousel-shell { height: 26vw; min-height: 240px; max-height: 300px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       .se-rise, .se-rise-delay, .se-action-dock { animation: none; }
     }
@@ -226,7 +231,7 @@
 <!-- END: CategoryNavigation -->
 <!-- BEGIN: Full-Width Feature Carousel -->
 <section class="relative w-full overflow-hidden bg-charcoal-900 border-b border-warmSand" aria-label="Featured SleepExcellent collection">
-<div class="relative h-[300px] sm:h-[330px] lg:h-[360px]">
+<div class="relative hero-carousel-shell">
 <img alt="SleepExcellent featured collection" class="w-full h-full object-cover transition-opacity duration-500" id="hero-carousel-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMoiWICAppfA2MFWvdhlyWKXnogH8sI2y6DAVtq3zQNctm17WHq2G_nvd9PFLDOeo341xatDUcEAiklekANCral9BxpZdZ6f8L1n8aZ690rIkLYpyq3sXe7WWVYc0RlELj4i2_kPB_t8tu6RCg9-TrxAeewhKz7i4-05NDtZqXMbReqwathdHmLkgmPlFywzf8Oge8cNEoE-Gadop4SMPtjI9ByoYDm_RclrEFhWwvEEs4mWSnoTf8bA"/>
 <div class="absolute inset-0 bg-gradient-to-r from-charcoal-900/75 via-charcoal-900/20 to-transparent"></div>
 <div class="absolute inset-x-0 bottom-0 p-5 sm:p-7 lg:p-9 text-white se-rise">

@@ -432,7 +432,7 @@ Suggested first implementation prompt:
 - [x] Phase 4: old homepage mattress configurator replaced by responsive Meet Our Interior Experts content that links to each real Interior collection; legacy mattress anchors now open the existing builder route (17 Sep 2026)
 - [x] Phase 5: consistent Syne category/product headings and Geist body, navigation, form, and price text applied across embedded and native storefront/category pages (17 Sep 2026)
 - [x] Phase 6: full-width slideshow reduced to 360px desktop / 330px tablet / 240px mobile with controls and reduced-motion support preserved; homepage iframe measurement ignores hidden, fixed, and non-content nodes to prevent trailing blank space (17 Sep 2026)
-- [ ] Phase 6A: measure and match Wakefit homepage slideshow dimensions at equivalent mobile, tablet, and desktop viewport widths; supersedes the previous approximate banner height targets
+- [x] Phase 6A: Wakefit-derived slideshow proportions applied — 5:1 desktop (20vw, 240–360px), 26vw tablet (240–300px), and 1.54:1 mobile (65vw, 208–273px); controls and theme preserved (17 Sep 2026)
 - [x] Phase 7: leadership section now uses the exact Minds Behind Sleep Excellent heading with a stable founders anchor on desktop and mobile (17 Sep 2026)
 - [x] Phase 7A: compact fixed bottom-right Chat placeholder, WhatsApp, and Call controls now include accessible icon labels and mobile purchase-control clearance (17 Sep 2026)
 - [x] Phase 7B: login/signup popups over a blurred originating webpage, with accessible controls and verified authentication flow
