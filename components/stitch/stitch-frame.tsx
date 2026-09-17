@@ -4,11 +4,12 @@ import { useEffect, useRef } from "react";
 
 type StitchFrameProps = {
   className?: string;
+  hideEmbeddedHeader?: boolean;
   src: string;
   title: string;
 };
 
-export function StitchFrame({ className, src, title }: StitchFrameProps) {
+export function StitchFrame({ className, hideEmbeddedHeader = false, src, title }: StitchFrameProps) {
   const frame = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -18,6 +19,18 @@ export function StitchFrame({ className, src, title }: StitchFrameProps) {
       const documentElement = frame.current?.contentDocument?.documentElement;
       const body = frame.current?.contentDocument?.body;
       if (!documentElement || !body || !frame.current) return;
+      if (hideEmbeddedHeader) {
+        body.dataset.outerStorefrontHeader = "true";
+        const headerStyleId = "outer-storefront-header-style";
+        if (!frame.current.contentDocument?.getElementById(headerStyleId)) {
+          const style = frame.current.contentDocument?.createElement("style");
+          if (style) {
+            style.id = headerStyleId;
+            style.textContent = "body[data-outer-storefront-header=true] [data-embedded-storefront-header]{display:none!important}";
+            frame.current.contentDocument?.head.append(style);
+          }
+        }
+      }
       // scrollHeight and the body's rendered height include the iframe viewport.
       // Once a tall frame was assigned, using either value prevented it from ever
       // shrinking below that old viewport height. Measure the bottom of the
@@ -61,7 +74,7 @@ export function StitchFrame({ className, src, title }: StitchFrameProps) {
       window.removeEventListener("resize", resizeOnWindow);
       window.removeEventListener("message", receiveFrameHeight);
     };
-  }, []);
+  }, [hideEmbeddedHeader]);
 
   return <iframe className={`stitch-frame ${className ?? ""}`} ref={frame} scrolling="no" src={src} title={title} />;
 }

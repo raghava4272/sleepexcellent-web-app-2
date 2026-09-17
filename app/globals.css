@@ -134,6 +134,7 @@ textarea:focus-visible,
   display: none;
 }
 
+
 @media (max-width: 767px) {
   .stitch-frame--desktop {
     display: none;

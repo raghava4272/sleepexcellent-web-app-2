@@ -1,5 +1,9 @@
 # SleepExcellent Ecommerce Web App
 
+## Current UI update plan — September 17, 2026
+
+The latest eight UI changes, product-page opening glitch, and import of the supplied product descriptions are documented in [README-UI-UPDATE-PLAN.md](./README-UI-UPDATE-PLAN.md). Use that document as the next implementation handoff for Terra, completing one phase at a time. It overrides older design instructions below where they conflict with these newer requests. This update is planning only; no website changes have been implemented as part of it.
+
 Implementation plan for the client-approved SleepExcellent direct-to-consumer storefront, custom mattress configurator, checkout, customer order tracking, and operations dashboard.
 
 This repository will contain one production application with a responsive customer storefront, a protected admin dashboard, backend endpoints, Supabase data and authentication, Razorpay payments, and Vercel deployment. The approved Stitch project is the visual source of truth. Product and pricing data must come from the supplied catalog documents and then be managed in the admin dashboard.
