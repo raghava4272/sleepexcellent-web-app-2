@@ -418,7 +418,7 @@ Suggested first implementation prompt:
 - [x] Phase 2C: 28 verified indicative fixed prices and 5 verified Interior ranges imported safely; protected admin product controls and dashboard navigation added (17 Sep 2026)
 - [x] Phase 2D: shared reference-style product layout and confirmed-variant flow implemented in our theme; 21st.dev saved components are now accessible and their appropriate adoption boundaries are documented in `docs/21st-dev-components.md` (17 Sep 2026)
 - [x] Phase 3: Flash Sale replaced by a responsive Make Your Own Mattress entry point that opens the existing builder in the outer browser route (17 Sep 2026)
-- [ ] Phase 4: old mattress feature replaced by Meet Our Interior Experts
+- [x] Phase 4: old homepage mattress configurator replaced by responsive Meet Our Interior Experts content that links to each real Interior collection; legacy mattress anchors now open the existing builder route (17 Sep 2026)
 - [ ] Phase 5: consistent category typography
 - [ ] Phase 6: shorter full-width slideshow and no trailing blank frame area
 - [ ] Phase 7: Minds Behind Sleep Excellent heading

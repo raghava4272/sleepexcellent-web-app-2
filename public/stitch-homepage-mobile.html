@@ -412,8 +412,8 @@
 </a>
 </div>
 </section>
-<!-- INTERACTIVE FEATURE: 'Make Your Own Mattress' Studio Card -->
-<section class="py-space-xl px-margin-mobile border-b border-surface-dim bg-surface-container" id="custom-configurator">
+<!-- Legacy configurator retained only as source reference; Phase 4 replaces it below. -->
+<section hidden class="py-space-xl px-margin-mobile border-b border-surface-dim bg-surface-container" id="custom-configurator">
 <div class="bg-surface-container-lowest border border-surface-dim p-4">
 <!-- Header Anchor -->
 <div class="flex items-center justify-between pb-3 border-b border-surface-dim">
@@ -498,6 +498,18 @@
             </button>
 </div>
 </div>
+</section>
+<!-- Meet Our Interior Experts -->
+<section class="border-b border-surface-dim bg-surface-container px-margin-mobile py-space-xl" id="interior-experts">
+<span class="font-label-caps text-[10px] uppercase tracking-widest text-secondary">Interior consultation</span>
+<h2 class="mt-1 font-headline-md text-headline-sm text-primary">Meet Our Interior Experts</h2>
+<p class="mt-2 font-body-sm text-body-sm leading-relaxed text-on-surface-variant">Our interior team helps you choose practical, considered pieces for the way your home works.</p>
+<div class="mt-4 space-y-2">
+<a class="block border border-surface-dim bg-surface-container-lowest p-3 transition-colors hover:border-primary" href="/interiors/tv-units" target="_top"><span class="font-mono-data text-[10px] text-secondary">01</span><strong class="mt-1 block font-headline-sm text-[16px] text-primary">TV Units</strong><span class="mt-1 block font-body-sm text-[11px] text-on-surface-variant">Media walls and storage planned around your room.</span></a>
+<a class="block border border-surface-dim bg-surface-container-lowest p-3 transition-colors hover:border-primary" href="/interiors/kitchen" target="_top"><span class="font-mono-data text-[10px] text-secondary">02</span><strong class="mt-1 block font-headline-sm text-[16px] text-primary">Kitchen</strong><span class="mt-1 block font-body-sm text-[11px] text-on-surface-variant">Practical material and layout choices for daily living.</span></a>
+<a class="block border border-surface-dim bg-surface-container-lowest p-3 transition-colors hover:border-primary" href="/interiors/ceilings" target="_top"><span class="font-mono-data text-[10px] text-secondary">03</span><strong class="mt-1 block font-headline-sm text-[16px] text-primary">Ceilings</strong><span class="mt-1 block font-body-sm text-[11px] text-on-surface-variant">Lighting, ceiling, and finish guidance for a composed space.</span></a>
+</div>
+<a class="mt-4 flex h-11 items-center justify-center bg-primary font-label-caps text-[11px] font-bold uppercase tracking-wider text-surface transition-colors hover:bg-secondary" href="/interiors" target="_top">Explore interiors →</a>
 </section>
 <!-- Section: Top Selling Orthopedic Mattresses (Direct Purchase Cards) -->
 <section class="py-space-xl px-margin-mobile border-b border-surface-dim" id="mattresses">
@@ -851,6 +863,10 @@
 
     document.querySelectorAll('a[href="#mattresses"]').forEach((link) => {
       link.href = "/shop";
+    });
+    document.querySelectorAll('a[href="#custom-configurator"]').forEach((link) => {
+      link.href = "/build-your-mattress";
+      link.target = "_top";
     });
   </script>
 </body></html>
