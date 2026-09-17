@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { FavoriteButton } from "@/components/catalog/favorite-button";
 import { MattressConfigurator } from "@/components/catalog/mattress-configurator";
 import { Header } from "@/components/layout/header";
+import { getPricingManifest, priceLabel } from "@/lib/catalog/pricing";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 type Product = { id: string; name: string; slug: string; short_description: string | null; description: string | null; purchase_mode: "direct" | "configurable" | "quote_only"; category_id: string };
@@ -11,13 +12,14 @@ type Category = { name: string; slug: string };
 export default async function CatalogProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const supabase = await createSupabaseServerClient();
-  const { data: productData } = await supabase.from("products").select("id, name, slug, short_description, description, purchase_mode, category_id").eq("slug", slug).eq("status", "active").maybeSingle();
+  const [{ data: productData }, pricing] = await Promise.all([supabase.from("products").select("id, name, slug, short_description, description, purchase_mode, category_id").eq("slug", slug).eq("status", "active").maybeSingle(), getPricingManifest()]);
   const product = productData as Product | null;
   if (!product) notFound();
   const { data: categoryData } = await supabase.from("categories").select("name, slug").eq("id", product.category_id).maybeSingle();
   const category = categoryData as Category | null;
   const isMattress = category?.slug === "mattresses";
   const isQuoteOnly = product.purchase_mode === "quote_only";
+  const pricingLabel = priceLabel(pricing[product.slug]);
 
   return (
     <>
@@ -29,6 +31,7 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
           <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#9d6b36]">SleepExcellent {category?.name || "catalogue"}</p>
           <h1 className="mt-3 font-serif text-4xl md:text-5xl">{product.name}</h1>
           <p className="mt-5 max-w-xl leading-7 text-neutral-600">{product.description || product.short_description || `${product.name} is part of the SleepExcellent made-to-order catalogue. Material, dimensions, finish, specifications and final pricing are confirmed with you before production and delivery.`}</p>
+          {pricingLabel ? <p className="mt-4 text-sm font-semibold text-[#8a694c]">{pricingLabel} <span className="font-normal text-neutral-500">· Final quotation confirmed before ordering</span></p> : null}
           {isMattress ? (
             <MattressConfigurator productSlug={slug} />
           ) : (
