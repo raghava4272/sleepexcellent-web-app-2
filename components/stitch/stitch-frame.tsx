@@ -40,7 +40,9 @@ export function StitchFrame({ className, hideEmbeddedHeader = false, src, title 
         const childBottom = child.getBoundingClientRect().bottom - body.getBoundingClientRect().top;
         return Math.max(bottom, childBottom);
       }, 0);
-      const height = Math.max(reportedHeight ?? contentBottom, 1);
+      // A hidden script at the end of an embedded document can report zero.
+      // Never let that message collapse otherwise visible catalogue content.
+      const height = Math.max(contentBottom, reportedHeight ?? 0, 1);
       frame.current.style.height = `${Math.max(1, Math.ceil(height))}px`;
     };
 
