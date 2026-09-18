@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { Header } from "@/components/layout/header";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 type SearchPageProps = {
@@ -40,7 +39,6 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
   return (
     <main className="min-h-screen bg-[#f8f4ec] text-[#171717]">
-      <Header />
       <section className="mx-auto max-w-6xl px-5 py-10 md:px-10">
         <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#8a694c]">Catalogue search</p>
         <h1 className="mt-2 font-display text-4xl">{query ? `Results for “${query}”` : "Search the catalogue"}</h1>

@@ -89,7 +89,20 @@ for (const viewport of [
     for (const path of ["/", "/shop", "/products/ortho-plus-mattress", "/interiors", "/interiors/tv-units", "/interiors/kitchen", "/interiors/ceilings", "/build-your-mattress", "/favorites"]) {
       await page.goto(path, { waitUntil: "domcontentloaded" });
       await expect(page.getByRole("main")).toBeVisible();
+      await expect(page.locator(".storefront-header")).toHaveCount(1);
+      await expect(page.locator(".storefront-header")).toHaveCSS("position", "sticky");
       await expect(page.getByLabel("Contact options")).toBeVisible();
     }
-  });
+});
 }
+
+test("keeps the shared top bar on authentication and protected customer routes", async ({ page }) => {
+  for (const path of ["/auth/login", "/auth/register", "/cart", "/checkout", "/account"]) {
+    await page.goto(path, { waitUntil: "domcontentloaded" });
+    const header = page.locator(".storefront-header");
+    await expect(header).toHaveCount(1);
+    await expect(header).toBeVisible();
+    await expect(header.getByRole("link", { name: "SleepExcellent home", exact: true })).toHaveAttribute("href", "/");
+    await expect(header).toHaveCSS("position", "sticky");
+  }
+});

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
+import { Suspense } from "react";
+import { Header } from "@/components/layout/header";
 import { FloatingActions } from "@/components/contact/floating-actions";
 import "./globals.css";
 
@@ -13,7 +15,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={GeistSans.variable}>
-      <body>{children}<FloatingActions /></body>
+      <body><Suspense fallback={null}><Header /></Suspense>{children}<FloatingActions /></body>
     </html>
   );
 }

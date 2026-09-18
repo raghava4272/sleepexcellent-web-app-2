@@ -2,7 +2,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FavoriteButton } from "@/components/catalog/favorite-button";
 import { MattressConfigurator } from "@/components/catalog/mattress-configurator";
-import { Header } from "@/components/layout/header";
 import { getPricingManifest, priceLabel } from "@/lib/catalog/pricing";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
@@ -24,7 +23,6 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
 
   return (
     <>
-      <Header />
       <main className="min-h-screen bg-[#f8f4ec] px-5 py-10 text-[#171717] md:px-10">
         <div className="mx-auto max-w-7xl"><nav aria-label="Breadcrumb" className="text-sm text-neutral-600"><Link href="/">Home</Link><span className="mx-2">/</span><Link href={collectionHref}>{category?.name || "Catalogue"}</Link><span className="mx-2">/</span><span>{product.name}</span></nav><div className="mt-6 grid gap-8 lg:grid-cols-[1.05fr_.95fr]">
         <section><div className="aspect-square rounded-2xl border border-[#d6c8b5] bg-white p-8"><img alt={`${product.name} placeholder`} className="h-full w-full object-contain" src="/product-placeholder.svg" /></div><div className="mt-3 grid grid-cols-4 gap-3">{["Front view", "Materials", "Dimensions", "Detail"].map((label, index) => <div className={`aspect-square rounded-xl border p-3 text-[10px] font-semibold uppercase tracking-[.12em] ${index === 0 ? "border-[#171717] bg-white" : "border-[#d6c8b5] bg-[#f4eee5] text-neutral-500"}`} key={label}>{label}</div>)}</div><div className="mt-8 rounded-2xl border border-[#d6c8b5] bg-white p-5"><h2 className="font-serif text-2xl">Details</h2><dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2"><div><dt className="text-neutral-500">Category</dt><dd className="mt-1 font-semibold">{category?.name || "Catalogue"}</dd></div><div><dt className="text-neutral-500">Availability</dt><dd className="mt-1 font-semibold">Made to order</dd></div></dl></div></section>

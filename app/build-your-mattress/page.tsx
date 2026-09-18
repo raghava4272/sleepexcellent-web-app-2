@@ -5,6 +5,7 @@ export default function BuildYourMattressPage() {
     <main aria-label="Custom mattress builder">
       <StitchFrame
         className="stitch-frame--listing"
+        hideEmbeddedHeader
         src="/stitch-custom-mattress-builder.html"
         title="SleepExcellent approved custom mattress builder"
       />

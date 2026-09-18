@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
-import { Header } from "@/components/layout/header";
 
 export default function HomePage() {
   const desktopFrame = useRef<HTMLIFrameElement>(null);
@@ -95,7 +94,6 @@ export default function HomePage() {
 
   return (
     <main aria-label="SleepExcellent storefront">
-      <Header />
       <iframe
         className="stitch-frame stitch-frame--desktop"
         ref={desktopFrame}
