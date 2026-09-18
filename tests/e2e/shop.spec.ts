@@ -1,5 +1,23 @@
 import { expect, test } from "@playwright/test";
 
+test("View all opens the selected furniture collection and its product pages", async ({ page }) => {
+  for (const collection of [
+    { label: "Sofas", slug: "sofas", title: "Sofas", product: "Chester Model Sofa", productSlug: "chester-model-sofa" },
+    { label: "Padding beds", slug: "padding-beds", title: "Padding Beds", product: "Roman Model Bed", productSlug: "roman-model-bed" },
+  ]) {
+    await page.goto("/", { waitUntil: "load" });
+    const navigation = page.getByRole("navigation", { name: "Primary navigation" });
+    await navigation.getByRole("button", { name: collection.label, exact: true }).hover();
+    await navigation.getByRole("link", { name: `View all ${collection.label}`, exact: true }).click();
+    await expect(page).toHaveURL(new RegExp(`/shop\\?category=${collection.slug}$`));
+    await expect(page.getByRole("heading", { level: 1, name: collection.title, exact: true })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Ortho Plus Mattress", exact: true })).toHaveCount(0);
+    await page.getByRole("link").filter({ has: page.getByRole("heading", { name: collection.product, exact: true }) }).click();
+    await expect(page).toHaveURL(new RegExp(`/products/${collection.productSlug}$`));
+    await expect(page.getByRole("heading", { level: 1, name: collection.product, exact: true })).toBeVisible();
+  }
+});
+
 for (const viewport of [
   { name: "desktop", width: 1440, height: 960 },
   { name: "mobile", width: 390, height: 844 },

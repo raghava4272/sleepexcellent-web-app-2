@@ -34,6 +34,34 @@ test("keeps the approved mobile homepage visible after the embedded storefront l
   await expect.poll(async () => (await frame.boundingBox())?.height ?? 0).toBeGreaterThan(500);
 });
 
+test("keeps catalogue menus open while hovered and closes two seconds after leaving", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 960 });
+  await page.goto("/", { waitUntil: "load" });
+  const navigation = page.getByRole("navigation", { name: "Primary navigation" });
+  const trigger = navigation.getByRole("button", { name: "Mattresses", exact: true });
+  const product = navigation.getByRole("link", { name: "Ortho Plus Mattress", exact: true });
+  await expect(async () => {
+    await page.mouse.move(0, 0);
+    await trigger.hover();
+    await expect(trigger).toHaveAttribute("aria-expanded", "true", { timeout: 500 });
+  }).toPass({ timeout: 10000 });
+  await product.hover();
+  await page.waitForTimeout(2200);
+  await expect(product).toBeVisible();
+  await page.mouse.move(1400, 900);
+  await page.waitForTimeout(1000);
+  await expect(product).toBeVisible();
+  await expect(product).toBeHidden({ timeout: 1500 });
+  await trigger.hover();
+  await page.mouse.move(1400, 900);
+  await page.waitForTimeout(1000);
+  await product.hover();
+  await page.waitForTimeout(2200);
+  await expect(product).toBeVisible();
+  await product.click();
+  await expect(page).toHaveURL(/\/products\/ortho-plus-mattress$/);
+});
+
 test("shows every top-level catalogue group on hover and links products to their own pages", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 960 });
   await page.goto("/", { waitUntil: "domcontentloaded" });
