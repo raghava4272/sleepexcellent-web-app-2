@@ -3,11 +3,11 @@ import { createClient } from "@supabase/supabase-js";
 import { expect, test } from "@playwright/test";
 
 // Next's local form redirects use localhost; keep cookies on that same host.
-test.use({ baseURL: "http://localhost:3000" });
+test.use({ baseURL: process.env.PROFILE_QA_BASE_URL || "http://localhost:3000" });
 
 test("signs into the account popup, opens the profile, and saves personal details", async ({ page }) => {
   test.skip(!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY, "Requires configured Supabase test access.");
-  test.setTimeout(60000);
+  test.setTimeout(120000);
   const admin = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, { auth: { persistSession: false, autoRefreshToken: false } });
   const email = `profile-qa-${randomUUID()}@sleepexcellent.test`;
   const password = `Qa-${randomUUID()}!`;
@@ -36,6 +36,9 @@ test("signs into the account popup, opens the profile, and saves personal detail
     await expect(page.getByText(email, { exact: true })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Personal information", exact: true })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Order history & tracking", exact: true })).toBeVisible();
+    // A speculative GET must never sign the customer out (production prefetch regression).
+    const speculativeSignOut = await page.request.get("/auth/sign-out?next=/", { maxRedirects: 0 });
+    expect(speculativeSignOut.status()).toBe(405);
     await page.getByRole("link", { name: "View order details →", exact: true }).click();
     await expect(page).toHaveURL(new RegExp(`/account/orders/${orderNumber}$`));
     await expect(page.getByRole("heading", { level: 1, name: `Order ${orderNumber}`, exact: true })).toBeVisible();
@@ -59,6 +62,10 @@ test("signs into the account popup, opens the profile, and saves personal detail
     const call = page.getByRole("link", { name: "Call us", exact: true });
     await call.hover();
     await expect(call).toHaveCSS("color", "rgb(255, 255, 255)");
+    await page.getByRole("button", { name: "Sign out", exact: true }).click();
+    await expect(page).toHaveURL(/\/$/);
+    await page.goto("/account");
+    await expect(page).toHaveURL(/\/auth\/login/);
   } finally {
     const { error: orderCleanupError } = await admin.from("orders").delete().eq("id", orderId).eq("user_id", data.user.id);
     if (orderCleanupError) throw new Error("Unable to remove temporary QA order.");
