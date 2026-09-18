@@ -25,6 +25,21 @@ test("keeps direct auth routes as a fallback and protects customer checkout", as
   await expect(page).toHaveURL(/\/auth\/login\?next=\/cart$/);
 });
 
+test("keeps popup validation errors on the storefront while targeting the profile after login", async ({ request }) => {
+  for (const [route, mode, error] of [
+    ["email-login", "login", "missing_credentials"],
+    ["email-register", "signup", "invalid_registration"],
+  ]) {
+    const response = await request.post(`/auth/${route}`, { form: { next: "/account", returnTo: "/shop?category=sofas", modal: "1" }, maxRedirects: 0 });
+    expect(response.status()).toBe(303);
+    const location = new URL(response.headers().location);
+    expect(location.pathname).toBe("/shop");
+    expect(location.searchParams.get("category")).toBe("sofas");
+    expect(location.searchParams.get("auth")).toBe(mode);
+    expect(location.searchParams.get("error")).toBe(error);
+  }
+});
+
 test("keeps the approved mobile homepage visible after the embedded storefront loads", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/", { waitUntil: "domcontentloaded" });

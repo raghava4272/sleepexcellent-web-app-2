@@ -145,6 +145,10 @@ main :is(h1, h2, h3, h4) {
   bottom: max(1rem, env(safe-area-inset-bottom));
 }
 
+.contact-dock a[aria-label="Call us"] {
+  color: #ffffff;
+}
+
 
 @media (max-width: 767px) {
   .stitch-frame--desktop {

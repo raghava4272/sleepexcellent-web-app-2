@@ -9,6 +9,7 @@ type AuthModalProps = {
   message?: string | null;
   mode: AuthMode;
   next: string;
+  returnTo: string;
   onClose: () => void;
   onModeChange: (mode: AuthMode) => void;
 };
@@ -19,7 +20,7 @@ const errorMessages: Record<string, string> = {
   missing_credentials: "Enter both your email address and password.",
 };
 
-export function AuthModal({ error, message, mode, next, onClose, onModeChange }: AuthModalProps) {
+export function AuthModal({ error, message, mode, next, returnTo, onClose, onModeChange }: AuthModalProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -84,6 +85,7 @@ export function AuthModal({ error, message, mode, next, onClose, onModeChange }:
 
         <form action={isSignup ? "/auth/email-register" : "/auth/email-login"} className="mt-6 space-y-4" method="post" onSubmit={submit}>
           <input name="next" type="hidden" value={next} />
+          <input name="returnTo" type="hidden" value={returnTo} />
           <input name="modal" type="hidden" value="1" />
           <div>
             <label className="mb-1.5 block text-sm font-semibold" htmlFor="auth-modal-email">Email address</label>

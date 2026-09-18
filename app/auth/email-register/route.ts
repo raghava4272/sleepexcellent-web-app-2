@@ -20,7 +20,8 @@ export async function POST(request: NextRequest) {
   const password = String(formData.get("password") ?? "");
   const next = safeNextPath(formData.get("next"));
   const modal = formData.get("modal") === "1";
-  const redirectUrl = registerRedirect(request, next, modal);
+  const returnTo = safeNextPath(formData.get("returnTo") ?? next);
+  const redirectUrl = registerRedirect(request, modal ? returnTo : next, modal);
   if (!email || password.length < 8) {
     redirectUrl.searchParams.set("error", "invalid_registration");
     return NextResponse.redirect(redirectUrl, 303);
