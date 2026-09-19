@@ -22,7 +22,7 @@ export function ImageGallery({ items }: { items: GalleryItem[] }) {
       </div>
 
       <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:flex lg:h-[430px] lg:items-stretch">
-        {items.map((item) => (
+        {items.map((item, index) => (
           <Link
             className="group relative min-h-72 overflow-hidden rounded-2xl border border-[#d6c8b5] bg-[#eee7dc] shadow-sm transition-[flex,transform,box-shadow] duration-500 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#171717] lg:min-w-0 lg:flex-1 lg:hover:flex-[2.25] lg:focus-visible:flex-[2.25] motion-reduce:transition-none"
             href={item.href}
@@ -34,6 +34,7 @@ export function ImageGallery({ items }: { items: GalleryItem[] }) {
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
               src={item.imageSrc || "/product-placeholder.svg"}
+              loading={index === 0 ? "eager" : "lazy"}
               unoptimized={Boolean(item.imageSrc?.startsWith("http"))}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
