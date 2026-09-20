@@ -46,7 +46,7 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
             <div className="mt-7 rounded-2xl border border-[#d6c8b5] bg-white p-5">
               <p className="text-sm font-semibold">{isQuoteOnly ? "Project pricing on request" : "Specifications and pricing"}</p>
               <p className="mt-2 text-sm leading-6 text-neutral-600">{isQuoteOnly ? "Our Interior team will confirm materials, dimensions, site requirements, and your final estimate after a consultation." : "Select your preferred configuration and our team will confirm the final specification."}</p>
-              <Link className="mt-4 inline-block rounded-full bg-[#181818] px-5 py-3 text-sm font-semibold text-white" href="/build-your-mattress">Request a consultation</Link>
+              <Link className="mt-4 inline-block rounded-full bg-[#181818] px-5 py-3 text-sm font-semibold" href="/build-your-mattress" style={{ color: "#ffffff" }}>Request a consultation</Link>
             </div>
           )}
           <div className="mt-5 flex flex-wrap gap-3"><FavoriteButton productSlug={slug} /><Link className="border border-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider" href={collectionHref}>Browse collection</Link>{isMattress ? <Link className="border border-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider" href="/build-your-mattress">Customize a mattress</Link> : null}</div>

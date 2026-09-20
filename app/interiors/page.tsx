@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ImageGallery, type GalleryItem } from "@/components/ui/image-gallery";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -33,7 +34,10 @@ export default async function InteriorsPage() {
     : { data: [] };
   const products = (productData ?? []) as Product[];
   const galleryProducts = categories.flatMap((category) =>
-    products.filter((product) => product.category_id === category.id).slice(0, 2),
+    products
+      .filter((product) => product.category_id === category.id)
+      .sort((a, b) => (b.product_images?.length ?? 0) - (a.product_images?.length ?? 0))
+      .slice(0, 2),
   );
   const galleryItems: GalleryItem[] = galleryProducts.map((product) => {
     const category = categories.find((entry) => entry.id === product.category_id);
@@ -61,8 +65,15 @@ export default async function InteriorsPage() {
         <div className="grid gap-5 lg:grid-cols-3">
           {categories.map((category) => {
             const group = products.filter((product) => product.category_id === category.id);
+            const featuredProduct = group.find((product) => product.product_images?.length);
+            const featuredImage = featuredProduct ? [...(featuredProduct.product_images ?? [])].sort((a, b) => a.sort_order - b.sort_order)[0] : null;
+            const featuredImageUrl = featuredImage ? supabase.storage.from("product-images").getPublicUrl(featuredImage.storage_path).data.publicUrl : null;
             return (
-              <section className="rounded-2xl border border-[#d6c8b5] bg-white p-6 shadow-sm" key={category.id}>
+              <section className="overflow-hidden rounded-2xl border border-[#d6c8b5] bg-white shadow-sm" key={category.id}>
+                <div className="relative aspect-[16/9] bg-[#f7f5f1]">
+                  <Image alt={featuredImage?.alt_text || `${category.name} image placeholder`} className={featuredImageUrl ? "object-cover" : "object-contain p-6"} fill sizes="(max-width: 1024px) 100vw, 33vw" src={featuredImageUrl || "/product-placeholder.svg"} unoptimized={Boolean(featuredImageUrl)} />
+                </div>
+                <div className="p-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9d6b36]">Interior category</p>
                 <h2 className="mt-2 font-serif text-3xl">{category.name}</h2>
                 <p className="mt-3 min-h-12 text-sm leading-6 text-neutral-600">{category.description || "Made-to-order specifications and finishes for your space."}</p>
@@ -71,6 +82,7 @@ export default async function InteriorsPage() {
                   {group.slice(0, 6).map((product) => <li key={product.id}><Link className="text-sm hover:underline" href={`/products/${product.slug}`}>{product.name}</Link></li>)}
                   {group.length > 6 ? <li className="text-sm text-neutral-500">+ {group.length - 6} more designs</li> : null}
                 </ul>
+                </div>
               </section>
             );
           })}
