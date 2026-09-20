@@ -32,7 +32,7 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
 
   return (
     <>
-      <main className="min-h-screen bg-[#f8f4ec] px-5 py-10 text-[#171717] md:px-10">
+      <main className="min-h-screen bg-white px-5 py-10 text-[#171717] md:px-10">
         <div className="mx-auto max-w-7xl"><nav aria-label="Breadcrumb" className="text-sm text-neutral-600"><Link href="/">Home</Link><span className="mx-2">/</span><Link href={collectionHref}>{category?.name || "Catalogue"}</Link><span className="mx-2">/</span><span>{product.name}</span></nav><div className="mt-6 grid gap-8 lg:grid-cols-[1.05fr_.95fr]">
         <section><ProductImageGallery images={productImages} productName={product.name} /><div className="mt-8 rounded-2xl border border-[#d6c8b5] bg-white p-5"><h2 className="font-serif text-2xl">Details</h2><dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2"><div><dt className="text-neutral-500">Category</dt><dd className="mt-1 font-semibold">{category?.name || "Catalogue"}</dd></div><div><dt className="text-neutral-500">Availability</dt><dd className="mt-1 font-semibold">Made to order</dd></div></dl></div></section>
         <section className="self-start lg:sticky lg:top-28">
