@@ -25,12 +25,26 @@ function PhoneIcon() {
 
 export function FloatingActions() {
   const [chatOpen, setChatOpen] = useState(false);
-  const [selectedFaq, setSelectedFaq] = useState<number | null>(null);
-  const selected = selectedFaq === null ? null : faqs[selectedFaq];
+  const [question, setQuestion] = useState("");
+  const [reply, setReply] = useState<{ question: string; answer: string } | null>(null);
 
   function closeChat() {
     setChatOpen(false);
-    setSelectedFaq(null);
+    setQuestion("");
+    setReply(null);
+  }
+
+  function submitQuestion(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const submitted = question.trim();
+    if (!submitted) return;
+    const normalized = submitted.toLocaleLowerCase().replace(/[?.!]+$/, "");
+    const matched = faqs.find((faq) => faq.question.toLocaleLowerCase().replace(/[?.!]+$/, "") === normalized);
+    setReply({
+      question: submitted,
+      answer: matched?.answer ?? "Thank you for your question. We will get back to you.",
+    });
+    setQuestion("");
   }
 
   return <>
@@ -41,14 +55,19 @@ export function FloatingActions() {
       </header>
       <div className="overflow-y-auto p-4">
         <div className="rounded-xl bg-[#f8f4ec] p-3 text-sm leading-6 text-[#343434]">Hello! Choose a question below and I’ll show you the ready answer.</div>
-        {selected ? <div className="mt-4">
-          <p className="text-sm font-semibold">{selected.question}</p>
-          <p className="mt-2 rounded-xl border border-[#e7dccb] p-3 text-sm leading-6 text-neutral-600">{selected.answer}</p>
-          <button className="mt-4 text-sm font-semibold text-[#765025] underline underline-offset-4" onClick={() => setSelectedFaq(null)} type="button">← Back to questions</button>
+        {reply ? <div className="mt-4">
+          <p className="text-sm font-semibold">{reply.question}</p>
+          <p className="mt-2 rounded-xl border border-[#e7dccb] p-3 text-sm leading-6 text-neutral-600">{reply.answer}</p>
+          <button className="mt-4 text-sm font-semibold text-[#765025] underline underline-offset-4" onClick={() => setReply(null)} type="button">Back to questions</button>
         </div> : <div className="mt-4 grid gap-2" aria-label="Frequently asked questions">
-          {faqs.map((faq, index) => <button className="rounded-xl border border-[#d6c8b5] px-4 py-3 text-left text-sm font-semibold transition hover:border-[#8a694c] hover:bg-[#f8f4ec] focus-visible:outline-2 focus-visible:outline-offset-2" key={faq.question} onClick={() => setSelectedFaq(index)} type="button">{faq.question}</button>)}
+          {faqs.map((faq) => <button className="rounded-xl border border-[#d6c8b5] px-4 py-3 text-left text-sm font-semibold transition hover:border-[#8a694c] hover:bg-[#f8f4ec] focus-visible:outline-2 focus-visible:outline-offset-2" key={faq.question} onClick={() => setReply(faq)} type="button">{faq.question}</button>)}
         </div>}
       </div>
+      <form className="flex gap-2 border-t border-[#e7dccb] bg-white p-3" onSubmit={submitQuestion}>
+        <label className="sr-only" htmlFor="faq-chat-question">Type your question</label>
+        <input className="min-w-0 flex-1 rounded-full border border-[#d6c8b5] px-4 py-2 text-sm outline-none focus:border-[#171717]" id="faq-chat-question" onChange={(event) => setQuestion(event.target.value)} placeholder="Type your question..." type="text" value={question} />
+        <button className="rounded-full bg-[#171717] px-4 py-2 text-sm font-semibold" style={{ color: "#ffffff" }} type="submit">Send</button>
+      </form>
       <footer className="border-t border-[#e7dccb] bg-[#fffdfa] p-3 text-center text-xs text-neutral-600">Need more help? <a className="font-semibold text-[#176b38] underline" href="https://wa.me/919876543210" rel="noreferrer" target="_blank">Chat on WhatsApp</a></footer>
     </section> : null}
     <aside aria-label="Contact options" className="contact-dock fixed right-4 z-[100] flex flex-col items-end gap-2 sm:right-6">
