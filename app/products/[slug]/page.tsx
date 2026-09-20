@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ProductImageGallery } from "@/components/catalog/product-image-gallery";
 import { notFound } from "next/navigation";
 import { FavoriteButton } from "@/components/catalog/favorite-button";
 import { MattressConfigurator } from "@/components/catalog/mattress-configurator";
@@ -7,6 +8,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 type Product = { id: string; name: string; slug: string; short_description: string | null; description: string | null; purchase_mode: "direct" | "configurable" | "quote_only"; category_id: string };
 type Category = { name: string; slug: string };
+type ProductImage = { storage_path: string; alt_text: string; sort_order: number };
 
 export default async function CatalogProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -14,8 +16,15 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
   const [{ data: productData }, pricing] = await Promise.all([supabase.from("products").select("id, name, slug, short_description, description, purchase_mode, category_id").eq("slug", slug).eq("status", "active").maybeSingle(), getPricingManifest()]);
   const product = productData as Product | null;
   if (!product) notFound();
-  const { data: categoryData } = await supabase.from("categories").select("name, slug").eq("id", product.category_id).maybeSingle();
+  const [{ data: categoryData }, { data: imageData }] = await Promise.all([
+    supabase.from("categories").select("name, slug").eq("id", product.category_id).maybeSingle(),
+    supabase.from("product_images").select("storage_path, alt_text, sort_order").eq("product_id", product.id).order("sort_order"),
+  ]);
   const category = categoryData as Category | null;
+  const productImages = ((imageData ?? []) as ProductImage[]).map((image) => ({
+    alt: image.alt_text,
+    src: supabase.storage.from("product-images").getPublicUrl(image.storage_path).data.publicUrl,
+  }));
   const isMattress = category?.slug === "mattresses";
   const collectionHref = isMattress ? "/shop" : ["sofas", "padding-beds"].includes(category?.slug || "") ? `/shop?category=${category?.slug}` : ["tv-units", "kitchen", "ceilings"].includes(category?.slug || "") ? `/interiors/${category?.slug}` : "/interiors";
   const isQuoteOnly = product.purchase_mode === "quote_only";
@@ -25,7 +34,7 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
     <>
       <main className="min-h-screen bg-[#f8f4ec] px-5 py-10 text-[#171717] md:px-10">
         <div className="mx-auto max-w-7xl"><nav aria-label="Breadcrumb" className="text-sm text-neutral-600"><Link href="/">Home</Link><span className="mx-2">/</span><Link href={collectionHref}>{category?.name || "Catalogue"}</Link><span className="mx-2">/</span><span>{product.name}</span></nav><div className="mt-6 grid gap-8 lg:grid-cols-[1.05fr_.95fr]">
-        <section><div className="aspect-square rounded-2xl border border-[#d6c8b5] bg-white p-8"><img alt={`${product.name} placeholder`} className="h-full w-full object-contain" src="/product-placeholder.svg" /></div><div className="mt-3 grid grid-cols-4 gap-3">{["Front view", "Materials", "Dimensions", "Detail"].map((label, index) => <div className={`aspect-square rounded-xl border p-3 text-[10px] font-semibold uppercase tracking-[.12em] ${index === 0 ? "border-[#171717] bg-white" : "border-[#d6c8b5] bg-[#f4eee5] text-neutral-500"}`} key={label}>{label}</div>)}</div><div className="mt-8 rounded-2xl border border-[#d6c8b5] bg-white p-5"><h2 className="font-serif text-2xl">Details</h2><dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2"><div><dt className="text-neutral-500">Category</dt><dd className="mt-1 font-semibold">{category?.name || "Catalogue"}</dd></div><div><dt className="text-neutral-500">Availability</dt><dd className="mt-1 font-semibold">Made to order</dd></div></dl></div></section>
+        <section><ProductImageGallery images={productImages} productName={product.name} /><div className="mt-8 rounded-2xl border border-[#d6c8b5] bg-white p-5"><h2 className="font-serif text-2xl">Details</h2><dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2"><div><dt className="text-neutral-500">Category</dt><dd className="mt-1 font-semibold">{category?.name || "Catalogue"}</dd></div><div><dt className="text-neutral-500">Availability</dt><dd className="mt-1 font-semibold">Made to order</dd></div></dl></div></section>
         <section className="self-start lg:sticky lg:top-28">
           <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#9d6b36]">SleepExcellent {category?.name || "catalogue"}</p>
           <h1 className="mt-3 font-serif text-4xl md:text-5xl">{product.name}</h1>
