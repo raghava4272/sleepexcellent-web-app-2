@@ -16,6 +16,10 @@ export async function PATCH(request: Request, ctx: { params: Promise<{ productId
     const admin = createSupabaseAdminClient(); const { data: product } = await admin.from("products").select("slug").eq("id", productId).maybeSingle(); if (!product) return NextResponse.json({ error: "NOT_FOUND" }, { status: 404 });
     const { data: setting } = await admin.from("site_settings").select("value").eq("key", PRICING_SETTING_KEY).maybeSingle(); const manifest = ((setting?.value ?? {}) as PricingManifest); manifest[product.slug] = { ...entry, source: "admin" };
     const { error } = await admin.from("site_settings").upsert({ key: PRICING_SETTING_KEY, value: manifest }); if (error) throw error;
+    if (entry.kind === "indicative_fixed" && typeof entry.amount_paise === "number") {
+      const { error: variantError } = await admin.from("product_variants").update({ price_paise: entry.amount_paise }).eq("product_id", productId).eq("is_active", true);
+      if (variantError) throw variantError;
+    }
     return NextResponse.json({ entry: manifest[product.slug] });
   } catch (error) { if (error instanceof Error && error.message === "AUTH_REQUIRED") return NextResponse.json({ error: "AUTH_REQUIRED" }, { status: 401 }); return NextResponse.json({ error: "UPDATE_FAILED" }, { status: 500 }); }
 }

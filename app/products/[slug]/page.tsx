@@ -3,6 +3,7 @@ import { ProductImageGallery } from "@/components/catalog/product-image-gallery"
 import { notFound } from "next/navigation";
 import { FavoriteButton } from "@/components/catalog/favorite-button";
 import { MattressConfigurator } from "@/components/catalog/mattress-configurator";
+import { AddToCart } from "@/components/catalog/add-to-cart";
 import { getPricingManifest, priceLabel } from "@/lib/catalog/pricing";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
@@ -29,7 +30,6 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
   const videoKey = category?.slug === "mattresses" ? "mattresses.m4v" : category?.slug === "sofas" ? "sofas.m4v" : category?.slug === "padding-beds" ? "padding-beds.mp4" : ["tv-units", "kitchen", "ceilings"].includes(category?.slug || "") ? "interiors.mp4" : null;
   const productVideo = videoKey ? { label: product.name + " product video", src: supabase.storage.from("product-images").getPublicUrl("videos/" + videoKey).data.publicUrl } : undefined;
   const collectionHref = isMattress ? "/shop" : ["sofas", "padding-beds"].includes(category?.slug || "") ? `/shop?category=${category?.slug}` : ["tv-units", "kitchen", "ceilings"].includes(category?.slug || "") ? `/interiors/${category?.slug}` : "/interiors";
-  const isQuoteOnly = product.purchase_mode === "quote_only";
   const pricingLabel = priceLabel(pricing[product.slug]);
 
   return (
@@ -40,20 +40,20 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
         <section className="self-start lg:sticky lg:top-28">
           <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#9d6b36]">SleepExcellent {category?.name || "catalogue"}</p>
           <h1 className="mt-3 font-serif text-4xl md:text-5xl">{product.name}</h1>
-          <p className="mt-5 max-w-xl leading-7 text-neutral-600">{product.description || product.short_description || `${product.name} is part of the SleepExcellent made-to-order catalogue. Material, dimensions, finish, specifications and final pricing are confirmed with you before production and delivery.`}</p>
-          {pricingLabel ? <p className="mt-4 text-sm font-semibold text-[#8a694c]">{pricingLabel} <span className="font-normal text-neutral-500">· Final quotation confirmed before ordering</span></p> : null}
+          <p className="mt-5 max-w-xl leading-7 text-neutral-600">{product.description || product.short_description || `${product.name} is part of the SleepExcellent made-to-order catalogue.`}</p>
+          {pricingLabel ? <p className="mt-4 text-2xl font-semibold text-[#8a694c]">{pricingLabel}</p> : null}
           {isMattress ? (
             <MattressConfigurator productSlug={slug} />
           ) : (
             <div className="mt-7 rounded-2xl border border-[#d6c8b5] bg-white p-5">
-              <p className="text-sm font-semibold">{isQuoteOnly ? "Project pricing on request" : "Specifications and pricing"}</p>
-              <p className="mt-2 text-sm leading-6 text-neutral-600">{isQuoteOnly ? "Our Interior team will confirm materials, dimensions, site requirements, and your final estimate after a consultation." : "Select your preferred configuration and our team will confirm the final specification."}</p>
-              <Link className="mt-4 inline-block rounded-full bg-[#181818] px-5 py-3 text-sm font-semibold" href="/build-your-mattress" style={{ color: "#ffffff" }}>Request a consultation</Link>
+              <p className="text-sm font-semibold">Ready to order</p>
+              <p className="mt-2 text-sm leading-6 text-neutral-600">Add this made-to-order product directly to your cart. Delivery timing is confirmed after payment.</p>
+              <AddToCart productSlug={slug} />
             </div>
           )}
           <div className="mt-5 flex flex-wrap gap-3"><FavoriteButton productSlug={slug} /><Link className="border border-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider" href={collectionHref}>Browse collection</Link>{isMattress ? <Link className="border border-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider" href="/build-your-mattress">Customize a mattress</Link> : null}</div>
         </section>
-        </div><section className="mt-12 grid gap-5 border-t border-[#d6c8b5] pt-8 md:grid-cols-3"><div><h2 className="font-serif text-2xl">Product description</h2><p className="mt-3 text-sm leading-6 text-neutral-600">{product.description || product.short_description || "Details will be confirmed with your order."}</p></div><div><h2 className="font-serif text-2xl">Delivery and care</h2><p className="mt-3 text-sm leading-6 text-neutral-600">Production and delivery timing are confirmed once the order configuration is approved.</p></div><div><h2 className="font-serif text-2xl">Questions</h2><details className="mt-3 border-b border-[#d6c8b5] pb-3 text-sm"><summary className="cursor-pointer font-semibold">Can I request a custom size?</summary><p className="mt-2 leading-6 text-neutral-600">Yes. Choose Custom for mattress sizing, or request a consultation for Interior products.</p></details></div></section></div>
+        </div><section className="mt-12 grid gap-5 border-t border-[#d6c8b5] pt-8 md:grid-cols-3"><div><h2 className="font-serif text-2xl">Product description</h2><p className="mt-3 text-sm leading-6 text-neutral-600">{product.description || product.short_description || "Details will be confirmed with your order."}</p></div><div><h2 className="font-serif text-2xl">Delivery and care</h2><p className="mt-3 text-sm leading-6 text-neutral-600">Production and delivery timing are confirmed once the order configuration is approved.</p></div><div><h2 className="font-serif text-2xl">Questions</h2><details className="mt-3 border-b border-[#d6c8b5] pb-3 text-sm"><summary className="cursor-pointer font-semibold">Can I request a custom size?</summary><p className="mt-2 leading-6 text-neutral-600">Yes. Choose Custom for mattress sizing. For furniture and Interior products, contact our team after ordering to confirm dimensions.</p></details></div></section></div>
       </main>
     </>
   );
