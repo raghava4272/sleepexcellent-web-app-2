@@ -95,6 +95,19 @@ export function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    const openDirectAboutLink = (event: MouseEvent) => {
+      const target = event.target instanceof Element ? event.target.closest("button") : null;
+      const navigation = target?.closest('[aria-label="Primary navigation"], [aria-label="Mobile navigation"]');
+      if (!navigation || !target?.textContent?.trim().startsWith("About us")) return;
+      setMenuOpen(false);
+      setActiveCatalogueMenu(null);
+      router.push("/about");
+    };
+    document.addEventListener("click", openDirectAboutLink);
+    return () => document.removeEventListener("click", openDirectAboutLink);
+  }, [router]);
+
   const submitSearch = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const term = query.trim();

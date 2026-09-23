@@ -154,6 +154,11 @@ main :is(h1, h2, h3, h4) {
   padding-block: 1rem;
 }
 
+/* About Us is the final direct navigation item before the mattress CTA. */
+.storefront-header nav[aria-label="Primary navigation"] > ul > li:nth-last-child(2) > div {
+  display: none !important;
+}
+
 
 @media (max-width: 767px) {
   .stitch-frame--desktop {
