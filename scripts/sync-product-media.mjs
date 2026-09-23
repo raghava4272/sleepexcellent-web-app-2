@@ -67,6 +67,11 @@ function normalize(value) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "");
 }
 
+function mediaOrder(file) {
+  const numbers = path.basename(file, path.extname(file)).match(/\d+/g);
+  return numbers?.length ? Number(numbers.at(-1)) : Number.MAX_SAFE_INTEGER;
+}
+
 async function walk(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
   const nested = await Promise.all(entries.map(async (entry) => {
@@ -130,7 +135,10 @@ if (missingProducts.length) {
 const rows = [];
 const uploads = [];
 for (const { product, files: productFiles } of grouped.values()) {
-  const sorted = productFiles.sort((left, right) => left.localeCompare(right, undefined, { numeric: true }));
+  const sorted = productFiles.sort((left, right) => {
+    const orderDifference = mediaOrder(left) - mediaOrder(right);
+    return orderDifference || path.basename(left).localeCompare(path.basename(right), undefined, { numeric: true });
+  });
   const seen = new Set();
   let sortOrder = 0;
   for (const file of sorted) {
