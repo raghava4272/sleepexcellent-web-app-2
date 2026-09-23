@@ -67,7 +67,7 @@ const homepageMenuGroups: CatalogueMenuGroup[] = [
   { label: "TV Units", href: "/interiors/tv-units", products: [] },
   { label: "Modern Kitchen", href: "/interiors/kitchen", products: [] },
   { label: "Ceiling Solutions", href: "/interiors/ceilings", products: [] },
-  { label: "About Us", href: "/#about-us", products: [] },
+  { label: "About Us", href: "/about", products: [] },
 ];
 
 const searchableCatalogue = defaultCatalogueMenuGroups.flatMap((group) => [
@@ -429,7 +429,7 @@ export function Header() {
                 </Link>
               </li>
               {catalogueMenuGroups.map((group) =>
-                group.href === "/#about-us" ? (
+                group.href === "/about" ? (
                   <li key={group.label}>
                     <Link className="flex items-center justify-between py-3 text-sm font-semibold" href={group.href} onClick={closeAllMenus}>
                       {group.label}

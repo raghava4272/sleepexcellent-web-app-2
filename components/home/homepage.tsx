@@ -268,26 +268,6 @@ export function Homepage({ categories, featured, heroSlides }: { categories: Hom
         </div>
       </section>
 
-      <section className={`${styles.about} ${styles.reveal}`} id="about-us">
-        <div>
-          <p className={styles.eyebrow}>About SleepExcellent</p>
-          <h2>Minds Behind Sleep Excellent</h2>
-          <p>SleepExcellent brings together sleep engineering, thoughtful materials, and made-to-order craftsmanship for Indian homes. Our leadership team keeps every product grounded in comfort, quality, and practical care.</p>
-        </div>
-        <div className={styles.leaders}>
-          <article>
-            <Image alt="Pratap Reddy Snapareddy, CEO" fill loading="lazy" sizes="(max-width: 767px) 50vw, 260px" src="/ceo-pratap_reddy_snapareddy.jpg" />
-            <span>CEO</span>
-            <h3>Pratap Reddy Snapareddy</h3>
-          </article>
-          <article>
-            <Image alt="Merva Obaiah, Managing Director" fill loading="lazy" sizes="(max-width: 767px) 50vw, 260px" src="/managing_director_merva_obaiah.jpg" />
-            <span>Managing Director</span>
-            <h3>Merva Obaiah</h3>
-          </article>
-        </div>
-      </section>
-
       <section className={`${styles.help} ${styles.reveal}`}>
         <div>
           <p className={styles.eyebrow}>Personal guidance</p>
@@ -336,7 +316,7 @@ export function Homepage({ categories, featured, heroSlides }: { categories: Hom
             <Link href="/build-your-mattress">Make your own mattress</Link>
             <Link href="/account">Track an order</Link>
             <Link href="/favorites">Favorites</Link>
-            <Link href="/#about-us">About us</Link>
+            <Link href="/about">About us</Link>
           </div>
           <div>
             <h3>Contact</h3>

@@ -11,7 +11,7 @@ export default function AboutPage() {
       <div className="mx-auto max-w-6xl">
         <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#9d6b36]">About us</p>
         <h1 className="mt-3 font-serif text-4xl md:text-6xl">Minds Behind Sleep Excellent</h1>
-        <p className="mt-5 max-w-3xl text-lg leading-8 text-neutral-600">SleepExcellent brings together sleep engineering, considered materials, and made-to-order craftsmanship for Indian homes.</p>
+        <p className="mt-5 max-w-3xl text-lg leading-8 text-neutral-600">SleepExcellent brings together sleep engineering, thoughtful materials, and made-to-order craftsmanship for Indian homes. Our leadership team keeps every product grounded in comfort, quality, and practical care.</p>
         <section className="mt-10 grid gap-6 md:grid-cols-2">
           {founders.map((founder) => <article className="rounded-2xl border border-[#d6c8b5] bg-white p-4" key={founder.name}><div className="relative aspect-[4/3] overflow-hidden rounded-xl"><Image alt={`${founder.name}, ${founder.role}`} className="object-cover" fill sizes="(max-width: 768px) 100vw, 50vw" src={founder.image} /></div><p className="mt-5 text-xs font-semibold uppercase tracking-[.2em] text-[#9d6b36]">{founder.role}</p><h2 className="mt-2 font-serif text-2xl">{founder.name}</h2></article>)}
         </section>
