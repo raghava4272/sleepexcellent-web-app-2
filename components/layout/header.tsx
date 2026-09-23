@@ -12,7 +12,7 @@ type CatalogueMenuGroup = { label: string; href: string; products?: ProductMenuL
 
 const product = (label: string, slug: string): ProductMenuLink => ({ label, slug });
 
-const catalogueMenuGroups: CatalogueMenuGroup[] = [
+const defaultCatalogueMenuGroups: CatalogueMenuGroup[] = [
   { label: "Mattresses", href: "/shop", products: [
     product("Ortho Mattress", "ortho-mattress"), product("Ortho Plus Mattress", "ortho-plus-mattress"), product("Latex Mattress", "latex-mattress"), product("Latex Pro", "latex-pro"), product("Pocketed Spring Mattress", "pocketed-spring-mattress"), product("Bonnell Spring Mattress", "bonnell-spring-mattress"), product("Foam Mattress", "foam-mattress"), product("Memory Foam Mattress", "memory-foam-mattress"),
   ] },
@@ -30,6 +30,15 @@ const catalogueMenuGroups: CatalogueMenuGroup[] = [
   { label: "About us", href: "/about", products: [] },
 ];
 
+const homepageMenuGroups: CatalogueMenuGroup[] = [
+  { label: "Mattresses", href: "/shop", products: [] },
+  { label: "Sofas", href: "/shop?category=sofas", products: [] },
+  { label: "Beds", href: "/shop?category=padding-beds", products: [] },
+  { label: "TV Units", href: "/interiors/tv-units", products: [] },
+  { label: "Modern Kitchen", href: "/interiors/kitchen", products: [] },
+  { label: "Ceiling Solutions", href: "/interiors/ceilings", products: [] },
+];
+
 function MenuIcon({ open }: { open: boolean }) {
   return <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24">{open ? <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" strokeWidth="1.5" /> : <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" strokeWidth="1.5" />}</svg>;
 }
@@ -44,6 +53,7 @@ function BagIcon() {
 
 export function Header() {
   const pathname = usePathname();
+  const catalogueMenuGroups = pathname === "/" ? homepageMenuGroups : defaultCatalogueMenuGroups;
   const router = useRouter();
   const searchParams = useSearchParams();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -99,14 +109,16 @@ export function Header() {
     const openDirectAboutLink = (event: MouseEvent) => {
       const target = event.target instanceof Element ? event.target.closest("button") : null;
       const navigation = target?.closest('[aria-label="Primary navigation"], [aria-label="Mobile navigation"]');
-      if (!navigation || !target?.textContent?.trim().startsWith("About us")) return;
+      const targetLabel = target?.textContent?.trim() ?? "";
+      const homepageGroup = pathname === "/" ? homepageMenuGroups.find((group) => targetLabel.startsWith(group.label)) : null;
+      if (!navigation || (!targetLabel.startsWith("About us") && !homepageGroup)) return;
       setMenuOpen(false);
       setActiveCatalogueMenu(null);
-      router.push("/about");
+      router.push(homepageGroup?.href ?? "/about");
     };
     document.addEventListener("click", openDirectAboutLink);
     return () => document.removeEventListener("click", openDirectAboutLink);
-  }, [router]);
+  }, [pathname, router]);
 
   const submitSearch = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

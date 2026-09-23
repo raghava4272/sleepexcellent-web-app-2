@@ -1,115 +1,72 @@
-"use client";
+import { Homepage, type HomeCategory, type HomeProduct } from "@/components/home/homepage";
+import { getPricingManifest, priceLabel } from "@/lib/catalog/pricing";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
 
-import { useCallback, useEffect, useRef } from "react";
+type CategoryRow = { id: string; name: string; slug: string; description: string | null };
+type ImageRow = { storage_path: string; alt_text: string; sort_order: number };
+type ProductRow = { id: string; name: string; slug: string; short_description: string | null; category_id: string; product_images: ImageRow[] | null };
 
-export default function HomePage() {
-  const desktopFrame = useRef<HTMLIFrameElement>(null);
-  const mobileFrame = useRef<HTMLIFrameElement>(null);
+const categorySetup = [
+  { slug: "mattresses", name: "Mattresses", href: "/shop" },
+  { slug: "sofas", name: "Sofas", href: "/shop?category=sofas" },
+  { slug: "padding-beds", name: "Beds", href: "/shop?category=padding-beds" },
+  { slug: "tv-units", name: "TV Units", href: "/interiors/tv-units" },
+  { slug: "kitchen", name: "Modern Kitchen", href: "/interiors/kitchen" },
+  { slug: "ceilings", name: "Ceiling Solutions", href: "/interiors/ceilings" },
+] as const;
 
-  const prepareFrame = useCallback((frame: HTMLIFrameElement, reportedHeight?: number) => {
-    const frameDocument = frame.contentDocument;
-    const documentElement = frameDocument?.documentElement;
-    const body = frameDocument?.body;
-    if (!documentElement || !body) return;
+export const dynamic = "force-dynamic";
 
-    body.dataset.outerStorefrontHeader = "true";
-    const headerStyleId = "outer-storefront-header-style";
-    if (!frameDocument.getElementById(headerStyleId)) {
-      const style = frameDocument.createElement("style");
-      style.id = headerStyleId;
-      style.textContent = "body[data-outer-storefront-header=true] [data-embedded-storefront-header]{display:none!important}";
-      frameDocument.head.append(style);
-    }
+export default async function HomePage() {
+  const supabase = await createSupabaseServerClient();
+  const slugs = categorySetup.map((category) => category.slug);
+  const [{ data: categoryData }, pricing] = await Promise.all([
+    supabase.from("categories").select("id, name, slug, description").in("slug", slugs).eq("is_active", true),
+    getPricingManifest(),
+  ]);
+  const categories = (categoryData ?? []) as CategoryRow[];
+  const categoryIds = categories.map((category) => category.id);
+  const { data: productData } = categoryIds.length
+    ? await supabase.from("products").select("id, name, slug, short_description, category_id, product_images(storage_path, alt_text, sort_order)").in("category_id", categoryIds).eq("status", "active").order("name")
+    : { data: [] };
+  const products = (productData ?? []) as ProductRow[];
 
-    const bodyTop = body.getBoundingClientRect().top;
-    const measuredHeight = Array.from(body.children).reduce((bottom, child) => {
-      if (!(child instanceof HTMLElement)) return bottom;
-      const style = frame.contentWindow?.getComputedStyle(child);
-      if (!style || style.display === "none" || style.visibility === "hidden" || style.position === "fixed" || ["SCRIPT", "STYLE"].includes(child.tagName)) return bottom;
-      return Math.max(bottom, child.getBoundingClientRect().bottom - bodyTop);
-    }, 0);
-    // A page root can be `min-h-screen` while its flow content overflows the
-    // iframe's current viewport. Its rectangle is then only the old iframe
-    // height (sometimes 1px), while scrollHeight remains the actual document
-    // height we need to display.
-    const documentHeight = Math.max(
-      body.scrollHeight,
-      documentElement.scrollHeight,
-      body.offsetHeight,
-      documentElement.offsetHeight,
-    );
-    const height = Math.max(measuredHeight, documentHeight, reportedHeight ?? 0, 1);
-    frame.style.height = `${Math.ceil(height)}px`;
-  }, []);
-
-  useEffect(() => {
-    const frames = [desktopFrame.current, mobileFrame.current].filter(
-      (frame): frame is HTMLIFrameElement => frame !== null,
-    );
-
-    const resizeAll = () => frames.forEach(prepareFrame);
-    const settle = [0, 250, 1000, 2000].map((delay) => window.setTimeout(resizeAll, delay));
-
-    const observers: ResizeObserver[] = [];
-    const observeFrameDocument = (frame: HTMLIFrameElement) => {
-      const body = frame.contentDocument?.body;
-      const documentElement = frame.contentDocument?.documentElement;
-      if (!body || !documentElement) return;
-      const observer = new ResizeObserver(() => prepareFrame(frame));
-      observer.observe(body);
-      observer.observe(documentElement);
-      observers.push(observer);
+  const imageFor = (product?: ProductRow) => {
+    const image = [...(product?.product_images ?? [])].sort((left, right) => left.sort_order - right.sort_order)[0];
+    return image ? { alt: image.alt_text || product?.name || "SleepExcellent product", src: supabase.storage.from("product-images").getPublicUrl(image.storage_path).data.publicUrl } : null;
+  };
+  const productsFor = (categorySlug: string) => {
+    const category = categories.find((entry) => entry.slug === categorySlug);
+    return products.filter((product) => product.category_id === category?.id);
+  };
+  const mappedProduct = (product: ProductRow, categorySlug: string): HomeProduct => {
+    const image = imageFor(product);
+    return {
+      category: categorySlug,
+      configuration: categorySlug === "mattresses" ? "Single · Diwan · Queen · King" : "Made to order",
+      href: `/products/${product.slug}`,
+      imageAlt: image?.alt || `${product.name} image pending`,
+      imageSrc: image?.src || "/product-placeholder.svg",
+      name: product.name,
+      price: priceLabel(pricing[product.slug]),
     };
-    const onFrameLoad = (frame: HTMLIFrameElement) => {
-      prepareFrame(frame);
-      observeFrameDocument(frame);
-    };
-    const onFrameMessage = (event: MessageEvent) => {
-      if (event.data?.type !== "sleepexcellent-frame-height" || typeof event.data.height !== "number") return;
-      const frame = frames.find((candidate) => candidate.contentWindow === event.source);
-      if (frame) prepareFrame(frame, event.data.height);
-    };
-    const loadHandlers = new Map<HTMLIFrameElement, () => void>();
+  };
 
-    frames.forEach((frame) => {
-      const handleLoad = () => onFrameLoad(frame);
-      loadHandlers.set(frame, handleLoad);
-      frame.addEventListener("load", handleLoad);
-      if (frame.contentDocument?.location.href !== "about:blank") onFrameLoad(frame);
-    });
-    window.addEventListener("resize", resizeAll);
-    window.addEventListener("message", onFrameMessage);
+  const homeCategories: HomeCategory[] = categorySetup.map((setup) => {
+    const category = categories.find((entry) => entry.slug === setup.slug);
+    const categoryProducts = productsFor(setup.slug);
+    const imageProduct = categoryProducts.find((product) => product.product_images?.length);
+    const image = imageFor(imageProduct);
+    return { ...setup, description: category?.description, imageAlt: image?.alt || `${setup.name} collection`, imageSrc: image?.src || "/product-placeholder.svg" };
+  });
 
-    return () => {
-      settle.forEach(window.clearTimeout);
-      observers.forEach((observer) => observer.disconnect());
-      frames.forEach((frame) => {
-        const handleLoad = loadHandlers.get(frame);
-        if (handleLoad) frame.removeEventListener("load", handleLoad);
-      });
-      window.removeEventListener("resize", resizeAll);
-      window.removeEventListener("message", onFrameMessage);
-    };
-  }, [prepareFrame]);
+  const featured = {
+    mattresses: productsFor("mattresses").filter((product) => product.product_images?.length).slice(0, 4).map((product) => mappedProduct(product, "mattresses")),
+    sofas: productsFor("sofas").filter((product) => product.product_images?.length).slice(0, 4).map((product) => mappedProduct(product, "sofas")),
+    beds: productsFor("padding-beds").filter((product) => product.product_images?.length).slice(0, 4).map((product) => mappedProduct(product, "padding-beds")),
+  };
+  const preferredHero = productsFor("mattresses").find((product) => /feel good|ortho plus/i.test(product.name) && product.product_images?.length) ?? productsFor("mattresses").find((product) => product.product_images?.length);
+  const heroImage = imageFor(preferredHero) ?? homeCategories.find((category) => category.imageSrc !== "/product-placeholder.svg") ?? { alt: "SleepExcellent bedroom collection", src: "/product-placeholder.svg" };
 
-  return (
-    <main aria-label="SleepExcellent storefront">
-      <iframe
-        className="stitch-frame stitch-frame--desktop"
-        ref={desktopFrame}
-        scrolling="no"
-        src="/stitch-homepage-desktop.html"
-        title="SleepExcellent approved desktop homepage"
-        onLoad={(event) => prepareFrame(event.currentTarget)}
-      />
-      <iframe
-        className="stitch-frame stitch-frame--mobile"
-        ref={mobileFrame}
-        scrolling="no"
-        src="/stitch-homepage-mobile.html"
-        title="SleepExcellent approved mobile homepage"
-        onLoad={(event) => prepareFrame(event.currentTarget)}
-      />
-    </main>
-  );
+  return <Homepage categories={homeCategories} featured={featured} heroImage={{ alt: "alt" in heroImage ? heroImage.alt : heroImage.imageAlt, src: "src" in heroImage ? heroImage.src : heroImage.imageSrc }} />;
 }
