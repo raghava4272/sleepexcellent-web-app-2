@@ -26,6 +26,8 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
     src: supabase.storage.from("product-images").getPublicUrl(image.storage_path).data.publicUrl,
   }));
   const isMattress = category?.slug === "mattresses";
+  const videoKey = category?.slug === "mattresses" ? "mattresses.m4v" : category?.slug === "sofas" ? "sofas.m4v" : category?.slug === "padding-beds" ? "padding-beds.mp4" : ["tv-units", "kitchen", "ceilings"].includes(category?.slug || "") ? "interiors.mp4" : null;
+  const productVideo = videoKey ? { label: product.name + " product video", src: supabase.storage.from("product-images").getPublicUrl("videos/" + videoKey).data.publicUrl } : undefined;
   const collectionHref = isMattress ? "/shop" : ["sofas", "padding-beds"].includes(category?.slug || "") ? `/shop?category=${category?.slug}` : ["tv-units", "kitchen", "ceilings"].includes(category?.slug || "") ? `/interiors/${category?.slug}` : "/interiors";
   const isQuoteOnly = product.purchase_mode === "quote_only";
   const pricingLabel = priceLabel(pricing[product.slug]);
@@ -34,7 +36,7 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
     <>
       <main className="min-h-screen bg-white px-5 py-10 text-[#171717] md:px-10">
         <div className="mx-auto max-w-7xl"><nav aria-label="Breadcrumb" className="text-sm text-neutral-600"><Link href="/">Home</Link><span className="mx-2">/</span><Link href={collectionHref}>{category?.name || "Catalogue"}</Link><span className="mx-2">/</span><span>{product.name}</span></nav><div className="mt-6 grid gap-8 lg:grid-cols-[1.05fr_.95fr]">
-        <section><ProductImageGallery images={productImages} productName={product.name} /><div className="mt-8 rounded-2xl border border-[#d6c8b5] bg-white p-5"><h2 className="font-serif text-2xl">Details</h2><dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2"><div><dt className="text-neutral-500">Category</dt><dd className="mt-1 font-semibold">{category?.name || "Catalogue"}</dd></div><div><dt className="text-neutral-500">Availability</dt><dd className="mt-1 font-semibold">Made to order</dd></div></dl></div></section>
+        <section><ProductImageGallery images={productImages} productName={product.name} video={productVideo} /><div className="mt-8 rounded-2xl border border-[#d6c8b5] bg-white p-5"><h2 className="font-serif text-2xl">Details</h2><dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2"><div><dt className="text-neutral-500">Category</dt><dd className="mt-1 font-semibold">{category?.name || "Catalogue"}</dd></div><div><dt className="text-neutral-500">Availability</dt><dd className="mt-1 font-semibold">Made to order</dd></div></dl></div></section>
         <section className="self-start lg:sticky lg:top-28">
           <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#9d6b36]">SleepExcellent {category?.name || "catalogue"}</p>
           <h1 className="mt-3 font-serif text-4xl md:text-5xl">{product.name}</h1>
