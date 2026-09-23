@@ -155,8 +155,12 @@ main :is(h1, h2, h3, h4) {
 }
 
 /* About Us is the final direct navigation item before the mattress CTA. */
-.storefront-header nav[aria-label="Primary navigation"] > ul > li:nth-child(6):nth-last-child(2) > div {
+.storefront-header nav[aria-label="Primary navigation"] > ul > li:nth-last-child(2) > div {
   display: none !important;
+}
+
+#homepage-search-suggestions {
+  width: min(calc(100% - 2rem), 760px);
 }
 
 
