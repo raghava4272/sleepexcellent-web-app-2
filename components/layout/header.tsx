@@ -27,6 +27,7 @@ const catalogueMenuGroups: CatalogueMenuGroup[] = [
     { label: "Kitchens", href: "/interiors/kitchen", products: [product("L-Shaped Modular Kitchen", "l-shaped-modular-kitchen"), product("U-Shaped Modular Kitchen", "u-shaped-modular-kitchen"), product("Parallel / Galley Kitchen", "parallel-galley-kitchen"), product("Island Kitchen", "island-kitchen"), product("Straight Line Kitchen", "straight-line-kitchen"), product("G-Shaped Kitchen", "g-shaped-kitchen"), product("Open Kitchen", "open-kitchen"), product("Handleless Kitchen", "handleless-kitchen"), product("Industrial-Style Kitchen", "industrial-style-kitchen"), product("Luxury Modular Kitchen", "luxury-modular-kitchen")] },
     { label: "Ceilings", href: "/interiors/ceilings", products: [product("Modern Tray False Ceiling", "modern-tray-false-ceiling"), product("Gypsum POP Ceiling", "gypsum-pop-ceiling"), product("Wooden Beam Ceiling", "wooden-beam-ceiling"), product("Cove Lighting Ceiling", "cove-lighting-ceiling"), product("Minimalist False Ceiling", "minimalist-false-ceiling"), product("Geometric Pattern Ceiling", "geometric-pattern-ceiling"), product("Luxury Layered Ceiling", "luxury-layered-ceiling"), product("PVC Panel Ceiling", "pvc-panel-ceiling"), product("Industrial Exposed Ceiling", "industrial-exposed-ceiling"), product("Acoustic Ceiling", "acoustic-ceiling")] },
   ] },
+  { label: "About us", href: "/about", products: [] },
 ];
 
 function MenuIcon({ open }: { open: boolean }) {

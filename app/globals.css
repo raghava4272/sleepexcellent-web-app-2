@@ -149,6 +149,11 @@ main :is(h1, h2, h3, h4) {
   color: #ffffff;
 }
 
+.storefront-header nav[aria-label="Primary navigation"] > ul {
+  column-gap: clamp(2rem, 3vw, 3.5rem);
+  padding-block: 1rem;
+}
+
 
 @media (max-width: 767px) {
   .stitch-frame--desktop {
