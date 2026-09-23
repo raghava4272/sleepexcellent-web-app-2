@@ -147,7 +147,7 @@ for (const { product, files: productFiles } of grouped.values()) {
     if (seen.has(hash)) continue;
     seen.add(hash);
     const extension = path.extname(file).toLowerCase();
-    const storagePath = product.categories.slug + "/" + product.slug + "/" + String(sortOrder + 1).padStart(2, "0") + (sortOrder === 0 ? "-hero" : "-gallery") + extension;
+    const storagePath = product.categories.slug + "/" + product.slug + "/" + String(sortOrder + 1).padStart(2, "0") + (sortOrder === 0 ? "-hero" : "-gallery") + "-" + hash.slice(0, 12) + extension;
     uploads.push({ bytes, contentType: contentTypes[extension], storagePath });
     rows.push({ product_id: product.id, storage_path: storagePath, alt_text: product.name + (sortOrder === 0 ? " hero view" : " gallery view " + (sortOrder + 1)), sort_order: sortOrder });
     sortOrder++;
