@@ -60,13 +60,16 @@ const defaultCatalogueMenuGroups: CatalogueMenuGroup[] = [
   { label: "About us", href: "/about", products: [] },
 ];
 
+const collectionProducts = (label: string) => defaultCatalogueMenuGroups.find((group) => group.label === label)?.products ?? [];
+const interiorProducts = (label: string) => defaultCatalogueMenuGroups.find((group) => group.label === "Interior")?.children?.find((child) => child.label === label)?.products ?? [];
+
 const homepageMenuGroups: CatalogueMenuGroup[] = [
-  { label: "Mattresses", href: "/shop", products: [] },
-  { label: "Sofas", href: "/shop?category=sofas", products: [] },
-  { label: "Beds", href: "/shop?category=padding-beds", products: [] },
-  { label: "TV Units", href: "/interiors/tv-units", products: [] },
-  { label: "Modern Kitchen", href: "/interiors/kitchen", products: [] },
-  { label: "Ceiling Solutions", href: "/interiors/ceilings", products: [] },
+  { label: "Mattresses", href: "/shop", products: collectionProducts("Mattresses") },
+  { label: "Sofas", href: "/shop?category=sofas", products: collectionProducts("Sofas") },
+  { label: "Beds", href: "/shop?category=padding-beds", products: collectionProducts("Padding beds") },
+  { label: "TV Units", href: "/interiors/tv-units", products: interiorProducts("TV Units") },
+  { label: "Modern Kitchen", href: "/interiors/kitchen", products: interiorProducts("Kitchens") },
+  { label: "Ceiling Solutions", href: "/interiors/ceilings", products: interiorProducts("Ceilings") },
   { label: "About Us", href: "/about", products: [] },
 ];
 
