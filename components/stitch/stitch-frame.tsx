@@ -5,11 +5,12 @@ import { useEffect, useRef } from "react";
 type StitchFrameProps = {
   className?: string;
   hideEmbeddedHeader?: boolean;
+  productImages?: Record<string, string>;
   src: string;
   title: string;
 };
 
-export function StitchFrame({ className, hideEmbeddedHeader = false, src, title }: StitchFrameProps) {
+export function StitchFrame({ className, hideEmbeddedHeader = false, productImages, src, title }: StitchFrameProps) {
   const frame = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -46,6 +47,11 @@ export function StitchFrame({ className, hideEmbeddedHeader = false, src, title 
       frame.current.style.height = `${Math.max(1, Math.ceil(height))}px`;
     };
 
+    const sendProductImages = () => {
+      if (!productImages || !currentFrame?.contentWindow) return;
+      currentFrame.contentWindow.postMessage({ type: "sleepexcellent-product-images", images: productImages }, window.location.origin);
+    };
+
     const observeFrameDocument = () => {
       resizeObserver?.disconnect();
       const documentElement = frame.current?.contentDocument?.documentElement;
@@ -56,6 +62,7 @@ export function StitchFrame({ className, hideEmbeddedHeader = false, src, title 
       resizeObserver.observe(documentElement);
       resizeObserver.observe(body);
       resize();
+      sendProductImages();
     };
 
     const settle = [0, 250, 1000].map((delay) => window.setTimeout(observeFrameDocument, delay));
@@ -76,7 +83,7 @@ export function StitchFrame({ className, hideEmbeddedHeader = false, src, title 
       window.removeEventListener("resize", resizeOnWindow);
       window.removeEventListener("message", receiveFrameHeight);
     };
-  }, [hideEmbeddedHeader]);
+  }, [hideEmbeddedHeader, productImages]);
 
   return <iframe className={`stitch-frame ${className ?? ""}`} ref={frame} scrolling="no" src={src} title={title} />;
 }

@@ -87,6 +87,15 @@
   grid.insertBefore(foamCard, document.getElementById("custom-configurator"));
 
   const productCards = Array.from(grid.querySelectorAll(":scope > article"));
+  window.addEventListener("message", (event) => {
+    if (event.origin !== window.location.origin || event.data?.type !== "sleepexcellent-product-images" || !event.data.images) return;
+    catalogProducts.forEach((product) => {
+      product.image = event.data.images[product.slug] || product.image;
+    });
+    productCards.forEach((card) => {
+      applyCatalogData(card, catalogProducts[Number(card.dataset.productIndex)], Number(card.dataset.productIndex));
+    });
+  });
   const openProduct = (card) => {
     window.top.location.href = "/products/" + card.dataset.slug;
   };
