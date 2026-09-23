@@ -5,7 +5,12 @@ import { FormEvent, useEffect, useState } from "react";
 import { customerAuthHeaders } from "@/lib/supabase/client-auth";
 
 declare global {
-  interface Window { Razorpay?: new (options: Record<string, unknown>) => { open: () => void } }
+  interface Window {
+    Razorpay?: new (options: Record<string, unknown>) => {
+      on: (event: "payment.failed", callback: (response: { error?: { description?: string } }) => void) => void;
+      open: () => void;
+    };
+  }
 }
 
 type CartLine = { id: string; productName: string; pricePaise: number; quantity: number; configuration: Record<string, string> | null };
@@ -48,7 +53,7 @@ export function CheckoutClient() {
       if (!response.ok) throw new Error(payment.error ?? "Unable to start payment.");
       const razorpay = new window.Razorpay({
         key: payment.keyId, amount: payment.amount, currency: payment.currency, name: "SleepExcellent", description: `Order ${payment.orderNumber}`, order_id: payment.razorpayOrderId,
-        prefill: { name: payment.customer.name, email: payment.customer.email, contact: `+91${address.phone.replace(/\D/g, "").replace(/^91/, "")}` }, theme: { color: "#9d6b36" },
+        prefill: { name: payment.customer.name, email: payment.customer.email, contact: `+91${address.phone.replace(/\D/g, "").replace(/^91/, "")}` }, method: { wallet: true }, theme: { color: "#9d6b36" },
         handler: async (result: Record<string, string>) => {
           const verify = await fetch("/api/checkout/verify", { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json", ...await customerAuthHeaders() }, body: JSON.stringify({ ...result, orderNumber: payment.orderNumber }) });
           const verified = await verify.json();
@@ -56,6 +61,11 @@ export function CheckoutClient() {
           window.location.href = `/account/orders/${verified.orderNumber}?payment=verified`;
         },
         modal: { ondismiss: () => { setBusy(false); setMessage("Payment was not completed. Your cart is still saved."); } },
+      });
+      razorpay.on("payment.failed", (result) => {
+        const detail = result.error?.description ? ` ${result.error.description}` : "";
+        setBusy(false);
+        setMessage(`Razorpay reported this test payment as failed.${detail} Choose the success option in Razorpay's test payment screen and try again.`);
       });
       razorpay.open();
     } catch (error) {

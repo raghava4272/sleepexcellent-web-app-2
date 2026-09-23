@@ -10,8 +10,9 @@ export async function POST(request: Request) {
     if (![providerOrderId, providerPaymentId, signature, orderNumber].every((value) => typeof value === "string" && value.length > 0)) {
       return NextResponse.json({ error: "Payment confirmation is incomplete." }, { status: 400 });
     }
+    const keyId = process.env.RAZORPAY_KEY_ID?.trim();
     const secret = process.env.RAZORPAY_KEY_SECRET?.trim();
-    if (!secret) return NextResponse.json({ error: "Razorpay verification is not configured." }, { status: 503 });
+    if (!keyId || !secret) return NextResponse.json({ error: "Razorpay verification is not configured." }, { status: 503 });
     const expected = createHmac("sha256", secret).update(`${providerOrderId}|${providerPaymentId}`).digest("hex");
     if (expected.length !== signature.length || !timingSafeEqual(Buffer.from(expected), Buffer.from(signature))) {
       return NextResponse.json({ error: "Payment signature could not be verified." }, { status: 400 });
@@ -20,7 +21,7 @@ export async function POST(request: Request) {
     const admin = createSupabaseAdminClient();
     const { data: payment, error: paymentError } = await admin
       .from("payments")
-      .select("id, order_id, order:orders!inner(id, order_number, user_id)")
+      .select("id, order_id, status, amount_paise, order:orders!inner(id, order_number, user_id)")
       .eq("provider_order_id", providerOrderId)
       .maybeSingle();
     const orderRelation = payment?.order as unknown as { id: string; order_number: string; user_id: string } | { id: string; order_number: string; user_id: string }[] | null;
@@ -28,12 +29,25 @@ export async function POST(request: Request) {
     if (paymentError || !payment || !order || order.user_id !== user.id || order.order_number !== orderNumber) {
       return NextResponse.json({ error: "This payment does not belong to your order." }, { status: 404 });
     }
+    if (payment.status === "paid") return NextResponse.json({ ok: true, orderNumber });
+
+    const providerResponse = await fetch(`https://api.razorpay.com/v1/payments/${encodeURIComponent(providerPaymentId)}`, {
+      headers: { Authorization: `Basic ${Buffer.from(`${keyId}:${secret}`).toString("base64")}` },
+      cache: "no-store",
+    });
+    const providerPayment = await providerResponse.json();
+    const successfulProviderStatus = providerPayment.status === "authorized" || providerPayment.status === "captured";
+    if (!providerResponse.ok || !successfulProviderStatus || providerPayment.order_id !== providerOrderId || providerPayment.amount !== payment.amount_paise) {
+      console.error("Razorpay payment confirmation failed", { providerOrderId, providerPaymentId, status: providerPayment.status });
+      return NextResponse.json({ error: "Razorpay has not confirmed this payment as successful yet." }, { status: 409 });
+    }
     const now = new Date().toISOString();
-    const { error: paymentUpdateError } = await admin.from("payments").update({ status: "paid", provider_payment_id: providerPaymentId, signature_verified_at: now, paid_at: now, provider_payload: { razorpay_order_id: providerOrderId, razorpay_payment_id: providerPaymentId } }).eq("id", payment.id);
+    const { error: paymentUpdateError } = await admin.from("payments").update({ status: "paid", method: providerPayment.method || null, provider_payment_id: providerPaymentId, signature_verified_at: now, paid_at: now, provider_payload: { razorpay_order_id: providerOrderId, razorpay_payment_id: providerPaymentId, method: providerPayment.method, wallet: providerPayment.wallet, status: providerPayment.status } }).eq("id", payment.id);
     if (paymentUpdateError) throw paymentUpdateError;
     const { error: orderUpdateError } = await admin.from("orders").update({ payment_status: "paid", order_status: "confirmed" }).eq("id", payment.order_id);
     if (orderUpdateError) throw orderUpdateError;
-    const { error: eventError } = await admin.from("order_status_events").insert({ order_id: payment.order_id, event_type: "payment_verified", from_status: "pending_payment", to_status: "confirmed", note: "Razorpay payment signature verified.", visible_to_customer: true, actor_user_id: user.id });
+    const paymentMethod = providerPayment.method === "wallet" && providerPayment.wallet ? `wallet (${providerPayment.wallet})` : providerPayment.method || "Razorpay";
+    const { error: eventError } = await admin.from("order_status_events").insert({ order_id: payment.order_id, event_type: "payment_verified", from_status: "pending_payment", to_status: "confirmed", note: `Razorpay test payment verified via ${paymentMethod}.`, visible_to_customer: true, actor_user_id: user.id });
     if (eventError) throw eventError;
     const cart = await getActiveCartForConversion(user.id);
     if (cart) await admin.from("carts").update({ status: "converted" }).eq("id", cart.id);
