@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ProductImageGallery } from "@/components/catalog/product-image-gallery";
 import { notFound } from "next/navigation";
 import { FavoriteButton } from "@/components/catalog/favorite-button";
-import { MattressConfigurator } from "@/components/catalog/mattress-configurator";
+import { ProductConfigurator } from "@/components/catalog/mattress-configurator";
 import { AddToCart } from "@/components/catalog/add-to-cart";
 import { getPricingManifest, priceLabel } from "@/lib/catalog/pricing";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -27,6 +27,7 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
     src: supabase.storage.from("product-images").getPublicUrl(image.storage_path).data.publicUrl,
   }));
   const isMattress = category?.slug === "mattresses";
+  const hasColorOptions = ["mattresses", "sofas", "padding-beds"].includes(category?.slug || "");
   const videoKey = category?.slug === "mattresses" ? "mattresses.m4v" : category?.slug === "sofas" ? "sofas.m4v" : category?.slug === "padding-beds" ? "padding-beds.mp4" : ["tv-units", "kitchen", "ceilings"].includes(category?.slug || "") ? "interiors.mp4" : null;
   const productVideo = videoKey ? { label: product.name + " product video", src: supabase.storage.from("product-images").getPublicUrl("videos/" + videoKey).data.publicUrl } : undefined;
   const collectionHref = isMattress ? "/shop" : ["sofas", "padding-beds"].includes(category?.slug || "") ? `/shop?category=${category?.slug}` : ["tv-units", "kitchen", "ceilings"].includes(category?.slug || "") ? `/interiors/${category?.slug}` : "/interiors";
@@ -42,8 +43,8 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
           <h1 className="mt-3 font-serif text-4xl md:text-5xl">{product.name}</h1>
           <p className="mt-5 max-w-xl leading-7 text-neutral-600">{product.description || product.short_description || `${product.name} is part of the SleepExcellent made-to-order catalogue.`}</p>
           {pricingLabel ? <p className="mt-4 text-2xl font-semibold text-[#8a694c]">{pricingLabel}</p> : null}
-          {isMattress ? (
-            <MattressConfigurator productSlug={slug} />
+          {hasColorOptions ? (
+            <ProductConfigurator productSlug={slug} showSizes={isMattress} />
           ) : (
             <div className="mt-7 rounded-2xl border border-[#d6c8b5] bg-white p-5">
               <p className="text-sm font-semibold">Ready to order</p>
@@ -53,7 +54,7 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
           )}
           <div className="mt-5 flex flex-wrap gap-3"><FavoriteButton productSlug={slug} /><Link className="border border-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider" href={collectionHref}>Browse collection</Link>{isMattress ? <Link className="border border-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider" href="/build-your-mattress">Customize a mattress</Link> : null}</div>
         </section>
-        </div><section className="mt-12 grid gap-5 border-t border-[#d6c8b5] pt-8 md:grid-cols-3"><div><h2 className="font-serif text-2xl">Product description</h2><p className="mt-3 text-sm leading-6 text-neutral-600">{product.description || product.short_description || "Details will be confirmed with your order."}</p></div><div><h2 className="font-serif text-2xl">Delivery and care</h2><p className="mt-3 text-sm leading-6 text-neutral-600">Production and delivery timing are confirmed once the order configuration is approved.</p></div><div><h2 className="font-serif text-2xl">Questions</h2><details className="mt-3 border-b border-[#d6c8b5] pb-3 text-sm"><summary className="cursor-pointer font-semibold">Can I request a custom size?</summary><p className="mt-2 leading-6 text-neutral-600">Yes. Choose Custom for mattress sizing. For furniture and Interior products, contact our team after ordering to confirm dimensions.</p></details></div></section></div>
+        </div><section className="mt-12 grid gap-5 border-t border-[#d6c8b5] pt-8 md:grid-cols-3"><div><h2 className="font-serif text-2xl">Product description</h2><p className="mt-3 text-sm leading-6 text-neutral-600">{product.description || product.short_description || "Details will be confirmed with your order."}</p></div><div><h2 className="font-serif text-2xl">Delivery and care</h2><p className="mt-3 text-sm leading-6 text-neutral-600">Production and delivery timing are confirmed once the order configuration is approved.</p></div><div><h2 className="font-serif text-2xl">Questions</h2><details className="mt-3 border-b border-[#d6c8b5] pb-3 text-sm"><summary className="cursor-pointer font-semibold">Which mattress sizes are available?</summary><p className="mt-2 leading-6 text-neutral-600">Mattresses are available in Single, Diwan, Queen, and King sizes.</p></details></div></section></div>
       </main>
     </>
   );
