@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { Container } from "@/components/layout/layout";
@@ -37,9 +38,9 @@ export function Footer() {
     <footer className="bg-canvas">
       <Container className="grid gap-px border-x border-line bg-line md:grid-cols-[1.7fr_repeat(3,1fr)]">
         <section className="bg-canvas p-6 sm:p-8">
-          <p className="font-display text-3xl font-semibold tracking-[-0.065em]">
-            SLEEP<span className="text-timber">EXCELLENT</span>
-          </p>
+          <Link aria-label="SleepExcellent home" className="relative block h-[52px] w-[230px] overflow-hidden bg-white" href="/">
+            <Image alt="SleepExcellent" className="object-cover object-center" fill sizes="230px" src="/logo.png" />
+          </Link>
           <p className="mt-6 max-w-xs text-sm leading-6 text-muted-ink">
             Purposeful sleep systems and interiors, made for how you live.
           </p>
