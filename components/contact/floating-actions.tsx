@@ -68,12 +68,12 @@ export function FloatingActions() {
         <input className="min-w-0 flex-1 rounded-full border border-[#d6c8b5] px-4 py-2 text-sm outline-none focus:border-[#171717]" id="faq-chat-question" onChange={(event) => setQuestion(event.target.value)} placeholder="Type your question..." type="text" value={question} />
         <button className="rounded-full bg-[#171717] px-4 py-2 text-sm font-semibold" style={{ color: "#ffffff" }} type="submit">Send</button>
       </form>
-      <footer className="border-t border-[#e7dccb] bg-[#fffdfa] p-3 text-center text-xs text-neutral-600">Need more help? <a className="font-semibold text-[#176b38] underline" href="https://wa.me/919876543210" rel="noreferrer" target="_blank">Chat on WhatsApp</a></footer>
+      <footer className="border-t border-[#e7dccb] bg-[#fffdfa] p-3 text-center text-xs text-neutral-600">Need more help? <a className="font-semibold text-[#176b38] underline" href="https://wa.me/919849256799" rel="noreferrer" target="_blank">Chat on WhatsApp</a></footer>
     </section> : null}
     <aside aria-label="Contact options" className="contact-dock fixed right-4 z-[100] flex flex-col items-end gap-2 sm:right-6">
       <button aria-expanded={chatOpen} aria-label={chatOpen ? "Close FAQ chatbot" : "Open FAQ chatbot"} className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-[#d6c8b5] bg-white px-3 text-xs font-bold text-[#171717] shadow-lg transition hover:border-[#8a694c] sm:px-4" onClick={() => setChatOpen((open) => !open)} title="Chat with us" type="button"><ChatIcon /><span className="hidden sm:inline">Chat with us</span></button>
-      <a aria-label="WhatsApp" className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#25D366] px-3 text-xs font-bold text-white shadow-lg transition hover:brightness-95 sm:px-4" href="https://wa.me/919876543210" rel="noreferrer" target="_blank" title="WhatsApp"><WhatsAppIcon /><span className="hidden sm:inline">WhatsApp</span></a>
-      <a aria-label="Call us" className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#171717] px-3 text-xs font-bold text-white shadow-lg transition hover:bg-[#5f4531] sm:px-4" href="tel:+919876543210" title="Call us"><PhoneIcon /><span className="hidden sm:inline">Call us</span></a>
+      <a aria-label="WhatsApp Sanapareddy" className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#25D366] px-3 text-xs font-bold text-white shadow-lg transition hover:brightness-95 sm:px-4" href="https://wa.me/919849256799" rel="noreferrer" target="_blank" title="WhatsApp Sanapareddy"><WhatsAppIcon /><span className="hidden sm:inline">WhatsApp</span></a>
+      <a aria-label="Call Sanapareddy" className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#171717] px-3 text-xs font-bold text-white shadow-lg transition hover:bg-[#5f4531] sm:px-4" href="tel:+919849256799" title="Call Sanapareddy"><PhoneIcon /><span className="hidden sm:inline">Call us</span></a>
     </aside>
   </>;
 }

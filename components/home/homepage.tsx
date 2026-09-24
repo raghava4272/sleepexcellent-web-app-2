@@ -275,10 +275,10 @@ export function Homepage({ categories, featured, heroSlides }: { categories: Hom
           <p>Explore your options with our team.</p>
         </div>
         <div className={styles.actions}>
-          <a className={styles.primaryButton} href="https://wa.me/919876543210" rel="noreferrer" target="_blank">
+          <a className={styles.primaryButton} href="https://wa.me/919849256799" rel="noreferrer" target="_blank">
             Chat on WhatsApp
           </a>
-          <a className={styles.secondaryButton} href="tel:+919876543210">
+          <a className={styles.secondaryButton} href="tel:+919849256799">
             Call us
           </a>
         </div>
@@ -320,8 +320,9 @@ export function Homepage({ categories, featured, heroSlides }: { categories: Hom
           </div>
           <div>
             <h3>Contact</h3>
-            <a href="tel:+919876543210">+91 98765 43210</a>
-            <a href="mailto:concierge@sleepexcellent.com">concierge@sleepexcellent.com</a>
+            <a href="tel:+919849256799">Sanapareddy: +91 98492 56799</a>
+            <a href="tel:+919044257999">Obaiah: +91 90442 57999</a>
+            <a href="mailto:sleepexcellent999@gmail.com">sleepexcellent999@gmail.com</a>
           </div>
         </div>
         <div className={styles.copyright}>© {new Date().getFullYear()} SleepExcellent. All rights reserved.</div>

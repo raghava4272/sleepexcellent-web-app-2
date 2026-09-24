@@ -18,6 +18,11 @@ export default function AboutPage() {
         <section className="mt-10 rounded-2xl border border-[#d6c8b5] bg-white p-6">
           <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#9d6b36]">Our address</p>
           <address className="mt-3 max-w-2xl not-italic leading-7 text-neutral-700">Plot No. 356, Road Number 10A, opposite Srikar Apartments, Gopalnagar Society, Hafeezpet, Hyderabad, Telangana 500085</address>
+          <div className="mt-5 flex flex-col gap-2 text-sm font-semibold sm:flex-row sm:flex-wrap sm:gap-x-6">
+            <a className="underline underline-offset-4" href="tel:+919849256799">Sanapareddy: +91 98492 56799</a>
+            <a className="underline underline-offset-4" href="tel:+919044257999">Obaiah: +91 90442 57999</a>
+            <a className="underline underline-offset-4" href="mailto:sleepexcellent999@gmail.com">sleepexcellent999@gmail.com</a>
+          </div>
         </section>
       </div>
     </main>
