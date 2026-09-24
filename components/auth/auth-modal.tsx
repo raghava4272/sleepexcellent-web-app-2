@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { PasswordField } from "@/components/auth/password-field";
 
 export type AuthMode = "login" | "signup";
 
@@ -21,7 +22,6 @@ const errorMessages: Record<string, string> = {
 };
 
 export function AuthModal({ error, message, mode, next, returnTo, onClose, onModeChange }: AuthModalProps) {
-  const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -61,7 +61,6 @@ export function AuthModal({ error, message, mode, next, returnTo, onClose, onMod
   }, [mode, onClose]);
 
   const switchMode = () => {
-    setShowPassword(false);
     setSubmitting(false);
     onModeChange(isSignup ? "login" : "signup");
   };
@@ -93,7 +92,7 @@ export function AuthModal({ error, message, mode, next, returnTo, onClose, onMod
           </div>
           <div>
             <div className="mb-1.5 flex items-center justify-between gap-3"><label className="block text-sm font-semibold" htmlFor="auth-modal-password">Password</label>{isSignup ? <span className="text-xs text-[#6b6f6c]">8+ characters</span> : null}</div>
-            <div className="relative"><input autoComplete={isSignup ? "new-password" : "current-password"} className="h-12 w-full rounded-xl border border-[#cfc7bd] bg-[#fcfbf8] px-4 pr-20 outline-none transition focus:border-[#181818] focus:ring-2 focus:ring-[#d7c4ac]" id="auth-modal-password" minLength={isSignup ? 8 : undefined} name="password" required type={showPassword ? "text" : "password"} /><button className="absolute inset-y-0 right-3 text-xs font-semibold text-[#5f4531] hover:underline" onClick={() => setShowPassword((visible) => !visible)} type="button">{showPassword ? "Hide" : "Show"}</button></div>
+            <PasswordField autoComplete={isSignup ? "new-password" : "current-password"} id="auth-modal-password" inputClassName="h-12 w-full rounded-xl border border-[#cfc7bd] bg-[#fcfbf8] px-4 outline-none transition focus:border-[#181818] focus:ring-2 focus:ring-[#d7c4ac]" key={mode} minLength={isSignup ? 8 : undefined} />
           </div>
           <button className="h-12 w-full rounded-xl bg-[#181818] px-4 text-sm font-semibold text-white transition hover:bg-[#5f4531] disabled:cursor-wait disabled:opacity-70" disabled={submitting} type="submit">{submitting ? "Please wait…" : isSignup ? "Create account" : "Sign in"}</button>
         </form>

@@ -116,7 +116,7 @@ function BagIcon() {
 
 export function Header() {
   const pathname = usePathname();
-  const catalogueMenuGroups = pathname === "/" ? homepageMenuGroups : defaultCatalogueMenuGroups;
+  const catalogueMenuGroups = homepageMenuGroups;
   const router = useRouter();
   const searchParams = useSearchParams();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -193,7 +193,7 @@ export function Header() {
       const target = event.target instanceof Element ? event.target.closest("button") : null;
       const navigation = target?.closest('[aria-label="Primary navigation"], [aria-label="Mobile navigation"]');
       const targetLabel = target?.textContent?.trim() ?? "";
-      const homepageGroup = pathname === "/" ? homepageMenuGroups.find((group) => targetLabel.startsWith(group.label)) : null;
+      const homepageGroup = homepageMenuGroups.find((group) => targetLabel.startsWith(group.label));
       if (!navigation || (!targetLabel.startsWith("About us") && !homepageGroup)) return;
       setMenuOpen(false);
       setActiveCatalogueMenu(null);
@@ -217,7 +217,6 @@ export function Header() {
   }, [pathname, router]);
 
   useEffect(() => {
-    if (pathname !== "/") return;
     const inputIds = ["storefront-search-desktop", "storefront-search-mobile"];
     const inputs = inputIds.flatMap((id) => {
       const input = document.getElementById(id);
@@ -493,7 +492,7 @@ export function Header() {
             </ul>
           </nav>
         </div>
-        {pathname === "/" && searchOpen && query.trim() ? (
+        {searchOpen && query.trim() ? (
           <div className="absolute left-1/2 top-full z-[120] w-[min(calc(100%-2rem),760px)] -translate-x-1/2 overflow-hidden rounded-b-2xl border border-[#ded9d2] bg-white shadow-2xl" id="homepage-search-suggestions" role="listbox">
             {matchingSuggestions.length ? (
               <>

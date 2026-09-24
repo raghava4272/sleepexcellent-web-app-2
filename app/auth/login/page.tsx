@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PasswordField } from "@/components/auth/password-field";
 
 type LoginPageProps = { searchParams: Promise<{ error?: string; message?: string; next?: string }> };
 
@@ -23,7 +24,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         <form action="/auth/email-login" className="mt-7 grid gap-5" method="post">
           <input name="next" type="hidden" value={next} />
           <label className="grid gap-2 text-sm font-medium">Email address<input autoComplete="email" className="border border-ink bg-white px-3 py-3 outline-none" name="email" required type="email" /></label>
-          <label className="grid gap-2 text-sm font-medium">Password<input autoComplete="current-password" className="border border-ink bg-white px-3 py-3 outline-none" name="password" required type="password" /></label>
+          <label className="grid gap-2 text-sm font-medium">Password<PasswordField autoComplete="current-password" inputClassName="w-full border border-ink bg-white px-3 py-3 outline-none" /></label>
           <button className="bg-ink px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white" type="submit">Sign in</button>
         </form>
         <p className="mt-6 text-sm text-muted-ink">New here? <Link className="font-semibold text-ink underline" href={`/auth/register?next=${encodeURIComponent(next)}`}>Create an account</Link></p>
