@@ -5,7 +5,7 @@ import { useState } from "react";
 const faqs = [
   { question: "Which mattress is best for back pain?", answer: "Our orthopedic mattresses are designed for balanced spinal support. Comfort needs vary, so speak with our team before choosing firmness." },
   { question: "Do you make custom-size mattresses?", answer: "Yes. SleepExcellent can make mattresses to your required length, width, and thickness. Use Make your own mattress to share the dimensions." },
-  { question: "What mattress sizes are available?", answer: "Standard Single, Queen, and King sizes are available, along with multiple dimensions and thickness options. Custom sizes can also be requested." },
+  { question: "What mattress sizes are available?", answer: "We offer Diwan Mattress (72 × 36 in), Single Mattress (75 × 36 in), Double Mattress (75 × 48 in), Queen Mattress (75 × 60 in), and King Mattress (75 × 72 in or 78 × 72 in)." },
   { question: "How long does delivery take?", answer: "Delivery timing depends on the product and configuration. Our operations team confirms the expected date after your order and payment are verified." },
   { question: "Do mattresses include a warranty?", answer: "Warranty coverage varies by mattress model. Check the product details or contact our team to confirm the warranty for your selected mattress." },
   { question: "How can I contact an interior expert?", answer: "Use the WhatsApp option below to speak with our team and arrange an interior consultation." },

@@ -288,7 +288,7 @@ export function Homepage({ categories, featured, heroSlides }: { categories: Hom
         <div className={styles.footerGrid}>
           <div>
             <Link aria-label="SleepExcellent home" className={styles.footerLogo} href="/">
-              <Image alt="SleepExcellent" fill sizes="230px" src="/logo.png" />
+              <Image alt="SleepExcellent" fill sizes="230px" src="/footer-logo.png" />
             </Link>
             <p>Purposeful sleep systems and interior solutions, made for how you live.</p>
             <address>Plot No. 356, Road Number 10A, opposite Srikar Apartments, Gopalnagar Society, Hafeezpet, Hyderabad, Telangana 500085</address>

@@ -4,12 +4,12 @@ import { useMemo, useState } from "react";
 import { AddToCart } from "@/components/catalog/add-to-cart";
 
 const sizes = [
-  "72 × 30 in",
-  "75 × 36 in",
-  "75 × 48 in",
-  "75 × 60 in",
-  "75 × 72 in",
-  "72 × 78 in",
+  "Diwan Mattress — 72 × 36 in",
+  "Single Mattress — 75 × 36 in",
+  "Double Mattress — 75 × 48 in",
+  "Queen Mattress — 75 × 60 in",
+  "King Mattress — 75 × 72 in",
+  "King Mattress — 78 × 72 in",
 ] as const;
 
 const colors = [

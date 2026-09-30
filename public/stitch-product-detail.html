@@ -386,35 +386,53 @@
 <div class="mb-5">
 <div class="flex items-center justify-between mb-2">
 <label class="font-label-caps text-label-caps uppercase text-primary font-bold">
-                1. Select Size Class: <span class="text-secondary" id="selected-size-label">King [L]</span>
+                1. Select Size Class: <span class="text-secondary" id="selected-size-label">King Mattress</span>
 </label>
 <a class="font-mono-data text-[11px] text-secondary hover:underline flex items-center gap-1" href="#custom-dimensions">
 <span>Need odd dimensions? Make Custom</span>
 <span class="material-symbols-outlined text-xs">arrow_forward</span>
 </a>
 </div>
-<div class="grid grid-cols-3 gap-2">
-<!-- Single S -->
-<button class="size-btn p-3 border border-surface-dim bg-surface-container-lowest hover:border-primary text-left transition-all" onclick="selectSize('Single', '72 × 36 in', 11490, 14990, this)">
+<div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+<button class="size-btn p-3 border border-surface-dim bg-surface-container-lowest hover:border-primary text-left transition-all" onclick="selectSize('Diwan Mattress', '72 × 36 in', 11490, 14990, this)">
 <div class="flex justify-between items-center">
-<span class="font-bold text-xs">Single [S]</span>
+<span class="font-bold text-xs">Diwan Mattress</span>
 <span class="font-mono-data text-[10px] text-on-surface-variant">72×36"</span>
 </div>
 <div class="font-mono-data text-xs mt-1 text-on-surface">₹11,490</div>
 </button>
-<!-- Queen M -->
-<button class="size-btn p-3 border border-surface-dim bg-surface-container-lowest hover:border-primary text-left transition-all" onclick="selectSize('Queen', '75 × 60 in', 14990, 19200, this)">
+<button class="size-btn p-3 border border-surface-dim bg-surface-container-lowest hover:border-primary text-left transition-all" onclick="selectSize('Single Mattress', '75 × 36 in', 11990, 15490, this)">
 <div class="flex justify-between items-center">
-<span class="font-bold text-xs">Queen [M]</span>
+<span class="font-bold text-xs">Single Mattress</span>
+<span class="font-mono-data text-[10px] text-on-surface-variant">75×36"</span>
+</div>
+<div class="font-mono-data text-xs mt-1 text-on-surface">₹11,990</div>
+</button>
+<button class="size-btn p-3 border border-surface-dim bg-surface-container-lowest hover:border-primary text-left transition-all" onclick="selectSize('Double Mattress', '75 × 48 in', 13490, 17490, this)">
+<div class="flex justify-between items-center">
+<span class="font-bold text-xs">Double Mattress</span>
+<span class="font-mono-data text-[10px] text-on-surface-variant">75×48"</span>
+</div>
+<div class="font-mono-data text-xs mt-1 text-on-surface">₹13,490</div>
+</button>
+<button class="size-btn p-3 border border-surface-dim bg-surface-container-lowest hover:border-primary text-left transition-all" onclick="selectSize('Queen Mattress', '75 × 60 in', 14990, 19200, this)">
+<div class="flex justify-between items-center">
+<span class="font-bold text-xs">Queen Mattress</span>
 <span class="font-mono-data text-[10px] text-on-surface-variant">75×60"</span>
 </div>
 <div class="font-mono-data text-xs mt-1 text-on-surface">₹14,990</div>
 </button>
-<!-- King L (Active) -->
-<button class="size-btn p-3 border-2 border-primary bg-surface-container-highest text-left transition-all relative" onclick="selectSize('King', '78 × 72 in', 16395, 21000, this)">
+<button class="size-btn p-3 border border-surface-dim bg-surface-container-lowest hover:border-primary text-left transition-all" onclick="selectSize('King Mattress', '75 × 72 in', 15990, 20500, this)">
+<div class="flex justify-between items-center">
+<span class="font-bold text-xs">King Mattress</span>
+<span class="font-mono-data text-[10px] text-on-surface-variant">75×72"</span>
+</div>
+<div class="font-mono-data text-xs mt-1 text-on-surface">₹15,990</div>
+</button>
+<button class="size-btn p-3 border-2 border-primary bg-surface-container-highest text-left transition-all relative" onclick="selectSize('King Mattress', '78 × 72 in', 16395, 21000, this)">
 <span class="absolute -top-2 right-2 bg-primary text-white text-[8px] font-mono-data px-1">SELECTED</span>
 <div class="flex justify-between items-center">
-<span class="font-bold text-xs text-primary">King [L]</span>
+<span class="font-bold text-xs text-primary">King Mattress</span>
 <span class="font-mono-data text-[10px] text-on-surface-variant font-bold">78×72"</span>
 </div>
 <div class="font-mono-data text-xs mt-1 font-bold text-primary">₹16,395</div>

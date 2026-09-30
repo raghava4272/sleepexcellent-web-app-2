@@ -6,7 +6,7 @@ with mattress_products(name, slug, price_paise) as (values
   ('Latex Mattress','latex-mattress',1597500), ('Latex Pro','latex-pro',2831500),
   ('Pocketed Spring Mattress','pocketed-spring-mattress',1559500), ('Bonnell Spring Mattress','bonnell-spring-mattress',1722200),
   ('Foam Mattress','foam-mattress',1447500), ('Memory Foam Mattress','memory-foam-mattress',1661900),
-  ('Feel Good Mattress','feel-good-mattress',2692900), ('Shim Mattress','shim-mattress',211900)
+  ('Feel Good Mattress','feel-good-mattress',2692900), ('Slim Mattress','shim-mattress',211900)
 ), upsert_products as (
   insert into public.products (category_id, name, slug, short_description, purchase_mode, status, featured)
   select c.id, mp.name, mp.slug, 'Catalogue product; imagery pending Supabase Storage upload.', case when mp.slug = 'ortho-plus-mattress' then 'configurable'::public.purchase_mode else 'direct'::public.purchase_mode end, 'active'::public.product_status, mp.slug in ('ortho-mattress','ortho-plus-mattress') from mattress_products mp cross join public.categories c where c.slug = 'mattresses'

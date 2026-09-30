@@ -55,7 +55,7 @@ export default async function HomePage() {
     const image = imageFor(product);
     return {
       category: categorySlug,
-      configuration: categorySlug === "mattresses" ? "Six sizes from 72 × 30 in to 72 × 78 in" : "Made to order",
+      configuration: categorySlug === "mattresses" ? "Diwan · Single · Double · Queen · King" : "Made to order",
       href: `/products/${product.slug}`,
       imageAlt: image?.alt || `${product.name} image pending`,
       imageSrc: image?.src || "/product-placeholder.svg",
@@ -110,12 +110,21 @@ export default async function HomePage() {
     },
     {
       eyebrow: "Comfort for every room",
-      title: "Sit back. Settle in.",
+      title: "Where comfort lives.",
       copy: "Discover made-to-order sofas and beds designed around comfortable everyday living.",
       href: "/shop?category=sofas",
       action: "Explore Sofas",
       imageAlt: categoryImage("sofas")?.imageAlt || "SleepExcellent sofa collection",
       imageSrc: categoryImage("sofas")?.imageSrc || ("src" in heroImage ? heroImage.src : heroImage.imageSrc),
+    },
+    {
+      eyebrow: "Made-to-order padding beds",
+      title: "A beautiful frame for better rest.",
+      copy: "Explore upholstered padding beds designed to bring softness, comfort, and a finished look to your bedroom.",
+      href: "/shop?category=padding-beds",
+      action: "Explore Padding Beds",
+      imageAlt: categoryImage("padding-beds")?.imageAlt || "SleepExcellent padding bed collection",
+      imageSrc: categoryImage("padding-beds")?.imageSrc || ("src" in heroImage ? heroImage.src : heroImage.imageSrc),
     },
     {
       eyebrow: "Thoughtful interior solutions",
