@@ -1,8 +1,8 @@
 import Image from "next/image";
 
 const founders = [
-  { name: "Pratap Reddy Snapareddy", role: "CEO", image: "/ceo-pratap_reddy_snapareddy.jpg" },
   { name: "Merva Obaiah", role: "Managing Director", image: "/managing_director_merva_obaiah.jpg" },
+  { name: "Pratap Reddy Snapareddy", role: "CEO", image: "/ceo-pratap_reddy_snapareddy.jpg" },
 ];
 
 export default function AboutPage() {
