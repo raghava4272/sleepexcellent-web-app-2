@@ -77,6 +77,7 @@
 .footer p,.footer address { max-width:430px; margin:1rem 0 0; color:#aaa39b; font-size:.78rem; font-style:normal; line-height:1.7; }
 .footer h3 { margin:0 0 1rem; color:white; font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; }
 .footerGrid>div>a:not(.footerLogo),.footerGrid>div>div~a { display:block; width:max-content; max-width:100%; margin:.65rem 0; font-size:.78rem; }
+.certification { display:block; margin-top:.8rem; color:white; font-size:.78rem; font-weight:700; letter-spacing:.08em; }
 .socials { display:flex; gap:.55rem; margin-top:1rem; }
 .socials a { display:grid!important; width:34px!important; height:34px; margin:0!important; place-items:center; border:1px solid #57524c; border-radius:50%; }
 .socials svg { width:17px; height:17px; }

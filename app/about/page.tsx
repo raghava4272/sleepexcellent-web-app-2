@@ -22,6 +22,7 @@ export default function AboutPage() {
             <a className="underline underline-offset-4" href="tel:+919849256799">Sanapareddy: +91 98492 56799</a>
             <a className="underline underline-offset-4" href="tel:+919044257999">Obaiah: +91 90442 57999</a>
             <a className="underline underline-offset-4" href="mailto:sleepexcellent999@gmail.com">sleepexcellent999@gmail.com</a>
+            <span>ISO 9001:2015</span>
           </div>
         </section>
       </div>

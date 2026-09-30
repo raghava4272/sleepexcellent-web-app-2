@@ -275,7 +275,7 @@ export function Homepage({ categories, featured, heroSlides }: { categories: Hom
           <p>Explore your options with our team.</p>
         </div>
         <div className={styles.actions}>
-          <a className={styles.primaryButton} href="https://wa.me/919849256799" rel="noreferrer" target="_blank">
+          <a className={styles.primaryButton} href="https://wa.me/919044257999" rel="noreferrer" target="_blank">
             Chat on WhatsApp
           </a>
           <a className={styles.secondaryButton} href="tel:+919849256799">
@@ -323,6 +323,7 @@ export function Homepage({ categories, featured, heroSlides }: { categories: Hom
             <a href="tel:+919849256799">Sanapareddy: +91 98492 56799</a>
             <a href="tel:+919044257999">Obaiah: +91 90442 57999</a>
             <a href="mailto:sleepexcellent999@gmail.com">sleepexcellent999@gmail.com</a>
+            <span className={styles.certification}>ISO 9001:2015</span>
           </div>
         </div>
         <div className={styles.copyright}>© {new Date().getFullYear()} SleepExcellent. All rights reserved.</div>

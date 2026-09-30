@@ -55,7 +55,7 @@ export default async function HomePage() {
     const image = imageFor(product);
     return {
       category: categorySlug,
-      configuration: categorySlug === "mattresses" ? "Single · Diwan · Queen · King" : "Made to order",
+      configuration: categorySlug === "mattresses" ? "Six sizes from 72 × 30 in to 72 × 78 in" : "Made to order",
       href: `/products/${product.slug}`,
       imageAlt: image?.alt || `${product.name} image pending`,
       imageSrc: image?.src || "/product-placeholder.svg",
@@ -101,7 +101,7 @@ export default async function HomePage() {
   const heroSlides: HeroSlide[] = [
     {
       eyebrow: "SleepExcellent home collection",
-      title: "Better sleep. Beautiful spaces.",
+      title: "Sleep better. Live better.",
       copy: "Explore mattresses, sofas, beds, and interior solutions for a home that feels like you.",
       href: "#shop-by-category",
       action: "Explore Collections",
