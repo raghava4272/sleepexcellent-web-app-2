@@ -3,11 +3,13 @@ import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
 
-const sourceRoot = process.argv[2];
-const videoRoot = process.argv[3];
+const positionalArgs = process.argv.slice(2).filter((argument) => !argument.startsWith("--"));
+const sourceRoot = positionalArgs[0];
+const videoRoot = positionalArgs[1];
+const dryRun = process.argv.includes("--dry-run");
 
-if (!sourceRoot || !videoRoot) {
-  console.error("Usage: node scripts/sync-product-media.mjs <source-folder> <prepared-video-folder>");
+if (!sourceRoot) {
+  console.error("Usage: node scripts/sync-product-media.mjs <source-folder> [prepared-video-folder] [--dry-run]");
   process.exit(1);
 }
 
@@ -154,6 +156,11 @@ for (const { product, files: productFiles } of grouped.values()) {
   }
 }
 
+if (dryRun) {
+  console.log(JSON.stringify({ mappedProducts: grouped.size, discoveredImages: uploads.length, linkedImages: rows.length }, null, 2));
+  process.exit(0);
+}
+
 await mapLimit(uploads, 8, async (upload) => {
   const { error } = await supabase.storage.from("product-images").upload(upload.storagePath, upload.bytes, { contentType: upload.contentType, upsert: true });
   if (error) throw error;
@@ -172,7 +179,7 @@ const { error: bucketError } = await supabase.storage.updateBucket("product-imag
 });
 if (bucketError) throw bucketError;
 
-const videos = ["mattresses.m4v", "sofas.m4v", "padding-beds.mp4", "interiors.mp4"];
+const videos = videoRoot ? ["mattresses.m4v", "sofas.m4v", "padding-beds.mp4", "interiors.mp4"] : [];
 for (const filename of videos) {
   const extension = path.extname(filename).toLowerCase();
   const bytes = await readFile(path.join(videoRoot, filename));
