@@ -13,6 +13,8 @@ if (!sourceRoot) {
   process.exit(1);
 }
 
+const sourceRootCategory = path.basename(sourceRoot).trim() === "Mattress" ? "mattresses" : null;
+
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 if (!supabaseUrl || !serviceRoleKey) {
@@ -85,6 +87,7 @@ async function walk(directory) {
 
 function sourceGroup(filePath) {
   const parts = path.relative(sourceRoot, filePath).split(path.sep).map((part) => part.trim());
+  if (sourceRootCategory === "mattresses") return { category: "mattresses", name: parts[0] };
   if (parts[0] === "Mattress") return { category: "mattresses", name: parts[1] };
   if (parts[0] === "Sofas") return { category: "sofas", name: parts[1] };
   if (parts[0] === "Padding Beds") return { category: "padding-beds", name: parts[1] };
@@ -129,7 +132,8 @@ for (const file of files) {
   grouped.set(product.id, current);
 }
 
-const missingProducts = products.filter((product) => !grouped.has(product.id));
+const productsInScope = sourceRootCategory ? products.filter((product) => product.categories.slug === sourceRootCategory) : products;
+const missingProducts = productsInScope.filter((product) => !grouped.has(product.id));
 if (missingProducts.length) {
   throw new Error("No source images mapped for: " + missingProducts.map((product) => product.name).join(", "));
 }
