@@ -38,7 +38,7 @@ export function AddToCart({ productSlug, configuration, showBuyNow = false, comp
     if (action === "buy") router.push("/checkout");
   }
 
-  return <div className={`${compact ? "mt-5" : "mt-8"} flex flex-wrap items-center gap-3`}>
+  return <div className={`${compact ? "mt-0" : "mt-8"} flex flex-wrap items-center gap-3`}>
     <button className="bg-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white disabled:cursor-wait disabled:opacity-60" disabled={state === "loading"} onClick={() => addItem("cart")} type="button">{pendingAction === "cart" ? "Adding…" : "Add to cart"}</button>
     {showBuyNow ? <button className="border border-[#171717] bg-white px-5 py-3 text-sm font-semibold uppercase tracking-wider text-[#171717] transition hover:bg-[#f3ede4] disabled:cursor-wait disabled:opacity-60" disabled={state === "loading"} onClick={() => addItem("buy")} type="button">{pendingAction === "buy" ? "Preparing…" : "Buy now"}</button> : null}
     {!compact ? <Link className="border border-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider" href="/cart">View cart</Link> : null}

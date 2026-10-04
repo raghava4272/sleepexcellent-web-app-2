@@ -1,8 +1,20 @@
 import Image from "next/image";
 
 const founders = [
-  { name: "Pratap Reddy Snapareddy", role: "Managing Director", image: "/pratap-reddy-snapareddy.png" },
-  { name: "Merva Obaiah Yadav", role: "CEO", image: "/merva-obaiah-yadav.png" },
+  {
+    name: "Pratap Reddy Snapareddy",
+    role: "Managing Director",
+    image: "/pratap-reddy-snapareddy.png",
+    description:
+      "Pratap Reddy Snapareddy leads our manufacturing strategy, product development, and operations, keeping every Sleep Excellent product focused on dependable quality, lasting comfort, and thoughtful craftsmanship.",
+  },
+  {
+    name: "Merva Obaiah Yadav",
+    role: "CEO",
+    image: "/merva-obaiah-yadav.png",
+    description:
+      "Merva Obaiah Yadav guides our customer experience, market growth, and brand direction, bringing practical sleep and interior solutions to homes with attentive service and a clear focus on value.",
+  },
 ];
 
 export default function AboutPage() {
@@ -12,8 +24,30 @@ export default function AboutPage() {
         <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#9d6b36]">About us</p>
         <h1 className="mt-3 font-serif text-4xl md:text-6xl">Minds Behind Sleep Excellent</h1>
         <p className="mt-5 max-w-4xl text-lg leading-8 text-neutral-600">Sleep Excellent is a brand of Excellent India Furniture Manufacturers Pvt. Ltd., a rapidly growing Indian furniture and sleep-solutions company. Under the direction of Managing Director Pratap Reddy Snapareddy and CEO Merva Obaiah Yadav, we bring together sleep engineering, thoughtful materials, and made-to-order craftsmanship for homes across India.</p>
-        <section className="mt-10 grid gap-6 md:grid-cols-2">
-          {founders.map((founder) => <article className="rounded-2xl border border-[#d6c8b5] bg-white p-4" key={founder.name}><div className="relative aspect-[3/4] overflow-hidden rounded-xl"><Image alt={`${founder.name}, ${founder.role}`} className="object-cover" fill sizes="(max-width: 768px) 100vw, 50vw" src={founder.image} /></div><p className="mt-5 text-xs font-semibold uppercase tracking-[.2em] text-[#9d6b36]">{founder.role}</p><h2 className="mt-2 font-serif text-2xl">{founder.name}</h2></article>)}
+        <section className="mt-10 space-y-6">
+          {founders.map((founder) => (
+            <article
+              className="grid overflow-hidden rounded-2xl border border-[#d6c8b5] bg-white md:grid-cols-[minmax(260px,380px)_1fr]"
+              key={founder.name}
+            >
+              <div className="relative aspect-[3/4] overflow-hidden bg-[#eee7dc]">
+                <Image
+                  alt={`${founder.name}, ${founder.role}`}
+                  className="object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 380px"
+                  src={founder.image}
+                />
+              </div>
+              <div className="flex flex-col justify-center p-6 md:p-10 lg:p-12">
+                <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#9d6b36]">{founder.role}</p>
+                <h2 className="mt-3 font-serif text-3xl md:text-4xl">{founder.name}</h2>
+                <p className="mt-5 max-w-2xl text-base leading-7 text-neutral-600 md:text-lg md:leading-8">
+                  {founder.description}
+                </p>
+              </div>
+            </article>
+          ))}
         </section>
         <section className="mt-10 rounded-2xl border border-[#d6c8b5] bg-white p-6">
           <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#9d6b36]">Our address</p>
