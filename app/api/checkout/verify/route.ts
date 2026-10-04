@@ -1,6 +1,7 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { NextResponse } from "next/server";
 import { requireAuthenticatedUser } from "@/lib/auth/user";
+import { sendPaidOrderEmails } from "@/lib/email/order-emails";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 export async function POST(request: Request) {
@@ -51,6 +52,29 @@ export async function POST(request: Request) {
     if (eventError) throw eventError;
     const cart = await getActiveCartForConversion(user.id);
     if (cart) await admin.from("carts").update({ status: "converted" }).eq("id", cart.id);
+
+    const [{ data: paidOrder, error: paidOrderError }, { data: paidItems, error: paidItemsError }] = await Promise.all([
+      admin.from("orders").select("order_number, total_paise, currency, delivery_address").eq("id", payment.order_id).single(),
+      admin.from("order_items").select("product_name, quantity, unit_price_paise, line_total_paise, variant_snapshot").eq("order_id", payment.order_id).order("product_name"),
+    ]);
+    if (paidOrderError || paidItemsError || !paidOrder || !user.email) {
+      console.error("Paid order email data could not be loaded", { orderNumber, paidOrderError, paidItemsError, hasCustomerEmail: Boolean(user.email) });
+    } else {
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || new URL(request.url).origin;
+      try {
+        await sendPaidOrderEmails({
+          orderNumber: paidOrder.order_number,
+          customerEmail: user.email,
+          totalPaise: paidOrder.total_paise,
+          currency: paidOrder.currency,
+          deliveryAddress: paidOrder.delivery_address as Record<string, string>,
+          items: paidItems ?? [],
+          orderUrl: new URL(`/account/orders/${paidOrder.order_number}`, siteUrl).toString(),
+        });
+      } catch (emailError) {
+        console.error("Paid order was confirmed, but its notification email failed", { orderNumber, emailError });
+      }
+    }
     return NextResponse.json({ ok: true, orderNumber });
   } catch (error) {
     if (error instanceof Error && error.message === "AUTH_REQUIRED") return NextResponse.json({ error: "Sign in to continue." }, { status: 401 });
