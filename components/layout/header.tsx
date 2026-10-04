@@ -24,7 +24,7 @@ const defaultCatalogueMenuGroups: CatalogueMenuGroup[] = [
   {
     label: "Mattresses",
     href: "/shop",
-    products: [product("Ortho Mattress", "ortho-mattress"), product("Ortho Plus Mattress", "ortho-plus-mattress"), product("Latex Mattress", "latex-mattress"), product("Latex Pro", "latex-pro"), product("Pocketed Spring Mattress", "pocketed-spring-mattress"), product("Bonnell Spring Mattress", "bonnell-spring-mattress"), product("Foam Mattress", "foam-mattress"), product("Memory Foam Mattress", "memory-foam-mattress")],
+    products: [product("Ortho Mattress", "ortho-mattress"), product("Ortho Plus Mattress", "ortho-plus-mattress"), product("Latex Mattress", "latex-mattress"), product("Natural Latex Mattress", "latex-pro"), product("Pocketed Spring Mattress", "pocketed-spring-mattress"), product("Bonnell Spring Mattress", "bonnell-spring-mattress"), product("Foam Mattress", "foam-mattress"), product("Memory Foam Mattress", "memory-foam-mattress")],
   },
   {
     label: "Sofas",
@@ -61,15 +61,16 @@ const defaultCatalogueMenuGroups: CatalogueMenuGroup[] = [
 ];
 
 const collectionProducts = (label: string) => defaultCatalogueMenuGroups.find((group) => group.label === label)?.products ?? [];
-const interiorProducts = (label: string) => defaultCatalogueMenuGroups.find((group) => group.label === "Interior")?.children?.find((child) => child.label === label)?.products ?? [];
 
 const homepageMenuGroups: CatalogueMenuGroup[] = [
   { label: "Mattresses", href: "/shop", products: collectionProducts("Mattresses") },
   { label: "Sofas", href: "/shop?category=sofas", products: collectionProducts("Sofas") },
   { label: "Beds", href: "/shop?category=padding-beds", products: collectionProducts("Padding beds") },
-  { label: "TV Units", href: "/interiors/tv-units", products: interiorProducts("TV Units") },
-  { label: "Modern Kitchen", href: "/interiors/kitchen", products: interiorProducts("Kitchens") },
-  { label: "Ceiling Solutions", href: "/interiors/ceilings", products: interiorProducts("Ceilings") },
+  {
+    label: "Interior",
+    href: "/interiors",
+    children: defaultCatalogueMenuGroups.find((group) => group.label === "Interior")?.children,
+  },
   { label: "About Us", href: "/about", products: [] },
 ];
 

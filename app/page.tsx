@@ -1,4 +1,5 @@
 import { Homepage, type HeroSlide, type HomeCategory, type HomeProduct } from "@/components/home/homepage";
+import { EnquiryModal } from "@/components/enquiry/enquiry-modal";
 import { getPricingManifest, priceLabel } from "@/lib/catalog/pricing";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
@@ -64,7 +65,7 @@ export default async function HomePage() {
     };
   };
 
-  const homeCategories: HomeCategory[] = categorySetup.map((setup) => {
+  const allHomeCategories: HomeCategory[] = categorySetup.map((setup) => {
     const category = categories.find((entry) => entry.slug === setup.slug);
     const categoryProducts = productsFor(setup.slug);
     const imageProduct = categoryProducts.find((product) => product.product_images?.length);
@@ -76,6 +77,18 @@ export default async function HomePage() {
       imageSrc: image?.src || "/product-placeholder.svg",
     };
   });
+  const interiorCategory = allHomeCategories.find((category) => ["tv-units", "kitchen", "ceilings"].includes(category.slug) && category.imageSrc !== "/product-placeholder.svg");
+  const homeCategories: HomeCategory[] = [
+    ...allHomeCategories.filter((category) => !["tv-units", "kitchen", "ceilings"].includes(category.slug)),
+    {
+      description: "TV units, modular kitchens, and ceiling solutions in one coordinated interior collection.",
+      href: "/interiors",
+      imageAlt: interiorCategory?.imageAlt || "SleepExcellent interior collection",
+      imageSrc: interiorCategory?.imageSrc || "/product-placeholder.svg",
+      name: "Interior",
+      slug: "interiors",
+    },
+  ];
 
   const featured = {
     mattresses: productsFor("mattresses")
@@ -97,7 +110,7 @@ export default async function HomePage() {
       alt: "SleepExcellent bedroom collection",
       src: "/product-placeholder.svg",
     };
-  const categoryImage = (slug: string) => homeCategories.find((category) => category.slug === slug && category.imageSrc !== "/product-placeholder.svg");
+  const categoryImage = (slug: string) => allHomeCategories.find((category) => category.slug === slug && category.imageSrc !== "/product-placeholder.svg");
   const heroSlides: HeroSlide[] = [
     {
       eyebrow: "SleepExcellent home collection",
@@ -137,5 +150,5 @@ export default async function HomePage() {
     },
   ];
 
-  return <Homepage categories={homeCategories} featured={featured} heroSlides={heroSlides} />;
+  return <><Homepage categories={homeCategories} featured={featured} heroSlides={heroSlides} /><EnquiryModal /></>;
 }

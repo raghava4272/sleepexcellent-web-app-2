@@ -1,15 +1,15 @@
 (() => {
   const catalogProducts = [
-    { name: "Ortho Plus Mattress", slug: "ortho-plus-mattress", price: 16395, priceLabel: "₹16,395", listPrice: "₹21,000", specification: "Zoned Support", core: "Orthopedic Zoned Support", thickness: ["6", "8", "10", "12"], firmness: "Ortho Firm Calibration (7-9)", criteria: ["Zero Motion Isolation", "100-Night Free Trial Protocol", "Doctor Recommended & Ortho Lab Tested"], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
-    { name: "Latex Pro Mattress", slug: "latex-pro", price: 28315, priceLabel: "₹28,315", listPrice: "₹36,000", specification: "Latex Core", core: "Natural Latex", thickness: ["6", "8", "10", "12"], firmness: "Balanced", criteria: ["100-Night Free Trial Protocol"], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
-    { name: "Pocketed Spring Mattress", slug: "pocketed-spring-mattress", price: 15595, priceLabel: "₹15,595", listPrice: "₹19,990", specification: "Zero Motion Spring System", core: "Pocketed Spring", thickness: ["6", "8", "10", "12"], firmness: "Balanced", criteria: ["Zero Motion Isolation", "100-Night Free Trial Protocol"], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
-    { name: "Memory Foam Mattress", slug: "memory-foam-mattress", price: 16619, priceLabel: "₹16,619", listPrice: "₹22,000", specification: "Memory Foam Comfort", core: "Super Soft Memory Foam", thickness: ["6", "8", "10", "12"], firmness: "Balanced", criteria: ["Zero Motion Isolation", "100-Night Free Trial Protocol"], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
-    { name: "Ortho Mattress", slug: "ortho-mattress", price: 12699, priceLabel: "₹12,699", listPrice: "₹15,999", specification: "Orthopedic Alignment", core: "Orthopedic Zoned Support", thickness: ["6", "8", "10", "12"], firmness: "Ortho Firm Calibration (7-9)", criteria: ["Zero Motion Isolation", "100-Night Free Trial Protocol", "Doctor Recommended & Ortho Lab Tested"], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"], image: "https://punuebwalhaavrbtinkq.supabase.co/storage/v1/object/public/product-images/mattresses/ortho-mattress/01-hero.jpg" },
-    { name: "Latex Mattress", slug: "latex-mattress", price: 15975, priceLabel: "₹15,975", listPrice: "₹20,500", specification: "Natural Latex Comfort", core: "Natural Latex", thickness: ["6", "8", "10", "12"], firmness: "Balanced", criteria: ["100-Night Free Trial Protocol"], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
-    { name: "Bonnell Spring Mattress", slug: "bonnell-spring-mattress", price: 17222, priceLabel: "₹17,222", listPrice: "₹22,500", specification: "Hourglass Spring System", core: "Bonnell High-Tensile Spring", thickness: ["6", "8", "10", "12"], firmness: "Balanced", criteria: ["100-Night Free Trial Protocol"], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
-    { name: "Feel Good Mattress", slug: "feel-good-mattress", price: 26929, priceLabel: "₹26,929", listPrice: "₹34,000", specification: "Multi-Strata Comfort", core: "Dual Comfort (Reversible)", thickness: ["6", "8", "10", "12"], firmness: "Balanced", criteria: ["100-Night Free Trial Protocol"], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
+    { name: "Ortho Plus Mattress", slug: "ortho-plus-mattress", price: 16395, priceLabel: "₹16,395", listPrice: "₹21,000", specification: "Zoned Support", core: "Orthopedic Zoned Support", thickness: ["6", "8", "10", "12"], criteria: ["Zero Motion Isolation", "Doctor Recommended & Ortho Lab Tested"], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
+    { name: "Natural Latex Mattress", slug: "latex-pro", price: 28315, priceLabel: "₹28,315", listPrice: "₹36,000", specification: "Natural Latex", core: "Natural Latex", thickness: ["6", "8", "10", "12"], criteria: [], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
+    { name: "Pocketed Spring Mattress", slug: "pocketed-spring-mattress", price: 15595, priceLabel: "₹15,595", listPrice: "₹19,990", specification: "Zero Motion Spring System", core: "Pocketed Spring", thickness: ["6", "8", "10", "12"], criteria: ["Zero Motion Isolation"], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
+    { name: "Memory Foam Mattress", slug: "memory-foam-mattress", price: 16619, priceLabel: "₹16,619", listPrice: "₹22,000", specification: "Memory Foam Comfort", core: "Memory Foam", thickness: ["6", "8", "10", "12"], criteria: ["Zero Motion Isolation"], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
+    { name: "Ortho Mattress", slug: "ortho-mattress", price: 12699, priceLabel: "₹12,699", listPrice: "₹15,999", specification: "Orthopedic Alignment", core: "Orthopedic Zoned Support", thickness: ["6", "8", "10", "12"], criteria: ["Zero Motion Isolation", "Doctor Recommended & Ortho Lab Tested"], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"], image: "https://punuebwalhaavrbtinkq.supabase.co/storage/v1/object/public/product-images/mattresses/ortho-mattress/01-hero.jpg" },
+    { name: "Latex Mattress", slug: "latex-mattress", price: 15975, priceLabel: "₹15,975", listPrice: "₹20,500", specification: "Natural Latex Comfort", core: "Natural Latex", thickness: ["6", "8", "10", "12"], criteria: [], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
+    { name: "Bonnell Spring Mattress", slug: "bonnell-spring-mattress", price: 17222, priceLabel: "₹17,222", listPrice: "₹22,500", specification: "Hourglass Spring System", core: "Bonnell High-Tensile Spring", thickness: ["6", "8", "10", "12"], criteria: [], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
+    { name: "Feel Good Mattress", slug: "feel-good-mattress", price: 26929, priceLabel: "₹26,929", listPrice: "₹34,000", specification: "Multi-Strata Comfort", core: "Super Soft", thickness: ["6", "8", "10", "12"], criteria: [], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
     { name: "Slim Mattress", slug: "shim-mattress", price: 2119, priceLabel: "₹2,119", listPrice: "₹2,999", specification: "Slim Profile", core: "High Density HR Foam", thickness: ["6", "8", "10", "12"], firmness: "Balanced", criteria: [], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
-    { name: "Foam Mattress", slug: "foam-mattress", price: 14475, priceLabel: "₹14,475", listPrice: "₹18,999", specification: "High-Density Foam", core: "High Density HR Foam", thickness: ["6", "8", "10", "12"], firmness: "Balanced", criteria: ["100-Night Free Trial Protocol"], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] }
+    { name: "Foam Mattress", slug: "foam-mattress", price: 14475, priceLabel: "₹14,475", listPrice: "₹18,999", specification: "High-Density Foam", core: "High Density HR Foam", thickness: ["6", "8", "10", "12"], criteria: [], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] }
   ];
 
   const grid = document.getElementById("product-grid");
@@ -19,9 +19,8 @@
   const filterDefinitions = [
     ["price", "Under ₹10,000"], ["price", "₹10,000 - ₹20,000"], ["price", "₹20,000 - ₹30,000"], ["price", "Above ₹30,000"],
     ["size", "Diwan Mattress — 72 × 36 in"], ["size", "Single Mattress — 75 × 36 in"], ["size", "Double Mattress — 75 × 48 in"], ["size", "Queen Mattress — 75 × 60 in"], ["size", "King Mattress — 75 × 72 in"], ["size", "King Mattress — 78 × 72 in"],
-    ["core", "Orthopedic Zoned Support"], ["core", "Natural Latex"], ["core", "Pocketed Spring"], ["core", "Bonnell High-Tensile Spring"], ["core", "Super Soft Memory Foam"], ["core", "High Density HR Foam"], ["core", "Dual Comfort (Reversible)"],
-    ["firmness", "Ortho Firm Calibration (7-9)"],
-    ["criteria", "Zero Motion Isolation"], ["criteria", "100-Night Free Trial Protocol"], ["criteria", "Doctor Recommended & Ortho Lab Tested"]
+    ["core", "Orthopedic Zoned Support"], ["core", "Natural Latex"], ["core", "Pocketed Spring"], ["core", "Bonnell High-Tensile Spring"], ["core", "Super Soft"], ["core", "Memory Foam"], ["core", "High Density HR Foam"], ["core", "Dual Comfort (Reversible)"],
+    ["criteria", "Zero Motion Isolation"], ["criteria", "Doctor Recommended & Ortho Lab Tested"]
   ];
   filterInputs.forEach((input, index) => {
     input.checked = false;
@@ -32,11 +31,11 @@
     }
   });
 
-  const thicknessButtons = Array.from(filterSidebar.querySelectorAll("button")).filter((button) => /^\d+"$/.test(button.textContent.trim()));
+  const thicknessButtons = Array.from(filterSidebar.querySelectorAll("button")).filter((button) => /^\d+\s*(?:"|in)$/.test(button.textContent.trim()));
   let selectedThickness = null;
   const updateThicknessButtons = () => {
     thicknessButtons.forEach((button) => {
-      const value = button.textContent.trim().replace('"', "");
+      const value = button.textContent.trim().replace(/\s*(?:"|in)$/i, "");
       const active = value === selectedThickness;
       button.className = active
         ? "py-2 border border-primary bg-primary text-on-primary text-mono-data font-mono-data text-center font-bold"
@@ -47,7 +46,7 @@
   thicknessButtons.forEach((button) => {
     button.type = "button";
     button.addEventListener("click", () => {
-      const value = button.textContent.trim().replace('"', "");
+      const value = button.textContent.trim().replace(/\s*(?:"|in)$/i, "");
       selectedThickness = selectedThickness === value ? null : value;
       updateThicknessButtons();
     });
@@ -132,7 +131,7 @@
   const matchesAny = (values, selected) => !selected || selected.size === 0 || values.some((value) => selected.has(value));
   const renderActiveFilters = () => {
     const labels = filterInputs.filter((input) => input.checked).map((input) => input.dataset.label);
-    if (selectedThickness) labels.push(selectedThickness + '" profile');
+    if (selectedThickness) labels.push(selectedThickness + " in profile");
     activeFilterList.innerHTML = '<span class="text-mono-data font-mono-data uppercase text-on-surface-variant mr-1">Active Filters:</span>'
       + (labels.length
         ? labels.map((label) => '<span class="inline-flex items-center px-2.5 py-1 bg-surface-container border border-surface-dim text-body-sm font-body-sm text-primary">' + label + '</span>').join("")
@@ -154,7 +153,6 @@
       const matches = matchesPrice(product.price, groups.price)
         && matchesAny(product.sizes, groups.size)
         && matchesAny([product.core], groups.core)
-        && matchesAny([product.firmness], groups.firmness)
         && matchesAny(product.criteria, groups.criteria)
         && (!selectedThickness || product.thickness.includes(selectedThickness));
       card.classList.toggle("hidden", !matches);
