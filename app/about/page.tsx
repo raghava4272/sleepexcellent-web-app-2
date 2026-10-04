@@ -22,8 +22,8 @@ export default function AboutPage() {
     <main className="min-h-screen bg-[#f8f4ec] px-5 py-12 text-[#171717] md:px-10">
       <div className="mx-auto max-w-6xl">
         <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#9d6b36]">About us</p>
-        <h1 className="mt-3 font-serif text-4xl md:text-6xl">Minds Behind Sleep Excellent</h1>
-        <p className="mt-5 max-w-4xl text-lg leading-8 text-neutral-600">Sleep Excellent is a brand of Excellent India Furniture Manufacturers Pvt. Ltd., a rapidly growing Indian furniture and sleep-solutions company. Under the direction of Managing Director Pratap Reddy Snapareddy and CEO Merva Obaiah Yadav, we bring together sleep engineering, thoughtful materials, and made-to-order craftsmanship for homes across India.</p>
+        <h1 className="mt-3 font-serif text-3xl leading-tight md:text-6xl">Minds Behind Sleep Excellent</h1>
+        <p className="mt-4 max-w-4xl text-base leading-7 text-neutral-600 md:mt-5 md:text-lg md:leading-8">Sleep Excellent is a brand of Excellent India Furniture Manufacturers Pvt. Ltd., a rapidly growing Indian furniture and sleep-solutions company. Under the direction of Managing Director Pratap Reddy Snapareddy and CEO Merva Obaiah Yadav, we bring together sleep engineering, thoughtful materials, and made-to-order craftsmanship for homes across India.</p>
         <section className="mt-10 space-y-6">
           {founders.map((founder) => (
             <article
