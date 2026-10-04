@@ -33,6 +33,7 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
   const productVideo = videoKey ? { label: product.name + " product video", src: supabase.storage.from("product-images").getPublicUrl("videos/" + videoKey).data.publicUrl } : undefined;
   const collectionHref = isMattress ? "/shop" : ["sofas", "padding-beds"].includes(category?.slug || "") ? `/shop?category=${category?.slug}` : ["tv-units", "kitchen", "ceilings"].includes(category?.slug || "") ? `/interiors/${category?.slug}` : "/interiors";
   const pricingLabel = isInterior ? null : priceLabel(pricing[product.slug]);
+  const canBuyNow = !isInterior && product.purchase_mode !== "quote_only" && Boolean(pricingLabel);
 
   return (
     <>
@@ -50,7 +51,7 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
             <div className="mt-7 rounded-2xl border border-[#d6c8b5] bg-white p-5">
               <p className="text-sm font-semibold">Ready to order</p>
               <p className="mt-2 text-sm leading-6 text-neutral-600">Add this made-to-order product directly to your cart. Delivery timing is confirmed after payment.</p>
-              <AddToCart productSlug={slug} />
+              <AddToCart productSlug={slug} showBuyNow={canBuyNow} />
             </div>
           )}
           <div className="mt-5 flex flex-wrap gap-3"><FavoriteButton productSlug={slug} /><Link className="border border-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider" href={collectionHref}>Browse collection</Link>{isMattress ? <Link className="border border-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider" href="/build-your-mattress">Customize a mattress</Link> : null}</div>
