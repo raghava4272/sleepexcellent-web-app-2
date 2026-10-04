@@ -62,28 +62,28 @@ export default async function InteriorsPage() {
 
         <ImageGallery items={galleryItems} />
 
-        <div className="grid gap-5 lg:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {categories.map((category) => {
             const group = products.filter((product) => product.category_id === category.id);
             const featuredProduct = group.find((product) => product.product_images?.length);
             const featuredImage = featuredProduct ? [...(featuredProduct.product_images ?? [])].sort((a, b) => a.sort_order - b.sort_order)[0] : null;
             const featuredImageUrl = featuredImage ? supabase.storage.from("product-images").getPublicUrl(featuredImage.storage_path).data.publicUrl : null;
             return (
-              <section className="overflow-hidden rounded-2xl border border-[#d6c8b5] bg-white shadow-sm" key={category.id}>
+              <Link className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#d6c8b5] bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-[#9d6b36] hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#171717]" href={`/interiors/${category.slug}`} key={category.id}>
                 <div className="relative aspect-[16/9] bg-[#f7f5f1]">
-                  <Image alt={featuredImage?.alt_text || `${category.name} image placeholder`} className={featuredImageUrl ? "object-cover" : "object-contain p-6"} fill sizes="(max-width: 1024px) 100vw, 33vw" src={featuredImageUrl || "/product-placeholder.svg"} unoptimized={Boolean(featuredImageUrl)} />
+                  <Image alt={featuredImage?.alt_text || `${category.name} image placeholder`} className={`${featuredImageUrl ? "object-cover" : "object-contain p-6"} transition duration-300 group-hover:scale-[1.02]`} fill sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw" src={featuredImageUrl || "/product-placeholder.svg"} unoptimized={Boolean(featuredImageUrl)} />
                 </div>
-                <div className="p-6">
+                <div className="flex flex-1 flex-col p-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9d6b36]">Interior category</p>
                 <h2 className="mt-2 font-serif text-3xl">{category.name}</h2>
                 <p className="mt-3 min-h-12 text-sm leading-6 text-neutral-600">{category.description || "Made-to-order specifications and finishes for your space."}</p>
-                <Link className="mt-5 inline-block border-b border-[#171717] pb-1 text-sm font-semibold" href={`/interiors/${category.slug}`}>Explore {category.name} →</Link>
+                <span className="mt-5 w-fit border-b border-[#171717] pb-1 text-sm font-semibold">Explore {category.name} →</span>
                 <ul className="mt-6 space-y-2 border-t border-[#eadfce] pt-4">
-                  {group.slice(0, 6).map((product) => <li key={product.id}><Link className="text-sm hover:underline" href={`/products/${product.slug}`}>{product.name}</Link></li>)}
+                  {group.slice(0, 6).map((product) => <li className="text-sm" key={product.id}>{product.name}</li>)}
                   {group.length > 6 ? <li className="text-sm text-neutral-500">+ {group.length - 6} more designs</li> : null}
                 </ul>
                 </div>
-              </section>
+              </Link>
             );
           })}
         </div>
