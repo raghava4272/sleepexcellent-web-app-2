@@ -33,6 +33,8 @@ export function AddToCart({ productSlug, configuration, showBuyNow = false }: { 
     setState("added");
     setPendingAction(null);
     setMessage("Added to your cart.");
+    const count = Array.isArray(payload.lines) ? payload.lines.reduce((total: number, line: { quantity?: number }) => total + (line.quantity ?? 0), 0) : 0;
+    window.dispatchEvent(new CustomEvent("sleepexcellent-cart-updated", { detail: { count } }));
     if (action === "buy") router.push("/checkout");
   }
 

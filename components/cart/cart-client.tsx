@@ -7,6 +7,7 @@ import { customerAuthHeaders } from "@/lib/supabase/client-auth";
 
 type Line = { id: string; productSlug: string; productName: string; imageUrl: string | null; variantTitle: string; pricePaise: number; quantity: number; configuration: Record<string, string> | null };
 const money = new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 });
+const announceCartQuantity = (lines: Line[]) => window.dispatchEvent(new CustomEvent("sleepexcellent-cart-updated", { detail: { count: lines.reduce((total, line) => total + line.quantity, 0) } }));
 
 export function CartClient() {
   const [lines, setLines] = useState<Line[]>([]);
@@ -27,6 +28,7 @@ export function CartClient() {
       return;
     }
     setLines(payload.lines);
+    announceCartQuantity(payload.lines);
     setStatus("ready");
   }
 
@@ -45,6 +47,7 @@ export function CartClient() {
       return;
     }
     setLines(payload.lines);
+    announceCartQuantity(payload.lines);
     setStatus("ready");
   }
 

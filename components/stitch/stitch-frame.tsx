@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { customerAuthHeaders } from "@/lib/supabase/client-auth";
 
 type StitchFrameProps = {
   className?: string;
@@ -12,6 +14,7 @@ type StitchFrameProps = {
 
 export function StitchFrame({ className, hideEmbeddedHeader = false, productImages, src, title }: StitchFrameProps) {
   const frame = useRef<HTMLIFrameElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     let resizeObserver: ResizeObserver | undefined;
@@ -68,22 +71,43 @@ export function StitchFrame({ className, hideEmbeddedHeader = false, productImag
     const settle = [0, 250, 1000].map((delay) => window.setTimeout(observeFrameDocument, delay));
     const currentFrame = frame.current;
     const resizeOnWindow = () => resize();
-    const receiveFrameHeight = (event: MessageEvent<{ type?: string; height?: number }>) => {
-      if (event.source !== currentFrame?.contentWindow || event.data?.type !== "sleepexcellent-frame-height" || typeof event.data.height !== "number") return;
-      resize(event.data.height);
+    const receiveFrameMessage = async (event: MessageEvent<{ type?: string; height?: number; productSlug?: string }>) => {
+      if (event.source !== currentFrame?.contentWindow) return;
+      if (event.data?.type === "sleepexcellent-frame-height" && typeof event.data.height === "number") {
+        resize(event.data.height);
+        return;
+      }
+      if (event.data?.type !== "sleepexcellent-add-to-cart" || typeof event.data.productSlug !== "string") return;
+      const productSlug = event.data.productSlug;
+      const response = await fetch("/api/cart", {
+        body: JSON.stringify({ productSlug, quantity: 1 }),
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json", ...await customerAuthHeaders() },
+        method: "POST",
+      });
+      if (response.status === 401) {
+        router.push(`/auth/login?next=${encodeURIComponent("/shop")}`);
+        return;
+      }
+      const payload = await response.json();
+      currentFrame?.contentWindow?.postMessage({ type: "sleepexcellent-cart-result", productSlug, ok: response.ok, message: response.ok ? "Added to cart" : payload.error ?? "Unable to add item" }, window.location.origin);
+      if (response.ok) {
+        const count = Array.isArray(payload.lines) ? payload.lines.reduce((total: number, line: { quantity?: number }) => total + (line.quantity ?? 0), 0) : 0;
+        window.dispatchEvent(new CustomEvent("sleepexcellent-cart-updated", { detail: { count } }));
+      }
     };
     currentFrame?.addEventListener("load", observeFrameDocument);
     window.addEventListener("resize", resizeOnWindow);
-    window.addEventListener("message", receiveFrameHeight);
+    window.addEventListener("message", receiveFrameMessage);
 
     return () => {
       settle.forEach(window.clearTimeout);
       resizeObserver?.disconnect();
       currentFrame?.removeEventListener("load", observeFrameDocument);
       window.removeEventListener("resize", resizeOnWindow);
-      window.removeEventListener("message", receiveFrameHeight);
+      window.removeEventListener("message", receiveFrameMessage);
     };
-  }, [hideEmbeddedHeader, productImages]);
+  }, [hideEmbeddedHeader, productImages, router]);
 
   return <iframe className={`stitch-frame ${className ?? ""}`} ref={frame} scrolling="no" src={src} title={title} />;
 }

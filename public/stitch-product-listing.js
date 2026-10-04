@@ -108,10 +108,30 @@
       favorite.setAttribute("aria-pressed", String(!active));
       if (icon) icon.style.fontVariationSettings = active ? "'FILL' 0" : "'FILL' 1";
     });
+    const addToCart = Array.from(card.querySelectorAll("button")).find((button) => button.textContent.trim().toLowerCase() === "select slab");
+    if (addToCart) {
+      addToCart.textContent = "Add to cart";
+      addToCart.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        addToCart.disabled = true;
+        addToCart.textContent = "Adding…";
+        window.parent.postMessage({ type: "sleepexcellent-add-to-cart", productSlug: card.dataset.slug }, window.location.origin);
+      });
+    }
     card.addEventListener("click", () => openProduct(card));
     card.addEventListener("keydown", (event) => {
       if (event.key === "Enter" && event.target === card) openProduct(card);
     });
+  });
+  window.addEventListener("message", (event) => {
+    if (event.origin !== window.location.origin || event.data?.type !== "sleepexcellent-cart-result") return;
+    const card = productCards.find((item) => item.dataset.slug === event.data.productSlug);
+    const button = card ? Array.from(card.querySelectorAll("button")).find((item) => ["add to cart", "adding…", "added"].includes(item.textContent.trim().toLowerCase())) : null;
+    if (!button) return;
+    button.disabled = false;
+    button.textContent = event.data.ok ? "Added" : "Try again";
+    window.setTimeout(() => { button.textContent = "Add to cart"; }, 1500);
   });
 
   const selectedByGroup = () => {

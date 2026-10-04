@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AuthModal, AuthMode } from "@/components/auth/auth-modal";
+import { customerAuthHeaders } from "@/lib/supabase/client-auth";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 
 type ProductMenuLink = { label: string; slug: string };
@@ -126,6 +127,7 @@ export function Header() {
   const [query, setQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
   const [activeSuggestion, setActiveSuggestion] = useState(-1);
+  const [cartQuantity, setCartQuantity] = useState(0);
   const authParam = searchParams.get("auth");
   const authMode: AuthMode | null = authParam === "login" || authParam === "signup" ? authParam : null;
 
@@ -174,6 +176,22 @@ export function Header() {
     },
     [pathname, router, searchParams],
   );
+
+  useEffect(() => {
+    const updateCartQuantity = (event: Event) => {
+      const count = event instanceof CustomEvent && typeof event.detail?.count === "number" ? event.detail.count : 0;
+      setCartQuantity(count);
+    };
+    const loadCartQuantity = async () => {
+      const response = await fetch("/api/cart", { credentials: "same-origin", headers: await customerAuthHeaders() });
+      if (!response.ok) return setCartQuantity(0);
+      const payload = await response.json();
+      setCartQuantity(Array.isArray(payload.lines) ? payload.lines.reduce((total: number, line: { quantity?: number }) => total + (line.quantity ?? 0), 0) : 0);
+    };
+    loadCartQuantity();
+    window.addEventListener("sleepexcellent-cart-updated", updateCartQuantity);
+    return () => window.removeEventListener("sleepexcellent-cart-updated", updateCartQuantity);
+  }, [pathname]);
 
   useEffect(() => {
     const close = (event: KeyboardEvent) => {
@@ -336,8 +354,9 @@ export function Header() {
             <button className="hidden whitespace-nowrap hover:underline xl:inline" onClick={openAccount} type="button">
               Account
             </button>
-            <Link aria-label="Shopping bag" className="grid h-10 w-10 place-items-center border border-[#181818]" href="/cart">
+            <Link aria-label={`Shopping bag with ${cartQuantity} item${cartQuantity === 1 ? "" : "s"}`} className="relative grid h-10 w-10 place-items-center border border-[#181818]" href="/cart">
               <BagIcon />
+              {cartQuantity > 0 ? <span className="absolute -right-2 -top-2 grid min-h-5 min-w-5 place-items-center rounded-full bg-[#c93b2b] px-1 text-[10px] font-bold leading-none text-white">{cartQuantity > 99 ? "99+" : cartQuantity}</span> : null}
             </Link>
           </nav>
         </div>
