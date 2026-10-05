@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { getSupabasePublicConfig } from "@/lib/supabase/config";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import { brandedAuthEmailIsConfigured, sendSignupVerificationEmail } from "@/lib/email/auth-emails";
 
 function safeNextPath(value: FormDataEntryValue | null) {
   const path = typeof value === "string" ? value : null;
@@ -12,6 +14,12 @@ function registerRedirect(request: NextRequest, next: string, modal: boolean) {
   if (modal) url.searchParams.set("auth", "signup");
   else url.searchParams.set("next", next);
   return url;
+}
+
+function registrationErrorCode(code?: string, status?: number) {
+  if (code === "user_already_exists" || code === "email_exists") return "email_exists";
+  if (code === "over_email_send_rate_limit" || status === 429) return "email_rate_limit";
+  return "invalid_registration";
 }
 
 export async function POST(request: NextRequest) {
@@ -37,11 +45,28 @@ export async function POST(request: NextRequest) {
   });
   const confirmUrl = new URL("/auth/callback", request.url);
   confirmUrl.searchParams.set("next", next);
-  const { error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: confirmUrl.toString(), data: { full_name: fullName, phone, pincode } } });
-  if (error) {
-    redirectUrl.searchParams.set("error", "invalid_registration");
-  } else {
-    redirectUrl.searchParams.set("message", "Check your inbox for the verification link, then sign in.");
+  const metadata = { full_name: fullName, phone, pincode };
+
+  if (brandedAuthEmailIsConfigured()) {
+    const admin = createSupabaseAdminClient();
+    const { data, error } = await admin.auth.admin.generateLink({ type: "signup", email, password, options: { data: metadata, redirectTo: confirmUrl.toString() } });
+    if (error || !data.properties?.action_link) {
+      redirectUrl.searchParams.set("error", registrationErrorCode(error?.code, error?.status));
+      return NextResponse.redirect(redirectUrl, 303);
+    }
+    try {
+      await sendSignupVerificationEmail({ email, fullName, verificationUrl: data.properties.action_link });
+      redirectUrl.searchParams.set("message", "Check your inbox for the SleepExcellent verification link, then sign in.");
+    } catch (emailError) {
+      console.error("Could not send signup verification email", emailError);
+      if (data.user?.id) await admin.auth.admin.deleteUser(data.user.id);
+      redirectUrl.searchParams.set("error", "email_delivery_failed");
+    }
+    return NextResponse.redirect(redirectUrl, 303);
   }
+
+  const { error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: confirmUrl.toString(), data: metadata } });
+  if (error) redirectUrl.searchParams.set("error", registrationErrorCode(error.code, error.status));
+  else redirectUrl.searchParams.set("message", "Check your inbox for the verification link, then sign in.");
   return NextResponse.redirect(redirectUrl, 303);
 }

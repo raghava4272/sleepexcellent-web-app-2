@@ -3,10 +3,17 @@ import { PasswordField } from "@/components/auth/password-field";
 
 type RegisterPageProps = { searchParams: Promise<{ error?: string; message?: string; next?: string }> };
 
+const errorMessages: Record<string, string> = {
+  invalid_registration: "Check your contact details, email address, and password, then try again.",
+  email_exists: "An account already exists for this email address. Sign in instead.",
+  email_rate_limit: "Too many verification emails were requested. Please wait a few minutes and try again.",
+  email_delivery_failed: "We could not send the verification email. Please try again shortly.",
+};
+
 export default async function RegisterPage({ searchParams }: RegisterPageProps) {
   const params = await searchParams;
   const next = params.next?.startsWith("/") && !params.next.startsWith("//") ? params.next : "/";
-  const notice = params.error ? "Please use a valid email address and a password of at least eight characters." : params.message;
+  const notice = params.error ? errorMessages[params.error] ?? errorMessages.invalid_registration : params.message;
 
   return (
     <main className="grid min-h-screen place-items-center bg-canvas p-6 text-ink">

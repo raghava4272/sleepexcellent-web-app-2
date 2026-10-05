@@ -18,6 +18,9 @@ type AuthModalProps = {
 const errorMessages: Record<string, string> = {
   invalid_credentials: "That email address or password is incorrect.",
   invalid_registration: "We could not create that account. Check the details and try again.",
+  email_exists: "An account already exists for this email address. Sign in instead.",
+  email_rate_limit: "Too many verification emails were requested. Please wait a few minutes and try again.",
+  email_delivery_failed: "We could not send the verification email. Please try again shortly.",
   missing_credentials: "Enter both your email address and password.",
 };
 
