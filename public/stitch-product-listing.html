@@ -3,7 +3,7 @@
 <html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>SleepExcellent | Orthopedic &amp; Ergonomic Mattresses</title>
+<title>SleepExcellent | Orthopedic &amp; Natural Latex Mattresses</title>
 <!-- Google Fonts: Syne (Headlines) and Geist (Body & Monoline data) -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -177,11 +177,27 @@
     @media (max-width: 767px) {
       .px-margin { padding-left: 16px; padding-right: 16px; }
       main > .grid { display: block; }
-      main aside { margin-bottom: 24px; }
+      .catalog-hero { padding-top: 24px !important; padding-bottom: 24px !important; }
+      .catalog-breadcrumb { align-items: flex-start; flex-wrap: wrap; row-gap: 6px; }
+      .catalog-hero-grid { display: block !important; }
+      .catalog-hero-copy { width: 100%; }
+      .catalog-hero-copy h1 { font-size: 30px !important; line-height: 1.08 !important; letter-spacing: -0.025em; overflow-wrap: normal; word-break: normal; }
+      .catalog-hero-copy p { margin-top: 14px; font-size: 16px; line-height: 1.55; }
+      .catalog-hero-meta { display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 14px; margin-top: 22px; padding-bottom: 0 !important; }
+      .catalog-hero-meta > div { min-width: 0; padding-left: 0 !important; text-align: left; }
+      .catalog-hero-meta > div + div { border-left: 1px solid #ded9d2; padding-left: 14px !important; }
+      .catalog-hero-meta .text-headline-md { display: block; margin-top: 4px; font-size: 22px; line-height: 1.15; overflow-wrap: anywhere; }
+      .catalog-hero-meta > div:last-child .text-headline-md { font-size: 18px; letter-spacing: -0.02em; overflow-wrap: normal; white-space: nowrap; }
+      .catalog-promo { align-items: flex-start !important; flex-direction: column; gap: 12px; padding-top: 14px; padding-bottom: 14px; }
+      .catalog-promo > div { align-items: flex-start; }
+      #mobile-filter-toggle { display: inline-flex; }
+      main aside { display: none; margin: 12px 0 24px; padding: 16px; position: static; }
+      main aside.mobile-open { display: block; }
+      main aside > div:first-child h2 { font-size: 18px !important; }
       #product-grid, #product-grid.is-list > article { grid-template-columns: minmax(0, 1fr) !important; }
       #product-grid > * { grid-column: auto; }
       #product-grid > article { min-width: 0; }
-      h1 { font-size: 32px !important; line-height: 1.15 !important; overflow-wrap: anywhere; }
+      h1 { font-size: 32px !important; line-height: 1.15 !important; }
     }
   </style>
 </head>
@@ -249,9 +265,9 @@
 </header>
 <!-- BREADCRUMB & PAGE MONUMENT HEADER -->
 <section class="w-full border-b border-surface-dim bg-surface-container-low">
-<div class="w-full px-margin py-8 mx-auto">
+<div class="catalog-hero w-full px-margin py-8 mx-auto">
 <!-- Breadcrumb -->
-<nav class="flex items-center space-x-2 text-mono-data font-mono-data text-on-surface-variant mb-4">
+<nav class="catalog-breadcrumb flex items-center space-x-2 text-mono-data font-mono-data text-on-surface-variant mb-4">
 <a class="hover:text-primary transition-colors" href="#">Home</a>
 <span class="text-surface-dim">/</span>
 <a class="hover:text-primary transition-colors" href="#">Mattresses</a>
@@ -259,16 +275,16 @@
 <span class="text-primary font-semibold">All Orthopedic Mattresses</span>
 </nav>
 <!-- Monument Title & Abstract -->
-<div class="grid grid-cols-12 gap-gutter items-end">
-<div class="col-span-8">
+<div class="catalog-hero-grid grid grid-cols-12 gap-gutter items-end">
+<div class="catalog-hero-copy col-span-8">
 <h1 class="font-display-lg text-display-lg text-primary uppercase tracking-tight">
-            Orthopedic &amp; Ergonomic Mattresses
+            Orthopedic &amp; Natural Latex Mattresses
           </h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant mt-2 max-w-3xl">
             Engineered with zoned spine alignment, 100% natural latex, and breathable organic fabrics handcrafted direct from factory. Precision calibrated for planar lumbar support.
           </p>
 </div>
-<div class="col-span-4 flex justify-end items-center space-x-6 pb-2">
+<div class="catalog-hero-meta col-span-4 flex justify-end items-center space-x-6 pb-2">
 <div class="text-right">
 <span class="font-mono-data text-mono-data uppercase block text-on-surface-variant">Verified Catalog Range</span>
 <span class="font-headline-md text-headline-md text-primary">10 Models</span>
@@ -283,7 +299,7 @@
 </section>
 <!-- PROMOTIONAL FLASH STRIP BANNER -->
 <section class="w-full border-b border-surface-dim bg-surface-container-high py-2 px-margin">
-<div class="flex items-center justify-between">
+<div class="catalog-promo flex items-center justify-between">
 <div class="flex items-center space-x-4">
 <span class="bg-[#C93B2B] text-on-primary text-[10px] font-mono-data uppercase font-bold tracking-widest px-2 py-0.5">ARCHITECTURAL SALE</span>
 <p class="text-body-sm font-body-sm text-primary font-medium">
@@ -295,9 +311,10 @@
 </section>
 <!-- MAIN MERCHANDISING CANVAS (SIDEBAR + GRID) -->
 <main class="w-full px-margin py-8 mx-auto">
+<button aria-controls="catalog-filters" aria-expanded="false" class="mb-3 hidden items-center gap-2 border border-primary bg-white px-4 py-2.5 text-label-caps font-label-caps uppercase font-bold" id="mobile-filter-toggle" type="button"><span class="material-symbols-outlined text-[18px]">tune</span><span>Filters</span></button>
 <div class="grid grid-cols-12 gap-8 items-start">
 <!-- LEFT SIDEBAR: FACETED ACCORDION FILTERS -->
-<aside class="col-span-3 border border-surface-dim bg-surface-container-lowest p-6 space-y-6 sticky top-36">
+<aside class="col-span-3 border border-surface-dim bg-surface-container-lowest p-6 space-y-6 sticky top-36" id="catalog-filters">
 <!-- Filter Header -->
 <div class="flex items-center justify-between pb-4 border-b border-surface-dim">
 <div class="flex items-center space-x-2">

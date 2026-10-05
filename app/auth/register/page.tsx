@@ -13,10 +13,12 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
       <section className="w-full max-w-md border border-ink bg-canvas-raised p-7 sm:p-10">
         <p className="eyebrow text-timber">SleepExcellent account</p>
         <h1 className="font-display mt-4 text-4xl font-semibold tracking-[-0.045em]">Create your account.</h1>
-        <p className="mt-3 text-sm leading-6 text-muted-ink">We will send a verification link from Supabase&apos;s no-reply email address before you can sign in.</p>
+        <p className="mt-3 text-sm leading-6 text-muted-ink">Enter your contact details and SleepExcellent will send a verification link before you can sign in.</p>
         {notice ? <p className="mt-5 border border-line bg-canvas-soft px-4 py-3 text-sm" role="status">{notice}</p> : null}
         <form action="/auth/email-register" className="mt-7 grid gap-5" method="post">
           <input name="next" type="hidden" value={next} />
+          <label className="grid gap-2 text-sm font-medium">Full name<input autoComplete="name" className="border border-ink bg-white px-3 py-3 outline-none" maxLength={100} name="fullName" required /></label>
+          <div className="grid gap-5 sm:grid-cols-2"><label className="grid gap-2 text-sm font-medium">Phone number<input autoComplete="tel" className="border border-ink bg-white px-3 py-3 outline-none" inputMode="tel" maxLength={15} name="phone" pattern="[0-9+ ]{10,15}" required type="tel" /></label><label className="grid gap-2 text-sm font-medium">Pincode<input autoComplete="postal-code" className="border border-ink bg-white px-3 py-3 outline-none" inputMode="numeric" maxLength={6} name="pincode" pattern="[0-9]{6}" required /></label></div>
           <label className="grid gap-2 text-sm font-medium">Email address<input autoComplete="email" className="border border-ink bg-white px-3 py-3 outline-none" name="email" required type="email" /></label>
           <label className="grid gap-2 text-sm font-medium">Password<PasswordField autoComplete="new-password" inputClassName="w-full border border-ink bg-white px-3 py-3 outline-none" minLength={8} /></label>
           <button className="bg-ink px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white" type="submit">Create account</button>

@@ -33,7 +33,7 @@ for (const viewport of [
     const frame = page.locator('iframe[title="SleepExcellent approved product listing"]');
     await expect.poll(async () => (await frame.boundingBox())?.height ?? 0).toBeGreaterThan(500);
     const catalog = page.frameLocator('iframe[title="SleepExcellent approved product listing"]');
-    await expect(catalog.getByRole("heading", { level: 1 })).toHaveText("Orthopedic & Ergonomic Mattresses");
+    await expect(catalog.getByRole("heading", { level: 1 })).toHaveText("Orthopedic & Natural Latex Mattresses");
     await catalog.locator("#product-grid > article").first().locator("button.bg-primary").click();
     await expect(page).toHaveURL(/\/products\/ortho-plus-mattress$/);
     await expect(page.getByRole("heading", { level: 1, name: "Ortho Plus Mattress" })).toBeVisible();
@@ -45,7 +45,7 @@ test("renders the approved catalog with supplied mattress data and image placeho
 
   const catalog = page.frameLocator('iframe[title="SleepExcellent approved product listing"]');
   await expect(catalog.getByRole("heading", { level: 1 })).toHaveText(
-    "Orthopedic & Ergonomic Mattresses",
+    "Orthopedic & Natural Latex Mattresses",
   );
   await expect(
     catalog.getByRole("heading", { exact: true, level: 3, name: "Foam Mattress" }),

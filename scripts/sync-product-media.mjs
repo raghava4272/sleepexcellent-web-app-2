@@ -13,7 +13,12 @@ if (!sourceRoot) {
   process.exit(1);
 }
 
-const sourceRootCategory = path.basename(sourceRoot).trim() === "Mattress" ? "mattresses" : null;
+const sourceFolderName = path.basename(sourceRoot).trim().toLowerCase();
+const sourceRootCategory = ["mattress", "mattresses"].includes(sourceFolderName)
+  ? "mattresses"
+  : ["sofa", "sofas"].includes(sourceFolderName)
+    ? "sofas"
+    : null;
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -34,7 +39,9 @@ const contentTypes = {
 };
 
 const aliases = {
+  "mattresses:latexpro": "latex-pro",
   "sofas:coronasofa": "corner-sofa",
+  "sofas:luxurysofa": "prussian-style-sofa",
   "ceilings:circularfeaturefalseceiling": "acoustic-ceiling",
   "ceilings:cofferedfalseceiling": "industrial-exposed-ceiling",
   "ceilings:covelightingfalseceiling": "cove-lighting-ceiling",
@@ -87,7 +94,7 @@ async function walk(directory) {
 
 function sourceGroup(filePath) {
   const parts = path.relative(sourceRoot, filePath).split(path.sep).map((part) => part.trim());
-  if (sourceRootCategory === "mattresses") return { category: "mattresses", name: parts[0] };
+  if (sourceRootCategory) return { category: sourceRootCategory, name: parts[0] };
   if (parts[0] === "Mattress") return { category: "mattresses", name: parts[1] };
   if (parts[0] === "Sofas") return { category: "sofas", name: parts[1] };
   if (parts[0] === "Padding Beds") return { category: "padding-beds", name: parts[1] };

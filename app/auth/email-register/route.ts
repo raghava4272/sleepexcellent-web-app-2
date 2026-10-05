@@ -18,11 +18,14 @@ export async function POST(request: NextRequest) {
   const formData = await request.formData();
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
+  const fullName = String(formData.get("fullName") ?? "").trim();
+  const phone = String(formData.get("phone") ?? "").trim();
+  const pincode = String(formData.get("pincode") ?? "").trim();
   const next = safeNextPath(formData.get("next"));
   const modal = formData.get("modal") === "1";
   const returnTo = safeNextPath(formData.get("returnTo") ?? next);
   const redirectUrl = registerRedirect(request, modal ? returnTo : next, modal);
-  if (!email || password.length < 8) {
+  if (!email || password.length < 8 || !fullName || !/^[0-9+ ]{10,15}$/.test(phone) || !/^\d{6}$/.test(pincode)) {
     redirectUrl.searchParams.set("error", "invalid_registration");
     return NextResponse.redirect(redirectUrl, 303);
   }
@@ -34,7 +37,7 @@ export async function POST(request: NextRequest) {
   });
   const confirmUrl = new URL("/auth/callback", request.url);
   confirmUrl.searchParams.set("next", next);
-  const { error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: confirmUrl.toString() } });
+  const { error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: confirmUrl.toString(), data: { full_name: fullName, phone, pincode } } });
   if (error) {
     redirectUrl.searchParams.set("error", "invalid_registration");
   } else {

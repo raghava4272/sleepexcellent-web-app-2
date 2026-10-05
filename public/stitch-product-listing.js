@@ -14,6 +14,7 @@
 
   const grid = document.getElementById("product-grid");
   const filterSidebar = document.querySelector("aside");
+  const mobileFilterToggle = document.getElementById("mobile-filter-toggle");
   const filterInputs = Array.from(filterSidebar.querySelectorAll('input[type="checkbox"]'));
   const activeFilterList = document.getElementById("active-filter-list");
   const filterDefinitions = [
@@ -189,6 +190,19 @@
     applyFilters();
   };
   applyButton.addEventListener("click", applyFilters);
+  applyButton.addEventListener("click", () => {
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      filterSidebar.classList.remove("mobile-open");
+      mobileFilterToggle.setAttribute("aria-expanded", "false");
+      mobileFilterToggle.scrollIntoView({ block: "start", behavior: "smooth" });
+    }
+  });
+  mobileFilterToggle.addEventListener("click", () => {
+    const open = filterSidebar.classList.toggle("mobile-open");
+    mobileFilterToggle.setAttribute("aria-expanded", String(open));
+    mobileFilterToggle.querySelector("span:last-child").textContent = open ? "Close filters" : "Filters";
+    reportFrameHeight();
+  });
   document.getElementById("clear-catalog-filters").addEventListener("click", clearFilters);
   document.getElementById("reset-catalog-filters").addEventListener("click", clearFilters);
   renderActiveFilters();

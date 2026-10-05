@@ -1,5 +1,4 @@
 import { Homepage, type HeroSlide, type HomeCategory, type HomeProduct } from "@/components/home/homepage";
-import { EnquiryModal } from "@/components/enquiry/enquiry-modal";
 import { getPricingManifest, priceLabel } from "@/lib/catalog/pricing";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
@@ -150,5 +149,5 @@ export default async function HomePage() {
     },
   ];
 
-  return <><Homepage categories={homeCategories} featured={featured} heroSlides={heroSlides} /><EnquiryModal /></>;
+  return <Homepage categories={homeCategories} featured={featured} heroSlides={heroSlides} />;
 }
