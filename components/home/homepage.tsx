@@ -320,8 +320,8 @@ export function Homepage({ categories, featured, heroSlides }: { categories: Hom
           </div>
           <div>
             <h3>Contact</h3>
-            <a href="tel:+919849256799">Sanapareddy: +91 98492 56799</a>
-            <a href="tel:+919044257999">Obaiah: +91 90442 57999</a>
+            <a href="tel:+919849256799">Pratap Reddy Sanapareddy: +91 98492 56799</a>
+            <a href="tel:+919044257999">Merva Obaiah Yadav: +91 90442 57999</a>
             <a href="mailto:sleepexcellent999@gmail.com">sleepexcellent999@gmail.com</a>
             <span className={styles.certification}>ISO 9001:2015</span>
           </div>
