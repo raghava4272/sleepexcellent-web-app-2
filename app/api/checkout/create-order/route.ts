@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getCartLines } from "@/lib/cart";
 import { requireAuthenticatedUser } from "@/lib/auth/user";
+import { createRazorpayClient, getRazorpayKeyId, razorpayErrorStatus } from "@/lib/razorpay";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 type Address = { recipientName: string; phone: string; line1: string; city: string; state: string; postalCode: string };
@@ -20,6 +21,7 @@ export async function POST(request: Request) {
     const { lines } = await getCartLines(user.id);
     if (lines.length === 0) return NextResponse.json({ error: "Your cart is empty." }, { status: 409 });
     const subtotalPaise = lines.reduce((total, line) => total + line.pricePaise * line.quantity, 0);
+    if (!Number.isSafeInteger(subtotalPaise) || subtotalPaise < 100) return NextResponse.json({ error: "The minimum payment amount is ₹1." }, { status: 400 });
     const orderNumber = `SE${Date.now().toString(36).toUpperCase()}${Math.random().toString(36).slice(2, 5).toUpperCase()}`;
 
     const admin = createSupabaseAdminClient();
@@ -42,12 +44,32 @@ export async function POST(request: Request) {
       variant_snapshot: { title: line.variantTitle }, configuration_snapshot: line.configuration, sku: line.productSlug,
     })));
     if (itemsError) throw itemsError;
-    const { error: paymentError } = await admin.from("payments").insert({
-      order_id: order.id, provider: "manual_qr", provider_order_id: `manual_${orderNumber}`, status: "pending", amount_paise: subtotalPaise, currency: "INR", provider_payload: { receipt: orderNumber, verification: "admin_required" },
-    });
-    if (paymentError) throw paymentError;
 
-    return NextResponse.json({ orderNumber, amount: subtotalPaise, currency: "INR" });
+    let razorpayOrder;
+    try {
+      razorpayOrder = await createRazorpayClient().orders.create({
+        amount: subtotalPaise,
+        currency: "INR",
+        receipt: orderNumber,
+        notes: { sleepExcellentOrderId: order.id },
+      });
+    } catch (error) {
+      await admin.from("orders").delete().eq("id", order.id);
+      const status = razorpayErrorStatus(error);
+      if (status === 401) return NextResponse.json({ error: "Razorpay authentication failed." }, { status: 401 });
+      console.error("Razorpay order creation failed", { status });
+      return NextResponse.json({ error: "Unable to start Razorpay checkout. Please try again." }, { status: 500 });
+    }
+
+    const { error: paymentError } = await admin.from("payments").insert({
+      order_id: order.id, provider: "razorpay", provider_order_id: razorpayOrder.id, status: "pending", amount_paise: subtotalPaise, currency: razorpayOrder.currency, provider_payload: { receipt: orderNumber },
+    });
+    if (paymentError) {
+      await admin.from("orders").delete().eq("id", order.id);
+      throw paymentError;
+    }
+
+    return NextResponse.json({ order_id: razorpayOrder.id, orderNumber, amount: subtotalPaise, currency: razorpayOrder.currency, key_id: getRazorpayKeyId() });
   } catch (error) {
     if (error instanceof Error && error.message === "AUTH_REQUIRED") return NextResponse.json({ error: "Sign in to continue." }, { status: 401 });
     console.error("Checkout order creation failed", error);

@@ -6,5 +6,5 @@ export default async function CheckoutPage() {
   const profile = await getCurrentProfile();
   if (!profile) redirect("/auth/login?next=/checkout");
 
-  return <CheckoutClient />;
+  return <CheckoutClient customerEmail={profile.email} />;
 }
