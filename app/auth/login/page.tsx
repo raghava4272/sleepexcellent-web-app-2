@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PhoneOtpForm } from "@/components/auth/phone-otp-form";
 import { PasswordField } from "@/components/auth/password-field";
 
 type LoginPageProps = { searchParams: Promise<{ error?: string; message?: string; next?: string }> };
@@ -19,14 +20,18 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
       <section className="w-full max-w-md border border-ink bg-canvas-raised p-7 sm:p-10">
         <p className="eyebrow text-timber">SleepExcellent account</p>
         <h1 className="font-display mt-4 text-4xl font-semibold tracking-[-0.045em]">Welcome back.</h1>
-        <p className="mt-3 text-sm leading-6 text-muted-ink">Sign in to view orders and manage your account.</p>
+        <p className="mt-3 text-sm leading-6 text-muted-ink">Enter your mobile number and we will send a one-time password to securely sign you in.</p>
         {notice ? <p className="mt-5 border border-line bg-canvas-soft px-4 py-3 text-sm" role="status">{notice}</p> : null}
-        <form action="/auth/email-login" className="mt-7 grid gap-5" method="post">
-          <input name="next" type="hidden" value={next} />
-          <label className="grid gap-2 text-sm font-medium">Email address<input autoComplete="email" className="border border-ink bg-white px-3 py-3 outline-none" name="email" required type="email" /></label>
-          <label className="grid gap-2 text-sm font-medium">Password<PasswordField autoComplete="current-password" inputClassName="w-full border border-ink bg-white px-3 py-3 outline-none" /></label>
-          <button className="bg-ink px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white" type="submit">Sign in</button>
-        </form>
+        <PhoneOtpForm next={next} />
+        <details className="mt-6 border-t border-line pt-5">
+          <summary className="cursor-pointer text-sm font-semibold underline underline-offset-4">Sign in with email and password instead</summary>
+          <form action="/auth/email-login" className="mt-5 grid gap-5" method="post">
+            <input name="next" type="hidden" value={next} />
+            <label className="grid gap-2 text-sm font-medium">Email address<input autoComplete="email" className="border border-ink bg-white px-3 py-3 outline-none" name="email" required type="email" /></label>
+            <label className="grid gap-2 text-sm font-medium">Password<PasswordField autoComplete="current-password" inputClassName="w-full border border-ink bg-white px-3 py-3 outline-none" /></label>
+            <button className="bg-ink px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white" type="submit">Sign in with email</button>
+          </form>
+        </details>
         <p className="mt-6 text-sm text-muted-ink">New here? <Link className="font-semibold text-ink underline" href={`/auth/register?next=${encodeURIComponent(next)}`}>Create an account</Link></p>
       </section>
     </main>

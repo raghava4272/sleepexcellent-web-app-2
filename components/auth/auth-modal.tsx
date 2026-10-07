@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { PasswordField } from "@/components/auth/password-field";
+import { PhoneOtpForm } from "@/components/auth/phone-otp-form";
 
 export type AuthMode = "login" | "signup";
 
@@ -21,6 +22,7 @@ const errorMessages: Record<string, string> = {
   email_exists: "An account already exists for this email address. Sign in instead.",
   email_rate_limit: "Too many verification emails were requested. Please wait a few minutes and try again.",
   email_delivery_failed: "We could not send the verification email. Please try again shortly.",
+  phone_in_use: "That mobile number is already connected to another account.",
   missing_credentials: "Enter both your email address and password.",
 };
 
@@ -81,31 +83,34 @@ export function AuthModal({ error, message, mode, next, returnTo, onClose, onMod
           </div>
           <button aria-label="Close sign in dialog" className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#d9d1c7] text-xl transition hover:bg-[#f7f5f1]" onClick={onClose} type="button">×</button>
         </div>
-        <p className="mt-3 text-sm leading-6 text-[#5d605e]">{isSignup ? "Share your contact details and create an account. SleepExcellent will email you a verification link." : "Sign in to view your profile, favourites, and order updates."}</p>
+        <p className="mt-3 text-sm leading-6 text-[#5d605e]">{isSignup ? "Share your contact details and create an account. SleepExcellent will email you a verification link." : "Enter your mobile number to receive a secure one-time password."}</p>
 
         {status ? <p aria-live="polite" className={`mt-5 rounded-2xl border px-4 py-3 text-sm ${error ? "border-[#e1b5ae] bg-[#fff5f2] text-[#9f3023]" : "border-[#bfd6c1] bg-[#f2faf3] text-[#275e34]"}`} id="auth-modal-status">{status}</p> : null}
 
-        <form action={isSignup ? "/auth/email-register" : "/auth/email-login"} className="mt-6 space-y-4" method="post" onSubmit={submit}>
+        {!isSignup ? <>
+          <PhoneOtpForm next={next} onSubmittingChange={setSubmitting} />
+          <a className="mt-3 block text-center text-sm font-semibold text-[#5f4531] underline underline-offset-4" href={`/auth/login?next=${encodeURIComponent(next)}`}>Sign in with email instead</a>
+        </> : <form action="/auth/email-register" className="mt-6 space-y-4" method="post" onSubmit={submit}>
           <input name="next" type="hidden" value={next} />
           <input name="returnTo" type="hidden" value={returnTo} />
           <input name="modal" type="hidden" value="1" />
-          {isSignup ? <>
+          <>
             <div><label className="mb-1.5 block text-sm font-semibold" htmlFor="auth-modal-name">Full name</label><input autoComplete="name" className="h-12 w-full rounded-xl border border-[#cfc7bd] bg-[#fcfbf8] px-4 outline-none transition focus:border-[#181818] focus:ring-2 focus:ring-[#d7c4ac]" id="auth-modal-name" maxLength={100} name="fullName" ref={firstFieldRef} required /></div>
             <div className="grid gap-4 sm:grid-cols-2">
               <div><label className="mb-1.5 block text-sm font-semibold" htmlFor="auth-modal-phone">Phone number</label><input autoComplete="tel" className="h-12 w-full rounded-xl border border-[#cfc7bd] bg-[#fcfbf8] px-4 outline-none transition focus:border-[#181818] focus:ring-2 focus:ring-[#d7c4ac]" id="auth-modal-phone" inputMode="tel" maxLength={15} name="phone" pattern="[0-9+ ]{10,15}" required type="tel" /></div>
               <div><label className="mb-1.5 block text-sm font-semibold" htmlFor="auth-modal-pincode">Pincode</label><input autoComplete="postal-code" className="h-12 w-full rounded-xl border border-[#cfc7bd] bg-[#fcfbf8] px-4 outline-none transition focus:border-[#181818] focus:ring-2 focus:ring-[#d7c4ac]" id="auth-modal-pincode" inputMode="numeric" maxLength={6} name="pincode" pattern="[0-9]{6}" required /></div>
             </div>
-          </> : null}
+          </>
           <div>
             <label className="mb-1.5 block text-sm font-semibold" htmlFor="auth-modal-email">Email address</label>
-            <input autoComplete="email" className="h-12 w-full rounded-xl border border-[#cfc7bd] bg-[#fcfbf8] px-4 outline-none transition focus:border-[#181818] focus:ring-2 focus:ring-[#d7c4ac]" id="auth-modal-email" name="email" ref={isSignup ? undefined : firstFieldRef} required type="email" />
+            <input autoComplete="email" className="h-12 w-full rounded-xl border border-[#cfc7bd] bg-[#fcfbf8] px-4 outline-none transition focus:border-[#181818] focus:ring-2 focus:ring-[#d7c4ac]" id="auth-modal-email" name="email" required type="email" />
           </div>
           <div>
             <div className="mb-1.5 flex items-center justify-between gap-3"><label className="block text-sm font-semibold" htmlFor="auth-modal-password">Password</label>{isSignup ? <span className="text-xs text-[#6b6f6c]">8+ characters</span> : null}</div>
-            <PasswordField autoComplete={isSignup ? "new-password" : "current-password"} id="auth-modal-password" inputClassName="h-12 w-full rounded-xl border border-[#cfc7bd] bg-[#fcfbf8] px-4 outline-none transition focus:border-[#181818] focus:ring-2 focus:ring-[#d7c4ac]" key={mode} minLength={isSignup ? 8 : undefined} />
+            <PasswordField autoComplete="new-password" id="auth-modal-password" inputClassName="h-12 w-full rounded-xl border border-[#cfc7bd] bg-[#fcfbf8] px-4 outline-none transition focus:border-[#181818] focus:ring-2 focus:ring-[#d7c4ac]" key={mode} minLength={8} />
           </div>
-          <button className="h-12 w-full rounded-xl bg-[#181818] px-4 text-sm font-semibold text-white transition hover:bg-[#5f4531] disabled:cursor-wait disabled:opacity-70" disabled={submitting} type="submit">{submitting ? "Please wait…" : isSignup ? "Create account" : "Sign in"}</button>
-        </form>
+          <button className="h-12 w-full rounded-xl bg-[#181818] px-4 text-sm font-semibold text-white transition hover:bg-[#5f4531] disabled:cursor-wait disabled:opacity-70" disabled={submitting} type="submit">{submitting ? "Please wait…" : "Create account"}</button>
+        </form>}
 
         <p className="mt-5 text-center text-sm text-[#5d605e]">{isSignup ? "Already have an account?" : "New to SleepExcellent?"} <button className="font-semibold text-[#5f4531] underline underline-offset-4" onClick={switchMode} type="button">{isSignup ? "Sign in" : "Create an account"}</button></p>
       </div>

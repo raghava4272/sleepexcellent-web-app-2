@@ -134,9 +134,11 @@ export function Homepage({ categories, featured, heroSlides }: { categories: Hom
                   <Link className={styles.primaryButton} href={slide.href}>
                     {slide.action}
                   </Link>
-                  <Link className={styles.secondaryButton} href="/build-your-mattress">
-                    Make Your Own Mattress
-                  </Link>
+                  {index === 0 ? (
+                    <Link className={styles.secondaryButton} href="/build-your-mattress">
+                      Make Your Own Mattress
+                    </Link>
+                  ) : null}
                 </div>
               </div>
               <div className={styles.heroImage}>
@@ -291,7 +293,7 @@ export function Homepage({ categories, featured, heroSlides }: { categories: Hom
               <Image alt="SleepExcellent" fill sizes="230px" src="/footer-logo.png" />
             </Link>
             <p>Purposeful sleep systems and interior solutions, made for how you live.</p>
-            <address>Plot No. 356, Road Number 10A, opposite Srikar Apartments, Gopalnagar Society, Hafeezpet, Hyderabad, Telangana 500085</address>
+            <address>Plot No. 356, Road Number 10A, opposite Kidlink School, Gopalnagar Society, Hafeezpet, Hyderabad, Telangana 500085</address>
             <div className={styles.socials}>
               <a aria-label="Instagram" href="https://www.instagram.com/" rel="noreferrer" target="_blank">
                 <SocialIcon name="instagram" />
@@ -320,7 +322,7 @@ export function Homepage({ categories, featured, heroSlides }: { categories: Hom
           </div>
           <div>
             <h3>Contact</h3>
-            <a href="tel:+919849256799">Pratap Reddy Sanapareddy: +91 98492 56799</a>
+            <a href="tel:+919849256799">Sanapareddy Prathaph Reddy: +91 98492 56799</a>
             <a href="tel:+919044257999">Merva Obaiah Yadav: +91 90442 57999</a>
             <a href="mailto:sleepexcellent999@gmail.com">sleepexcellent999@gmail.com</a>
             <span className={styles.certification}>ISO 9001:2015</span>

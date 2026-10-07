@@ -8,6 +8,7 @@ const errorMessages: Record<string, string> = {
   email_exists: "An account already exists for this email address. Sign in instead.",
   email_rate_limit: "Too many verification emails were requested. Please wait a few minutes and try again.",
   email_delivery_failed: "We could not send the verification email. Please try again shortly.",
+  phone_in_use: "That mobile number is already connected to another account.",
 };
 
 export default async function RegisterPage({ searchParams }: RegisterPageProps) {
