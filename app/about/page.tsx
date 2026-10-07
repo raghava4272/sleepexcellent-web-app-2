@@ -2,18 +2,18 @@ import Image from "next/image";
 
 const founders = [
   {
-    name: "SANAPAREDDY PRATHAPH REDDY",
-    role: "Managing Director",
-    image: "/pratap-reddy-snapareddy.png",
-    description:
-      "Sanapareddy Prathaph Reddy leads our manufacturing strategy, product development, and operations, keeping every Sleep Excellent product focused on dependable quality, lasting comfort, and thoughtful craftsmanship.",
-  },
-  {
     name: "MERVA OBAIAH YADAV",
     role: "CEO",
     image: "/merva-obaiah-yadav.png",
     description:
       "Merva Obaiah Yadav guides our customer experience, market growth, and brand direction, bringing practical sleep and interior solutions to homes with attentive service and a clear focus on value.",
+  },
+  {
+    name: "SANAPAREDDY PRATHAPH REDDY",
+    role: "Managing Director",
+    image: "/pratap-reddy-snapareddy.png",
+    description:
+      "Sanapareddy Prathaph Reddy leads our manufacturing strategy, product development, and operations, keeping every Sleep Excellent product focused on dependable quality, lasting comfort, and thoughtful craftsmanship.",
   },
 ];
 
@@ -23,7 +23,7 @@ export default function AboutPage() {
       <div className="mx-auto max-w-6xl">
         <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#9d6b36]">About us</p>
         <h1 className="mt-3 font-serif text-3xl leading-tight md:text-6xl">Minds Behind Sleep Excellent</h1>
-        <p className="mt-4 max-w-4xl text-base leading-7 text-neutral-600 md:mt-5 md:text-lg md:leading-8">Sleep Excellent is a brand of Excellent India Furniture Manufacturers Pvt. Ltd., a rapidly growing Indian furniture and sleep-solutions company. Under the direction of Managing Director Sanapareddy Prathaph Reddy and CEO Merva Obaiah Yadav, we bring together sleep engineering, thoughtful materials, and made-to-order craftsmanship for homes across India.</p>
+        <p className="mt-4 max-w-4xl text-base leading-7 text-neutral-600 md:mt-5 md:text-lg md:leading-8">Sleep Excellent is a brand of Excellent India Furniture Manufacturers Pvt. Ltd., a rapidly growing Indian furniture and sleep-solutions company. Under the direction of CEO Merva Obaiah Yadav and Managing Director Sanapareddy Prathaph Reddy, we bring together sleep engineering, thoughtful materials, and made-to-order craftsmanship for homes across India.</p>
         <section className="mt-10 space-y-6">
           {founders.map((founder) => (
             <article
@@ -53,8 +53,8 @@ export default function AboutPage() {
           <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#9d6b36]">Our address</p>
           <address className="mt-3 max-w-2xl not-italic leading-7 text-neutral-700">Plot No. 356, Road Number 10A, opposite Kidlink School, Gopalnagar Society, Hafeezpet, Hyderabad, Telangana 500085</address>
           <div className="mt-5 flex flex-col gap-2 text-sm font-semibold sm:flex-row sm:flex-wrap sm:gap-x-6">
-            <a className="underline underline-offset-4" href="tel:+919849256799">Sanapareddy Prathaph Reddy: +91 98492 56799</a>
             <a className="underline underline-offset-4" href="tel:+919044257999">Merva Obaiah Yadav: +91 90442 57999</a>
+            <a className="underline underline-offset-4" href="tel:+919849256799">Sanapareddy Prathaph Reddy: +91 98492 56799</a>
             <a className="underline underline-offset-4" href="mailto:sleepexcellent999@gmail.com">sleepexcellent999@gmail.com</a>
             <span>ISO 9001:2015</span>
           </div>
