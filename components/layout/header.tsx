@@ -25,7 +25,7 @@ const defaultCatalogueMenuGroups: CatalogueMenuGroup[] = [
   {
     label: "Mattresses",
     href: "/shop",
-    products: [product("Ortho Mattress", "ortho-mattress"), product("Ortho Plus Mattress", "ortho-plus-mattress"), product("Latex Mattress", "latex-mattress"), product("Natural Latex Mattress", "latex-pro"), product("Pocketed Spring Mattress", "pocketed-spring-mattress"), product("Bonnell Spring Mattress", "bonnell-spring-mattress"), product("Foam Mattress", "foam-mattress"), product("Memory Foam Mattress", "memory-foam-mattress")],
+    products: [product("Ortho Mattress", "ortho-mattress"), product("Ortho Plus Mattress", "ortho-plus-mattress"), product("Latex Mattress", "latex-mattress"), product("Natural Latex Mattress", "latex-pro"), product("Pocketed Spring Mattress", "pocketed-spring-mattress"), product("Bonnell Spring Mattress", "bonnell-spring-mattress"), product("Foam Mattress", "foam-mattress"), product("Memory Foam Mattress", "memory-foam-mattress"), product("Slim Mattress", "shim-mattress")],
   },
   {
     label: "Sofas",
@@ -35,7 +35,7 @@ const defaultCatalogueMenuGroups: CatalogueMenuGroup[] = [
   {
     label: "Padding beds",
     href: "/shop?category=padding-beds",
-    products: [product("Classic Model Headboard Bed", "classic-model-headboard-bed"), product("Roman Model Bed", "roman-model-bed"), product("Luxury Headboard Bed", "luxury-headboard-bed"), product("Round Shape Bed", "round-shape-bed"), product("Dream Night Bed", "dream-night-bed"), product("Teak Wood Bed", "teak-wood-bed"), product("Polished Bed", "polished-bed"), product("Shadhi Model Bed", "shadhi-model-bed"), product("Kerala Teak Bed", "kerala-teak-bed"), product("Inbuilt Plywood Bed", "inbuilt-plywood-bed")],
+    products: [product("Classic Model Headboard Bed", "classic-model-headboard-bed"), product("Roman Model Bed", "roman-model-bed"), product("Luxury Headboard Bed", "luxury-headboard-bed"), product("Round Shape Bed", "round-shape-bed"), product("Dream Night Bed", "dream-night-bed"), product("Teak Wood Bed", "teak-wood-bed"), product("Polished Bed", "polished-bed"), product("Shadhi Model Bed", "shadhi-model-bed"), product("Kerala Teak Bed", "kerala-teak-bed"), product("Inbuilt Plywood Bed", "inbuilt-plywood-bed"), product("Colony Model Bed", "colony-model-bed"), product("Lifestyle Bed", "lifestyle-bed"), product("Wood Rock Bed", "wood-rock-bed")],
   },
   {
     label: "Interior",

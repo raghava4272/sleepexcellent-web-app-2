@@ -280,7 +280,7 @@ export function Homepage({ categories, featured, heroSlides }: { categories: Hom
           <a className={styles.primaryButton} href="https://wa.me/919044257999" rel="noreferrer" target="_blank">
             Chat on WhatsApp
           </a>
-          <a className={styles.secondaryButton} href="tel:+919849256799">
+          <a className={styles.secondaryButton} href="tel:+919044257999">
             Call us
           </a>
         </div>
@@ -294,6 +294,7 @@ export function Homepage({ categories, featured, heroSlides }: { categories: Hom
             </Link>
             <p>Purposeful sleep systems and interior solutions, made for how you live.</p>
             <address>Plot No. 356, Road Number 10A, opposite Kidlink School, Gopalnagar Society, Hafeezpet, Hyderabad, Telangana 500085</address>
+            <p><strong>EXCELLENT INDIA FURNITURE<br />MANUFACTURERS PRIVATE LIMITED</strong></p>
             <div className={styles.socials}>
               <a aria-label="Instagram" href="https://www.instagram.com/" rel="noreferrer" target="_blank">
                 <SocialIcon name="instagram" />
@@ -322,8 +323,7 @@ export function Homepage({ categories, featured, heroSlides }: { categories: Hom
           </div>
           <div>
             <h3>Contact</h3>
-            <a href="tel:+919849256799">Sanapareddy Prathaph Reddy: +91 98492 56799</a>
-            <a href="tel:+919044257999">Merva Obaiah Yadav: +91 90442 57999</a>
+            <a href="tel:+919044257999">Helpline: +91 90442 57999</a>
             <a href="mailto:sleepexcellent999@gmail.com">sleepexcellent999@gmail.com</a>
             <span className={styles.certification}>ISO 9001:2015</span>
           </div>
