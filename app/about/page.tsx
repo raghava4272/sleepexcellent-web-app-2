@@ -2,18 +2,18 @@ import Image from "next/image";
 
 const founders = [
   {
-    name: "OBAIAH YADAV MERVA",
-    role: "CEO",
-    image: "/merva-obaiah-yadav.png",
-    description:
-      "Obaiah Yadav Merva guides our customer experience, market growth, and brand direction, bringing practical sleep and interior solutions to homes with attentive service and a clear focus on value.",
-  },
-  {
     name: "SANAPAREDDY PRATHAPH REDDY",
     role: "Managing Director",
     image: "/pratap-reddy-snapareddy.png",
     description:
       "Sanapareddy Prathaph Reddy leads our manufacturing strategy, product development, and operations, keeping every Sleep Excellent product focused on dependable quality, lasting comfort, and thoughtful craftsmanship.",
+  },
+  {
+    name: "OBAIAH YADAV MERVA",
+    role: "CEO",
+    image: "/merva-obaiah-yadav.png",
+    description:
+      "Obaiah Yadav Merva guides our customer experience, market growth, and brand direction, bringing practical sleep and interior solutions to homes with attentive service and a clear focus on value.",
   },
 ];
 
