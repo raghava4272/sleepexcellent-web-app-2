@@ -74,6 +74,10 @@ export function StitchFrame({ className, hideEmbeddedHeader = false, productImag
     const resizeOnWindow = () => resize();
     const receiveFrameMessage = async (event: MessageEvent<{ type?: string; height?: number; productSlug?: string; variantSku?: string; configuration?: Record<string, string> }>) => {
       if (event.source !== currentFrame?.contentWindow) return;
+      if (event.data?.type === "sleepexcellent-product-data-ready") {
+        sendProductImages();
+        return;
+      }
       if (event.data?.type === "sleepexcellent-frame-height" && typeof event.data.height === "number") {
         resize(event.data.height);
         return;

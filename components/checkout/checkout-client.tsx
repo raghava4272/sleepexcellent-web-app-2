@@ -41,6 +41,10 @@ export function CheckoutClient({ customerEmail }: { customerEmail: string }) {
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
+    if (window.Razorpay) setScriptReady(true);
+  }, []);
+
+  useEffect(() => {
     void customerAuthHeaders().then((headers) => fetch("/api/cart", { cache: "no-store", credentials: "same-origin", headers })).then(async (response) => {
       if (response.status === 401) { router.push("/auth/login?next=/checkout"); return; }
       const payload = await response.json();
@@ -69,9 +73,35 @@ export function CheckoutClient({ customerEmail }: { customerEmail: string }) {
 
   async function startPayment(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!window.Razorpay || !scriptReady) { setMessage("Secure checkout is still loading. Please try again in a moment."); return; }
     setBusy(true);
+    if (!window.Razorpay) {
+      setMessage("Loading secure payment…");
+      const loaded = await new Promise<boolean>((resolve) => {
+        const startedAt = Date.now();
+        const timer = window.setInterval(() => {
+          if (window.Razorpay) {
+            window.clearInterval(timer);
+            setScriptReady(true);
+            resolve(true);
+          } else if (Date.now() - startedAt >= 8000) {
+            window.clearInterval(timer);
+            resolve(false);
+          }
+        }, 100);
+      });
+      if (!loaded) {
+        setBusy(false);
+        setMessage("Secure checkout could not be loaded. Please refresh the page or check your connection.");
+        return;
+      }
+    }
     setMessage("Creating your secure payment order…");
+    const RazorpayCheckout = window.Razorpay;
+    if (!RazorpayCheckout) {
+      setBusy(false);
+      setMessage("Secure checkout could not be loaded. Please refresh the page or check your connection.");
+      return;
+    }
     const form = new FormData(event.currentTarget);
     const address = { recipientName: String(form.get("recipientName") ?? ""), phone: String(form.get("phone") ?? ""), line1: String(form.get("line1") ?? ""), city: String(form.get("city") ?? ""), state: String(form.get("state") ?? ""), postalCode: String(form.get("postalCode") ?? "") };
     try {
@@ -80,7 +110,7 @@ export function CheckoutClient({ customerEmail }: { customerEmail: string }) {
       if (!response.ok) throw new Error(order.error ?? "Unable to create your order.");
       const key = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || order.key_id;
       if (!key) throw new Error("Razorpay checkout is not configured.");
-      const checkout = new window.Razorpay({
+      const checkout = new RazorpayCheckout({
         key,
         amount: order.amount,
         currency: order.currency,
@@ -109,10 +139,10 @@ export function CheckoutClient({ customerEmail }: { customerEmail: string }) {
   const total = lines.reduce((sum, line) => sum + line.pricePaise * line.quantity, 0);
 
   return <main className="min-h-screen bg-[#f8f4ec] px-5 py-10 text-[#171717] md:px-10">
-    <Script onError={() => setMessage("Secure checkout could not be loaded. Please check your connection and try again.")} onLoad={() => setScriptReady(true)} src="https://checkout.razorpay.com/v1/checkout.js" strategy="afterInteractive" />
+    <Script onError={() => setMessage("Secure checkout could not be loaded. Please check your connection and try again.")} onLoad={() => setScriptReady(true)} onReady={() => setScriptReady(true)} src="https://checkout.razorpay.com/v1/checkout.js" strategy="afterInteractive" />
     <header className="mx-auto flex max-w-6xl items-center justify-between gap-4 border-b border-[#d6c8b5] pb-6"><div><p className="text-xs font-semibold uppercase tracking-[.2em] text-[#9d6b36]">SleepExcellent</p><h1 className="mt-2 font-serif text-3xl sm:text-4xl">Checkout</h1></div><Link className="text-sm font-semibold underline" href="/cart">Return to cart</Link></header>
     <section className="mx-auto grid max-w-6xl gap-8 py-8 lg:grid-cols-[1fr_320px]">
-      <form className="border border-[#d6c8b5] bg-white p-6" onSubmit={startPayment}><h2 className="font-serif text-2xl">Delivery details</h2><p className="mt-2 text-sm text-neutral-600">Enter your delivery address, then pay securely with Razorpay.</p><div className="mt-6 grid gap-4 sm:grid-cols-2">{[["recipientName", "Full name", "text"], ["phone", "Phone number", "tel"], ["line1", "Address", "text"], ["city", "City", "text"], ["state", "State", "text"], ["postalCode", "6-digit PIN code", "text"]].map(([name, label, type]) => <label className={name === "line1" ? "grid gap-2 sm:col-span-2" : "grid gap-2"} key={name}><span className="text-sm font-medium">{label}</span><input className="rounded border border-[#b9aa96] bg-[#fffdfa] px-3 py-3 outline-none focus:border-[#171717]" inputMode={name === "postalCode" ? "numeric" : undefined} maxLength={name === "postalCode" ? 6 : undefined} name={name} required type={type} /></label>)}</div><button className="mt-7 w-full bg-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white disabled:cursor-wait disabled:opacity-60" disabled={!ready || !scriptReady || busy} type="submit">{busy ? "Opening secure payment…" : `Pay ${money.format(total / 100)} securely`}</button>{message ? <p className="mt-4 text-sm text-neutral-700" role="status">{message}</p> : null}</form>
+      <form className="border border-[#d6c8b5] bg-white p-6" onSubmit={startPayment}><h2 className="font-serif text-2xl">Delivery details</h2><p className="mt-2 text-sm text-neutral-600">Enter your delivery address, then pay securely with Razorpay.</p><div className="mt-6 grid gap-4 sm:grid-cols-2">{[["recipientName", "Full name", "text"], ["phone", "Phone number", "tel"], ["line1", "Address", "text"], ["city", "City", "text"], ["state", "State", "text"], ["postalCode", "6-digit PIN code", "text"]].map(([name, label, type]) => <label className={name === "line1" ? "grid gap-2 sm:col-span-2" : "grid gap-2"} key={name}><span className="text-sm font-medium">{label}</span><input className="rounded border border-[#b9aa96] bg-[#fffdfa] px-3 py-3 outline-none focus:border-[#171717]" inputMode={name === "postalCode" ? "numeric" : undefined} maxLength={name === "postalCode" ? 6 : undefined} name={name} required type={type} /></label>)}</div><button className="mt-7 w-full bg-[#171717] px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white disabled:cursor-wait disabled:opacity-60" disabled={!ready || busy} type="submit">{busy ? (scriptReady ? "Opening secure payment…" : "Loading secure payment…") : `Pay ${money.format(total / 100)} securely`}</button>{message ? <p className="mt-4 text-sm text-neutral-700" role="status">{message}</p> : null}</form>
       <aside className="h-fit border border-[#d6c8b5] bg-white p-5"><h2 className="font-serif text-2xl">Order summary</h2><div className="mt-5 space-y-4 text-sm">{lines.map((line) => {
         const configurationValues = line.configuration ? Object.values(line.configuration) : [];
         const showVariantTitle = line.variantTitle && !configurationValues.includes(line.variantTitle);

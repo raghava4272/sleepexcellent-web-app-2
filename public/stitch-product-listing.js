@@ -87,6 +87,11 @@
         ? "py-1 text-mono-data font-mono-data border border-primary bg-surface-container font-bold text-primary text-center"
         : "py-1 text-mono-data font-mono-data border border-surface-dim hover:border-primary text-center";
     });
+    const addButton = card.querySelector('[data-action="add-to-cart"]');
+    if (addButton) {
+      addButton.disabled = !variant;
+      addButton.textContent = variant ? "Add to cart" : "Loading prices…";
+    }
   };
   const applyCatalogData = (card, product, index) => {
     const image = card.querySelector("img[data-alt]");
@@ -155,14 +160,13 @@
     });
     const addToCart = Array.from(card.querySelectorAll("button")).find((button) => button.textContent.trim().toLowerCase() === "select slab");
     if (addToCart) {
-      addToCart.textContent = "Add to cart";
+      addToCart.dataset.action = "add-to-cart";
+      addToCart.disabled = !product.selectedVariant;
+      addToCart.textContent = product.selectedVariant ? "Add to cart" : "Loading prices…";
       addToCart.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
-        if (!product.selectedVariant) {
-          openProduct(card);
-          return;
-        }
+        if (!product.selectedVariant) return;
         addToCart.disabled = true;
         addToCart.textContent = "Adding…";
         window.parent.postMessage({
@@ -178,6 +182,7 @@
       if (event.key === "Enter" && event.target === card) openProduct(card);
     });
   });
+  window.parent.postMessage({ type: "sleepexcellent-product-data-ready" }, window.location.origin);
   window.addEventListener("message", (event) => {
     if (event.origin !== window.location.origin || event.data?.type !== "sleepexcellent-cart-result") return;
     const card = productCards.find((item) => item.dataset.slug === event.data.productSlug);
