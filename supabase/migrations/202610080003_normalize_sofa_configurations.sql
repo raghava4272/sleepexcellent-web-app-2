@@ -18,21 +18,17 @@ with sofa_configuration(slug, configuration) as (
     ('sofa-with-recliner', '1 recliner + 2 seats = 3-seater'),
     ('u-shape-sofa', '9-seater')
 ), updated_catalogue as (
-  select jsonb_agg(
-    case
-      when item->>'slug' = config.slug then
-        jsonb_set(item, '{configuration}', to_jsonb(config.configuration), true)
-      else item
-    end
-    order by item_ordinal
-  ) as sofas
+  select jsonb_object_agg(
+    config.slug,
+    coalesce(settings.value -> config.slug, '{}'::jsonb)
+      || jsonb_build_object('configuration', config.configuration)
+  ) as entries
   from site_settings settings
-  cross join lateral jsonb_array_elements(settings.value->'sofas') with ordinality as entries(item, item_ordinal)
-  left join sofa_configuration config on config.slug = item->>'slug'
+  cross join sofa_configuration config
   where settings.key = 'catalogue_pricing_v1'
 )
 update site_settings
-set value = jsonb_set(value, '{sofas}', updated_catalogue.sofas, true),
+set value = value || updated_catalogue.entries,
     updated_at = now()
 from updated_catalogue
 where key = 'catalogue_pricing_v1';
@@ -63,4 +59,4 @@ set title = config.configuration,
 from products
 join sofa_configuration config on config.slug = products.slug
 where variants.product_id = products.id
-  and variants.active = true;
+  and variants.is_active = true;
