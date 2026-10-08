@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     const { data: payment, error: paymentError } = await admin.from("payments").select("id, order_id, provider_payment_id, status, amount_paise, currency").eq("provider", "razorpay").eq("provider_order_id", providerOrderId).maybeSingle();
     if (paymentError) throw paymentError;
     if (!payment) return NextResponse.json({ error: "Payment order was not found." }, { status: 404 });
-    const { data: order, error: orderError } = await admin.from("orders").select("id, order_number, user_id, payment_status, order_status, total_paise, currency, delivery_address").eq("id", payment.order_id).eq("user_id", user.id).maybeSingle();
+    const { data: order, error: orderError } = await admin.from("orders").select("id, order_number, user_id, payment_status, order_status, delivery_status, total_paise, currency, delivery_address").eq("id", payment.order_id).eq("user_id", user.id).maybeSingle();
     if (orderError) throw orderError;
     if (!order) return NextResponse.json({ error: "Payment order was not found." }, { status: 404 });
     if (payment.amount_paise !== order.total_paise || payment.currency !== order.currency) return NextResponse.json({ error: "Payment amount does not match this order." }, { status: 400 });
@@ -65,7 +65,7 @@ export async function POST(request: Request) {
 
     const [{ data: profile }, { data: items, error: itemsError }] = await Promise.all([
       admin.from("profiles").select("email").eq("id", user.id).maybeSingle(),
-      admin.from("order_items").select("product_name, quantity, unit_price_paise, line_total_paise, variant_snapshot").eq("order_id", order.id).order("product_name"),
+      admin.from("order_items").select("product_name, sku, quantity, unit_price_paise, line_total_paise, variant_snapshot, configuration_snapshot").eq("order_id", order.id).order("product_name"),
     ]);
     if (itemsError || !profile?.email) {
       console.error("Paid order email data could not be loaded", { orderId: order.id, itemsError, hasCustomerEmail: Boolean(profile?.email) });
@@ -80,6 +80,16 @@ export async function POST(request: Request) {
           deliveryAddress: order.delivery_address as Record<string, string>,
           items: items ?? [],
           orderUrl: new URL(`/account/orders/${order.order_number}`, siteUrl).toString(),
+          paymentStatus: "paid",
+          orderStatus: "confirmed",
+          deliveryStatus: order.delivery_status,
+          transaction: {
+            provider: "Razorpay",
+            method: "razorpay_checkout",
+            providerOrderId,
+            providerPaymentId: paymentId,
+            paidAt: now,
+          },
         });
       } catch (emailError) {
         console.error("Razorpay payment was verified, but its notification email failed", { orderId: order.id, emailError });

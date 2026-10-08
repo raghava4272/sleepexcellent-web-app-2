@@ -18,7 +18,9 @@ const sourceRootCategory = ["mattress", "mattresses"].includes(sourceFolderName)
   ? "mattresses"
   : ["sofa", "sofas"].includes(sourceFolderName)
     ? "sofas"
-    : null;
+    : ["padding bed", "padding beds"].includes(sourceFolderName)
+      ? "padding-beds"
+      : null;
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;

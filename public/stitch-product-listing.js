@@ -113,7 +113,7 @@
   };
 
   catalogProducts.forEach((product) => {
-    product.selectedSize = product.slug === "shim-mattress" ? "Single Mattress — 75 × 36 in" : "King Mattress — 78 × 72 in";
+    product.selectedSize = "Single Mattress — 75 × 36 in";
     product.selectedThickness = product.slug === "shim-mattress" ? null : "6 in";
     product.variants = [];
   });
