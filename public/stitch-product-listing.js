@@ -8,7 +8,7 @@
     { name: "Latex Mattress", slug: "latex-mattress", price: 15699, priceLabel: "₹15,699", listPrice: "₹20,500", specification: "Natural Latex Comfort", core: "Natural Latex", thickness: ["6", "8", "10", "12"], criteria: [], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
     { name: "Bonnell Spring Mattress", slug: "bonnell-spring-mattress", price: 14999, priceLabel: "₹14,999", listPrice: "₹22,500", specification: "Hourglass Spring System", core: "Bonnell High-Tensile Spring", thickness: ["6", "8", "10", "12"], criteria: [], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
     { name: "Feel Good Mattress", slug: "feel-good-mattress", price: 22399, priceLabel: "₹22,399", listPrice: "₹34,000", specification: "Multi-Strata Comfort", core: "Super Soft", thickness: ["6", "8", "10", "12"], criteria: [], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
-    { name: "Slim Mattress", slug: "shim-mattress", price: 1499, priceLabel: "₹1,499", listPrice: "₹2,999", specification: "Slim Profile", core: "High Density HR Foam", thickness: ["6", "8", "10", "12"], firmness: "Balanced", criteria: [], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
+    { name: "Slim Mattress", slug: "shim-mattress", price: 1499, priceLabel: "₹1,499", listPrice: "", specification: "Slim Profile", core: "High Density HR Foam", thickness: [], firmness: "Balanced", criteria: [], sizes: ["Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] },
     { name: "Foam Mattress", slug: "foam-mattress", price: 12499, priceLabel: "₹12,499", listPrice: "₹18,999", specification: "High-Density Foam", core: "High Density HR Foam", thickness: ["6", "8", "10", "12"], criteria: [], sizes: ["Diwan Mattress — 72 × 36 in", "Single Mattress — 75 × 36 in", "Double Mattress — 75 × 48 in", "Queen Mattress — 75 × 60 in", "King Mattress — 75 × 72 in", "King Mattress — 78 × 72 in"] }
   ];
 
@@ -61,6 +61,33 @@
   filterSidebar.appendChild(applyButton);
 
   const initialCards = Array.from(grid.querySelectorAll(":scope > article"));
+  const money = new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 });
+  const cardSizeOptions = ["Single Mattress — 75 × 36 in", "Queen Mattress — 75 × 60 in", "King Mattress — 78 × 72 in"];
+  const sizeArea = { "Single Mattress — 75 × 36 in": 75 * 36, "Queen Mattress — 75 × 60 in": 75 * 60, "King Mattress — 78 × 72 in": 78 * 72 };
+  const slimPrices = { "Single Mattress — 75 × 36 in": 1499, "Double Mattress — 75 × 48 in": 1999, "Queen Mattress — 75 × 60 in": 2498, "King Mattress — 75 × 72 in": 2998, "King Mattress — 78 × 72 in": 3118 };
+  const displayedPrice = (product) => {
+    const variant = (product.variants || []).find((item) => item.option_values?.size === product.selectedSize && (!item.option_values?.thickness || item.option_values.thickness === product.selectedThickness));
+    if (variant) return { label: money.format(variant.price_paise / 100), variant };
+    const amount = product.slug === "shim-mattress"
+      ? slimPrices[product.selectedSize]
+      : Math.round(product.price * (sizeArea[product.selectedSize] || (78 * 72)) / (78 * 72));
+    return { label: money.format(amount), variant: null };
+  };
+  const updateCardSelection = (card, product) => {
+    const { label, variant } = displayedPrice(product);
+    product.selectedVariant = variant;
+    card.querySelector(".font-price-xl").textContent = label;
+    const selectedLabel = Array.from(card.querySelectorAll("span")).find((span) => /^(Single|Queen|King).*\d+[\"”]?\s*[×x]\s*\d+/.test(span.textContent.trim()));
+    if (selectedLabel) selectedLabel.textContent = product.selectedSize.replace(" Mattress — ", " ");
+    const buttons = Array.from(card.querySelectorAll(".grid.grid-cols-3 button"));
+    buttons.forEach((button, buttonIndex) => {
+      const active = cardSizeOptions[buttonIndex] === product.selectedSize;
+      button.setAttribute("aria-pressed", String(active));
+      button.className = active
+        ? "py-1 text-mono-data font-mono-data border border-primary bg-surface-container font-bold text-primary text-center"
+        : "py-1 text-mono-data font-mono-data border border-surface-dim hover:border-primary text-center";
+    });
+  };
   const applyCatalogData = (card, product, index) => {
     const image = card.querySelector("img[data-alt]");
     image.src = product.image || "/product-placeholder.svg";
@@ -69,7 +96,7 @@
     image.classList.toggle("object-cover", Boolean(product.image));
     card.querySelector("h3").textContent = product.name;
     card.querySelector(".font-price-xl").textContent = product.priceLabel;
-    card.querySelector(".line-through").textContent = product.listPrice;
+    card.querySelector(".line-through").classList.add("hidden");
     card.querySelector(".tracking-widest").textContent = product.specification;
     card.dataset.productIndex = String(index);
     card.dataset.slug = product.slug;
@@ -77,8 +104,14 @@
     card.setAttribute("role", "link");
     card.setAttribute("aria-label", "View " + product.name);
     card.classList.add("cursor-pointer");
+    updateCardSelection(card, product);
   };
 
+  catalogProducts.forEach((product) => {
+    product.selectedSize = product.slug === "shim-mattress" ? "Single Mattress — 75 × 36 in" : "King Mattress — 78 × 72 in";
+    product.selectedThickness = product.slug === "shim-mattress" ? null : "6 in";
+    product.variants = [];
+  });
   initialCards.forEach((card, index) => applyCatalogData(card, catalogProducts[index], index));
   const foamCard = initialCards[initialCards.length - 1].cloneNode(true);
   applyCatalogData(foamCard, catalogProducts[catalogProducts.length - 1], catalogProducts.length - 1);
@@ -88,9 +121,10 @@
 
   const productCards = Array.from(grid.querySelectorAll(":scope > article"));
   window.addEventListener("message", (event) => {
-    if (event.origin !== window.location.origin || event.data?.type !== "sleepexcellent-product-images" || !event.data.images) return;
+    if (event.origin !== window.location.origin || event.data?.type !== "sleepexcellent-product-data") return;
     catalogProducts.forEach((product) => {
-      product.image = event.data.images[product.slug] || product.image;
+      product.image = event.data.images?.[product.slug] || product.image;
+      product.variants = event.data.variants?.[product.slug] || [];
     });
     productCards.forEach((card) => {
       applyCatalogData(card, catalogProducts[Number(card.dataset.productIndex)], Number(card.dataset.productIndex));
@@ -100,6 +134,16 @@
     window.top.location.href = "/products/" + card.dataset.slug;
   };
   productCards.forEach((card) => {
+    const product = catalogProducts[Number(card.dataset.productIndex)];
+    Array.from(card.querySelectorAll(".grid.grid-cols-3 button")).forEach((button, buttonIndex) => {
+      button.type = "button";
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        product.selectedSize = cardSizeOptions[buttonIndex];
+        updateCardSelection(card, product);
+      });
+    });
     const favorite = card.querySelector('button:has([data-icon="favorite"])');
     favorite?.addEventListener("click", (event) => {
       event.preventDefault();
@@ -115,9 +159,18 @@
       addToCart.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
+        if (!product.selectedVariant) {
+          openProduct(card);
+          return;
+        }
         addToCart.disabled = true;
         addToCart.textContent = "Adding…";
-        window.parent.postMessage({ type: "sleepexcellent-add-to-cart", productSlug: card.dataset.slug }, window.location.origin);
+        window.parent.postMessage({
+          type: "sleepexcellent-add-to-cart",
+          productSlug: card.dataset.slug,
+          variantSku: product.selectedVariant.sku,
+          configuration: product.selectedVariant.option_values
+        }, window.location.origin);
       });
     }
     card.addEventListener("click", () => openProduct(card));

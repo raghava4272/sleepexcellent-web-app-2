@@ -8,11 +8,12 @@ type StitchFrameProps = {
   className?: string;
   hideEmbeddedHeader?: boolean;
   productImages?: Record<string, string>;
+  productVariants?: Record<string, Array<{ sku: string; title: string; option_values: Record<string, string>; price_paise: number }>>;
   src: string;
   title: string;
 };
 
-export function StitchFrame({ className, hideEmbeddedHeader = false, productImages, src, title }: StitchFrameProps) {
+export function StitchFrame({ className, hideEmbeddedHeader = false, productImages, productVariants, src, title }: StitchFrameProps) {
   const frame = useRef<HTMLIFrameElement>(null);
   const router = useRouter();
 
@@ -51,8 +52,8 @@ export function StitchFrame({ className, hideEmbeddedHeader = false, productImag
     };
 
     const sendProductImages = () => {
-      if (!productImages || !currentFrame?.contentWindow) return;
-      currentFrame.contentWindow.postMessage({ type: "sleepexcellent-product-images", images: productImages }, window.location.origin);
+      if (!currentFrame?.contentWindow) return;
+      currentFrame.contentWindow.postMessage({ type: "sleepexcellent-product-data", images: productImages ?? {}, variants: productVariants ?? {} }, window.location.origin);
     };
 
     const observeFrameDocument = () => {
@@ -71,7 +72,7 @@ export function StitchFrame({ className, hideEmbeddedHeader = false, productImag
     const settle = [0, 250, 1000].map((delay) => window.setTimeout(observeFrameDocument, delay));
     const currentFrame = frame.current;
     const resizeOnWindow = () => resize();
-    const receiveFrameMessage = async (event: MessageEvent<{ type?: string; height?: number; productSlug?: string }>) => {
+    const receiveFrameMessage = async (event: MessageEvent<{ type?: string; height?: number; productSlug?: string; variantSku?: string; configuration?: Record<string, string> }>) => {
       if (event.source !== currentFrame?.contentWindow) return;
       if (event.data?.type === "sleepexcellent-frame-height" && typeof event.data.height === "number") {
         resize(event.data.height);
@@ -80,7 +81,7 @@ export function StitchFrame({ className, hideEmbeddedHeader = false, productImag
       if (event.data?.type !== "sleepexcellent-add-to-cart" || typeof event.data.productSlug !== "string") return;
       const productSlug = event.data.productSlug;
       const response = await fetch("/api/cart", {
-        body: JSON.stringify({ productSlug, quantity: 1 }),
+        body: JSON.stringify({ productSlug, variantSku: event.data.variantSku, configuration: event.data.configuration, quantity: 1 }),
         credentials: "same-origin",
         headers: { "Content-Type": "application/json", ...await customerAuthHeaders() },
         method: "POST",
@@ -107,7 +108,7 @@ export function StitchFrame({ className, hideEmbeddedHeader = false, productImag
       window.removeEventListener("resize", resizeOnWindow);
       window.removeEventListener("message", receiveFrameMessage);
     };
-  }, [hideEmbeddedHeader, productImages, router]);
+  }, [hideEmbeddedHeader, productImages, productVariants, router]);
 
   return <iframe className={`stitch-frame ${className ?? ""}`} ref={frame} scrolling="no" src={src} title={title} />;
 }

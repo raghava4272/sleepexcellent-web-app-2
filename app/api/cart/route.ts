@@ -24,7 +24,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const user = await requireAuthenticatedUser(request);
-    const { productSlug, quantity = 1, configuration } = await request.json();
+    const { productSlug, variantSku, quantity = 1, configuration } = await request.json();
     if (typeof productSlug !== "string" || !productSlug || !Number.isInteger(quantity) || quantity < 1 || quantity > 10) {
       return NextResponse.json({ error: "Choose a valid product and quantity." }, { status: 400 });
     }
@@ -35,20 +35,23 @@ export async function POST(request: Request) {
     const admin = createSupabaseAdminClient();
     const { data: product, error: productError } = await admin
       .from("products")
-      .select("id")
+      .select("id, category_id")
       .eq("slug", productSlug)
       .eq("status", "active")
       .single();
     if (productError || !product) return NextResponse.json({ error: "This product is unavailable." }, { status: 404 });
 
-    const { data: variant, error: variantError } = await admin
+    const { data: category } = await admin.from("categories").select("slug").eq("id", product.category_id).maybeSingle();
+    if (category?.slug === "mattresses" && (typeof variantSku !== "string" || !variantSku)) {
+      return NextResponse.json({ error: "Choose a mattress size and thickness before adding it to your cart." }, { status: 400 });
+    }
+    let variantQuery = admin
       .from("product_variants")
       .select("id")
       .eq("product_id", product.id)
-      .eq("is_active", true)
-      .order("created_at", { ascending: true })
-      .limit(1)
-      .single();
+      .eq("is_active", true);
+    if (typeof variantSku === "string" && variantSku) variantQuery = variantQuery.eq("sku", variantSku);
+    const { data: variant, error: variantError } = await variantQuery.order("created_at", { ascending: true }).limit(1).single();
     if (variantError || !variant) return NextResponse.json({ error: "This product has no purchasable configuration yet." }, { status: 409 });
 
     const cart = await getActiveCart(user.id);

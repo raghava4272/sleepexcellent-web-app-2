@@ -2,11 +2,11 @@ import Image from "next/image";
 
 const founders = [
   {
-    name: "MERVA OBAIAH YADAV",
+    name: "OBAIAH YADAV MERVA",
     role: "CEO",
     image: "/merva-obaiah-yadav.png",
     description:
-      "Merva Obaiah Yadav guides our customer experience, market growth, and brand direction, bringing practical sleep and interior solutions to homes with attentive service and a clear focus on value.",
+      "Obaiah Yadav Merva guides our customer experience, market growth, and brand direction, bringing practical sleep and interior solutions to homes with attentive service and a clear focus on value.",
   },
   {
     name: "SANAPAREDDY PRATHAPH REDDY",

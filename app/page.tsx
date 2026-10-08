@@ -55,7 +55,7 @@ export default async function HomePage() {
     const image = imageFor(product);
     return {
       category: categorySlug,
-      configuration: categorySlug === "mattresses" ? "Diwan · Single · Double · Queen · King" : "Made to order",
+      configuration: categorySlug === "mattresses" ? "Diwan · Single · Double · Queen · King" : categorySlug === "sofas" ? pricing[product.slug]?.configuration || "Made to order" : "Made to order",
       href: `/products/${product.slug}`,
       imageAlt: image?.alt || `${product.name} image pending`,
       imageSrc: image?.src || "/product-placeholder.svg",

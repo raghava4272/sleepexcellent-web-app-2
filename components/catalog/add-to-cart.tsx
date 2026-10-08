@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { customerAuthHeaders } from "@/lib/supabase/client-auth";
 
-export function AddToCart({ productSlug, configuration, showBuyNow = false, compact = false }: { productSlug: string; configuration?: Record<string, string>; showBuyNow?: boolean; compact?: boolean }) {
+export function AddToCart({ productSlug, variantSku, configuration, showBuyNow = false, compact = false }: { productSlug: string; variantSku?: string; configuration?: Record<string, string>; showBuyNow?: boolean; compact?: boolean }) {
   const [state, setState] = useState<"idle" | "loading" | "added" | "error">("idle");
   const [pendingAction, setPendingAction] = useState<"cart" | "buy" | null>(null);
   const [message, setMessage] = useState("");
@@ -18,7 +18,7 @@ export function AddToCart({ productSlug, configuration, showBuyNow = false, comp
     const response = await fetch("/api/cart", {
       method: "POST",
       credentials: "same-origin", headers: { "Content-Type": "application/json", ...await customerAuthHeaders() },
-      body: JSON.stringify({ productSlug, quantity: 1, configuration }),
+      body: JSON.stringify({ productSlug, variantSku, quantity: 1, configuration }),
     });
     if (response.status === 401) {
       router.push(`/auth/login?next=${encodeURIComponent(`/products/${productSlug}`)}`);

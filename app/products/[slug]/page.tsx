@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ProductImageGallery } from "@/components/catalog/product-image-gallery";
 import { notFound } from "next/navigation";
 import { FavoriteButton } from "@/components/catalog/favorite-button";
-import { ProductConfigurator } from "@/components/catalog/mattress-configurator";
+import { ProductConfigurator, type ConfiguratorVariant } from "@/components/catalog/mattress-configurator";
 import { AddToCart } from "@/components/catalog/add-to-cart";
 import { getPricingManifest, priceLabel } from "@/lib/catalog/pricing";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -17,15 +17,17 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
   const [{ data: productData }, pricing] = await Promise.all([supabase.from("products").select("id, name, slug, short_description, description, purchase_mode, category_id").eq("slug", slug).eq("status", "active").maybeSingle(), getPricingManifest()]);
   const product = productData as Product | null;
   if (!product) notFound();
-  const [{ data: categoryData }, { data: imageData }] = await Promise.all([
+  const [{ data: categoryData }, { data: imageData }, { data: variantData }] = await Promise.all([
     supabase.from("categories").select("name, slug").eq("id", product.category_id).maybeSingle(),
     supabase.from("product_images").select("storage_path, alt_text, sort_order").eq("product_id", product.id).order("sort_order"),
+    supabase.from("product_variants").select("sku, title, option_values, price_paise").eq("product_id", product.id).eq("is_active", true).order("price_paise"),
   ]);
   const category = categoryData as Category | null;
   const productImages = ((imageData ?? []) as ProductImage[]).map((image) => ({
     alt: image.alt_text,
     src: supabase.storage.from("product-images").getPublicUrl(image.storage_path).data.publicUrl,
   }));
+  const variants = (variantData ?? []) as ConfiguratorVariant[];
   const isMattress = category?.slug === "mattresses";
   const isSofa = category?.slug === "sofas";
   const isInterior = ["tv-units", "kitchen", "ceilings"].includes(category?.slug || "");
@@ -44,9 +46,9 @@ export default async function CatalogProductPage({ params }: { params: Promise<{
           <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#9d6b36]">SleepExcellent {category?.name || "catalogue"}</p>
           <h1 className="mt-3 font-serif text-4xl md:text-5xl">{product.name}</h1>
           <p className="mt-5 max-w-xl leading-7 text-neutral-600">{product.description || product.short_description || `${product.name} is part of the SleepExcellent made-to-order catalogue.`}</p>
-          {pricingLabel ? <p className="mt-4 text-2xl font-semibold text-[#8a694c]">{pricingLabel}</p> : null}
+          {pricingLabel && !isMattress ? <p className="mt-4 text-2xl font-semibold text-[#8a694c]">{pricingLabel}</p> : null}
           {isMattress || isSofa ? (
-            <ProductConfigurator productSlug={slug} showColors={isSofa} showSizes={isMattress} />
+            <ProductConfigurator productSlug={slug} showColors={isSofa} showSizes={isMattress} sofaConfiguration={isSofa ? pricing[product.slug]?.configuration : undefined} variants={isMattress ? variants : undefined} />
           ) : (
             <div className="mt-7 rounded-2xl border border-[#d6c8b5] bg-white p-5">
               <p className="text-sm font-semibold">Ready to order</p>
