@@ -7,11 +7,16 @@ test("opens the storefront login popup and switches to signup without leaving th
 
   const dialog = page.getByRole("dialog", { name: "Welcome back" });
   await expect(dialog).toBeVisible();
+  await expect(dialog.getByRole("link", { name: "Continue with Google" })).toBeVisible();
+  await expect(dialog.getByLabel("Mobile number")).toHaveCount(0);
   await expect(dialog.getByLabel("Email address")).toBeFocused();
   await dialog.getByRole("button", { name: "Create an account" }).click();
 
   await expect(page).toHaveURL(/\?auth=signup$/);
-  await expect(page.getByRole("dialog", { name: "Create your account" })).toBeVisible();
+  const signupDialog = page.getByRole("dialog", { name: "Create your account" });
+  await expect(signupDialog).toBeVisible();
+  await expect(signupDialog.getByRole("link", { name: "Sign up with Google" })).toBeVisible();
+  await expect(signupDialog.getByLabel("Full name")).toBeVisible();
 });
 
 test("keeps direct auth routes as a fallback and protects customer checkout", async ({ page }) => {

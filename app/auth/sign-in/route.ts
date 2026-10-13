@@ -26,7 +26,10 @@ export async function GET(request: NextRequest) {
   });
 
   if (error || !data.url) {
-    return NextResponse.redirect(new URL("/admin?auth=provider-not-configured", request.url));
+    const loginUrl = new URL("/auth/login", request.url);
+    loginUrl.searchParams.set("next", next);
+    loginUrl.searchParams.set("error", "google_unavailable");
+    return NextResponse.redirect(loginUrl);
   }
 
   return NextResponse.redirect(data.url);

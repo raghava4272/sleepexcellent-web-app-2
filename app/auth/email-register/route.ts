@@ -22,11 +22,6 @@ function registrationErrorCode(code?: string, status?: number) {
   return "invalid_registration";
 }
 
-function indianPhone(value: string) {
-  const digits = value.replace(/\D/g, "");
-  return digits.length === 10 ? `+91${digits}` : digits.length === 12 && digits.startsWith("91") ? `+${digits}` : null;
-}
-
 export async function POST(request: NextRequest) {
   const formData = await request.formData();
   const email = String(formData.get("email") ?? "").trim();
@@ -51,7 +46,6 @@ export async function POST(request: NextRequest) {
   const confirmUrl = new URL("/auth/callback", request.url);
   confirmUrl.searchParams.set("next", next);
   const metadata = { full_name: fullName, phone, pincode };
-  const authPhone = indianPhone(phone);
 
   if (brandedAuthEmailIsConfigured()) {
     const admin = createSupabaseAdminClient();
@@ -59,14 +53,6 @@ export async function POST(request: NextRequest) {
     if (error || !data.properties?.action_link) {
       redirectUrl.searchParams.set("error", registrationErrorCode(error?.code, error?.status));
       return NextResponse.redirect(redirectUrl, 303);
-    }
-    if (data.user?.id && authPhone) {
-      const { error: phoneError } = await admin.auth.admin.updateUserById(data.user.id, { phone: authPhone });
-      if (phoneError) {
-        await admin.auth.admin.deleteUser(data.user.id);
-        redirectUrl.searchParams.set("error", "phone_in_use");
-        return NextResponse.redirect(redirectUrl, 303);
-      }
     }
     try {
       await sendSignupVerificationEmail({ email, fullName, verificationUrl: data.properties.action_link });
@@ -79,15 +65,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.redirect(redirectUrl, 303);
   }
 
-  const { data, error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: confirmUrl.toString(), data: metadata } });
-  if (!error && data.user?.id && authPhone) {
-    const admin = createSupabaseAdminClient();
-    const { error: phoneError } = await admin.auth.admin.updateUserById(data.user.id, { phone: authPhone });
-    if (phoneError) {
-      await admin.auth.admin.deleteUser(data.user.id);
-      redirectUrl.searchParams.set("error", "phone_in_use");
-    }
-  }
+  const { error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: confirmUrl.toString(), data: metadata } });
   if (error) redirectUrl.searchParams.set("error", registrationErrorCode(error.code, error.status));
   else if (!redirectUrl.searchParams.has("error")) redirectUrl.searchParams.set("message", "Check your inbox for the verification link, then sign in.");
   return NextResponse.redirect(redirectUrl, 303);

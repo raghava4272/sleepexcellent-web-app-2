@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { PasswordField } from "@/components/auth/password-field";
-import { PhoneOtpForm } from "@/components/auth/phone-otp-form";
 
 export type AuthMode = "login" | "signup";
 
@@ -22,7 +21,7 @@ const errorMessages: Record<string, string> = {
   email_exists: "An account already exists for this email address. Sign in instead.",
   email_rate_limit: "Too many verification emails were requested. Please wait a few minutes and try again.",
   email_delivery_failed: "We could not send the verification email. Please try again shortly.",
-  phone_in_use: "That mobile number is already connected to another account.",
+  google_unavailable: "Google sign-in is temporarily unavailable. Please use email and password.",
   missing_credentials: "Enter both your email address and password.",
 };
 
@@ -83,14 +82,30 @@ export function AuthModal({ error, message, mode, next, returnTo, onClose, onMod
           </div>
           <button aria-label="Close sign in dialog" className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#d9d1c7] text-xl transition hover:bg-[#f7f5f1]" onClick={onClose} type="button">×</button>
         </div>
-        <p className="mt-3 text-sm leading-6 text-[#5d605e]">{isSignup ? "Share your contact details and create an account. SleepExcellent will email you a verification link." : "Enter your mobile number to receive a secure one-time password."}</p>
+        <p className="mt-3 text-sm leading-6 text-[#5d605e]">{isSignup ? "Create an account with Google, or enter your details manually with email and password." : "Continue with Google or sign in with your email address and password."}</p>
 
         {status ? <p aria-live="polite" className={`mt-5 rounded-2xl border px-4 py-3 text-sm ${error ? "border-[#e1b5ae] bg-[#fff5f2] text-[#9f3023]" : "border-[#bfd6c1] bg-[#f2faf3] text-[#275e34]"}`} id="auth-modal-status">{status}</p> : null}
 
-        {!isSignup ? <>
-          <PhoneOtpForm next={next} onSubmittingChange={setSubmitting} />
-          <a className="mt-3 block text-center text-sm font-semibold text-[#5f4531] underline underline-offset-4" href={`/auth/login?next=${encodeURIComponent(next)}`}>Sign in with email instead</a>
-        </> : <form action="/auth/email-register" className="mt-6 space-y-4" method="post" onSubmit={submit}>
+        <a className="mt-6 flex h-12 w-full items-center justify-center gap-3 rounded-xl border border-[#cfc7bd] bg-white px-4 text-sm font-semibold text-[#181818] transition hover:bg-[#f7f5f1]" href={`/auth/sign-in?next=${encodeURIComponent(next)}`}>
+          <span aria-hidden="true" className="grid h-6 w-6 place-items-center rounded-full bg-white text-base font-bold text-[#4285f4]">G</span>
+          {isSignup ? "Sign up with Google" : "Continue with Google"}
+        </a>
+        <div className="my-5 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#77736e]"><span className="h-px flex-1 bg-[#ded9d2]" /><span>or</span><span className="h-px flex-1 bg-[#ded9d2]" /></div>
+
+        {!isSignup ? <form action="/auth/email-login" className="space-y-4" method="post" onSubmit={submit}>
+          <input name="next" type="hidden" value={next} />
+          <input name="returnTo" type="hidden" value={returnTo} />
+          <input name="modal" type="hidden" value="1" />
+          <div>
+            <label className="mb-1.5 block text-sm font-semibold" htmlFor="auth-modal-login-email">Email address</label>
+            <input autoComplete="email" className="h-12 w-full rounded-xl border border-[#cfc7bd] bg-[#fcfbf8] px-4 outline-none transition focus:border-[#181818] focus:ring-2 focus:ring-[#d7c4ac]" id="auth-modal-login-email" name="email" ref={firstFieldRef} required type="email" />
+          </div>
+          <div>
+            <label className="mb-1.5 block text-sm font-semibold" htmlFor="auth-modal-login-password">Password</label>
+            <PasswordField autoComplete="current-password" id="auth-modal-login-password" inputClassName="h-12 w-full rounded-xl border border-[#cfc7bd] bg-[#fcfbf8] px-4 outline-none transition focus:border-[#181818] focus:ring-2 focus:ring-[#d7c4ac]" />
+          </div>
+          <button className="h-12 w-full rounded-xl bg-[#181818] px-4 text-sm font-semibold text-white transition hover:bg-[#5f4531] disabled:cursor-wait disabled:opacity-70" disabled={submitting} type="submit">{submitting ? "Signing in…" : "Sign in"}</button>
+        </form> : <form action="/auth/email-register" className="space-y-4" method="post" onSubmit={submit}>
           <input name="next" type="hidden" value={next} />
           <input name="returnTo" type="hidden" value={returnTo} />
           <input name="modal" type="hidden" value="1" />
