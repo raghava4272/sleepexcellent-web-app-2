@@ -25,6 +25,38 @@ export async function GET(request: NextRequest) {
   }
 
   const config = getSupabasePublicConfig();
+  const verifier = request.cookies.get("sleepexcellent-oauth-verifier")?.value;
+  if (!verifier) {
+    const loginUrl = new URL("/auth/login", requestUrl.origin);
+    loginUrl.searchParams.set("next", next);
+    loginUrl.searchParams.set("error", "oauth_callback_failed");
+    loginUrl.searchParams.set("reason", "pkce_code_verifier_not_found");
+    return NextResponse.redirect(loginUrl);
+  }
+
+  const tokenResponse = await fetch(`${config.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/token?grant_type=pkce`, {
+    method: "POST",
+    cache: "no-store",
+    headers: {
+      apikey: config.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ auth_code: code, code_verifier: verifier }),
+  });
+  const tokenData = await tokenResponse.json() as {
+    access_token?: string;
+    refresh_token?: string;
+    error?: string;
+    error_code?: string;
+  };
+  if (!tokenResponse.ok || !tokenData.access_token || !tokenData.refresh_token) {
+    const loginUrl = new URL("/auth/login", requestUrl.origin);
+    loginUrl.searchParams.set("next", next);
+    loginUrl.searchParams.set("error", "oauth_callback_failed");
+    loginUrl.searchParams.set("reason", tokenData.error_code ?? tokenData.error ?? `status_${tokenResponse.status}`);
+    return NextResponse.redirect(loginUrl);
+  }
+
   const supabase = createServerClient(config.NEXT_PUBLIC_SUPABASE_URL, config.NEXT_PUBLIC_SUPABASE_ANON_KEY, {
     cookies: {
       getAll: () => request.cookies.getAll(),
@@ -40,7 +72,10 @@ export async function GET(request: NextRequest) {
     },
   });
 
-  const { error } = await supabase.auth.exchangeCodeForSession(code);
+  const { error } = await supabase.auth.setSession({
+    access_token: tokenData.access_token,
+    refresh_token: tokenData.refresh_token,
+  });
   if (error) {
     console.error("Google OAuth callback exchange failed", {
       code: error.code,
@@ -54,5 +89,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
+  response.cookies.delete("sleepexcellent-oauth-verifier");
   return response;
 }

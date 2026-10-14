@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerClient } from "@supabase/ssr";
+import { createHash, randomBytes } from "node:crypto";
 import { getSupabasePublicConfig } from "@/lib/supabase/config";
 
 function safeNextPath(value: string | null) {
@@ -29,32 +29,23 @@ export async function GET(request: NextRequest) {
     loginUrl.searchParams.set("error", "google_unavailable");
     return NextResponse.redirect(loginUrl);
   }
-  const response = NextResponse.redirect(new URL("/", request.url));
-  const supabase = createServerClient(config.NEXT_PUBLIC_SUPABASE_URL, config.NEXT_PUBLIC_SUPABASE_ANON_KEY, {
-    cookies: {
-      getAll: () => request.cookies.getAll(),
-      setAll(cookiesToSet) {
-        cookiesToSet.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
-      },
-    },
-  });
   const redirectTo = new URL("/auth/callback", request.url);
   redirectTo.searchParams.set("next", next);
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: "google",
-    options: { redirectTo: redirectTo.toString() },
+  const verifier = randomBytes(48).toString("base64url");
+  const challenge = createHash("sha256").update(verifier).digest("base64url");
+  const authorizeUrl = new URL("/auth/v1/authorize", config.NEXT_PUBLIC_SUPABASE_URL);
+  authorizeUrl.searchParams.set("provider", "google");
+  authorizeUrl.searchParams.set("redirect_to", redirectTo.toString());
+  authorizeUrl.searchParams.set("code_challenge", challenge);
+  authorizeUrl.searchParams.set("code_challenge_method", "s256");
+
+  const response = NextResponse.redirect(authorizeUrl);
+  response.cookies.set("sleepexcellent-oauth-verifier", verifier, {
+    httpOnly: true,
+    secure: request.nextUrl.protocol === "https:",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 10 * 60,
   });
-
-  if (error || !data.url) {
-    const loginUrl = new URL("/auth/login", request.url);
-    loginUrl.searchParams.set("next", next);
-    loginUrl.searchParams.set("error", "google_unavailable");
-    return NextResponse.redirect(loginUrl);
-  }
-
-  // signInWithOAuth stores the PKCE verifier on `response`. Preserve those
-  // cookies on the provider redirect so the callback can exchange its code
-  // for a session after Google sends the customer back.
-  response.headers.set("Location", data.url);
   return response;
 }
