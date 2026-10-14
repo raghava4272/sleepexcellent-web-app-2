@@ -52,5 +52,9 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  return NextResponse.redirect(data.url);
+  // signInWithOAuth stores the PKCE verifier on `response`. Preserve those
+  // cookies on the provider redirect so the callback can exchange its code
+  // for a session after Google sends the customer back.
+  response.headers.set("Location", data.url);
+  return response;
 }
