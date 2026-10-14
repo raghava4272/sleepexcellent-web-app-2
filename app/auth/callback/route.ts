@@ -12,7 +12,17 @@ export async function GET(request: NextRequest) {
   const next = safeNextPath(requestUrl.searchParams.get("next"));
   const response = NextResponse.redirect(new URL(next, requestUrl.origin));
 
-  if (!code) return response;
+  if (!code) {
+    const providerError = requestUrl.searchParams.get("error_code")
+      ?? requestUrl.searchParams.get("error")
+      ?? "missing_code";
+    console.error("Google OAuth provider callback failed", { providerError });
+    const loginUrl = new URL("/auth/login", requestUrl.origin);
+    loginUrl.searchParams.set("next", next);
+    loginUrl.searchParams.set("error", "oauth_callback_failed");
+    loginUrl.searchParams.set("reason", providerError);
+    return NextResponse.redirect(loginUrl);
+  }
 
   const config = getSupabasePublicConfig();
   const supabase = createServerClient(config.NEXT_PUBLIC_SUPABASE_URL, config.NEXT_PUBLIC_SUPABASE_ANON_KEY, {
