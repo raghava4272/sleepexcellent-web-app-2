@@ -50,6 +50,7 @@ export async function GET(request: NextRequest) {
     const loginUrl = new URL("/auth/login", requestUrl.origin);
     loginUrl.searchParams.set("next", next);
     loginUrl.searchParams.set("error", "oauth_callback_failed");
+    loginUrl.searchParams.set("reason", error.code ?? `status_${error.status ?? "unknown"}`);
     return NextResponse.redirect(loginUrl);
   }
 
