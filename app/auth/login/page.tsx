@@ -6,6 +6,7 @@ type LoginPageProps = { searchParams: Promise<{ error?: string; message?: string
 const messages: Record<string, string> = {
   invalid_credentials: "The email address or password is incorrect.",
   google_unavailable: "Google sign-in is temporarily unavailable. Please use email and password.",
+  oauth_callback_failed: "Google sign-in could not create your session. Please try again.",
   not_staff: "This account does not have access to delivery operations.",
   missing_credentials: "Enter both your email address and password.",
 };
